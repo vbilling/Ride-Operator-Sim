@@ -6,8 +6,14 @@ class coaster extends Phaser.Scene{
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
 
-        //backgroung
+        //background
         this.load.image('blueBackground', './assets/blueBackground.png');
+        //Character Bodies
+        this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
+        this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
 
     };
     create(){
@@ -265,10 +271,7 @@ class coaster extends Phaser.Scene{
                 accessorySprite_array.push(this.accessory);
                 this.accessory.setScale(this.customerNewHeight);
             }
-
-
-
-            
+   
 
         };
         //add coaster carts again so they are on top
@@ -284,8 +287,6 @@ class coaster extends Phaser.Scene{
         this.cart4 = this.physics.add.sprite(121, 520, 'coasterCart', 0)
         this.cart4.setScale(this.coasterscale);
         this.cart4.body.allowGravity = false;
-
-
 
         console.log('rider sprite array!!!:', riderSprite_array);
         console.log('accessorySprite_array!!!', accessorySprite_array);
@@ -323,6 +324,8 @@ class coaster extends Phaser.Scene{
             //set velocity of bodies
             for(let b = 0; b < (riderSprite_array.length); b++){
                 riderSprite_array[b].body.setVelocityX(RC_Velocity);
+                //and make them change to surprised face
+                riderSprite_array[b].setFrame(1);
             };
 
             //set velocity of the accessories
