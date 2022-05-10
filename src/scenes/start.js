@@ -5,6 +5,7 @@ class start extends Phaser.Scene{
     preload(){
 
         this.load.image('ground', './assets/ground.png');
+        this.load.spritesheet('doneButton', './assets/doneButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -55,6 +56,9 @@ class start extends Phaser.Scene{
         //will delay the next character spawn in
         this.delay = 0;
 
+        //if the mouse is hovering over the down button
+        this.doneButtonHover = false;
+
         //the riders are reset 
         allRiders_array = [];
         //spawn the first character (function is below)
@@ -76,9 +80,25 @@ class start extends Phaser.Scene{
             //this.p1.velocityFromAngle(50, 200, this.p1.body.velocity);
             this.p1.setFrame(0);
             this.p1.body.allowGravity = true;
-        })
+        });
 
-    }
+        //initilizing mouse
+        this.pointer = this.input.activePointer;
+
+        //done button glow when hovered over
+        this.doneButton = this.add.sprite(860, 620, 'doneButton').setInteractive();
+        this.doneButton.on("pointerover", () => {
+            this.doneButton.setFrame(1);
+            //will tell code in update to go to next scene
+            this.doneButtonHover = true;
+
+        });
+        this.doneButton.on("pointerout", () => {
+            this.doneButton.setFrame(0);
+            this.doneButtonHover = false;
+        });
+
+    };
     newCharacter(){
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -88,17 +108,12 @@ class start extends Phaser.Scene{
         }
         let platforms = this.physics.add.staticGroup();
         platforms.create(400, 695, 'ground');
-        
-
-        //keep track of how many characters you went through
-
-
+    
         //clear the accessories array for the new rider
         riderAccessories_array = []
 
         //respawn delay is reset
         this.delay = 0;
-
 
         //set the scale of them which will affect height
         this.height = randomDecimil(0.2, 0.6);
@@ -312,6 +327,11 @@ class start extends Phaser.Scene{
             
 
         }
+        //will go to score scene if the done button is clicked
+        if(this.pointer.isDown && this.doneButtonHover == true){
+            this.scene.start('scoreScene');
+        }; 
+
 
 
 
