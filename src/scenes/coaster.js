@@ -4,6 +4,7 @@ class coaster extends Phaser.Scene{
     }
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
 
         //backgroung
         this.load.image('blueBackground', './assets/blueBackground.png');
@@ -15,6 +16,30 @@ class coaster extends Phaser.Scene{
         this.add.text(100, 100, 'Coaster Scene');
         this.add.text(100, 130, 'Riders:');
         this.add.text(200, 130, customers);
+
+        //if the mouse is hovering over the red button
+        this.redButtonHover = false;
+
+        //make an array for the customer sprites so that accessories can track them
+        riderSprite_array = [];
+
+        //button
+        this.redButton = this.add.sprite(470, 650, 'redButton').setInteractive();
+        //initilizing mouse
+        this.pointer = this.input.activePointer;
+        this.redButton.setScale(0.2);
+        this.redButton.on("pointerover", () => {
+            //will tell code in update to go to next scene
+            this.redButtonHover = true;
+
+        });
+        this.redButton.on("pointerout", () => {
+            this.redButtonHover = false;
+        });
+
+
+
+
 
 
         //will help me round to one or two digits
@@ -48,6 +73,8 @@ class coaster extends Phaser.Scene{
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             console.log('OLD HEIGHT', this.customerHeight);
             this.customer = this.add.sprite(60, 350, allRiders_array[i][1]);
+            //make an array for the customer sprites so that accessories can track them
+            riderSprite_array.push(this.customer);
             //setting the height based on what the height was before with this.customerNewHeight
             if(this.customerHeight == 0.2){
                 console.log('small');
@@ -223,7 +250,7 @@ class coaster extends Phaser.Scene{
                 };
             };
             //if more customers are let on than allowed
-            
+
 
             
             //now add the accessories (start a at 2 because first two values are height and body)
@@ -246,6 +273,8 @@ class coaster extends Phaser.Scene{
         this.cart4 = this.add.sprite(121, 520, 'coasterCart', 0)
         this.cart4.setScale(this.coasterscale);
 
+
+        console.log('rider sprite array:', riderSprite_array);
         
 
 
@@ -253,6 +282,34 @@ class coaster extends Phaser.Scene{
 
     };
     update(){
+        //make sure that all riders and accessories move with the coaster
+        for(let i = 0; i < (riderSprite_array.length); i++){
+            riderSprite_array[i]
+
+
+            //make sure accessories are bound
+            for(let a = 2; a < (allRiders_array[i].length); a++){
+                this.accessory.x = riderSprite_array[i].x;
+                this.accessory.y = riderSprite_array[i].y;
+            };
+
+        };
+
+        //will make rollercoaster move if pressed
+        if(this.pointer.isDown && this.redButtonHover == true){
+            //button moves down then up with delay
+            this.redButton.setFrame(1);
+            //keeps track of if the button is pressed so it can start delay timer
+            this.buttonpressed = true;
+
+        }else{
+            this.buttonpressed = false;
+        }
+
+        if(this.buttonpressed == false){
+            this.redButton.setFrame(0);
+        }
+
 
     };
 }

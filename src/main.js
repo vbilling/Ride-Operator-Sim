@@ -28,5 +28,6 @@ let riderAccessories_array = [];
 //array full of all customers allowed on ride (riderAccessories_array is nested in this one)
 let allRiders_array = [];
 
-
+//an array of the rider sprites on coaster scene so that accessories can track their movements in update
+riderSprite_array = [];
 
