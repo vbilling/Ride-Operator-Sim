@@ -35,3 +35,5 @@ accessorySprite_array = [];
 //size array for coaster scene
 riderSize_array = [];
 
+//roller coaster velocity
+let RC_Velocity = 800;
