@@ -314,7 +314,7 @@ class coaster extends Phaser.Scene{
                 //accessorySprite_array[startTerm].x = riderSprite_array[i].x;
                 //accessorySprite_array[startTerm].y = riderSprite_array[i].y;
 
-            };
+            //};
             //add the a_count to total for net time
             //this.total_count = (this.total_count + this.a_count);
             //console.log('this.total_count:', this.total_count)
