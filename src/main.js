@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ menu, start, score], 
+    scene: [ menu, start, coaster, score], 
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -27,4 +27,6 @@ let customers = 0;
 let riderAccessories_array = [];
 //array full of all customers allowed on ride (riderAccessories_array is nested in this one)
 let allRiders_array = [];
+
+
 

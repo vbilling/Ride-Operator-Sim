@@ -116,9 +116,13 @@ class start extends Phaser.Scene{
         this.delay = 0;
 
         //set the scale of them which will affect height
-        this.height = randomDecimil(0.2, 0.6);
-        scale = this.height;
-        console.log('height:', scale);
+        this.height = randomDecimil(0.2, 0.5);
+        this.scale = this.height;
+        console.log('height:', this.scale);
+        //add height to info array (will be first element)
+        riderAccessories_array.push(this.scale);
+        
+
         //randomly generate which character body
         //add all character bodies to an array
         this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3'];
@@ -129,7 +133,9 @@ class start extends Phaser.Scene{
         // Add the character
         this.p1 = this.physics.add.sprite(400, 200, this.body_array[this.pick_body], 0).setInteractive();
         riderAccessories_array.push(this.body_array[this.pick_body]);
-        this.p1.setScale(scale);
+
+
+        this.p1.setScale(this.scale);
         this.p1.body.setSize(400, 990, 0.1, 1500);
         this.input.setDraggable(this.p1);
         // object has to be dragged by 16 pixels to be draggable 
@@ -141,7 +147,7 @@ class start extends Phaser.Scene{
         //first generate if there even will be an accessory for each category (can change likelyhood percentages)
         //will there be a hat
         this.hat_chance = random(0, 100);
-        console.log('this.hat_chance', this.hat_chance);
+        //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
         if(this.hat_chance >= 60){
             this.hat = true;
@@ -153,12 +159,12 @@ class start extends Phaser.Scene{
             this.pick_hat = random(0,this.head_array.length - 1);
             riderAccessories_array.push(this.head_array[this.pick_hat]);
             this.head_accessory = this.add.sprite(this.p1.x, this.p1.y +8, this.head_array[this.pick_hat], 0);
-            this.head_accessory.setScale(scale);
+            this.head_accessory.setScale(this.scale);
         };
         
         //held accessories
         this.hold_chance = random(0, 100);
-        console.log('this.hold_chance', this.hold_chance);
+        //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
         if(this.hold_chance >= 30){
             this.hold = true;
@@ -170,12 +176,12 @@ class start extends Phaser.Scene{
             this.pick_hold = random(0,this.hold_array.length - 1);
             riderAccessories_array.push(this.hold_array[this.pick_hold]);
             this.hold_accessory = this.add.sprite(this.p1.x, this.p1.y +8, this.hold_array[this.pick_hold], 0);
-            this.hold_accessory.setScale(scale);
+            this.hold_accessory.setScale(this.scale);
         };
 
         //wrist accessories
         this.wrist_chance = random(0, 100);
-        console.log('this.wrist_chance', this.wrist_chance);
+        //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
         if(this.wrist_chance >= 20){
             this.wrist = true;
@@ -187,12 +193,12 @@ class start extends Phaser.Scene{
             this.pick_wrist = random(0,this.wrist_array.length - 1);
             riderAccessories_array.push(this.wrist_array[this.pick_wrist]);
             this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, this.wrist_array[this.pick_wrist], 0);
-            this.wrist_accessory.setScale(scale);
+            this.wrist_accessory.setScale(this.scale);
         };
 
         //face accessories
         this.face_chance = random(0, 100);
-        console.log('this.face_chance', this.face_chance);
+        //console.log('this.face_chance', this.face_chance);
         this.face = false;
         if(this.face_chance >= 70){
             this.face = true;
@@ -204,12 +210,12 @@ class start extends Phaser.Scene{
             this.pick_face = random(0,this.face_array.length - 1);
             riderAccessories_array.push(this.face_array[this.pick_face]); 
             this.face_accessory = this.add.sprite(this.p1.x, this.p1.y, this.face_array[this.pick_face], 0);
-            this.face_accessory.setScale(scale);
+            this.face_accessory.setScale(this.scale);
         };
 
         //waist accessories
         this.waist_chance = random(0, 100);
-        console.log('this.waist_chance', this.waist_chance);
+        //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
         if(this.waist_chance >= 80){
             this.waist = true;
@@ -221,12 +227,12 @@ class start extends Phaser.Scene{
             this.pick_waist = random(0,this.waist_array.length - 1);  
             riderAccessories_array.push(this.waist_array[this.pick_waist]);  
             this.waist_accessory = this.add.sprite(this.p1.x, this.p1.y, this.waist_array[this.pick_waist], 0);
-            this.waist_accessory.setScale(scale);
+            this.waist_accessory.setScale(this.scale);
         };
 
         //left leg accessory
         this.leg_chance = random(0, 100);
-        console.log('this.leg_chance', this.leg_chance);
+        //console.log('this.leg_chance', this.leg_chance);
         this.leg = false;
         if(this.leg_chance >= 90){
             this.leg = true;
@@ -238,7 +244,7 @@ class start extends Phaser.Scene{
             this.pick_leg = random(0,this.leg_array.length - 1);
             riderAccessories_array.push(this.leg_array[this.pick_leg]);
             this.leg_accessory = this.add.sprite(500, 500, this.leg_array[this.pick_leg], 0);
-            this.leg_accessory.setScale(scale);
+            this.leg_accessory.setScale(this.scale);
         };
 
         //adding accessories to an array (this will represent each character and be nested in allRiders_array if allowed to ride)
@@ -313,7 +319,7 @@ class start extends Phaser.Scene{
         if(this.needCharacter == true){
             //set a timer so there is a delay
             this.delay += 1;
-            if(Math.round(this.delay/60) > 1){
+            if(Math.round(this.delay/60) > 0.2){
                 //add the character and their charastics to the array
                 if(this.p1.x > 980){
                     customers += 1;
@@ -329,7 +335,7 @@ class start extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.doneButtonHover == true){
-            this.scene.start('scoreScene');
+            this.scene.start('coasterScene');
         }; 
 
 
