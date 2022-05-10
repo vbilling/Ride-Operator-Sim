@@ -91,8 +91,7 @@ class start extends Phaser.Scene{
         
 
         //keep track of how many characters you went through
-        customers += 1;
-        console.log('customers:', customers);
+
 
         //clear the accessories array for the new rider
         riderAccessories_array = []
@@ -110,9 +109,11 @@ class start extends Phaser.Scene{
         this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
+        
 
         // Add the character
         this.p1 = this.physics.add.sprite(400, 200, this.body_array[this.pick_body], 0).setInteractive();
+        riderAccessories_array.push(this.body_array[this.pick_body]);
         this.p1.setScale(scale);
         this.p1.body.setSize(400, 990, 0.1, 1500);
         this.input.setDraggable(this.p1);
@@ -195,7 +196,7 @@ class start extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 10){
+        if(this.waist_chance >= 80){
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -266,8 +267,9 @@ class start extends Phaser.Scene{
             //this.newCharacter();
 
         //}
+
         //if the character is flung to the right (aka allowed to ride)
-        if(this.p1.x > 980){
+        if(this.p1.x > 980 || this.p1.x < 0){
             this.p1.destroy();
 
             //will spawn a new character (see below)
@@ -296,16 +298,21 @@ class start extends Phaser.Scene{
         if(this.needCharacter == true){
             //set a timer so there is a delay
             this.delay += 1;
-            if(Math.round(this.delay/60) > 1.5){
+            if(Math.round(this.delay/60) > 1){
                 //add the character and their charastics to the array
-                allRiders_array.push(riderAccessories_array);
-                console.log('all riders array', allRiders_array);
+                if(this.p1.x > 980){
+                    customers += 1;
+                    console.log('customers', customers);
+                    allRiders_array.push(riderAccessories_array);
+                    console.log('all riders array', allRiders_array);
+                }
                 this.newCharacter();
                 this.needCharacter = false;
             };
             
 
         }
+
 
 
     };

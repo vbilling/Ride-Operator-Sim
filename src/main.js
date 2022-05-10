@@ -28,4 +28,3 @@ let riderAccessories_array = [];
 //array full of all customers allowed on ride (riderAccessories_array is nested in this one)
 let allRiders_array = [];
 
-let platforms = this.physics.add.staticGroup();
