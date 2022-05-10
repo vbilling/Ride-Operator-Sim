@@ -268,16 +268,9 @@ class start extends Phaser.Scene{
         //}
         //if the character is flung to the right (aka allowed to ride)
         if(this.p1.x > 980){
-            //add the character and their charastics to the array (but only once)
-            //check if accessories have been pushed
-            allRiders_array.push(riderAccessories_array);
             this.p1.destroy();
-  
-            
-            
-            //this.p1.destroy();
-            console.log('all riders array', allRiders_array);
 
+            //will spawn a new character (see below)
             this.needCharacter = true;
             //destroy all accessories if they exist
             if(this.hold == true){
@@ -304,6 +297,9 @@ class start extends Phaser.Scene{
             //set a timer so there is a delay
             this.delay += 1;
             if(Math.round(this.delay/60) > 1.5){
+                //add the character and their charastics to the array
+                allRiders_array.push(riderAccessories_array);
+                console.log('all riders array', allRiders_array);
                 this.newCharacter();
                 this.needCharacter = false;
             };
