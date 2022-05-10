@@ -51,6 +51,12 @@ class start extends Phaser.Scene{
 
         //how many customers you let on the ride this round
         customers = 0;
+
+        //will delay the next character spawn in
+        this.delay = 0;
+
+        //the riders are reset 
+        allRiders_array = [];
         //spawn the first character (function is below)
         this.newCharacter();
 
@@ -77,9 +83,28 @@ class start extends Phaser.Scene{
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
         };
+        function randomDecimil(mn,mx){
+            return Math.random() * (mx - mn) + mn
+        }
+        let platforms = this.physics.add.staticGroup();
+        platforms.create(400, 695, 'ground');
+        
+
         //keep track of how many characters you went through
         customers += 1;
         console.log('customers:', customers);
+
+        //clear the accessories array for the new rider
+        riderAccessories_array = []
+
+        //respawn delay is reset
+        this.delay = 0;
+
+
+        //set the scale of them which will affect height
+        this.height = randomDecimil(0.2, 0.6);
+        scale = this.height;
+        console.log('height:', scale);
         //randomly generate which character body
         //add all character bodies to an array
         this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3'];
@@ -93,6 +118,8 @@ class start extends Phaser.Scene{
         this.input.setDraggable(this.p1);
         // object has to be dragged by 16 pixels to be draggable 
         this.input.dragDistanceThreshold = 16;
+        this.physics.add.collider(this.p1, platforms);
+
 
         //Accessory Generation!
         //first generate if there even will be an accessory for each category (can change likelyhood percentages)
@@ -108,6 +135,7 @@ class start extends Phaser.Scene{
 
         if(this.hat == true){
             this.pick_hat = random(0,this.head_array.length - 1);
+            riderAccessories_array.push(this.head_array[this.pick_hat]);
             this.head_accessory = this.add.sprite(this.p1.x, this.p1.y +8, this.head_array[this.pick_hat], 0);
             this.head_accessory.setScale(scale);
         };
@@ -124,6 +152,7 @@ class start extends Phaser.Scene{
 
         if(this.hold == true){
             this.pick_hold = random(0,this.hold_array.length - 1);
+            riderAccessories_array.push(this.hold_array[this.pick_hold]);
             this.hold_accessory = this.add.sprite(this.p1.x, this.p1.y +8, this.hold_array[this.pick_hold], 0);
             this.hold_accessory.setScale(scale);
         };
@@ -140,7 +169,8 @@ class start extends Phaser.Scene{
 
         if(this.wrist == true){
             this.pick_wrist = random(0,this.wrist_array.length - 1);
-            this.wrist_accessory = this.add.sprite(500, 500, this.wrist_array[this.pick_wrist], 0);
+            riderAccessories_array.push(this.wrist_array[this.pick_wrist]);
+            this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, this.wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(scale);
         };
 
@@ -156,7 +186,8 @@ class start extends Phaser.Scene{
 
         if(this.face == true){
             this.pick_face = random(0,this.face_array.length - 1);
-            this.face_accessory = this.add.sprite(500, 500, this.face_array[this.pick_face], 0);
+            riderAccessories_array.push(this.face_array[this.pick_face]); 
+            this.face_accessory = this.add.sprite(this.p1.x, this.p1.y, this.face_array[this.pick_face], 0);
             this.face_accessory.setScale(scale);
         };
 
@@ -164,15 +195,16 @@ class start extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 90){
+        if(this.waist_chance >= 10){
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
         this.waist_array = ['phanny1', 'phanny2'];
 
         if(this.waist == true){
-            this.pick_waist = random(0,this.waist_array.length - 1);
-            this.waist_accessory = this.add.sprite(500, 500, this.waist_array[this.pick_waist], 0);
+            this.pick_waist = random(0,this.waist_array.length - 1);  
+            riderAccessories_array.push(this.waist_array[this.pick_waist]);  
+            this.waist_accessory = this.add.sprite(this.p1.x, this.p1.y, this.waist_array[this.pick_waist], 0);
             this.waist_accessory.setScale(scale);
         };
 
@@ -188,12 +220,16 @@ class start extends Phaser.Scene{
 
         if(this.leg == true){
             this.pick_leg = random(0,this.leg_array.length - 1);
+            riderAccessories_array.push(this.leg_array[this.pick_leg]);
             this.leg_accessory = this.add.sprite(500, 500, this.leg_array[this.pick_leg], 0);
             this.leg_accessory.setScale(scale);
         };
 
-    }
+        //adding accessories to an array (this will represent each character and be nested in allRiders_array if allowed to ride)
+        console.log('riderAccessories_array:', riderAccessories_array);
 
+
+    };
 
     update(){
 
@@ -230,6 +266,50 @@ class start extends Phaser.Scene{
             //this.newCharacter();
 
         //}
+        //if the character is flung to the right (aka allowed to ride)
+        if(this.p1.x > 980){
+            //add the character and their charastics to the array (but only once)
+            //check if accessories have been pushed
+            allRiders_array.push(riderAccessories_array);
+            this.p1.destroy();
+  
+            
+            
+            //this.p1.destroy();
+            console.log('all riders array', allRiders_array);
+
+            this.needCharacter = true;
+            //destroy all accessories if they exist
+            if(this.hold == true){
+                this.hold_accessory.destroy();
+            };
+            if(this.hat == true){
+                this.head_accessory.destroy();
+            };
+            if(this.wrist == true){
+                this.wrist_accessory.destroy();
+            };
+            if(this.face == true){
+                this.face_accessory.destroy();
+            };
+            if(this.waist == true){
+                this.waist_accessory.destroy();
+            };
+            if(this.leg == true){
+                this.leg_accessory.destroy();
+            };
+        }
+        //spawn a new character
+        if(this.needCharacter == true){
+            //set a timer so there is a delay
+            this.delay += 1;
+            if(Math.round(this.delay/60) > 1.5){
+                this.newCharacter();
+                this.needCharacter = false;
+            };
+            
+
+        }
 
 
     };

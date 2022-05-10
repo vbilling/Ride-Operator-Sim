@@ -22,3 +22,10 @@ let scale = 0.5;
 
 //keeping track of how many customers you let on the ride
 let customers = 0;
+
+//array of accessories rider has 
+let riderAccessories_array = [];
+//array full of all customers allowed on ride (riderAccessories_array is nested in this one)
+let allRiders_array = [];
+
+let platforms = this.physics.add.staticGroup();
