@@ -20,6 +20,9 @@ class coaster extends Phaser.Scene{
         //if the mouse is hovering over the red button
         this.redButtonHover = false;
 
+        //will activate coaster to move after button is pressed
+        this.coasterstart = false;
+
         //make an array for the customer sprites so that accessories can track them
         riderSprite_array = [];
 
@@ -36,6 +39,14 @@ class coaster extends Phaser.Scene{
         this.redButton.on("pointerout", () => {
             this.redButtonHover = false;
         });
+
+        //coaster wheel animation
+        this.anims.create({
+            key: 'wheels',
+            frames: this.anims.generateFrameNumbers('coasterCart', {start: 0, end: 1, first: 0}),
+            frameRate: 10,
+            repeat: -1,
+        }); 
 
 
 
@@ -56,225 +67,77 @@ class coaster extends Phaser.Scene{
 
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
-        //add coaster carts
-        this.cart1 = this.add.sprite(820, 520, 'coasterCart', 0)
-        this.cart1.setScale(this.coasterscale);
-        this.cart2 = this.add.sprite(587, 520, 'coasterCart', 0)
-        this.cart2.setScale(this.coasterscale);
-        this.cart3 = this.add.sprite(354, 520, 'coasterCart', 0)
-        this.cart3.setScale(this.coasterscale);
-        this.cart4 = this.add.sprite(121, 520, 'coasterCart', 0)
-        this.cart4.setScale(this.coasterscale);
+
 
   
         for(let i = 0; i < (customers); i++){
-            console.log('i:', i);
             
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
-            console.log('OLD HEIGHT', this.customerHeight);
             this.customer = this.add.sprite(60, 350, allRiders_array[i][1]);
             //make an array for the customer sprites so that accessories can track them
             riderSprite_array.push(this.customer);
             //setting the height based on what the height was before with this.customerNewHeight
             if(this.customerHeight == 0.2){
-                console.log('small');
                 //will help place character coordinates correctly in coaster seat
                 this.size = 'small';
+                //an array to get the correct coordinates in update
+                riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale - 0.08);
-                console.log('customer NEW HEIGHT', this.customerNewHeight);
                 this.customer.setScale(this.customerNewHeight);
             }else if(this.customerHeight == 0.3){
-                console.log('medium');
                 this.size = 'medium';
+                riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale - 0.05);
-                console.log('customer NEW HEIGHT', this.customerNewHeight);
                 this.customer.setScale(this.customerNewHeight);
             }else if(this.customerHeight == 0.4){
-                console.log('large');
                 this.size = 'large';
+                riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale + 0.02);
-                console.log('customer NEW HEIGHT', this.customerNewHeight);
                 this.customer.setScale(this.customerNewHeight);
             }else if(this.customerHeight == 0.5){
-                console.log('extra large');
                 this.size = 'extra large';
+                riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale + 0.05);
-                console.log('customer NEW HEIGHT', this.customerNewHeight);
                 this.customer.setScale(this.customerNewHeight);
 
             }
-            //put the customers in the correct seats starting from from seats
-            //the first rider
-            if(i == 0){ //perfect
-                if(this.size == "small"){
-                    this.customer.x = this.cart1.x + 49;
-                    this.customer.y = this.cart1.y - 30;
-                };
-                if(this.size == "medium"){ //perfect
-                    this.customer.x = this.cart1.x + 43;
-                    this.customer.y = this.cart1.y - 45;
-                }; //perfect
-                if(this.size == 'large'){
-                    this.customer.x = this.cart1.x + 30;
-                    this.customer.y = this.cart1.y - 75;
-                }; //perfect
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart1.x + 27;
-                    this.customer.y = this.cart1.y - 90;
-                };
-            };
-            if(i == 1){
-                if(this.size == "small"){ //perfect
-                    this.customer.x = this.cart1.x - 30;
-                    this.customer.y = this.cart1.y - 30;
-                };
-                if(this.size == "medium"){ //perfect
-                    this.customer.x = this.cart1.x - 25;
-                    this.customer.y = this.cart1.y - 45;
-                };
-                if(this.size == 'large'){ //perfect
-                    this.customer.x = this.cart1.x - 4;
-                    this.customer.y = this.cart1.y - 75;
-                };
-                if(this.size == 'extra large'){ //perfect
-                    this.customer.x = this.cart1.x + 5;
-                    this.customer.y = this.cart1.y - 90;
-                };
-            };
-            if(i == 2){
-                if(this.size == "small"){
-                    this.customer.x = this.cart2.x + 49;
-                    this.customer.y = this.cart2.y - 30;
-                };
-                if(this.size == "medium"){
-                    this.customer.x = this.cart2.x + 43;
-                    this.customer.y = this.cart2.y - 45;
-                };
-                if(this.size == 'large'){
-                    this.customer.x = this.cart2.x + 30;
-                    this.customer.y = this.cart2.y - 75;
-                };
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart2.x + 27;
-                    this.customer.y = this.cart2.y - 90;
-                };
-            };
-            if(i == 3){
-                if(this.size == "small"){
-                    this.customer.x = this.cart2.x -30;
-                    this.customer.y = this.cart2.y - 30;
-                };
-                if(this.size == "medium"){
-                    this.customer.x = this.cart2.x - 25;
-                    this.customer.y = this.cart2.y - 45;
-                };
-                if(this.size == 'large'){
-                    this.customer.x = this.cart2.x - 4;
-                    this.customer.y = this.cart2.y - 75;
-                };
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart2.x + 5;
-                    this.customer.y = this.cart2.y - 90;
-                };
-            };
-            if(i == 4){
-                if(this.size == "small"){
-                    this.customer.x = this.cart3.x + 49;
-                    this.customer.y = this.cart3.y - 30;
-                };
-                if(this.size == "medium"){
-                    this.customer.x = this.cart3.x + 43;
-                    this.customer.y = this.cart3.y - 45;
-                };
-                if(this.size == 'large'){
-                    this.customer.x = this.cart3.x + 30;
-                    this.customer.y = this.cart3.y - 75;
-                };
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart3.x + 27;
-                    this.customer.y = this.cart3.y - 90;
-                };
-            };
-            if(i == 5){
-                if(this.size == "small"){
-                    this.customer.x = this.cart3.x -30;
-                    this.customer.y = this.cart3.y - 30;
-                };
-                if(this.size == "medium"){
-                    this.customer.x = this.cart3.x - 25;
-                    this.customer.y = this.cart3.y - 45;
-                };
-                if(this.size == 'large'){
-                    this.customer.x = this.cart3.x - 4;
-                    this.customer.y = this.cart3.y - 75;
-                };
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart3.x + 5;
-                    this.customer.y = this.cart3.y - 90;
-                };
-            };
-            if(i == 6){
-                if(this.size == "small"){
-                    this.customer.x = this.cart4.x + 49;
-                    this.customer.y = this.cart4.y - 30;
-                };
-                if(this.size == "medium"){
-                    this.customer.x = this.cart4.x + 43;
-                    this.customer.y = this.cart4.y - 45;
-                };
-                if(this.size == 'large'){
-                    this.customer.x = this.cart4.x + 30;
-                    this.customer.y = this.cart4.y - 75;
-                };
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart4.x + 27;
-                    this.customer.y = this.cart4.y - 90;
-                };
-            };
-            if(i == 7){
-                if(this.size == "small"){
-                    this.customer.x = this.cart4.x -30;
-                    this.customer.y = this.cart4.y - 30;
-                };
-                if(this.size == "medium"){
-                    this.customer.x = this.cart4.x - 25;
-                    this.customer.y = this.cart4.y - 45;
-                };
-                if(this.size == 'large'){
-                    this.customer.x = this.cart4.x - 4;
-                    this.customer.y = this.cart4.y - 75;
-                };
-                if(this.size == 'extra large'){
-                    this.customer.x = this.cart4.x + 5;
-                    this.customer.y = this.cart4.y - 90;
-                };
-            };
+
+
             //if more customers are let on than allowed
 
 
-            
+
             //now add the accessories (start a at 2 because first two values are height and body)
             console.log('accessory ARRAY', allRiders_array[i]);
             console.log("allRiders_array[i].length", allRiders_array[i].length);
             for(let a = 2; a < (allRiders_array[i].length); a++){
-                console.log('a:', a);
                 this.accessory = this.add.sprite(this.customer.x, this.customer.y, allRiders_array[i][a]);
+                //add accessories to an array
+                accessorySprite_array.push(this.accessory);
                 this.accessory.setScale(this.customerNewHeight);
             }
+
+            console.log('accessorySprite_array', accessorySprite_array);
+
         }
 
         //add coaster carts again so they are on top
-        this.cart1 = this.add.sprite(820, 520, 'coasterCart', 0)
+        this.cart1 = this.physics.add.sprite(820, 520, 'coasterCart', 0)
         this.cart1.setScale(this.coasterscale);
-        this.cart2 = this.add.sprite(587, 520, 'coasterCart', 0)
+        this.cart1.body.allowGravity = false;
+        this.cart2 = this.physics.add.sprite(587, 520, 'coasterCart', 0)
         this.cart2.setScale(this.coasterscale);
-        this.cart3 = this.add.sprite(354, 520, 'coasterCart', 0)
+        this.cart2.body.allowGravity = false;
+        this.cart3 = this.physics.add.sprite(354, 520, 'coasterCart', 0)
         this.cart3.setScale(this.coasterscale);
-        this.cart4 = this.add.sprite(121, 520, 'coasterCart', 0)
+        this.cart3.body.allowGravity = false;
+        this.cart4 = this.physics.add.sprite(121, 520, 'coasterCart', 0)
         this.cart4.setScale(this.coasterscale);
+        this.cart4.body.allowGravity = false;
 
 
-        console.log('rider sprite array:', riderSprite_array);
+        console.log('rider sprite array!!!:', riderSprite_array);
+
         
 
 
@@ -284,14 +147,187 @@ class coaster extends Phaser.Scene{
     update(){
         //make sure that all riders and accessories move with the coaster
         for(let i = 0; i < (riderSprite_array.length); i++){
-            riderSprite_array[i]
+            //riderSprite_array[i]
+            if(i == 0){ 
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart1.x + 49;
+                    riderSprite_array[i].y = this.cart1.y - 30;
+                };
+                if(this.size == "medium"){ 
+                    riderSprite_array[i].x = this.cart1.x + 43;
+                    riderSprite_array[i].y = this.cart1.y - 45;
+                }; 
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart1.x + 30;
+                    riderSprite_array[i].y = this.cart1.y - 75;
+                }; 
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart1.x + 27;
+                    riderSprite_array[i].y = this.cart1.y - 90;
+                };
+            };
+            if(i == 1){
+                if(this.size == "small"){ //perfect
+                    riderSprite_array[i].x = this.cart1.x - 30;
+                    riderSprite_array[i].y = this.cart1.y - 30;
+                };
+                if(this.size == "medium"){ //perfect
+                    riderSprite_array[i].x = this.cart1.x - 25;
+                    riderSprite_array[i].y = this.cart1.y - 45;
+                };
+                if(this.size == 'large'){ //perfect
+                    riderSprite_array[i].x = this.cart1.x - 4;
+                    riderSprite_array[i].y = this.cart1.y - 75;
+                };
+                if(this.size == 'extra large'){ //perfect
+                    riderSprite_array[i].x = this.cart1.x + 5;
+                    riderSprite_array[i].y = this.cart1.y - 90;
+                };
+            };
+            if(i == 2){
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart2.x + 49;
+                    riderSprite_array[i].y = this.cart2.y - 30;
+                };
+                if(this.size == "medium"){
+                    riderSprite_array[i].x = this.cart2.x + 43;
+                    riderSprite_array[i].y = this.cart2.y - 45;
+                };
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart2.x + 30;
+                    riderSprite_array[i].y = this.cart2.y - 75;
+                };
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart2.x + 27;
+                    riderSprite_array[i].y = this.cart2.y - 90;
+                };
+            };
+            if(i == 3){
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart2.x -30;
+                    riderSprite_array[i].y = this.cart2.y - 30;
+                };
+                if(this.size == "medium"){
+                    riderSprite_array[i].x = this.cart2.x - 25;
+                    riderSprite_array[i].y = this.cart2.y - 45;
+                };
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart2.x - 4;
+                    riderSprite_array[i].y = this.cart2.y - 75;
+                };
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart2.x + 5;
+                    riderSprite_array[i].y = this.cart2.y - 90;
+                };
+            };
+            if(i == 4){
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart3.x + 49;
+                    riderSprite_array[i].y = this.cart3.y - 30;
+                };
+                if(this.size == "medium"){
+                    riderSprite_array[i].x = this.cart3.x + 43;
+                    riderSprite_array[i].y = this.cart3.y - 45;
+                };
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart3.x + 30;
+                    riderSprite_array[i].y = this.cart3.y - 75;
+                };
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart3.x + 27;
+                    riderSprite_array[i].y = this.cart3.y - 90;
+                };
+            };
+            if(i == 5){
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart3.x -30;
+                    riderSprite_array[i].y = this.cart3.y - 30;
+                };
+                if(this.size == "medium"){
+                    riderSprite_array[i].x = this.cart3.x - 25;
+                    riderSprite_array[i].y = this.cart3.y - 45;
+                };
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart3.x - 4;
+                    riderSprite_array[i].y = this.cart3.y - 75;
+                };
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart3.x + 5;
+                    riderSprite_array[i].y = this.cart3.y - 90;
+                };
+            };
+            if(i == 6){
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart4.x + 49;
+                    riderSprite_array[i].y = this.cart4.y - 30;
+                };
+                if(this.size == "medium"){
+                    riderSprite_array[i].x = this.cart4.x + 43;
+                    riderSprite_array[i].y = this.cart4.y - 45;
+                };
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart4.x + 30;
+                    riderSprite_array[i].y = this.cart4.y - 75;
+                };
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart4.x + 27;
+                    riderSprite_array[i].y = this.cart4.y - 90;
+                };
+            };
+            if(i == 7){
+                if(this.size == "small"){
+                    riderSprite_array[i].x = this.cart4.x -30;
+                    riderSprite_array[i].y = this.cart4.y - 30;
+                };
+                if(this.size == "medium"){
+                    riderSprite_array[i].x = this.cart4.x - 25;
+                    riderSprite_array[i].y = this.cart4.y - 45;
+                };
+                if(this.size == 'large'){
+                    riderSprite_array[i].x = this.cart4.x - 4;
+                    riderSprite_array[i].y = this.cart4.y - 75;
+                };
+                if(this.size == 'extra large'){
+                    riderSprite_array[i].x = this.cart4.x + 5;
+                    riderSprite_array[i].y = this.cart4.y - 90;
+                };
+            };
+
+
+            //bounding accessories to riders
+            //take allRiders_array iterate (done above) 
+            //then count the length of each one minus the first two (size and body type) and iterate though those terms within each allRiders_array element
+            // thats how many from the accessoriesSprite_array to attach to each element in riderSprite_array
+
+            //for(let amount = 0; (allRiders_array[i].length - 2); amount++){
+
+                //this.a_count is the amount of accessories a rider has
+                //this.a_count = amount;
+                //console.log('amount', amount);
+            //};
+            //console.log('this.a_count', this.a_count);
+            //need to add a_count to a total count to get the correct start term for next time
+            //this.total_count = 0
+
+            //starting term should be past amount of accessories plus new amount
+            //for(let startTerm = this.total_count; startTerm < (this.total_count + this.a_count); startTerm ++){
+                //accessorySprite_array[startTerm].x = riderSprite_array[i].x;
+                //accessorySprite_array[startTerm].y = riderSprite_array[i].y;
+
+            };
+            //add the a_count to total for net time
+            //this.total_count = (this.total_count + this.a_count);
+            //console.log('this.total_count:', this.total_count)
+            
+
+
 
 
             //make sure accessories are bound
-            for(let a = 2; a < (allRiders_array[i].length); a++){
-                this.accessory.x = riderSprite_array[i].x;
-                this.accessory.y = riderSprite_array[i].y;
-            };
+            //for(let a = 2; a < (allRiders_array[i].length); a++){
+                //allRiders_array[i][a].x = riderSprite_array[i].x;
+                //allRiders_array[i][a].y = riderSprite_array[i].y;
+            //};
 
         };
 
@@ -299,6 +335,8 @@ class coaster extends Phaser.Scene{
         if(this.pointer.isDown && this.redButtonHover == true){
             //button moves down then up with delay
             this.redButton.setFrame(1);
+            //will make coaster move
+            this.coasterstart = true;
             //keeps track of if the button is pressed so it can start delay timer
             this.buttonpressed = true;
 
@@ -308,7 +346,17 @@ class coaster extends Phaser.Scene{
 
         if(this.buttonpressed == false){
             this.redButton.setFrame(0);
-        }
+        };
+
+        //will make coaster move when button is pressed
+        if(this.coasterstart == true){
+            //this.cart1.anims.play('wheels');
+            this.cart1.body.setVelocityX(100);
+            this.cart2.body.setVelocityX(100);
+            this.cart3.body.setVelocityX(100);
+            this.cart4.body.setVelocityX(100);
+
+        };
 
 
     };

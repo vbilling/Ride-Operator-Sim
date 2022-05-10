@@ -30,4 +30,8 @@ let allRiders_array = [];
 
 //an array of the rider sprites on coaster scene so that accessories can track their movements in update
 riderSprite_array = [];
+accessorySprite_array = [];
+
+//size array for coaster scene
+riderSize_array = [];
 
