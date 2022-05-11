@@ -54,7 +54,72 @@ class coaster extends Phaser.Scene{
             repeat: -1,
         }); 
 
+        //making a path for the loopty loop
+        graphics = this.add.graphics();
+        curve = new Phaser.Curves.Spline([
+            -150, 150,
+            350, 350,
+            560, 380,
+            670, 280,
+            670, 160,
+            550, 80,
+            420, 110,
+            360, 210,
+            390, 320,
+            540, 400,
+            800, 390,
+            1300, 350
+        ]);
+        points = curve.getDistancePoints(size);
+    
+        curve = new Phaser.Curves.Spline(points);
 
+
+        graphics = this.add.graphics();
+        graphics.lineStyle(1, 0xffffff, 1);
+        curve.draw(graphics, 64);
+        graphics.fillStyle(0x00ff00, 1);
+
+        //adding all the rollar coaster cars that go around the loop
+        for (var i = 0; i < 4; i++)
+        {
+            this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
+    
+            this.follower.setScale(0.07);
+
+            this.follower.startFollow({
+                duration: 9000,
+                positionOnPath: false,
+                repeat: -1,
+                ease: 'Sine.easeInOut',
+                delay: i * 260,
+                rotateToPath: true,
+            });
+        }
+
+        // this.roller1.startFollow({
+        //     from: 0,
+        //     to: 1,
+        //     delay: 0,
+        //     duration: 8000,
+        //     ease: "Sine.easeInOut",
+        //     hold: 0,
+        //     repeat: -1,
+        //     yoyo: false,
+        //     rotateToPath: true,
+        // })
+        // this.roller2.startFollow({
+        //     from: 0,
+        //     to: 1,
+        //     _delay: 100,
+        //     delay: 100,
+        //     duration: 10000,
+        //     ease: "Sine.easeInOut",
+        //     hold: 0,
+        //     repeat: -1,
+        //     yoyo: false,
+        //     rotateToPath: true,
+        // })
 
 
 
@@ -294,12 +359,22 @@ class coaster extends Phaser.Scene{
 
     };
     update(){
+        // graphics.clear();
 
-
+        // graphics.lineStyle(1, 0xffffff, 1);
+    
+        // curve.draw(graphics, 64);
+    
+        // graphics.fillStyle(0x00ff00, 1);
+        // for (var i = 0; i < points.length; i++)
+        // {
+        //     graphics.fillCircle(points[i].x, points[i].y, 4);
+        // }
         //will make rollercoaster move if pressed
         if(this.pointer.isDown && this.redButtonHover == true){
             //button moves down then up with delay
             this.redButton.setFrame(1);
+            //start background coaster
             //will make coaster move
             this.coasterstart = true;
             //keeps track of if the button is pressed so it can start delay timer
@@ -316,6 +391,7 @@ class coaster extends Phaser.Scene{
         //will make coaster move when button is pressed
         if(this.coasterstart == true){
             //this.cart1.anims.play('wheels');
+            
             this.cart1.body.setVelocityX(RC_Velocity);
             this.cart2.body.setVelocityX(RC_Velocity);
             this.cart3.body.setVelocityX(RC_Velocity);
@@ -332,6 +408,7 @@ class coaster extends Phaser.Scene{
             for(let w = 0; w < (accessorySprite_array.length); w++){
                 accessorySprite_array[w].body.setVelocityX(RC_Velocity);
             };
+
 
         };
 

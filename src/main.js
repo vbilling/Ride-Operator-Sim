@@ -36,4 +36,12 @@ accessorySprite_array = [];
 riderSize_array = [];
 
 //roller coaster velocity
-let RC_Velocity = 800;
+let RC_Velocity = 900;
+
+//initilizing variables for the path
+var path;
+var curve;
+var points;
+var graphics;
+var followers;
+var size = 32;
