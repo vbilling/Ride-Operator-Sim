@@ -1,6 +1,6 @@
-class start extends Phaser.Scene{
+class day1 extends Phaser.Scene{
     constructor(){
-        super("startScene");
+        super("day1Scene");
     }
     preload(){
 
@@ -118,6 +118,7 @@ class start extends Phaser.Scene{
         //set the scale of them which will affect height
         this.height = randomDecimil(0.2, 0.5);
         this.scale = this.height;
+
         console.log('height:', this.scale);
         //add height to info array (will be first element)
         riderAccessories_array.push(this.scale);
@@ -152,13 +153,13 @@ class start extends Phaser.Scene{
         if(this.hat_chance >= 60){
             this.hat = true;
         }
-        //then put all accessories in the aproporate arrays
-        this.head_array = ['cowhat1', 'cowhat2', 'cowhat3', 'partyhat'];
+        //then put all accessories in the aproporate arrays (making these arrays global)
+        head_array = ['cowhat1', 'cowhat2', 'cowhat3', 'partyhat'];
 
         if(this.hat == true){
-            this.pick_hat = random(0,this.head_array.length - 1);
-            riderAccessories_array.push(this.head_array[this.pick_hat]);
-            this.head_accessory = this.add.sprite(this.p1.x, this.p1.y +8, this.head_array[this.pick_hat], 0);
+            this.pick_hat = random(0,head_array.length - 1);
+            riderAccessories_array.push(head_array[this.pick_hat]);
+            this.head_accessory = this.add.sprite(this.p1.x, this.p1.y +8, head_array[this.pick_hat], 0);
             this.head_accessory.setScale(this.scale);
         };
         
@@ -170,12 +171,12 @@ class start extends Phaser.Scene{
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
-        this.hold_array = ['soda1', 'soda2', 'knife'];
+        hold_array = ['soda1', 'soda2', 'knife'];
 
         if(this.hold == true){
-            this.pick_hold = random(0,this.hold_array.length - 1);
-            riderAccessories_array.push(this.hold_array[this.pick_hold]);
-            this.hold_accessory = this.add.sprite(this.p1.x, this.p1.y +8, this.hold_array[this.pick_hold], 0);
+            this.pick_hold = random(0,hold_array.length - 1);
+            riderAccessories_array.push(hold_array[this.pick_hold]);
+            this.hold_accessory = this.add.sprite(this.p1.x, this.p1.y +8, hold_array[this.pick_hold], 0);
             this.hold_accessory.setScale(this.scale);
         };
 
@@ -187,12 +188,12 @@ class start extends Phaser.Scene{
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        this.wrist_array = ['watch', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband2', 'wristband3'];
+        wrist_array = ['watch', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband2', 'wristband3'];
 
         if(this.wrist == true){
-            this.pick_wrist = random(0,this.wrist_array.length - 1);
-            riderAccessories_array.push(this.wrist_array[this.pick_wrist]);
-            this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, this.wrist_array[this.pick_wrist], 0);
+            this.pick_wrist = random(0,wrist_array.length - 1);
+            riderAccessories_array.push(wrist_array[this.pick_wrist]);
+            this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(this.scale);
         };
 
@@ -204,12 +205,12 @@ class start extends Phaser.Scene{
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
-        this.face_array = ['moustache', 'bandaid'];
+        face_array = ['moustache', 'bandaid'];
 
         if(this.face == true){
-            this.pick_face = random(0,this.face_array.length - 1);
-            riderAccessories_array.push(this.face_array[this.pick_face]); 
-            this.face_accessory = this.add.sprite(this.p1.x, this.p1.y, this.face_array[this.pick_face], 0);
+            this.pick_face = random(0,face_array.length - 1);
+            riderAccessories_array.push(face_array[this.pick_face]); 
+            this.face_accessory = this.add.sprite(this.p1.x, this.p1.y, face_array[this.pick_face], 0);
             this.face_accessory.setScale(this.scale);
         };
 
@@ -221,12 +222,12 @@ class start extends Phaser.Scene{
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        this.waist_array = ['phanny1', 'phanny2'];
+        waist_array = ['phanny1', 'phanny2'];
 
         if(this.waist == true){
-            this.pick_waist = random(0,this.waist_array.length - 1);  
-            riderAccessories_array.push(this.waist_array[this.pick_waist]);  
-            this.waist_accessory = this.add.sprite(this.p1.x, this.p1.y, this.waist_array[this.pick_waist], 0);
+            this.pick_waist = random(0,waist_array.length - 1);  
+            riderAccessories_array.push(waist_array[this.pick_waist]);  
+            this.waist_accessory = this.add.sprite(this.p1.x, this.p1.y, waist_array[this.pick_waist], 0);
             this.waist_accessory.setScale(this.scale);
         };
 
@@ -238,12 +239,12 @@ class start extends Phaser.Scene{
             this.leg = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        this.leg_array = ['ankleMoniter'];
+        leg_array = ['ankleMoniter'];
 
         if(this.leg == true){
-            this.pick_leg = random(0,this.leg_array.length - 1);
-            riderAccessories_array.push(this.leg_array[this.pick_leg]);
-            this.leg_accessory = this.add.sprite(500, 500, this.leg_array[this.pick_leg], 0);
+            this.pick_leg = random(0,leg_array.length - 1);
+            riderAccessories_array.push(leg_array[this.pick_leg]);
+            this.leg_accessory = this.add.sprite(500, 500, leg_array[this.pick_leg], 0);
             this.leg_accessory.setScale(this.scale);
         };
 
@@ -335,7 +336,7 @@ class start extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.doneButtonHover == true){
-            this.scene.start('coasterScene');
+            this.scene.start('scoreScene');
         }; 
 
 

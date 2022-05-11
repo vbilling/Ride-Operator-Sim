@@ -17,6 +17,8 @@ class coaster extends Phaser.Scene{
 
     };
     create(){
+        //you went through the coaster scene
+        coasterScene = true;
         //background
         this.background = this.add.tileSprite(0, 0, 960, 720, 'blueBackground').setOrigin(0, 0);
         this.add.text(100, 100, 'Coaster Scene');
@@ -85,24 +87,6 @@ class coaster extends Phaser.Scene{
         //curve.draw(graphics, 64);
         graphics.fillStyle(0x00ff00, 1);
 
-        // //adding all the rollar coaster cars that go around the loop
-        // //put it into a function to call later
-        // for (var i = 0; i < 4; i++)
-        // {
-        //     this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
-    
-        //     this.follower.setScale(0.07);
-
-        //     this.follower.startFollow({
-        //         duration: 6000,
-        //         positionOnPath: false,
-        //         repeat: -1,
-        //         ease: 'Sine.easeInOut',
-        //         delay: i * 160,
-        //         rotateToPath: true,
-        //     });
-
-        // }
 
 
         //will help me round to one or two digits
@@ -306,8 +290,8 @@ class coaster extends Phaser.Scene{
 
 
             //now add the accessories (start a at 2 because first two values are height and body)
-            console.log('accessory ARRAY', allRiders_array[i]);
-            console.log("allRiders_array[i].length", allRiders_array[i].length);
+            //console.log('accessory ARRAY', allRiders_array[i]);
+            //console.log("allRiders_array[i].length", allRiders_array[i].length);
             for(let a = 2; a < (allRiders_array[i].length); a++){
                 this.accessory = this.physics.add.sprite(this.customer.x, this.customer.y, allRiders_array[i][a]);
                 this.accessory.body.allowGravity = false;
@@ -332,9 +316,8 @@ class coaster extends Phaser.Scene{
         this.cart4.setScale(this.coasterscale);
         this.cart4.body.allowGravity = false;
 
-        console.log('rider sprite array!!!:', riderSprite_array);
-        console.log('accessorySprite_array!!!', accessorySprite_array);
-
+        //console.log('rider sprite array!!!:', riderSprite_array);
+        //console.log('accessorySprite_array!!!', accessorySprite_array);
 
     };
     //adding all the rollar coaster cars that go around the loop
@@ -398,7 +381,6 @@ class coaster extends Phaser.Scene{
                 //and make them change to surprised face
                 riderSprite_array[b].setFrame(1);
             };
-
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array.length); w++){
                 accessorySprite_array[w].body.setVelocityX(RC_Velocity);
