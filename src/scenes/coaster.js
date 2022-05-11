@@ -17,8 +17,6 @@ class coaster extends Phaser.Scene{
 
     };
     create(){
-        //you went through the coaster scene
-        coasterScene = true;
         //background
         this.background = this.add.tileSprite(0, 0, 960, 720, 'blueBackground').setOrigin(0, 0);
         this.add.text(100, 100, 'Coaster Scene');
@@ -385,10 +383,6 @@ class coaster extends Phaser.Scene{
             for(let w = 0; w < (accessorySprite_array.length); w++){
                 accessorySprite_array[w].body.setVelocityX(RC_Velocity);
             };
-
-
         };
-
-
     };
-}
+};

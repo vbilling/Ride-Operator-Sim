@@ -42,6 +42,11 @@ class day1 extends Phaser.Scene{
     }
 
     create(){
+        //checking
+        
+
+        //you have done day one and will help track which wristbands are correct
+        day1Done = true;
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -336,11 +341,8 @@ class day1 extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.doneButtonHover == true){
-            this.scene.start('scoreScene');
+            this.scene.start("coasterScene");
         }; 
-
-
-
 
     };
 

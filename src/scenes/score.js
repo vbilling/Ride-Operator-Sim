@@ -5,12 +5,9 @@ class score extends Phaser.Scene{
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
 
-
     };
     create(){
         this.add.text(100, 100, 'Score Scene');
-        this.add.text(100, 130, 'Riders:');
-        this.add.text(200, 130, customers);
 
         //will help me round to one or two digits
         function roundTo(n, digits) {
@@ -27,6 +24,9 @@ class score extends Phaser.Scene{
         //total score 
         this.totalScore = 100;
 
+        //clear the array in between each day
+        master_array = []
+
         //make an array for all the score text that will print
         this.scoreText_array = [];
         riderSprite_array2 = [];
@@ -36,6 +36,12 @@ class score extends Phaser.Scene{
         this.tooShort = 0;
         this.tooTall = 0;
         this.hatCount = 0;
+        this.wrongWristband = 0;
+        this.foodCount = 0;
+        this.weaponCount = 0;
+        this.criminalCount = 0;
+        this.missingRider = 0;
+        this.moreRiders = 0;
 
         //put all texts in an array that will print in a function
 
@@ -290,27 +296,126 @@ class score extends Phaser.Scene{
                     first_array = [];
                     this.hatCount += 1;
                 };
+                if(allRiders_array[i][a] == 'soda1' || allRiders_array[i][a] == 'soda2'){
+                    //name of accessory
+                    first_array.push('Soda');
+                    //point value
+                    first_array.push(-5);
+                    //phrase to say
+                    first_array.push('No drinks allowed!!');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.foodCount += 1;
+                    
+                };
+                if(allRiders_array[i][a] == 'knife'){
+                    //name of accessory
+                    first_array.push('knife');
+                    //point value
+                    first_array.push(-50);
+                    //phrase to say
+                    first_array.push('OH NO A KNIFE');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.weaponCount += 1;
+                    
+                };
+                if(allRiders_array[i][a] == 'wristband1'){ //is the day 1 wristband
+                    if(day2Done == true || day3Done == true){
+                        //name of accessory
+                        first_array.push('wristband1');
+                        //point value
+                        first_array.push(-10);
+                        //phrase to say
+                        first_array.push('wrong wristband');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.wrongWristband += 1;
+                    };
+                };
+                if(allRiders_array[i][a] == 'wristband2'){ //is the day 1 wristband
+                    if(day2Done == false || day3Done == true){
+                        //name of accessory
+                        first_array.push('wristband2');
+                        //point value
+                        first_array.push(-10);
+                        //phrase to say
+                        first_array.push('wrong wristband');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.wrongWristband += 1;
+                    };
+                };
+                if(allRiders_array[i][a] == 'wristband3'){ //is the day 1 wristband
+                    if(day3Done == false){
+                        //name of accessory
+                        first_array.push('wristband3');
+                        //point value
+                        first_array.push(-10);
+                        //phrase to say
+                        first_array.push('wrong wristband');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.wrongWristband += 1;
+                    };
+                };
+                if(allRiders_array[i][a] == 'ankleMoniter'){ //is the day 1 wristband
+                    if(day3Done == false){
+                        //name of accessory
+                        first_array.push('ankleMoniter');
+                        //point value
+                        first_array.push(-20);
+                        //phrase to say
+                        first_array.push('You let a criminal ride');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.criminalCount += 1;
+                    };
+                };
             };
       
+        };
+        //scoring for height with this.customerHeight
+        if(this.customerHeight < 0.25){
+            this.tooShort += 1; 
+            first_array.push('Too short');
+            first_array.push(-40);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
+        };
+        //too tall
+        if(this.customerHeight > 0.43){
+            this.tooTall += 1;   
+            first_array.push('Too tall');
+            first_array.push(-60);
+            first_array.push('A rider was too tall and lost their head');
+            master_array.push(first_array);
+            first_array = [];   
+        };
+        //scoring if there are too many or not enough customers
+        if(customers < 8){
+            first_array.push('Missing riders');
+            for(let c = 0; c < (8 - customers);c++){
+                this.missingRider += 1;
             };
-            //scoring for height with this.customerHeight
-            if(this.customerHeight < 0.25){
-                this.tooShort += 1; 
-                first_array.push('Too short');
-                first_array.push(-40);
-                first_array.push('A rider was too short and fell out of the ride.');
+            first_array.push(-2 * this.missingRider);
+            first_array.push('Missing riders');
+            master_array.push(first_array);
+            first_array = [];
+        };
+        if(customers > 8){
+            for(let c = 0; c < (customers - 8);c++){
+                first_array.push('Too many riders');
+                first_array.push(-2);
+                first_array.push('Too many riders');
                 master_array.push(first_array);
                 first_array = [];
+                this.moreRiders += 1;
             };
-            //too tall
-            if(this.customerHeight > 0.43){
-                this.tooTall += 1;   
-                first_array.push('Too tall');
-                first_array.push(-60);
-                first_array.push('A rider was too tall and flost their head');
-                master_array.push(first_array);
-                first_array = [];   
-            };
+ 
+        };
+
 
         
         //add coaster carts again so they are on top
@@ -330,26 +435,39 @@ class score extends Phaser.Scene{
         console.log('Too short:', this.tooShort);
         console.log('Too Tall:', this.tooTall);
         console.log("Hat count", this.hatCount);
+        console.log("wrong wristband", this.wrongWristband);
+        console.log("Food count", this.foodCount);
+        console.log("Weapon count", this.weaponCount);
+        console.log("Criminal count", this.criminalCount);
+        console.log("Missing Riders", this.missingRider);
+        console.log("Too many riders by", this.moreRiders);
 
         console.log("master array", master_array);
 
-        //printing out the scores
+        //adding scores to total score
         for(let m = 0; m < master_array.length; m++){
             for(let s = 0; s < master_array[m].length; s++){
-                console.log('look here', master_array[m][1]);
                 this.currentScore = master_array[m][1];
             }
             this.totalScore += this.currentScore;
         }
+        //printing out the reasons and scores
+        for(let x = 0; x < master_array.length; x++){
+            //console.log('x', x)
+            for(let v = 0; v < master_array[x].length;v++){
+                this.add.text(250, 200+ (x*30), master_array[x][2]);
 
-        console.log("TOTAL SCORE", this.totalScore);
-        this.add.text(200, 200, this.totalScore);
+            }
+            
+
+        }
+
+
+        this.add.text(200, 150, "TOTAL SCORE:");
+        this.add.text(320, 150, this.totalScore);
 
     };
     update(){
-
-
-
         this.delay += 1;
         if((this.delay/60) < 1.9){
             this.cart1.body.setVelocityX(500);

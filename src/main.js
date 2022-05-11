@@ -49,8 +49,10 @@ var graphics;
 var followers;
 var size = 32;
 
-//did you go thought the coaster scene?
-let coasterScene = false;
+//keeping track of what day it is
+let day1Done = false;
+let day2Done = false;
+let day3Done = false;
 
 
 //will be used in score array to make a nested array for accessories and their point values
