@@ -252,44 +252,24 @@ class score extends Phaser.Scene{
                 this.accessory.setScale(this.customerNewHeight);
                 
                 //checking if there are any hats
-                if(allRiders_array[i][a] == 'cowhat1'){
+                if(allRiders_array[i][a] == 'cowhat1' || allRiders_array[i][a] == 'cowhat2' || allRiders_array[i][a] == 'cowhat3'){
                     //name of accessory
-                    first_array.push('cowhat1');
+                    first_array.push('hat');
                     //point value
-                    first_array.push(-25);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
                 };
-                if(allRiders_array[i][a] == 'cowhat2'){
-                    //name of accessory
-                    first_array.push('cowhat2');
-                    //point value
-                    first_array.push(-25);
-                    //phrase to say
-                    first_array.push('No hats allowed');
-                    master_array.push(first_array);
-                    first_array = [];
-                    this.hatCount += 1;
-                };
-                if(allRiders_array[i][a] == 'cowhat3'){
-                    //name of accessory
-                    first_array.push('cowhat3');
-                    //point value
-                    first_array.push(-25);
-                    //phrase to say
-                    first_array.push('No hats allowed');
-                    master_array.push(first_array);
-                    first_array = [];
-                    this.hatCount += 1;
-                };
+
+                
                 if(allRiders_array[i][a] == 'partyhat'){
                     //name of accessory
-                    first_array.push('partyhat');
+                    first_array.push('hat');
                     //point value
-                    first_array.push(-20);
+                    first_array.push(-3);
                     //phrase to say
                     first_array.push('No hats allowed...even if its your birthday');
                     master_array.push(first_array);
@@ -300,7 +280,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('Soda');
                     //point value
-                    first_array.push(-5);
+                    first_array.push(-6);
                     //phrase to say
                     first_array.push('No drinks allowed!!');
                     master_array.push(first_array);
@@ -310,9 +290,9 @@ class score extends Phaser.Scene{
                 };
                 if(allRiders_array[i][a] == 'knife'){
                     //name of accessory
-                    first_array.push('knife');
+                    first_array.push('weapon');
                     //point value
-                    first_array.push(-50);
+                    first_array.push(-15);
                     //phrase to say
                     first_array.push('OH NO A KNIFE');
                     master_array.push(first_array);
@@ -325,7 +305,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wristband1');
                         //point value
-                        first_array.push(-10);
+                        first_array.push(-7);
                         //phrase to say
                         first_array.push('wrong wristband');
                         master_array.push(first_array);
@@ -338,7 +318,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wristband2');
                         //point value
-                        first_array.push(-10);
+                        first_array.push(-7);
                         //phrase to say
                         first_array.push('wrong wristband');
                         master_array.push(first_array);
@@ -351,7 +331,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wristband3');
                         //point value
-                        first_array.push(-10);
+                        first_array.push(-7);
                         //phrase to say
                         first_array.push('wrong wristband');
                         master_array.push(first_array);
@@ -379,7 +359,7 @@ class score extends Phaser.Scene{
         if(this.customerHeight < 0.25){
             this.tooShort += 1; 
             first_array.push('Too short');
-            first_array.push(-40);
+            first_array.push(-30);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -388,7 +368,7 @@ class score extends Phaser.Scene{
         if(this.customerHeight > 0.43){
             this.tooTall += 1;   
             first_array.push('Too tall');
-            first_array.push(-60);
+            first_array.push(-40);
             first_array.push('A rider was too tall and lost their head');
             master_array.push(first_array);
             first_array = [];   
@@ -405,14 +385,14 @@ class score extends Phaser.Scene{
             first_array = [];
         };
         if(customers > 8){
+            first_array.push('Too many riders');
             for(let c = 0; c < (customers - 8);c++){
-                first_array.push('Too many riders');
-                first_array.push(-2);
-                first_array.push('Too many riders');
-                master_array.push(first_array);
-                first_array = [];
                 this.moreRiders += 1;
             };
+            first_array.push(-2*this.moreRiders);
+            first_array.push('Too many riders by');
+            master_array.push(first_array);
+            first_array = [];
  
         };
 
@@ -453,12 +433,43 @@ class score extends Phaser.Scene{
         }
         //printing out the reasons and scores
         for(let x = 0; x < master_array.length; x++){
-            //console.log('x', x)
-            for(let v = 0; v < master_array[x].length;v++){
-                this.add.text(250, 200+ (x*30), master_array[x][2]);
-
-            }
-            
+            //print if riders are missing
+            if(master_array[x][0] == 'Missing riders'){
+                this.add.text(250, 180, "Missing " + this.missingRider + " riders = " + master_array[x][1] + " points");
+            };
+            //if there are too many riders
+            if(master_array[x][0] == 'Too many riders'){
+                this.add.text(250, 180, "Too many riders by " + this.moreRiders + " = " + master_array[x][1] + " points");
+            };
+            //if some riders were too tall
+            if(master_array[x][0] == 'Too tall'){
+                this.add.text(250, 200, this.tooTall + " rider(s) are too tall" + " = " + master_array[x][1] + " points");
+            };
+            //if some riders were too short
+            if(master_array[x][0] == 'Too short'){
+                this.add.text(250, 220, this.tooShort + " rider(s) are too short" + " = " + master_array[x][1] + " points");
+            };
+            //wrong wristband
+            if(master_array[x][2] == 'wrong wristband'){
+                this.add.text(250, 220, this.wrongWristband + " incorrect wristband(s)" + " = " + master_array[x][1] + " points");
+            };
+            //if there are hats
+            if(master_array[x][0] == 'hat'){
+                //check if missing riders or too many riders has been printed
+                this.add.text(250, 240, "Hats X " + this.hatCount + " = " + master_array[x][1] + " points");
+            };
+            if(master_array[x][0] == 'Soda'){
+                //check if missing riders or too many riders has been printed
+                this.add.text(250, 260, "Sodas X " + this.foodCount + " = " + master_array[x][1] + " points");
+            };
+            if(master_array[x][0] == 'weapons'){
+                //check if missing riders or too many riders has been printed
+                this.add.text(250, 280, "Weapons X " + this.weaponCount + " = " + master_array[x][1] + " points");
+            };
+            if(master_array[x][0] == 'ankleMoniter'){
+                //check if missing riders or too many riders has been printed
+                this.add.text(250, 280, "you let a criminal ride" + " = " + master_array[x][1] + " points");
+            };         
 
         }
 
@@ -470,21 +481,21 @@ class score extends Phaser.Scene{
     update(){
         this.delay += 1;
         if((this.delay/60) < 1.9){
-            this.cart1.body.setVelocityX(500);
-            this.cart2.body.setVelocityX(500);
-            this.cart3.body.setVelocityX(500);
-            this.cart4.body.setVelocityX(500);
+            this.cart1.body.setVelocityX(490);
+            this.cart2.body.setVelocityX(490);
+            this.cart3.body.setVelocityX(490);
+            this.cart4.body.setVelocityX(490);
 
 
             //set velocity of bodies
             for(let b = 0; b < (riderSprite_array2.length); b++){
-                riderSprite_array2[b].body.setVelocityX(500);
+                riderSprite_array2[b].body.setVelocityX(490);
                 //and make them change to surprised face
                 riderSprite_array2[b].setFrame(1);
             };
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){
-                accessorySprite_array2[w].body.setVelocityX(500);
+                accessorySprite_array2[w].body.setVelocityX(490);
             };
         }else{
             this.cart1.body.setVelocityX(0);

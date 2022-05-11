@@ -42,11 +42,9 @@ class day1 extends Phaser.Scene{
     }
 
     create(){
-        //checking
-        
-
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
+        this.add.text(70, 70, "DAY 1");
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -60,6 +58,25 @@ class day1 extends Phaser.Scene{
 
         //will delay the next character spawn in
         this.delay = 0;
+
+        //implementing a game timer
+        this.gametimer = 2000;
+        let gametimerConfig = {
+            fontFamily: 'Chalkduster',
+            fontSize: '30px',
+            color: 'white',
+            align: 'center',
+            stroke: '#415392', //#526aba
+            strokeThickness: 3,
+            padding: {
+                top: 5,
+                bottom: 4
+            },
+            //fixedWidth: 100
+        };
+        //displaying the timer
+        console.log("game timer", this.gametimer);
+        this.timertext = this.add.text(864, 27, this.gametimer, gametimerConfig).setOrigin(0);
 
         //if the mouse is hovering over the down button
         this.doneButtonHover = false;
@@ -155,7 +172,7 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 60){
+        if(this.hat_chance >= 88){
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
@@ -172,7 +189,7 @@ class day1 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 30){
+        if(this.hold_chance >= 70){
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
@@ -189,11 +206,11 @@ class day1 extends Phaser.Scene{
         this.wrist_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
-        if(this.wrist_chance >= 20){
+        if(this.wrist_chance >= 10){
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        wrist_array = ['watch', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband2', 'wristband3'];
+        wrist_array = ['watch', 'wristband1', 'wristband1', 'wristband1', 'wristband2', 'wristband3'];
 
         if(this.wrist == true){
             this.pick_wrist = random(0,wrist_array.length - 1);
@@ -260,6 +277,13 @@ class day1 extends Phaser.Scene{
     };
 
     update(){
+        //for game timer
+        this.gametimer -= 1;
+        this.timertext.text = Math.round(this.gametimer/60);
+        //if the timer runs out, go to next scene
+        if(Math.round(this.gametimer/60) < 0){
+            this.scene.start("coasterScene");
+        }
 
         //constntly have the accessories follow the character (but only if they are generated)
         if(this.hold == true){
@@ -341,7 +365,7 @@ class day1 extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.doneButtonHover == true){
-            this.scene.start("coasterScene");
+            this.scene.start("scoreScene");
         }; 
 
     };
