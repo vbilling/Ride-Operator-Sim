@@ -8,6 +8,8 @@ class coaster extends Phaser.Scene{
 
         //background
         this.load.image('blueBackground', './assets/blueBackground.png');
+        //test (delete later)
+        this.load.image('test','./assets/test.png');
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -28,6 +30,9 @@ class coaster extends Phaser.Scene{
 
         //will activate coaster to move after button is pressed
         this.coasterstart = false;
+
+        //to be deleted later
+        //this.test = this.add.sprite(100, 100, 'test');
 
         //make an array for the customer sprites so that accessories can track them
         riderSprite_array = [];
@@ -79,13 +84,10 @@ class coaster extends Phaser.Scene{
     
         curve = new Phaser.Curves.Spline(points);
 
-
         graphics = this.add.graphics();
         graphics.lineStyle(1, 0xffffff, 1);
         //curve.draw(graphics, 64);
         graphics.fillStyle(0x00ff00, 1);
-
-
 
         //will help me round to one or two digits
         function roundTo(n, digits) {
@@ -102,8 +104,6 @@ class coaster extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
-
-  
         for(let i = 0; i < (customers); i++){
             
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
@@ -134,10 +134,7 @@ class coaster extends Phaser.Scene{
                 riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale + 0.05);
                 this.customer.setScale(this.customerNewHeight);
-
-            }
-
-        
+            };
             //riderSprite_array[i]
             if(i == 0){ 
                 if(this.size == "small"){
@@ -298,7 +295,6 @@ class coaster extends Phaser.Scene{
                 this.accessory.setScale(this.customerNewHeight);
             }
    
-
         };
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(820, 520, 'coasterCart', 0)
@@ -321,19 +317,85 @@ class coaster extends Phaser.Scene{
     //adding all the rollar coaster cars that go around the loop
     //put it into a function to call later
     pathStart(){
-        for (var i = 0; i < 4; i++)
-        {
-            this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
-            this.follower.setScale(0.07);
-            this.follower.startFollow({
+        //separate out carts
+        this.roller1 = this.add.follower(curve, -180, 150, 'coasterCart');
+        this.roller1.setScale(0.07);
+        this.roller1.startFollow({
                 duration: 6000,
                 positionOnPath: false,
-                //repeat: -1,
+                ease: 'Sine.easeInOut',
+                delay: 0 * 160,
+                rotateToPath: true,
+        });
+        this.roller2 = this.add.follower(curve, -180, 150, 'coasterCart');
+        this.roller2.setScale(0.07);
+        this.roller2.startFollow({
+                duration: 6000,
+                positionOnPath: false,
+                ease: 'Sine.easeInOut',
+                delay: 1 * 160,
+                rotateToPath: true,
+        });
+        this.roller3 = this.add.follower(curve, -180, 150, 'coasterCart');
+        this.roller3.setScale(0.07);
+        this.roller3.startFollow({
+                duration: 6000,
+                positionOnPath: false,
+                ease: 'Sine.easeInOut',
+                delay: 2 * 160,
+                rotateToPath: true,
+        });
+        this.roller4 = this.add.follower(curve, -180, 150, 'coasterCart');
+        this.roller4.setScale(0.07);
+        this.roller4.startFollow({
+                duration: 6000,
+                positionOnPath: false,
+                ease: 'Sine.easeInOut',
+                delay: 3 * 160,
+                rotateToPath: true,
+        });
+
+        //putting riders and accessories on the loopty loop
+        for(let i = 0; i < (riderSprite_array.length); i++){
+            this.rider = this.add.follower(curve, -180, 140, allRiders_array[i][1]);
+            this.rider.setScale(0.06);
+            this.rider.setFrame(1);
+            for(let a = 2; a < (allRiders_array[i].length); a++){
+                this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[i][a]);
+                this.accessory2.setScale(0.06);
+                this.accessory2.startFollow({
+                    duration: 6000,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: i * 160,
+                    rotateToPath: true,
+                });
+            };
+            this.rider.startFollow({
+                duration: 6000,
+                positionOnPath: false,
                 ease: 'Sine.easeInOut',
                 delay: i * 160,
                 rotateToPath: true,
             });
-        }
+        };
+
+        //must have 2 riders per cart
+        // for (var i = 0; i < 4; i++)
+        // {
+        //     this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
+        //     this.follower.setScale(0.07);
+ 
+        //     this.follower.startFollow({
+        //         duration: 6000,
+        //         positionOnPath: false,
+        //         ease: 'Sine.easeInOut',
+        //         delay: i * 160,
+        //         rotateToPath: true,
+        //     });
+
+        // };
+
     };
     update(){
 
