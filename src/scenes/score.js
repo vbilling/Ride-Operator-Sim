@@ -435,40 +435,40 @@ class score extends Phaser.Scene{
         for(let x = 0; x < master_array.length; x++){
             //print if riders are missing
             if(master_array[x][0] == 'Missing riders'){
-                this.add.text(250, 180, "Missing " + this.missingRider + " riders = " + master_array[x][1] + " points");
+                this.add.text(250, 180, "Missing " + this.missingRider + " riders: " + master_array[x][1] + " points");
             };
             //if there are too many riders
             if(master_array[x][0] == 'Too many riders'){
-                this.add.text(250, 180, "Too many riders by " + this.moreRiders + " = " + master_array[x][1] + " points");
+                this.add.text(250, 180, "Too many riders by " + this.moreRiders + ": " + master_array[x][1] + " points");
             };
             //if some riders were too tall
             if(master_array[x][0] == 'Too tall'){
-                this.add.text(250, 200, this.tooTall + " rider(s) are too tall" + " = " + master_array[x][1] + " points");
+                this.add.text(250, 200, this.tooTall + " rider(s) are too tall" + ": " + master_array[x][1] + " points");
             };
             //if some riders were too short
             if(master_array[x][0] == 'Too short'){
-                this.add.text(250, 220, this.tooShort + " rider(s) are too short" + " = " + master_array[x][1] + " points");
+                this.add.text(250, 220, this.tooShort + " rider(s) are too short" + ": " + master_array[x][1] + " points");
             };
             //wrong wristband
             if(master_array[x][2] == 'wrong wristband'){
-                this.add.text(250, 240, this.wrongWristband + " incorrect wristband(s)" + " = " + master_array[x][1] + " points");
+                this.add.text(250, 240, this.wrongWristband + " incorrect wristband(s)" + ": " + master_array[x][1] + " points");
             };
             //if there are hats
             if(master_array[x][0] == 'hat'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 260, "Hats X " + this.hatCount + " = " + master_array[x][1] + " points");
+                this.add.text(250, 260, "Hats X " + this.hatCount + ": " + master_array[x][1] + " points");
             };
             if(master_array[x][0] == 'Soda'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 280, "Sodas X " + this.foodCount + " = " + master_array[x][1] + " points");
+                this.add.text(250, 280, "Sodas X " + this.foodCount + ": " + master_array[x][1] + " points");
             };
             if(master_array[x][0] == 'weapons'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 300, "Weapons X " + this.weaponCount + " = " + master_array[x][1] + " points");
+                this.add.text(250, 300, "Weapons X " + this.weaponCount + ": " + master_array[x][1] + " points");
             };
             if(master_array[x][0] == 'ankleMoniter'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 320, "you let a criminal ride" + " = " + master_array[x][1] + " points");
+                this.add.text(250, 320, "you let a criminal ride" + ": " + master_array[x][1] + " points");
             };         
 
         }
