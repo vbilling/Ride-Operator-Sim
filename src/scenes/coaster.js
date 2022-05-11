@@ -32,10 +32,15 @@ class coaster extends Phaser.Scene{
         //make an array for the customer sprites so that accessories can track them
         riderSprite_array = [];
 
+        //roller coaster button has not been pressed yet
+        this.buttonpressed = false;
+
+        //initilizing the delay timer for the score scene to start after the button is pressed
+        this.delay = 0;
+
         //button
         this.redButton = this.add.sprite(470, 650, 'redButton').setInteractive();
-        //initilizing mouse
-        this.pointer = this.input.activePointer;
+
         this.redButton.setScale(0.2);
         this.redButton.on("pointerover", () => {
             //will tell code in update to go to next scene
@@ -77,51 +82,27 @@ class coaster extends Phaser.Scene{
 
         graphics = this.add.graphics();
         graphics.lineStyle(1, 0xffffff, 1);
-        curve.draw(graphics, 64);
+        //curve.draw(graphics, 64);
         graphics.fillStyle(0x00ff00, 1);
 
-        //adding all the rollar coaster cars that go around the loop
-        for (var i = 0; i < 4; i++)
-        {
-            this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
+        // //adding all the rollar coaster cars that go around the loop
+        // //put it into a function to call later
+        // for (var i = 0; i < 4; i++)
+        // {
+        //     this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
     
-            this.follower.setScale(0.07);
+        //     this.follower.setScale(0.07);
 
-            this.follower.startFollow({
-                duration: 9000,
-                positionOnPath: false,
-                repeat: -1,
-                ease: 'Sine.easeInOut',
-                delay: i * 260,
-                rotateToPath: true,
-            });
-        }
+        //     this.follower.startFollow({
+        //         duration: 6000,
+        //         positionOnPath: false,
+        //         repeat: -1,
+        //         ease: 'Sine.easeInOut',
+        //         delay: i * 160,
+        //         rotateToPath: true,
+        //     });
 
-        // this.roller1.startFollow({
-        //     from: 0,
-        //     to: 1,
-        //     delay: 0,
-        //     duration: 8000,
-        //     ease: "Sine.easeInOut",
-        //     hold: 0,
-        //     repeat: -1,
-        //     yoyo: false,
-        //     rotateToPath: true,
-        // })
-        // this.roller2.startFollow({
-        //     from: 0,
-        //     to: 1,
-        //     _delay: 100,
-        //     delay: 100,
-        //     duration: 10000,
-        //     ease: "Sine.easeInOut",
-        //     hold: 0,
-        //     repeat: -1,
-        //     yoyo: false,
-        //     rotateToPath: true,
-        // })
-
-
+        // }
 
 
         //will help me round to one or two digits
@@ -321,9 +302,7 @@ class coaster extends Phaser.Scene{
                 };
             };
 
-
             //if more customers are let on than allowed
-
 
 
             //now add the accessories (start a at 2 because first two values are height and body)
@@ -358,39 +337,55 @@ class coaster extends Phaser.Scene{
 
 
     };
-    update(){
-        // graphics.clear();
-
-        // graphics.lineStyle(1, 0xffffff, 1);
-    
-        // curve.draw(graphics, 64);
-    
-        // graphics.fillStyle(0x00ff00, 1);
-        // for (var i = 0; i < points.length; i++)
-        // {
-        //     graphics.fillCircle(points[i].x, points[i].y, 4);
-        // }
-        //will make rollercoaster move if pressed
-        if(this.pointer.isDown && this.redButtonHover == true){
-            //button moves down then up with delay
-            this.redButton.setFrame(1);
-            //start background coaster
-            //will make coaster move
-            this.coasterstart = true;
-            //keeps track of if the button is pressed so it can start delay timer
-            this.buttonpressed = true;
-
-        }else{
-            this.buttonpressed = false;
+    //adding all the rollar coaster cars that go around the loop
+    //put it into a function to call later
+    pathStart(){
+        for (var i = 0; i < 4; i++)
+        {
+            this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
+            this.follower.setScale(0.07);
+            this.follower.startFollow({
+                duration: 6000,
+                positionOnPath: false,
+                //repeat: -1,
+                ease: 'Sine.easeInOut',
+                delay: i * 160,
+                rotateToPath: true,
+            });
         }
+    };
+    update(){
 
-        if(this.buttonpressed == false){
-            this.redButton.setFrame(0);
+        //press red button to make coasters start
+        if(this.redButtonHover == true){
+            this.input.on('pointerdown', function (pointer) {
+                //button moves down then up with delay
+                this.redButton.setFrame(1);
+            }, this)
+            this.input.on('pointerup', function (pointer) {
+                //button can only be pressed once
+                if(this.buttonpressed == false){
+                    this.pathStart();
+
+                }
+                //button moves down then up with delay
+                this.redButton.setFrame(0);
+                //start background coaster
+                //will make coaster move
+                this.coasterstart = true;
+                //keeps track of if the button is pressed so it can't be pressed agian
+                this.buttonpressed = true;
+            }, this)
         };
 
         //will make coaster move when button is pressed
         if(this.coasterstart == true){
             //this.cart1.anims.play('wheels');
+            //set a timer and then have scene change to score
+            this.delay += 1;
+            if(Math.round(this.delay/60) > 5.9){
+                this.scene.start('scoreScene');
+            };
             
             this.cart1.body.setVelocityX(RC_Velocity);
             this.cart2.body.setVelocityX(RC_Velocity);
