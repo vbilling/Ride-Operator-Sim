@@ -68,5 +68,7 @@ wrist_array = ['watch', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 
 face_array = ['moustache', 'bandaid'];
 waist_array = ['phanny1', 'phanny2'];
 leg_array = ['ankleMoniter'];
+wrist2_array = [];
+neck_array = [];
 
 

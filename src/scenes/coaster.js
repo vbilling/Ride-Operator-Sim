@@ -27,25 +27,18 @@ class coaster extends Phaser.Scene{
 
         //if the mouse is hovering over the red button
         this.redButtonHover = false;
-
         //will activate coaster to move after button is pressed
         this.coasterstart = false;
-
-        //to be deleted later
-        //this.test = this.add.sprite(100, 100, 'test');
-
         //make an array for the customer sprites so that accessories can track them
         riderSprite_array = [];
-
+        //reset
+        accessorySprite_array = [];
         //roller coaster button has not been pressed yet
         this.buttonpressed = false;
-
         //initilizing the delay timer for the score scene to start after the button is pressed
         this.delay = 0;
-
         //button
         this.redButton = this.add.sprite(470, 650, 'redButton').setInteractive();
-
         this.redButton.setScale(0.2);
         this.redButton.on("pointerover", () => {
             //will tell code in update to go to next scene
@@ -93,19 +86,16 @@ class coaster extends Phaser.Scene{
         function roundTo(n, digits) {
             if (digits === undefined) {
               digits = 0;
-            }
-          
+            };
             var multiplicator = Math.pow(10, digits);
             n = parseFloat((n * multiplicator).toFixed(11));
             var test =(Math.round(n) / multiplicator);
             return +(test.toFixed(digits));
         };
-
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
         for(let i = 0; i < (customers); i++){
-            
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 350, allRiders_array[i][1]);
             this.customer.body.allowGravity = false;
@@ -294,7 +284,6 @@ class coaster extends Phaser.Scene{
                 accessorySprite_array.push(this.accessory);
                 this.accessory.setScale(this.customerNewHeight);
             }
-   
         };
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(820, 520, 'coasterCart', 0)

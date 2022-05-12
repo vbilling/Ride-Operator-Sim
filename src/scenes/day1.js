@@ -23,6 +23,7 @@ class day1 extends Phaser.Scene{
         this.load.image('soda1', './assets/soda1.png');
         this.load.image('soda2', './assets/soda2.png');
         this.load.image('knife', './assets/knife.png');
+        this.load.image('corndog', '/assets/corndog.png');
         //left wrist accessories
         this.load.image('watch', './assets/watch.png');
         this.load.image('wristband1', './assets/wristband1.png');
@@ -35,9 +36,16 @@ class day1 extends Phaser.Scene{
         //waist accessories
         this.load.image('phanny1', './assets/phanny1.png');
         this.load.image('phanny2', './assets/phanny2.png');
+        this.load.image('gucciBelt', './assets/gucciBelt.png');
 
         //left leg accessories
         this.load.image('ankleMoniter', './assets/ankleMoniter.png');
+
+        //neck accessories
+        this.load.image('bdayNecklace', './assets/bdayNecklace.png');
+
+        //wrist accessories 2
+        this.load.image('handcuffs', './assets/handcuffs.png')
 
     }
 
@@ -189,7 +197,7 @@ class day1 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 10){ //85
+        if(this.hold_chance >= 85){ //85
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
@@ -310,14 +318,6 @@ class day1 extends Phaser.Scene{
             this.leg_accessory.x = this.p1.x;
             this.leg_accessory.y = this.p1.y;
         };
-
-        //spawn new character if character is out of bounds
-        //if(this.p1.x < -50 || this.p1.x > 960){
-            //console.log('character out of bound');
-            //make a function for spawning a new character
-            //this.newCharacter();
-
-        //}
 
         //if the character is flung to the right (aka allowed to ride)
         if(this.p1.x > 960 || this.p1.x < 30){

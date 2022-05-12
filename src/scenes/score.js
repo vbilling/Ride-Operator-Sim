@@ -33,6 +33,7 @@ class score extends Phaser.Scene{
         //make an array for all the score text that will print
         this.scoreText_array = [];
         riderSprite_array2 = [];
+        accessorySprite_array2 = [];
 
         //next button
         this.nextButton = this.add.sprite(480, 80, 'next').setInteractive();
