@@ -5,6 +5,7 @@ class score extends Phaser.Scene{
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.image('next', './assets/next.png');
+        this.load.image('blood', './assets/blood.png');
 
     };
     create(){
@@ -305,7 +306,7 @@ class score extends Phaser.Scene{
                 };
                 if(allRiders_array[i][a] == 'knife'){
                     //name of accessory
-                    first_array.push('weapon');
+                    first_array.push('weapons');
                     //point value
                     first_array.push(-7);
                     //phrase to say
@@ -313,6 +314,23 @@ class score extends Phaser.Scene{
                     master_array.push(first_array);
                     first_array = [];
                     this.weaponCount += 1;
+
+                    //make them bleeding
+                    //bubble trail
+                    //myParticleSystem = myParticleManager.createEmitter
+                    this.bleed = this.add.particles('blood');
+                    this.bleeding = this.bleed.createEmitter({ 
+                        x: 30,
+                        y: 50,
+                        lifespan: { min: 20, max: 1500},
+                        speed: { min: 5, max: 10},
+                        gravityY: 100,
+                        frequency: 0.001,
+                        quantity: 0.001,
+                        scale: { start: 0.02, end: 0.004},
+                        follow: this.accessory,
+                    });
+                    this.bleed.setDepth(2);
                     
                 };
                 if(allRiders_array[i][a] == 'wristband1'){ //is the day 1 wristband
