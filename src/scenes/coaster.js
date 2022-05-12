@@ -76,7 +76,7 @@ class coaster extends Phaser.Scene{
 
         graphics = this.add.graphics();
         graphics.lineStyle(1, 0xffffff, 1);
-        //curve.draw(graphics, 64);
+        curve.draw(graphics, 64);
         graphics.fillStyle(0x00ff00, 1);
 
         //will help me round to one or two digits

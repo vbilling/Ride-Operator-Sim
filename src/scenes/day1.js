@@ -298,12 +298,12 @@ class day1 extends Phaser.Scene{
     update(){
         //for game timer
         this.gametimer -= 1;
-        //this.timertext.text = Math.round(this.gametimer/60);
+        this.timertext.text = Math.round(this.gametimer/60);
         this.clock += 1;
         //if the timer runs out, go to next scene
-        // if(Math.round(this.gametimer/60) < 0){
-        //     this.scene.start("coasterScene");
-        // }
+        if(Math.round(this.gametimer/60) < 0){
+            this.scene.start("coasterScene");
+        };
 
         //constntly have the accessories follow the character (but only if they are generated)
         if(this.hold == true){
@@ -379,40 +379,8 @@ class day1 extends Phaser.Scene{
         if(this.pointer.isDown && this.doneButtonHover == true){
             this.scene.start("coasterScene");
         }; 
-        
+    
 
-        //make title text fade in then out
-
-        // if (Math.round(this.clock/60) > 0.2){
-        //     this.day1Title.setAlpha(0.1);
-        // };
-        // if (Math.round(this.clock/60) > 0.3){
-        //     this.day1Title.setAlpha(0.2);
-        // };
-        // if (Math.round(this.clock/60) > 0.4){
-        //     this.day1Title.setAlpha(0.3);
-        // };
-        // if (Math.round(this.clock/60) > 0.5){
-        //     this.day1Title.setAlpha(0.4);
-        // };
-        // if (Math.round(this.clock/60) > 0.6){
-        //     this.day1Title.setAlpha(0.5);
-        // };
-        // if (Math.round(this.clock/60) > 0.7){
-        //     this.day1Title.setAlpha(0.6);
-        // };
-        // if (Math.round(this.clock/60) > 0.8){
-        //     this.day1Title.setAlpha(0.7);
-        // };
-        // if (Math.round(this.clock/60) > 0.9){
-        //     this.day1Title.setAlpha(0.8);
-        // };
-        // if (Math.round(this.clock/60) > 1){
-        //     this.day1Title.setAlpha(0.9);
-        // };
-        // if (Math.round(this.clock/60) > 1.1){
-        //     this.day1Title.setAlpha(1);
-        // };
 
 
     };

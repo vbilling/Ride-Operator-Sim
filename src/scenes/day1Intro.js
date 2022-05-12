@@ -24,10 +24,10 @@ class day1Intro extends Phaser.Scene{
         this.emitter = this.particles.createEmitter({
             //frame: 'yellow',
             x: 460, y: 480,
-            lifespan: { min: 600, max: 2000 },
+            lifespan: { min: 900, max: 2100 },
             angle: { start: 0, end: 360, steps: 64 },
             speed: 60,
-            quantity: 64, 
+            quantity: 20,//64 
             scale: { start: 0.2, end: 0.1 },
             frequency: 10, //32
             blendMode: 'ADD'
