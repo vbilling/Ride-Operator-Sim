@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ menu, day1, coaster, day2, day3, score, lose, win], 
+    scene: [ menu, day1Intro, day1, coaster, day2, day3, score, lose, win], 
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },

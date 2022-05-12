@@ -3,6 +3,8 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
+        this.load.image('day1Title', './assets/day1Title.png');
+        this.load.image('day1Background', './assets/day1Background.png');
 
         this.load.image('ground', './assets/ground.png');
         this.load.spritesheet('doneButton', './assets/doneButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
@@ -50,9 +52,11 @@ class day1 extends Phaser.Scene{
     }
 
     create(){
+        //load background
+        this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
-        this.add.text(70, 70, "DAY 1");
+
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -66,6 +70,13 @@ class day1 extends Phaser.Scene{
 
         //will delay the next character spawn in
         this.delay = 0;
+        //day 1 title
+        this.day1Title = this.add.image(0, 0, 'day1Title').setOrigin(0,0);
+        //this.day1Title.setAlpha(0);
+
+
+        //will count up for a text fade in timer
+        this.clock = 0;
 
         //implementing a game timer
         this.gametimer = 5000;
@@ -281,17 +292,18 @@ class day1 extends Phaser.Scene{
         //adding accessories to an array (this will represent each character and be nested in allRiders_array if allowed to ride)
         console.log('riderAccessories_array:', riderAccessories_array);
 
-
     };
+
 
     update(){
         //for game timer
         this.gametimer -= 1;
-        this.timertext.text = Math.round(this.gametimer/60);
+        //this.timertext.text = Math.round(this.gametimer/60);
+        this.clock += 1;
         //if the timer runs out, go to next scene
-        if(Math.round(this.gametimer/60) < 0){
-            this.scene.start("coasterScene");
-        }
+        // if(Math.round(this.gametimer/60) < 0){
+        //     this.scene.start("coasterScene");
+        // }
 
         //constntly have the accessories follow the character (but only if they are generated)
         if(this.hold == true){
@@ -367,6 +379,41 @@ class day1 extends Phaser.Scene{
         if(this.pointer.isDown && this.doneButtonHover == true){
             this.scene.start("coasterScene");
         }; 
+        
+
+        //make title text fade in then out
+
+        // if (Math.round(this.clock/60) > 0.2){
+        //     this.day1Title.setAlpha(0.1);
+        // };
+        // if (Math.round(this.clock/60) > 0.3){
+        //     this.day1Title.setAlpha(0.2);
+        // };
+        // if (Math.round(this.clock/60) > 0.4){
+        //     this.day1Title.setAlpha(0.3);
+        // };
+        // if (Math.round(this.clock/60) > 0.5){
+        //     this.day1Title.setAlpha(0.4);
+        // };
+        // if (Math.round(this.clock/60) > 0.6){
+        //     this.day1Title.setAlpha(0.5);
+        // };
+        // if (Math.round(this.clock/60) > 0.7){
+        //     this.day1Title.setAlpha(0.6);
+        // };
+        // if (Math.round(this.clock/60) > 0.8){
+        //     this.day1Title.setAlpha(0.7);
+        // };
+        // if (Math.round(this.clock/60) > 0.9){
+        //     this.day1Title.setAlpha(0.8);
+        // };
+        // if (Math.round(this.clock/60) > 1){
+        //     this.day1Title.setAlpha(0.9);
+        // };
+        // if (Math.round(this.clock/60) > 1.1){
+        //     this.day1Title.setAlpha(1);
+        // };
+
 
     };
 

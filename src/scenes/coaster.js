@@ -5,11 +5,8 @@ class coaster extends Phaser.Scene{
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
-
         //background
         this.load.image('blueBackground', './assets/blueBackground.png');
-        //test (delete later)
-        this.load.image('test','./assets/test.png');
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});

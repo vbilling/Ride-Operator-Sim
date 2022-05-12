@@ -11,7 +11,8 @@ class menu extends Phaser.Scene{
             position:[0,3],
             angularVelocity:1,
         };
-        this.scene.start('day1Scene');
+        this.add.text(300, 300, "MENU SCENE");
+        this.scene.start('day1IntroScene');
 
     }
 }
