@@ -10,8 +10,6 @@ class score extends Phaser.Scene{
     };
     create(){
         this.add.text(100, 100, 'Score Scene');
-
-
         //will help me round to one or two digits
         function roundTo(n, digits) {
             if (digits === undefined) {
@@ -80,7 +78,6 @@ class score extends Phaser.Scene{
         this.coasterscale = 0.18;
 
         for(let i = 0; i < (customers); i++){
-            
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 350, allRiders_array[i][1]);
             this.customer.body.allowGravity = false;
@@ -269,7 +266,7 @@ class score extends Phaser.Scene{
                 this.accessory.setScale(this.customerNewHeight);
                 
                 //checking if there are any hats
-                if(allRiders_array[i][a] == 'cowhat1' || allRiders_array[i][a] == 'cowhat2' || allRiders_array[i][a] == 'cowhat3'){
+                if(allRiders_array[i][a] == 'cowhat1'){
                     //name of accessory
                     first_array.push('hat');
                     //point value
@@ -280,8 +277,28 @@ class score extends Phaser.Scene{
                     first_array = [];
                     this.hatCount += 1;
                 };
-
-                
+                if(allRiders_array[i][a] == 'cowhat2'){
+                    //name of accessory
+                    first_array.push('hat');
+                    //point value
+                    first_array.push(-2);
+                    //phrase to say
+                    first_array.push('No hats allowed');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.hatCount += 1;
+                };
+                if(allRiders_array[i][a] == 'cowhat3'){
+                    //name of accessory
+                    first_array.push('hat');
+                    //point value
+                    first_array.push(-2);
+                    //phrase to say
+                    first_array.push('No hats allowed');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.hatCount += 1;
+                };
                 if(allRiders_array[i][a] == 'partyhat'){
                     //name of accessory
                     first_array.push('hat');
@@ -376,7 +393,7 @@ class score extends Phaser.Scene{
                 if(allRiders_array[i][a] == 'ankleMoniter'){ //is the day 1 wristband
                     if(day3Done == false){
                         //name of accessory
-                        first_array.push('ankleMoniter');
+                        first_array.push('criminal');
                         //point value
                         first_array.push(-11);
                         //phrase to say
@@ -386,49 +403,74 @@ class score extends Phaser.Scene{
                         this.criminalCount += 1;
                     };
                 };
+                if(allRiders_array[i][a] == 'handcuffs'){ //is the day 1 wristband
+                    if(day3Done == false){
+                        //name of accessory
+                        first_array.push('criminal');
+                        //point value
+                        first_array.push(-11);
+                        //phrase to say
+                        first_array.push('You let a criminal ride');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.criminalCount += 1;
+                    };
+                };
+                if(allRiders_array[i][a] == 'corndog'){ //is the day 1 wristband
+                    if(day3Done == false){
+                        //name of accessory
+                        first_array.push('corndog');
+                        //point value
+                        first_array.push(-5);
+                        //phrase to say
+                        first_array.push('NO FOOD ALLOWED');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.foodCount += 1;
+                    };
+                };
+            };
+            //scoring for height with this.customerHeight
+            console.log("LOOK HEREREEE");
+            console.log('this.customerHeight', this.customerHeight);
+            if(this.customerHeight < 0.25){
+                this.tooShort += 1; 
+                first_array.push('Too short');
+                first_array.push(-10);
+                first_array.push('A rider was too short and fell out of the ride.');
+                master_array.push(first_array);
+                first_array = [];
+            };
+            //too tall
+            if(this.customerHeight > 0.43){
+                this.tooTall += 1;   
+                first_array.push('Too tall');
+                first_array.push(-12);
+                first_array.push('A rider was too tall and lost their head');
+                master_array.push(first_array);
+                first_array = [];   
+            };
+            //scoring if there are too many or not enough customers
+            if(customers < 8){
+                first_array.push('Missing riders');
+                this.missingRider = (8 - customers);
+                first_array.push(-2);
+                first_array.push('Missing riders');
+                master_array.push(first_array);
+                first_array = [];
+            };
+            if(customers > 8){
+                first_array.push('Too many riders');
+                this.moreRiders = (customers - 8);
+                first_array.push(-2);
+                first_array.push('Too many riders by');
+                master_array.push(first_array);
+                first_array = [];
+ 
             };
       
         };
-        //scoring for height with this.customerHeight
-        if(this.customerHeight < 0.25){
-            this.tooShort += 1; 
-            first_array.push('Too short');
-            first_array.push(-10);
-            first_array.push('A rider was too short and fell out of the ride.');
-            master_array.push(first_array);
-            first_array = [];
-        };
-        //too tall
-        if(this.customerHeight > 0.43){
-            this.tooTall += 1;   
-            first_array.push('Too tall');
-            first_array.push(-12);
-            first_array.push('A rider was too tall and lost their head');
-            master_array.push(first_array);
-            first_array = [];   
-        };
-        //scoring if there are too many or not enough customers
-        if(customers < 8){
-            first_array.push('Missing riders');
-            for(let c = 0; c < (8 - customers);c++){
-                this.missingRider += 1;
-            };
-            first_array.push(-2 * this.missingRider);
-            first_array.push('Missing riders');
-            master_array.push(first_array);
-            first_array = [];
-        };
-        if(customers > 8){
-            first_array.push('Too many riders');
-            for(let c = 0; c < (customers - 8);c++){
-                this.moreRiders += 1;
-            };
-            first_array.push(-2*this.moreRiders);
-            first_array.push('Too many riders by');
-            master_array.push(first_array);
-            first_array = [];
- 
-        };
+
 
 
         
@@ -469,44 +511,43 @@ class score extends Phaser.Scene{
         for(let x = 0; x < master_array.length; x++){
             //print if riders are missing
             if(master_array[x][0] == 'Missing riders'){
-                this.add.text(250, 180, "Missing " + this.missingRider + " riders: " + master_array[x][1] + " points");
+                this.add.text(250, 180, "Missing " + this.missingRider + " riders: " + (master_array[x][1]*this.missingRider) + " points");
             };
             //if there are too many riders
             if(master_array[x][0] == 'Too many riders'){
-                this.add.text(250, 180, "Too many riders by " + this.moreRiders + ": " + master_array[x][1] + " points");
+                this.add.text(250, 180, "Too many riders by " + this.moreRiders + ": " + (master_array[x][1]*this.moreRiders) + " points");
             };
             //if some riders were too tall
             if(master_array[x][0] == 'Too tall'){
-                this.add.text(250, 200, this.tooTall + " rider(s) are too tall" + ": " + master_array[x][1] + " points");
+                this.add.text(250, 200, this.tooTall + " rider(s) are too tall" + ": " + (master_array[x][1]*this.tooTall) + " points");
             };
             //if some riders were too short
             if(master_array[x][0] == 'Too short'){
-                this.add.text(250, 220, this.tooShort + " rider(s) are too short" + ": " + master_array[x][1] + " points");
+                this.add.text(250, 220, this.tooShort + " rider(s) are too short" + ": " + (master_array[x][1]*this.tooShort) + " points");
             };
             //wrong wristband
             if(master_array[x][2] == 'wrong wristband'){
-                this.add.text(250, 240, this.wrongWristband + " incorrect wristband(s)" + ": " + master_array[x][1] + " points");
+                this.add.text(250, 240, this.wrongWristband + " incorrect wristband(s)" + ": " + (master_array[x][1]*this.wrongWristband) + " points");
             };
             //if there are hats
             if(master_array[x][0] == 'hat'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 260, "Hats X " + this.hatCount + ": " + master_array[x][1] + " points");
+                this.add.text(250, 260, "Hats X " + this.hatCount + ": " + (master_array[x][1]*this.hatCount) + " points");
             };
             if(master_array[x][0] == 'Soda'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 280, "Sodas X " + this.foodCount + ": " + master_array[x][1] + " points");
+                this.add.text(250, 280, "Sodas X " + this.foodCount + ": " + (master_array[x][1]*this.foodCount) + " points");
             };
             if(master_array[x][0] == 'weapons'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 300, "Weapons X " + this.weaponCount + ": " + master_array[x][1] + " points");
+                this.add.text(250, 300, "Weapons X " + this.weaponCount + ": " + (master_array[x][1]*this.weaponCount) + " points");
             };
-            if(master_array[x][0] == 'ankleMoniter'){
+            if(master_array[x][0] == 'criminal'){
                 //check if missing riders or too many riders has been printed
-                this.add.text(250, 320, "you let a criminal ride" + ": " + master_array[x][1] + " points");
+                this.add.text(250, 320, "you let a criminal ride" + ": " + (master_array[x][1]*this.criminalCount) + " points");
             };         
 
         }
-
 
         this.add.text(200, 150, "TOTAL SCORE:");
         this.add.text(320, 150, this.totalScore);
@@ -551,6 +592,7 @@ class score extends Phaser.Scene{
         }
         this.add.text(450, 150, "GRADE: " + this.grade);
         this.add.text(650, 150, "You are " + fired +"% fired");
+        console.log("Fired:", fired);
 
     };
     update(){
@@ -593,11 +635,21 @@ class score extends Phaser.Scene{
         if(this.nextButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
                 //button moves down then up with delay
-                if(day2Done == false){
+                //go to fired scene if youre fired
+                if(fired >= 100){
+                    this.scene.start('loseScene');
+                }else if(day2Done == false){
                     this.scene.start('day2Scene');
+                }else if(day2Done == true && day3Done == false){
+                    this.scene.start('day3Scene');
+                };
+                //if you are done with day 3 and not fired!
+                if(day3Done == true && fired < 100){
+                    this.scene.start('winScene');
                 }
             }, this)
         }
+
 
 
     };

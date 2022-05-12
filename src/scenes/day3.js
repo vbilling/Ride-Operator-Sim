@@ -1,10 +1,10 @@
-class day2 extends Phaser.Scene{
+class day3 extends Phaser.Scene{
     constructor(){
-        super("day2Scene");
+        super("day3Scene");
     }
     preload(){
 
-        if(day1Done == false){
+        if(day1Done == false || day2Done == false){
             this.load.image('ground', './assets/ground.png');
             this.load.spritesheet('doneButton', './assets/doneButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
             //Character Bodies
@@ -53,8 +53,8 @@ class day2 extends Phaser.Scene{
     };
 
     create(){
-        day2Done = true;
-        this.add.text(70, 70, "DAY 2");
+        day3Done = true;
+        this.add.text(70, 70, "DAY 3");
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
