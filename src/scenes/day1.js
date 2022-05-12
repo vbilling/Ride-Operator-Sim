@@ -320,7 +320,7 @@ class day1 extends Phaser.Scene{
         //}
 
         //if the character is flung to the right (aka allowed to ride)
-        if(this.p1.x > 980 || this.p1.x < 0){
+        if(this.p1.x > 960 || this.p1.x < 30){
             this.p1.destroy();
 
             //will spawn a new character (see below)
@@ -351,7 +351,7 @@ class day1 extends Phaser.Scene{
             this.delay += 1;
             if(Math.round(this.delay/60) > 0.2){
                 //add the character and their charastics to the array
-                if(this.p1.x > 980){
+                if(this.p1.x > 960){
                     customers += 1;
                     console.log('customers', customers);
                     allRiders_array.push(riderAccessories_array);

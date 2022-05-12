@@ -348,6 +348,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider01 = this.add.follower(curve, -160, 140, allRiders_array[0][1]);
             this.rider01.setScale(0.06);
+            this.rider01.setFrame(1);
             this.rider01.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -371,6 +372,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider02 = this.add.follower(curve, -180, 140, allRiders_array[1][1]);
             this.rider02.setScale(0.06);
+            this.rider02.setFrame(1);
             this.rider02.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -394,6 +396,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider03 = this.add.follower(curve, -160, 140, allRiders_array[2][1]);
             this.rider03.setScale(0.06);
+            this.rider03.setFrame(1);
             this.rider03.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -417,6 +420,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider04 = this.add.follower(curve, -180, 140, allRiders_array[3][1]);
             this.rider04.setScale(0.06);
+            this.rider04.setFrame(1);
             this.rider04.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -440,6 +444,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider05 = this.add.follower(curve, -160, 140, allRiders_array[4][1]);
             this.rider05.setScale(0.06);
+            this.rider05.setFrame(1);
             this.rider05.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -463,6 +468,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider06 = this.add.follower(curve, -180, 140, allRiders_array[5][1]);
             this.rider06.setScale(0.06);
+            this.rider06.setFrame(1);
             this.rider06.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -486,6 +492,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider07 = this.add.follower(curve, -160, 140, allRiders_array[6][1]);
             this.rider07.setScale(0.06);
+            this.rider07.setFrame(1);
             this.rider07.startFollow({
                 duration: 6000,
                 positionOnPath: false,
@@ -509,6 +516,7 @@ class coaster extends Phaser.Scene{
             //create a new follower
             this.rider08 = this.add.follower(curve, -180, 140, allRiders_array[7][1]);
             this.rider08.setScale(0.06);
+            this.rider08.setFrame(1);
             this.rider08.startFollow({
                 duration: 6000,
                 positionOnPath: false,
