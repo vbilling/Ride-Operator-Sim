@@ -60,7 +60,7 @@ class day1 extends Phaser.Scene{
         this.delay = 0;
 
         //implementing a game timer
-        this.gametimer = 3000;
+        this.gametimer = 5000;
         let gametimerConfig = {
             fontFamily: 'Chalkduster',
             fontSize: '30px',
@@ -154,7 +154,7 @@ class day1 extends Phaser.Scene{
         
 
         // Add the character
-        this.p1 = this.physics.add.sprite(400, 200, this.body_array[this.pick_body], 0).setInteractive();
+        this.p1 = this.physics.add.sprite(400, 250, this.body_array[this.pick_body], 0).setInteractive();
         riderAccessories_array.push(this.body_array[this.pick_body]);
 
 
@@ -172,7 +172,7 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 10){ //88
+        if(this.hat_chance >= 88){ 
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)

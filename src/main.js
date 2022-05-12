@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ menu, day1, coaster, score], 
+    scene: [ menu, day1, coaster, day2, score], 
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -19,6 +19,9 @@ let game = new Phaser.Game(config);
 
 //the scale of the characters and accessories
 let scale = 0.5; 
+
+//how close you are to getting fired
+let fired = 0;
 
 //keeping track of how many customers you let on the ride
 let customers = 0;

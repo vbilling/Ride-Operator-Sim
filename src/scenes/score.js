@@ -4,10 +4,12 @@ class score extends Phaser.Scene{
     }
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
+        this.load.image('next', './assets/next.png');
 
     };
     create(){
         this.add.text(100, 100, 'Score Scene');
+
 
         //will help me round to one or two digits
         function roundTo(n, digits) {
@@ -30,6 +32,19 @@ class score extends Phaser.Scene{
         //make an array for all the score text that will print
         this.scoreText_array = [];
         riderSprite_array2 = [];
+
+        //next button
+        this.nextButton = this.add.sprite(480, 80, 'next').setInteractive();
+
+        this.nextButtonHover = false;
+        this.nextButton.on("pointerover", () => {
+            //will tell code in update to go to next scene
+            this.nextButtonHover = true;
+
+        });
+        this.nextButton.on("pointerout", () => {
+            this.nextButtonHover = false;
+        });
 
         
         //make variables for all the things that you could lose points on
@@ -476,6 +491,8 @@ class score extends Phaser.Scene{
 
         this.add.text(200, 150, "TOTAL SCORE:");
         this.add.text(320, 150, this.totalScore);
+        this.percentage = 100 - this.totalScore;
+        fired += this.percentage;
         //get grade from score
         if(this.totalScore > 0){
             this.grade = "F"
@@ -514,6 +531,7 @@ class score extends Phaser.Scene{
             }
         }
         this.add.text(450, 150, "GRADE: " + this.grade);
+        this.add.text(650, 150, "You are " + fired +"% fired");
 
     };
     update(){
@@ -552,7 +570,16 @@ class score extends Phaser.Scene{
             };
 
         }
+        //next button pressed 
+        if(this.nextButtonHover == true){
+            this.input.on('pointerdown', function (pointer) {
+                //button moves down then up with delay
+                if(day2Done == false){
+                    this.scene.start('day2Scene');
+                }
+            }, this)
+        }
 
 
     };
-}
+};
