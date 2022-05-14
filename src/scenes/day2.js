@@ -145,7 +145,7 @@ class day2 extends Phaser.Scene{
         riderAccessories_array.push(this.scale);
                 //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3'];
+        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         // Add the character
@@ -201,7 +201,7 @@ class day2 extends Phaser.Scene{
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        wrist_array = ['watch', 'wristband1', 'wristband1', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband1','wristband1'];
+        wrist_array = ['watch', 'wristband2', 'wristband2', 'wristband2', 'wristband2', 'wristband3', 'wristband2', 'wristband2','wristband2'];
 
         if(this.wrist == true){
             this.pick_wrist = random(0,wrist_array.length - 1);
@@ -235,7 +235,7 @@ class day2 extends Phaser.Scene{
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
-        face_array = ['moustache', 'bandaid'];
+        face_array = ['moustache', 'bandaid', 'glasses1', 'glasses2', 'mask', 'clownNose'];
 
         if(this.face == true){
             this.pick_face = random(0,face_array.length - 1);
@@ -286,7 +286,7 @@ class day2 extends Phaser.Scene{
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        neck_array = ['bdayNecklace'];
+        neck_array = ['bdayNecklace', 'chain', 'shellNecklace'];
 
         if(this.neck == true){
             this.pick_neck = random(0,neck_array.length - 1);

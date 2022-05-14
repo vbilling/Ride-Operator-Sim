@@ -14,6 +14,8 @@ class day1 extends Phaser.Scene{
         this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -35,6 +37,10 @@ class day1 extends Phaser.Scene{
         this.load.image('moustache', './assets/moustache.png');
         this.load.image('scar', './assets/scar.png');
         this.load.image('bandaid', './assets/bandaid.png');
+        this.load.image('clownNose', './assets/clownNose.png');
+        this.load.image('mask', './assets/mask.png');
+        this.load.image('glasses1', './assets/glasses1.png');
+        this.load.image('glasses2', './assets/glasses2.png');
         //waist accessories
         this.load.image('phanny1', './assets/phanny1.png');
         this.load.image('phanny2', './assets/phanny2.png');
@@ -45,6 +51,9 @@ class day1 extends Phaser.Scene{
 
         //neck accessories
         this.load.image('bdayNecklace', './assets/bdayNecklace.png');
+        this.load.image('chain', './assets/chain.png');
+        this.load.image('shellNecklace', './assets/shellNecklace.png');
+        
 
         //wrist accessories 2
         this.load.image('handcuffs', './assets/handcuffs.png')
@@ -167,7 +176,7 @@ class day1 extends Phaser.Scene{
 
         //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3'];
+        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         
@@ -191,7 +200,7 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 88){ 
+        if(this.hat_chance >= 80){ //88 
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
@@ -242,11 +251,11 @@ class day1 extends Phaser.Scene{
         this.face_chance = random(0, 100);
         //console.log('this.face_chance', this.face_chance);
         this.face = false;
-        if(this.face_chance >= 70){
+        if(this.face_chance >= 80){
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
-        face_array = ['moustache', 'bandaid'];
+        face_array = ['moustache', 'bandaid', 'mask', 'clownNose', 'glasses1', 'glasses2'];
 
         if(this.face == true){
             this.pick_face = random(0,face_array.length - 1);
@@ -287,6 +296,22 @@ class day1 extends Phaser.Scene{
             riderAccessories_array.push(leg_array[this.pick_leg]);
             this.leg_accessory = this.add.sprite(500, 500, leg_array[this.pick_leg], 0);
             this.leg_accessory.setScale(this.scale);
+        };
+        //neck accessory
+        this.neck_chance = random(0, 100);
+        //console.log('this.leg_chance', this.leg_chance);
+        this.neck = false;
+        if(this.neck_chance >= 80){
+            this.neck = true;
+        }
+        //then put all accessories in the aproporate arrays (wristbands more common than anything else)
+        neck_array = ['bdayNecklace', 'chain', 'shellNecklace'];
+
+        if(this.neck == true){
+            this.pick_neck = random(0,neck_array.length - 1);
+            riderAccessories_array.push(neck_array[this.pick_neck]);
+            this.neck_accessory = this.add.sprite(500, 500, neck_array[this.pick_neck], 0);
+            this.neck_accessory.setScale(this.scale);
         };
 
         //adding accessories to an array (this will represent each character and be nested in allRiders_array if allowed to ride)
@@ -330,6 +355,10 @@ class day1 extends Phaser.Scene{
             this.leg_accessory.x = this.p1.x;
             this.leg_accessory.y = this.p1.y;
         };
+        if(this.neck == true){
+            this.neck_accessory.x = this.p1.x;
+            this.neck_accessory.y = this.p1.y;
+        };
 
         //if the character is flung to the right (aka allowed to ride)
         if(this.p1.x > 960 || this.p1.x < 30){
@@ -355,6 +384,9 @@ class day1 extends Phaser.Scene{
             };
             if(this.leg == true){
                 this.leg_accessory.destroy();
+            };
+            if(this.neck == true){
+                this.neck_accessory.destroy();
             };
         }
         //spawn a new character

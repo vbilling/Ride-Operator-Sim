@@ -145,7 +145,7 @@ class day3 extends Phaser.Scene{
         riderAccessories_array.push(this.scale);
                 //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3'];
+        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         // Add the character
@@ -163,7 +163,7 @@ class day3 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 88){ 
+        if(this.hat_chance >= 77){ 
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
@@ -180,7 +180,7 @@ class day3 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 85){ //85
+        if(this.hold_chance >= 65){ //85
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
@@ -201,7 +201,7 @@ class day3 extends Phaser.Scene{
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        wrist_array = ['watch', 'wristband1', 'wristband1', 'wristband1', 'wristband2', 'wristband3', 'wristband1', 'wristband1','wristband1'];
+        wrist_array = ['watch', 'wristband3', 'wristband3', 'wristband3', 'wristband3', 'wristband3', 'wristband1', 'wristband3','wristband3'];
 
         if(this.wrist == true){
             this.pick_wrist = random(0,wrist_array.length - 1);
@@ -214,7 +214,7 @@ class day3 extends Phaser.Scene{
         this.wrist2_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist2 = false;
-        if(this.wrist2_chance >= 10){
+        if(this.wrist2_chance >= 88){
             this.wrist2 = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -248,7 +248,7 @@ class day3 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 80){
+        if(this.waist_chance >= 70){
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -265,7 +265,7 @@ class day3 extends Phaser.Scene{
         this.leg_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.leg = false;
-        if(this.leg_chance >= 90){
+        if(this.leg_chance >= 85){
             this.leg = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -282,7 +282,7 @@ class day3 extends Phaser.Scene{
         this.neck_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.neck = false;
-        if(this.neck_chance >= 30){
+        if(this.neck_chance >= 70){
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -294,11 +294,8 @@ class day3 extends Phaser.Scene{
             this.neck_accessory = this.add.sprite(500, 500, neck_array[this.pick_neck], 0);
             this.neck_accessory.setScale(this.scale);
         };
-
         //adding accessories to an array (this will represent each character and be nested in allRiders_array if allowed to ride)
         console.log('riderAccessories_array:', riderAccessories_array);
-
-
     };
 
 

@@ -314,7 +314,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('Soda');
                     //point value
-                    first_array.push(-3);
+                    first_array.push(-2);
                     //phrase to say
                     first_array.push('No drinks allowed!!');
                     master_array.push(first_array);
@@ -326,7 +326,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-7);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('OH NO A KNIFE');
                     master_array.push(first_array);
@@ -356,7 +356,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wristband1');
                         //point value
-                        first_array.push(-6);
+                        first_array.push(-3);
                         //phrase to say
                         first_array.push('wrong wristband');
                         master_array.push(first_array);
@@ -369,7 +369,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wristband2');
                         //point value
-                        first_array.push(-6);
+                        first_array.push(-3);
                         //phrase to say
                         first_array.push('wrong wristband');
                         master_array.push(first_array);
@@ -382,7 +382,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wristband3');
                         //point value
-                        first_array.push(-6);
+                        first_array.push(-3);
                         //phrase to say
                         first_array.push('wrong wristband');
                         master_array.push(first_array);
@@ -395,7 +395,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('criminal');
                         //point value
-                        first_array.push(-11);
+                        first_array.push(-6);
                         //phrase to say
                         first_array.push('You let a criminal ride');
                         master_array.push(first_array);
@@ -408,7 +408,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('criminal');
                         //point value
-                        first_array.push(-11);
+                        first_array.push(-6);
                         //phrase to say
                         first_array.push('You let a criminal ride');
                         master_array.push(first_array);
@@ -421,7 +421,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('corndog');
                         //point value
-                        first_array.push(-5);
+                        first_array.push(-2);
                         //phrase to say
                         first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
@@ -436,7 +436,7 @@ class score extends Phaser.Scene{
             if(this.customerHeight < 0.25){
                 this.tooShort += 1; 
                 first_array.push('Too short');
-                first_array.push(-10);
+                first_array.push(-5);
                 first_array.push('A rider was too short and fell out of the ride.');
                 master_array.push(first_array);
                 first_array = [];
@@ -445,7 +445,7 @@ class score extends Phaser.Scene{
             if(this.customerHeight > 0.43){
                 this.tooTall += 1;   
                 first_array.push('Too tall');
-                first_array.push(-12);
+                first_array.push(-5);
                 first_array.push('A rider was too tall and lost their head');
                 master_array.push(first_array);
                 first_array = [];   
@@ -454,7 +454,7 @@ class score extends Phaser.Scene{
             if(customers < 8){
                 first_array.push('Missing riders');
                 this.missingRider = (8 - customers);
-                first_array.push(-2);
+                first_array.push(-1* this.missingRider);
                 first_array.push('Missing riders');
                 master_array.push(first_array);
                 first_array = [];
@@ -462,17 +462,13 @@ class score extends Phaser.Scene{
             if(customers > 8){
                 first_array.push('Too many riders');
                 this.moreRiders = (customers - 8);
-                first_array.push(-2);
+                first_array.push(-1*this.moreRiders);
                 first_array.push('Too many riders by');
                 master_array.push(first_array);
                 first_array = [];
- 
             };
       
         };
-
-
-
         
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(-100, 620, 'coasterCart', 0)
@@ -511,7 +507,7 @@ class score extends Phaser.Scene{
         for(let x = 0; x < master_array.length; x++){
             //print if riders are missing
             if(master_array[x][0] == 'Missing riders'){
-                this.add.text(250, 180, "Missing " + this.missingRider + " riders: " + (master_array[x][1]*this.missingRider) + " points");
+                this.add.text(250, 180, "Missing " + this.missingRider + " riders: " + (master_array[x][1]) + " points");
             };
             //if there are too many riders
             if(master_array[x][0] == 'Too many riders'){
@@ -639,9 +635,9 @@ class score extends Phaser.Scene{
                 if(fired >= 100){
                     this.scene.start('loseScene');
                 }else if(day2Done == false){
-                    this.scene.start('day2Scene');
+                    this.scene.start('day2IntroScene');
                 }else if(day2Done == true && day3Done == false){
-                    this.scene.start('day3Scene');
+                    this.scene.start('day3IntroScene');
                 };
                 //if you are done with day 3 and not fired!
                 if(day3Done == true && fired < 100){

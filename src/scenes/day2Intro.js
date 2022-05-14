@@ -1,23 +1,24 @@
-class day1Intro extends Phaser.Scene{
+class day2Intro extends Phaser.Scene{
     constructor(){
-        super("day1IntroScene");
+        super("day2IntroScene");
     }
     preload(){
-        this.load.image('day1IntroText', './assets/day1IntroText.png');
-        this.load.image('wristband1', './assets/wristband1.png');
-        this.load.image('day2IntroText', './assets/day2IntroText.png');
-        this.load.image('day3IntroText', './assets/day3IntroText.png');
 
-        //particle
-        this.load.image('glow', './assets/glow.png');
+        if(day1Done == false){
+            this.load.image('wristband2', './assets/wristband2.png');
+            //particle
+            this.load.image('glow', './assets/glow.png');
+            this.load.image('day2IntroText', './assets/day2IntroText.png');
+        }
+
 
     }
     create(){
         //this.cameras.main.setBackgroundColor('#bb60f7')
-        this.add.tileSprite(0, 0, 960, 720, 'day1IntroText').setOrigin(0, 0);
-        this.wristband1 = this.add.image(880, 350, 'wristband1');
-        this.wristband1.setScale(2);
-        this.wristband1.setDepth(2);
+        this.add.tileSprite(0, 0, 960, 720, 'day2IntroText').setOrigin(0, 0);
+        this.wristband2 = this.add.image(880, 350, 'wristband2');
+        this.wristband2.setScale(2);
+        this.wristband2.setDepth(2);
 
         //particles
         this.particles = this.add.particles('glow');
@@ -41,14 +42,14 @@ class day1Intro extends Phaser.Scene{
         //this.emitter.setBlendMode(Phaser.BlendModes.ADD);
 
         //text fades in and out
-        this.clock = 0
-        
+        this.clock = 0;
+        console.log(this.clock);
         this.cameras.main.fadeIn(1800, 0, 0, 0)
-        this.clock = this.time.delayedCall(5800, () => {
+        this.clock = this.time.delayedCall(6000, () => {
             this.cameras.main.fadeOut(1800, 0, 0, 0);
         })
-        this.clock = this.time.delayedCall(7830, () => {
-            this.scene.start('day1Scene');
+        this.clock = this.time.delayedCall(7850, () => {
+            this.scene.start('day2Scene');
         })
 
     }
