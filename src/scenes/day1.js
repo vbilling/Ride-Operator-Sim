@@ -12,7 +12,7 @@ class day1 extends Phaser.Scene{
         this.load.image('day1Background', './assets/day1Background.png');
 
         this.load.image('ground', './assets/ground.png');
-        this.load.spritesheet('doneButton', './assets/doneButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -126,7 +126,7 @@ class day1 extends Phaser.Scene{
         this.timertext = this.add.text(864, 27, this.gametimer, gametimerConfig).setOrigin(0);
 
         //if the mouse is hovering over the down button
-        this.doneButtonHover = false;
+        this.readyButtonHover = false;
 
         //the riders are reset 
         allRiders_array = [];
@@ -157,7 +157,7 @@ class day1 extends Phaser.Scene{
                 this.p1.setVelocityX(-800);
                 this.p1.setVelocityY(-100);
             }
-            if(this.p1.x > 700){ //thrown to the right
+            if(this.p1.x > 650){ //thrown to the right
                 this.whoosh.play();
                 //this.p1.setRotation(-20);
                 this.p1.setVelocityX(800);
@@ -176,16 +176,17 @@ class day1 extends Phaser.Scene{
         this.pointer = this.input.activePointer;
 
         //done button glow when hovered over
-        this.doneButton = this.add.sprite(860, 620, 'doneButton').setInteractive();
-        this.doneButton.on("pointerover", () => {
-            this.doneButton.setFrame(1);
+        this.readyButton = this.add.sprite(860, 620, 'readyButton').setInteractive();
+        this.readyButton.setScale(0.4);
+        this.readyButton.on("pointerover", () => {
+            this.readyButton.setFrame(1);
             //will tell code in update to go to next scene
-            this.doneButtonHover = true;
+            this.readyButtonHover = true;
 
         });
-        this.doneButton.on("pointerout", () => {
-            this.doneButton.setFrame(0);
-            this.doneButtonHover = false;
+        this.readyButton.on("pointerout", () => {
+            this.readyButton.setFrame(0);
+            this.readyButtonHover = false;
         });
 
     };
@@ -207,7 +208,7 @@ class day1 extends Phaser.Scene{
 
         //set the scale of them which will affect height
         this.height = randomDecimil(0.2, 0.5);
-        this.scale = this.height;
+        this.scale = this.height; 
 
         console.log('height:', this.scale);
         //add height to info array (will be first element)
@@ -453,9 +454,9 @@ class day1 extends Phaser.Scene{
 
         }
         //will go to score scene if the done button is clicked
-        if(this.pointer.isDown && this.doneButtonHover == true){
-            this.buttonPress.play();
+        if(this.pointer.isDown && this.readyButtonHover == true){
             this.scene.start("coasterScene");
+            this.buttonPress.play();
         }; 
     
 

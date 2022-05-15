@@ -24,6 +24,9 @@ class coaster extends Phaser.Scene{
 
         //sounds
         //this.game.sound.stopAll();
+        this.redButton1 = this.sound.add('redButton1');
+        this.redButton2 = this.sound.add('redButton2');
+        
 
         //if the mouse is hovering over the red button
         this.redButtonHover = false;
@@ -590,6 +593,7 @@ class coaster extends Phaser.Scene{
             this.input.on('pointerdown', function (pointer) {
                 //button moves down then up with delay
                 this.redButton.setFrame(1);
+                this.redButton1.play();
             }, this)
             this.input.on('pointerup', function (pointer) {
                 //button can only be pressed once
@@ -599,6 +603,7 @@ class coaster extends Phaser.Scene{
                 }
                 //button moves down then up with delay
                 this.redButton.setFrame(0);
+                this.redButton2.play();
                 //start background coaster
                 //will make coaster move
                 this.coasterstart = true;

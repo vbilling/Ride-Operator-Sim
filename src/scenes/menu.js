@@ -13,6 +13,9 @@ class menu extends Phaser.Scene{
         this.load.audio('buttonPress', './assets/buttonPress.wav');
         this.load.audio('correct', './assets/correct.wav');
         this.load.audio('oceanWaves', './assets/oceanWaves.wav');
+        this.load.audio('redButton1', './assets/redButton1.wav');
+        this.load.audio('redButton2', './assets/redButton2.wav');
+        this.load.audio('pop', './assets/pop.wav');
 
     }
     create(){

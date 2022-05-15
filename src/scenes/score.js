@@ -4,7 +4,7 @@ class score extends Phaser.Scene{
     }
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        this.load.image('next', './assets/next.png');
+        this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.image('blood', './assets/blood.png');
 
         //for score board
@@ -64,6 +64,7 @@ class score extends Phaser.Scene{
         this.thud = this.sound.add('thud');
         this.thud2 = this.sound.add('thud2');
         this.buttonPress = this.sound.add('buttonPress');
+        this.pop = this.sound.add('pop');
         
 
         //score board
@@ -481,7 +482,6 @@ class score extends Phaser.Scene{
                 };
             };
             //scoring for height with this.customerHeight
-            console.log("LOOK HEREREEE");
             console.log('this.customerHeight', this.customerHeight);
             if(this.customerHeight < 0.25){
                 this.tooShort += 1; 
@@ -843,14 +843,18 @@ class score extends Phaser.Scene{
             delay: 16400,
             callback: ()=>{
                 //next button
-                this.nextButton = this.add.sprite(700, 70, 'next').setInteractive();
+                this.pop.play();
+                this.nextButton = this.add.sprite(720, 60, 'nextButton').setInteractive();
+                this.nextButton.setScale(0.3);
                 this.nextButtonHover = false;
                 this.nextButton.on("pointerover", () => {
                     //will tell code in update to go to next scene
+                    this.nextButton.setFrame(1);
                     this.nextButtonHover = true;
         
                 });
                 this.nextButton.on("pointerout", () => {
+                    this.nextButton.setFrame(2);
                     this.nextButtonHover = false;
                 });
             },
@@ -900,19 +904,23 @@ class score extends Phaser.Scene{
         //next button pressed 
         if(this.nextButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
-                this.buttonPress.play();
+                
                 //button moves down then up with delay
                 //go to fired scene if youre fired
                 if(fired >= 100){
                     this.scene.start('loseScene');
+                    this.buttonPress.play();
                 }else if(day2Done == false){
                     this.scene.start('day2IntroScene');
+                    this.buttonPress.play();
                 }else if(day2Done == true && day3Done == false){
                     this.scene.start('day3IntroScene');
+                    this.buttonPress.play();
                 };
                 //if you are done with day 3 and not fired!
                 if(day3Done == true && fired < 100){
                     this.scene.start('winScene');
+                    this.buttonPress.play();
                 }
             }, this)
         }
