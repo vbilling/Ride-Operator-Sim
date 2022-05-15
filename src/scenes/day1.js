@@ -154,13 +154,13 @@ class day1 extends Phaser.Scene{
             if(this.p1.x < 320){ //thrown to the left
                 this.whoosh.play();
                 //this.p1.setRotation(20);
-                this.p1.setVelocityX(-700);
+                this.p1.setVelocityX(-800);
                 this.p1.setVelocityY(-100);
             }
             if(this.p1.x > 700){ //thrown to the right
                 this.whoosh.play();
                 //this.p1.setRotation(-20);
-                this.p1.setVelocityX(700);
+                this.p1.setVelocityX(800);
                 this.p1.setVelocityY(-100);
                 this.time.addEvent({
                     delay: 100,
