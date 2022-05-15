@@ -38,7 +38,7 @@ class menu extends Phaser.Scene{
     }
     update(){
         if(this.pointer.isDown && this.startButtonHover == true){
-            this.scene.start("day1IntroScene");
+            this.scene.start("day1Scene");
         }; 
     }
 }
