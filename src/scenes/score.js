@@ -27,8 +27,18 @@ class score extends Phaser.Scene{
                 bottom: 4
             }
         };
-        let scoreConfig2 = {
-            fontFamily: 'Arial',
+        let combo1Config = {
+            fontFamily: 'Arial Black',
+            fontSize: '24px',
+            color: 'red',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 4
+            }
+        };
+        let combo2Config = {
+            fontFamily: 'Arial Black',
             fontSize: '24px',
             color: 'green',
             align: 'center',
@@ -49,6 +59,10 @@ class score extends Phaser.Scene{
             var test =(Math.round(n) / multiplicator);
             return +(test.toFixed(digits));
         };
+
+        //load sounds
+        this.thud = this.sound.add('thud');
+        this.thud2 = this.sound.add('thud2');
         
 
         //score board
@@ -59,6 +73,8 @@ class score extends Phaser.Scene{
 
         //clear the array in between each day
         master_array = []
+
+        this.nextButtonHover = false;
 
         //make an array for all the score text that will print
         this.scoreText_array = [];
@@ -410,6 +426,19 @@ class score extends Phaser.Scene{
                         this.wrongWristband += 1;
                     };
                 };
+                if(allRiders_array[i][a] == 'no wristband'){ //is the day 1 wristband
+                    if(day3Done == false){
+                        //name of accessory
+                        first_array.push('no wristband');
+                        //point value
+                        first_array.push(-3);
+                        //phrase to say
+                        first_array.push('wrong wristband');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.wrongWristband += 1;
+                    };
+                };
                 if(allRiders_array[i][a] == 'ankleMoniter'){ //is the day 1 wristband
                     if(day3Done == false){
                         //name of accessory
@@ -531,6 +560,7 @@ class score extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 2300,
                     callback: ()=>{
+                        this.thud2.play();
                         this.add.text(130, 210, "Missing " + this.missingRider + " riders", scoreConfig);
                     },
                     loop: false
@@ -542,6 +572,7 @@ class score extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 2300,
                     callback: ()=>{
+                        this.thud2.play();
                         this.add.text(130, 210, "Too many riders by " + this.moreRiders, scoreConfig);
                     },
                     loop: false
@@ -619,9 +650,11 @@ class score extends Phaser.Scene{
             delay: 3300,
             callback: ()=>{
                 if(this.wrongWristband > 0){
-                    this.add.text(130, 250, this.wrongWristband + " wrong wristband(s)", scoreConfig); //+ ": " + (master_array[x][1]*this.wrongWristband) + " points"
+                    this.thud2.play();
+                    this.add.text(130, 250, " wrong/missing wristband(s): " + this.wrongWristband, scoreConfig); //+ ": " + (master_array[x][1]*this.wrongWristband) + " points"
                 }else{
-                    this.add.text(130, 250, this.wrongWristband + " wrong wristband(s)", scoreConfig2);
+                    this.thud2.play();
+                    this.add.text(130, 250, " wrong/missing wristband(s): " + this.wrongWristband, scoreConfig);
                 }
                  
             },
@@ -631,9 +664,11 @@ class score extends Phaser.Scene{
             delay: 4300,
             callback: ()=>{
                 if(this.tooTall > 0){
+                    this.thud2.play();
                     this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
                 }else{
-                    this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig2); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
+                    this.thud2.play();
+                    this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
                 }
                 
             },
@@ -643,9 +678,11 @@ class score extends Phaser.Scene{
             delay: 5300,
             callback: ()=>{
                 if(this.tooShort > 0){
+                    this.thud2.play();
                     this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
                 }else{
-                    this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig2); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
+                    this.thud2.play();
+                    this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
                 }
                 
             },
@@ -654,14 +691,17 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 6300,
             callback: ()=>{
+                this.thud2.play();
                 this.NOhats = this.add.sprite(0, 0, 'NOhats').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 800,
                     callback: ()=>{
                         if(this.NOhats > 0){
-                            this.add.text(250, 370, 'x' + this.hatCount, scoreConfig);
+                            this.thud.play();
+                            this.add.text(250, 360, 'x' + this.hatCount, combo1Config);
                         }else{
-                            this.add.text(250, 370, 'x' + this.hatCount, scoreConfig2);
+                            this.thud.play();
+                            this.add.text(250, 360, 'x' + this.hatCount, combo2Config);
                         }
                     },
                     loop: false
@@ -672,14 +712,17 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 8100,
             callback: ()=>{
+                this.thud2.play();
                 this.NOfood = this.add.sprite(0, 0, 'NOfood').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 800,
                     callback: ()=>{
                         if(this.NOhats > 0){
-                            this.add.text(450, 370, 'x' + this.foodCount, scoreConfig);
+                            this.thud.play();
+                            this.add.text(450, 360, 'x' + this.foodCount, combo1Config);
                         }else{
-                            this.add.text(450, 370, 'x' + this.foodCount, scoreConfig2);
+                            this.thud.play();
+                            this.add.text(450, 360, 'x' + this.foodCount, combo2Config);
                         }
                     },
                     loop: false
@@ -690,14 +733,17 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 9900,
             callback: ()=>{
-                this.NOfood = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
+                this.thud2.play();
+                this.NOweapons = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 800,
                     callback: ()=>{
                         if(this.weaponCount > 0){
-                            this.add.text(650, 370, 'x' + this.weaponCount, scoreConfig);
+                            this.thud.play();
+                            this.add.text(650, 360, 'x' + this.weaponCount, combo1Config);
                         }else{
-                            this.add.text(650, 370, 'x' + this.weaponCount, scoreConfig2);
+                            this.thud.play();
+                            this.add.text(650, 360, 'x' + this.weaponCount, combo2Config);
                         }
                     },
                     loop: false
@@ -708,14 +754,17 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 11700,
             callback: ()=>{
+                this.thud2.play();
                 this.NOcriminals = this.add.sprite(0, 0, 'NOcriminals').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 800,
                     callback: ()=>{
                         if(this.criminalCount > 0){
-                            this.add.text(800, 370, 'x' + this.criminalCount, scoreConfig);
+                            this.thud.play();
+                            this.add.text(800, 360, 'x' + this.criminalCount, combo1Config);
                         }else{
-                            this.add.text(800, 370, 'x' + this.criminalCount, scoreConfig2);
+                            this.thud.play();
+                            this.add.text(800, 360, 'x' + this.criminalCount, combo2Config);
                         }
                     },
                     loop: false
@@ -726,6 +775,7 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 13500,
             callback: ()=>{
+                this.thud.play();
                 this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
                 this.add.text(320, 170, this.totalScore, scoreConfig);
             },
@@ -775,6 +825,7 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 14500,
             callback: ()=>{
+                this.thud.play();
                 this.add.text(450, 170, "GRADE: " + this.grade, scoreConfig);
             },
             loop: false
@@ -782,6 +833,7 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 15500,
             callback: ()=>{
+                this.thud.play();
                 this.add.text(650, 170, "You are " + fired +"% fired", scoreConfig);
             },
             loop: false

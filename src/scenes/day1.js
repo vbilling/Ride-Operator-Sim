@@ -5,6 +5,9 @@ class day1 extends Phaser.Scene{
     preload(){
         this.load.image('player', './assets/player.png');
 
+        
+
+
         this.load.image('day1Title', './assets/day1Title.png');
         this.load.image('day1Background', './assets/day1Background.png');
 
@@ -89,6 +92,10 @@ class day1 extends Phaser.Scene{
         //this.day1Title = this.add.image(0, 0, 'day1Title').setOrigin(0,0);
         //this.day1Title.setAlpha(0);
 
+        //adding sounds
+        this.whoosh = this.sound.add('whoosh');
+        
+
 
         //will count up for a text fade in timer
         this.clock = 0;
@@ -142,15 +149,17 @@ class day1 extends Phaser.Scene{
             this.p1.body.allowGravity = true;
 
             //flying across the screen
-            if(this.p1.x < 320){
-                this.p1.setRotation(20);
-                this.p1.setVelocityX(-500);
-                this.p1.setVelocityY(-1000);
+            if(this.p1.x < 320){ //thrown to the left
+                this.whoosh.play();
+                //this.p1.setRotation(20);
+                this.p1.setVelocityX(-700);
+                this.p1.setVelocityY(-500);
             }
-            if(this.p1.x > 700){
-                this.p1.setRotation(-20);
-                this.p1.setVelocityX(500);
-                this.p1.setVelocityY(-1000);
+            if(this.p1.x > 700){ //thrown to the right
+                this.whoosh.play();
+                //this.p1.setRotation(-20);
+                this.p1.setVelocityX(700);
+                this.p1.setVelocityY(-500);
             }
         });
 
@@ -204,7 +213,7 @@ class day1 extends Phaser.Scene{
         
 
         // Add the character
-        this.p1 = this.physics.add.sprite(halfscreenwidth, 250, this.body_array[this.pick_body], 0).setInteractive();
+        this.p1 = this.physics.add.sprite(halfscreenwidth, 400, this.body_array[this.pick_body], 0).setInteractive();
         riderAccessories_array.push(this.body_array[this.pick_body]);
 
 
@@ -267,7 +276,9 @@ class day1 extends Phaser.Scene{
             riderAccessories_array.push(wrist_array[this.pick_wrist]);
             this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(this.scale);
-        };
+        }else{
+            riderAccessories_array.push("no wristband");
+        }
 
         //face accessories
         this.face_chance = random(0, 100);

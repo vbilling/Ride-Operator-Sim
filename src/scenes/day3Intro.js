@@ -35,8 +35,6 @@ class day3Intro extends Phaser.Scene{
             blendMode: 'ADD'
         });
         
-
-    
         //this.emitter.setPosition(450, 450);
         //this.emitter.setSpeed(200);
         //this.emitter.setBlendMode(Phaser.BlendModes.ADD);
@@ -45,10 +43,10 @@ class day3Intro extends Phaser.Scene{
         this.clock = 0;
         console.log(this.clock2);
         this.cameras.main.fadeIn(1800, 0, 0, 0)
-        this.clock = this.time.delayedCall(6000, () => {
+        this.clock = this.time.delayedCall(5600, () => {
             this.cameras.main.fadeOut(1800, 0, 0, 0);
         })
-        this.clock = this.time.delayedCall(7850, () => {
+        this.clock = this.time.delayedCall(7650, () => {
             this.scene.start('day3Scene');
         })
 

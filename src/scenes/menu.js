@@ -6,6 +6,12 @@ class menu extends Phaser.Scene{
         this.load.spritesheet('startButton', './assets/startButton.png', {frameWidth: 384, frameHeight: 512, startFrame: 0, endFrame: 1});
         this.load.image('titleText', './assets/titleText.png');
 
+        //loading all the audio
+        this.load.audio('whoosh', './assets/whoosh.wav');
+        this.load.audio('thud', './assets/thud.wav');
+        this.load.audio('thud2', './assets/thud2.wav');
+
+
     }
     create(){
         game.settings = {
@@ -18,6 +24,8 @@ class menu extends Phaser.Scene{
         this.startButtonHover = false;
         //initilizing mouse
         this.pointer = this.input.activePointer;
+
+        
 
         //start button glow when hovered over
         this.startButton = this.physics.add.sprite(470, 550, 'startButton').setInteractive();

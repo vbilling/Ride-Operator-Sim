@@ -93,6 +93,8 @@ class day3 extends Phaser.Scene{
         this.doneButtonHover = false;
         //the riders are reset 
         allRiders_array = [];
+        //adding sounds
+        this.whoosh = this.sound.add('whoosh');
         
         //spawn the first character (function is below)
         this.newCharacter();
@@ -112,11 +114,13 @@ class day3 extends Phaser.Scene{
             this.p1.body.allowGravity = true;
             //flying across the screen
             if(this.p1.x < 320){
+                this.whoosh.play();
                 this.p1.setRotation(20);
                 this.p1.setVelocityX(-500);
                 this.p1.setVelocityY(-1000);
             }
             if(this.p1.x > 700){
+                this.whoosh.play();
                 this.p1.setRotation(-20);
                 this.p1.setVelocityX(500);
                 this.p1.setVelocityY(-1000);
@@ -165,7 +169,7 @@ class day3 extends Phaser.Scene{
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         // Add the character
-        this.p1 = this.physics.add.sprite(400, 250, this.body_array[this.pick_body], 0).setInteractive();
+        this.p1 = this.physics.add.sprite(halfscreenwidth, 400, this.body_array[this.pick_body], 0).setInteractive();
         riderAccessories_array.push(this.body_array[this.pick_body]);
         this.p1.setScale(this.scale);
         this.p1.body.setSize(400, 990, 0.1, 1500);
@@ -224,7 +228,9 @@ class day3 extends Phaser.Scene{
             riderAccessories_array.push(wrist_array[this.pick_wrist]);
             this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(this.scale);
-        };
+        }else{
+            riderAccessories_array.push("no wristband");
+        }
         
         //wrist 2 accessories (wrist accessories that can spawn at the same time as the other wrist accessories)
         this.wrist2_chance = random(0, 100);

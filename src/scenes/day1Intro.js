@@ -44,10 +44,10 @@ class day1Intro extends Phaser.Scene{
         this.clock = 0
         
         this.cameras.main.fadeIn(1800, 0, 0, 0)
-        this.clock = this.time.delayedCall(5800, () => {
+        this.clock = this.time.delayedCall(5600, () => {
             this.cameras.main.fadeOut(1800, 0, 0, 0);
         })
-        this.clock = this.time.delayedCall(7830, () => {
+        this.clock = this.time.delayedCall(7630, () => {
             this.scene.start('day1Scene');
         })
 
