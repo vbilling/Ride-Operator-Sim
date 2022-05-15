@@ -55,6 +55,11 @@ class day2 extends Phaser.Scene{
     create(){
         day2Done = true;
         this.add.text(70, 70, "DAY 2");
+        //temporary instructions text
+        this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
+        this.add.text(130, 120, "Let no more and no less than 8 guests ride");
+        this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
+        this.add.text(130, 160, "Today's wristband color: yellow");
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -105,6 +110,17 @@ class day2 extends Phaser.Scene{
             //this.p1.velocityFromAngle(50, 200, this.p1.body.velocity);
             this.p1.setFrame(0);
             this.p1.body.allowGravity = true;
+            //flying across the screen
+            if(this.p1.x < 320){
+                this.p1.setRotation(20);
+                this.p1.setVelocityX(-500);
+                this.p1.setVelocityY(-1000);
+            }
+            if(this.p1.x > 700){
+                this.p1.setRotation(-20);
+                this.p1.setVelocityX(500);
+                this.p1.setVelocityY(-1000);
+            }
         });
         //initilizing mouse
         this.pointer = this.input.activePointer;

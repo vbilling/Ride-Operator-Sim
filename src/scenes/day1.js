@@ -66,6 +66,12 @@ class day1 extends Phaser.Scene{
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
 
+        //temporary instructions text
+        this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
+        this.add.text(130, 120, "Let no more and no less than 8 guests ride");
+        this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
+        this.add.text(130, 160, "Today's wristband color: blue");
+
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -80,7 +86,7 @@ class day1 extends Phaser.Scene{
         //will delay the next character spawn in
         this.delay = 0;
         //day 1 title
-        this.day1Title = this.add.image(0, 0, 'day1Title').setOrigin(0,0);
+        //this.day1Title = this.add.image(0, 0, 'day1Title').setOrigin(0,0);
         //this.day1Title.setAlpha(0);
 
 
@@ -428,7 +434,7 @@ class day1 extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.doneButtonHover == true){
-            this.scene.start("coasterScene");
+            this.scene.start("scoreScene");
         }; 
     
 

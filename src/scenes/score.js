@@ -7,9 +7,37 @@ class score extends Phaser.Scene{
         this.load.image('next', './assets/next.png');
         this.load.image('blood', './assets/blood.png');
 
+        //for score board
+        this.load.image('scoreBoard', './assets/scoreBoard.png');
+        this.load.image('NOhats', './assets/NOhats.png');
+        this.load.image('NOfood', './assets/NOfood.png');
+        this.load.image('NOweapons', './assets/NOweapons.png');
+        this.load.image('NOcriminals', './assets/NOcriminals.png');
+
     };
     create(){
-        this.add.text(100, 100, 'Score Scene');
+        //score text config
+        let scoreConfig = {
+            fontFamily: 'Arial',
+            fontSize: '24px',
+            color: 'red',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 4
+            }
+        };
+        let scoreConfig2 = {
+            fontFamily: 'Arial',
+            fontSize: '24px',
+            color: 'green',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 4
+            }
+        };
+        this.add.text(200, 300, 'Score Scene');
         //will help me round to one or two digits
         function roundTo(n, digits) {
             if (digits === undefined) {
@@ -21,6 +49,10 @@ class score extends Phaser.Scene{
             var test =(Math.round(n) / multiplicator);
             return +(test.toFixed(digits));
         };
+        
+
+        //score board
+        this.scoreBoard = this.add.sprite(0, 0, 'scoreBoard').setOrigin(0,0);
 
         //total score 
         this.totalScore = 100;
@@ -33,18 +65,7 @@ class score extends Phaser.Scene{
         riderSprite_array2 = [];
         accessorySprite_array2 = [];
 
-        //next button
-        this.nextButton = this.add.sprite(480, 80, 'next').setInteractive();
 
-        this.nextButtonHover = false;
-        this.nextButton.on("pointerover", () => {
-            //will tell code in update to go to next scene
-            this.nextButtonHover = true;
-
-        });
-        this.nextButton.on("pointerout", () => {
-            this.nextButtonHover = false;
-        });
 
         
         //make variables for all the things that you could lose points on
@@ -59,7 +80,6 @@ class score extends Phaser.Scene{
         this.moreRiders = 0;
 
         //put all texts in an array that will print in a function
-
         this.delay = 0;
 
         //will help me round to one or two digits
@@ -75,7 +95,7 @@ class score extends Phaser.Scene{
         };
 
         //the scale for the coaster carts (will also be used to calculate character heights)
-        this.coasterscale = 0.18;
+        this.coasterscale = 0.16;
 
         for(let i = 0; i < (customers); i++){
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
@@ -113,145 +133,145 @@ class score extends Phaser.Scene{
             if(i == 0){ 
                 if(this.size == "small"){
                     this.customer.x = -100 + 49;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){ 
                     this.customer.x = -100 + 43;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 }; 
                 if(this.size == 'large'){
                     this.customer.x = -100 + 30;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 }; 
                 if(this.size == 'extra large'){
                     this.customer.x = -100 + 27;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 1){
                 if(this.size == "small"){ //perfect
                     this.customer.x = -100 - 30;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){ //perfect
                     this.customer.x = -100 - 25;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){ //perfect
                     this.customer.x = -100 - 4;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 5;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 2){
                 if(this.size == "small"){
                     this.customer.x = -333 + 49;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -333 + 43;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -333 + 30;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 27;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 3){
                 if(this.size == "small"){
                     this.customer.x = -333 -30;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -333 - 25;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -333 - 4;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 5;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 4){
                 if(this.size == "small"){
                     this.customer.x = -566 + 49;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -566 + 43;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -566 + 30;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 27;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 5){
                 if(this.size == "small"){
                     this.customer.x = -566 -30;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -566 - 25;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -566 - 4;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 5;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 6){
                 if(this.size == "small"){
                     this.customer.x = -799 + 49;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -799 + 43;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -799 + 30;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 27;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
             if(i == 7){
                 if(this.size == "small"){
                     this.customer.x = -799 -30;
-                    this.customer.y = 620 - 30;
+                    this.customer.y = 620 - 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -799 - 25;
-                    this.customer.y = 620 - 45;
+                    this.customer.y = 620 - 25;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -799 - 4;
-                    this.customer.y = 620 - 75;
+                    this.customer.y = 620 - 55;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 5;
-                    this.customer.y = 620 - 90;
+                    this.customer.y = 620 - 70;
                 };
             };
 
@@ -507,46 +527,212 @@ class score extends Phaser.Scene{
         for(let x = 0; x < master_array.length; x++){
             //print if riders are missing
             if(master_array[x][0] == 'Missing riders'){
-                this.add.text(250, 180, "Missing " + this.missingRider + " riders: " + (master_array[x][1]) + " points");
+                //set after a delay
+                this.time.addEvent({
+                    delay: 2300,
+                    callback: ()=>{
+                        this.add.text(130, 210, "Missing " + this.missingRider + " riders", scoreConfig);
+                    },
+                    loop: false
+                })
+
             };
             //if there are too many riders
             if(master_array[x][0] == 'Too many riders'){
-                this.add.text(250, 180, "Too many riders by " + this.moreRiders + ": " + (master_array[x][1]*this.moreRiders) + " points");
+                this.time.addEvent({
+                    delay: 2300,
+                    callback: ()=>{
+                        this.add.text(130, 210, "Too many riders by " + this.moreRiders, scoreConfig);
+                    },
+                    loop: false
+                })
+
             };
-            //if some riders were too tall
-            if(master_array[x][0] == 'Too tall'){
-                this.add.text(250, 200, this.tooTall + " rider(s) are too tall" + ": " + (master_array[x][1]*this.tooTall) + " points");
-            };
-            //if some riders were too short
-            if(master_array[x][0] == 'Too short'){
-                this.add.text(250, 220, this.tooShort + " rider(s) are too short" + ": " + (master_array[x][1]*this.tooShort) + " points");
-            };
-            //wrong wristband
-            if(master_array[x][2] == 'wrong wristband'){
-                this.add.text(250, 240, this.wrongWristband + " incorrect wristband(s)" + ": " + (master_array[x][1]*this.wrongWristband) + " points");
-            };
+            // //if some riders were too tall
+            // if(master_array[x][0] == 'Too tall'){
+            //     this.time.addEvent({
+            //         delay: 3700,
+            //         callback: ()=>{
+            //             this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
+            //         },
+            //         loop: false
+            //     })
+            // };
+            // //if some riders were too short
+            // if(master_array[x][0] == 'Too short'){
+            //     this.time.addEvent({
+            //         delay: 4000,
+            //         callback: ()=>{
+            //             this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
+            //         },
+            //         loop: false
+            //     })
+            // };
+            // //wrong wristband
+            // if(master_array[x][2] == 'wrong wristband'){
+            //     this.time.addEvent({
+            //         delay: 3000,
+            //         callback: ()=>{
+            //             this.add.text(130, 250, this.wrongWristband + " wrong wristband(s)", scoreConfig); //+ ": " + (master_array[x][1]*this.wrongWristband) + " points"
+            //         },
+            //         loop: false
+            //     })
+            // };
             //if there are hats
-            if(master_array[x][0] == 'hat'){
-                //check if missing riders or too many riders has been printed
-                this.add.text(250, 260, "Hats X " + this.hatCount + ": " + (master_array[x][1]*this.hatCount) + " points");
-            };
-            if(master_array[x][0] == 'Soda'){
-                //check if missing riders or too many riders has been printed
-                this.add.text(250, 280, "Sodas X " + this.foodCount + ": " + (master_array[x][1]*this.foodCount) + " points");
-            };
-            if(master_array[x][0] == 'weapons'){
-                //check if missing riders or too many riders has been printed
-                this.add.text(250, 300, "Weapons X " + this.weaponCount + ": " + (master_array[x][1]*this.weaponCount) + " points");
-            };
-            if(master_array[x][0] == 'criminal'){
-                //check if missing riders or too many riders has been printed
-                this.add.text(250, 320, "you let a criminal ride" + ": " + (master_array[x][1]*this.criminalCount) + " points");
-            };         
+            // if(master_array[x][0] == 'hat'){
+            //     //check if missing riders or too many riders has been printed
+            //     //this.add.text(250, 260, "Hats X " + this.hatCount + ": " + (master_array[x][1]*this.hatCount) + " points", scoreConfig);
+            //     this.time.addEvent({
+            //         delay: 5000,
+            //         callback: ()=>{
+            //             this.NOhats = this.add.sprite(0, 0, 'NOhats').setOrigin(0, 0);
+            //             this.time.addEvent({
+            //                 delay: 700,
+            //                 callback: ()=>{
+            //                     this.add.text(250, 380, 'x' + this.hatCount, scoreConfig);
+            //                 },
+            //                 loop: false
+            //             })
+            //         },
+            //         loop: false
+            //     })
+            // };
+            // if(master_array[x][0] == 'Soda'){
+            //     //check if missing riders or too many riders has been printed
+            //     //this.add.text(250, 280, "Sodas X " + this.foodCount + ": " + (master_array[x][1]*this.foodCount) + " points", scoreConfig);
+            //     this.NOfood = this.add.sprite(0, 0, 'NOfood').setOrigin(0, 0);
+            // };
+            // if(master_array[x][0] == 'weapons'){
+            //     //check if missing riders or too many riders has been printed
+            //     //this.add.text(250, 300, "Weapons X " + this.weaponCount + ": " + (master_array[x][1]*this.weaponCount) + " points", scoreConfig);
+            //     this.NOweapons = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
+            // };
+            // if(master_array[x][0] == 'criminal'){
+            //     //check if missing riders or too many riders has been printed
+            //     //this.add.text(250, 320, "you let a criminal ride" + ": " + (master_array[x][1]*this.criminalCount) + " points");
+            //     this.NOcriminals = this.add.sprite(0, 0, 'NOcriminals').setOrigin(0, 0);
+            // };         
 
         }
+        //makeing the scoreboard stuff show up not dependent on if things were done wrong
+        this.time.addEvent({
+            delay: 3300,
+            callback: ()=>{
+                if(this.wrongWristband > 0){
+                    this.add.text(130, 250, this.wrongWristband + " wrong wristband(s)", scoreConfig); //+ ": " + (master_array[x][1]*this.wrongWristband) + " points"
+                }else{
+                    this.add.text(130, 250, this.wrongWristband + " wrong wristband(s)", scoreConfig2);
+                }
+                 
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 4300,
+            callback: ()=>{
+                if(this.tooTall > 0){
+                    this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
+                }else{
+                    this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig2); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
+                }
+                
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 5300,
+            callback: ()=>{
+                if(this.tooShort > 0){
+                    this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
+                }else{
+                    this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig2); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
+                }
+                
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 6300,
+            callback: ()=>{
+                this.NOhats = this.add.sprite(0, 0, 'NOhats').setOrigin(0, 0);
+                this.time.addEvent({
+                    delay: 800,
+                    callback: ()=>{
+                        if(this.NOhats > 0){
+                            this.add.text(250, 370, 'x' + this.hatCount, scoreConfig);
+                        }else{
+                            this.add.text(250, 370, 'x' + this.hatCount, scoreConfig2);
+                        }
+                    },
+                    loop: false
+                })
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 8100,
+            callback: ()=>{
+                this.NOfood = this.add.sprite(0, 0, 'NOfood').setOrigin(0, 0);
+                this.time.addEvent({
+                    delay: 800,
+                    callback: ()=>{
+                        if(this.NOhats > 0){
+                            this.add.text(450, 370, 'x' + this.foodCount, scoreConfig);
+                        }else{
+                            this.add.text(450, 370, 'x' + this.foodCount, scoreConfig2);
+                        }
+                    },
+                    loop: false
+                })
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 9900,
+            callback: ()=>{
+                this.NOfood = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
+                this.time.addEvent({
+                    delay: 800,
+                    callback: ()=>{
+                        if(this.weaponCount > 0){
+                            this.add.text(650, 370, 'x' + this.weaponCount, scoreConfig);
+                        }else{
+                            this.add.text(650, 370, 'x' + this.weaponCount, scoreConfig2);
+                        }
+                    },
+                    loop: false
+                })
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 11700,
+            callback: ()=>{
+                this.NOcriminals = this.add.sprite(0, 0, 'NOcriminals').setOrigin(0, 0);
+                this.time.addEvent({
+                    delay: 800,
+                    callback: ()=>{
+                        if(this.criminalCount > 0){
+                            this.add.text(800, 370, 'x' + this.criminalCount, scoreConfig);
+                        }else{
+                            this.add.text(800, 370, 'x' + this.criminalCount, scoreConfig2);
+                        }
+                    },
+                    loop: false
+                })
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 13500,
+            callback: ()=>{
+                this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
+                this.add.text(320, 170, this.totalScore, scoreConfig);
+            },
+            loop: false
+        })
+        
 
-        this.add.text(200, 150, "TOTAL SCORE:");
-        this.add.text(320, 150, this.totalScore);
         this.percentage = 100 - this.totalScore;
         fired += this.percentage;
         //get grade from score
@@ -586,9 +772,40 @@ class score extends Phaser.Scene{
                 }
             }
         }
-        this.add.text(450, 150, "GRADE: " + this.grade);
-        this.add.text(650, 150, "You are " + fired +"% fired");
-        console.log("Fired:", fired);
+        this.time.addEvent({
+            delay: 14500,
+            callback: ()=>{
+                this.add.text(450, 170, "GRADE: " + this.grade, scoreConfig);
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 15500,
+            callback: ()=>{
+                this.add.text(650, 170, "You are " + fired +"% fired", scoreConfig);
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 16500,
+            callback: ()=>{
+                //next button
+                this.nextButton = this.add.sprite(700, 70, 'next').setInteractive();
+                this.nextButtonHover = false;
+                this.nextButton.on("pointerover", () => {
+                    //will tell code in update to go to next scene
+                    this.nextButtonHover = true;
+        
+                });
+                this.nextButton.on("pointerout", () => {
+                    this.nextButtonHover = false;
+                });
+            },
+            loop: false
+        })
+
+
+         
 
     };
     update(){
