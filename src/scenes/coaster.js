@@ -22,6 +22,9 @@ class coaster extends Phaser.Scene{
         this.add.text(100, 130, 'Riders:');
         this.add.text(200, 130, customers);
 
+        //sounds
+        //this.game.sound.stopAll();
+
         //if the mouse is hovering over the red button
         this.redButtonHover = false;
         //will activate coaster to move after button is pressed

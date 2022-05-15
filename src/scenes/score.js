@@ -63,6 +63,7 @@ class score extends Phaser.Scene{
         //load sounds
         this.thud = this.sound.add('thud');
         this.thud2 = this.sound.add('thud2');
+        this.buttonPress = this.sound.add('buttonPress');
         
 
         //score board
@@ -694,9 +695,9 @@ class score extends Phaser.Scene{
                 this.thud2.play();
                 this.NOhats = this.add.sprite(0, 0, 'NOhats').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 800,
+                    delay: 700,
                     callback: ()=>{
-                        if(this.NOhats > 0){
+                        if(this.hatCount > 0){
                             this.thud.play();
                             this.add.text(250, 360, 'x' + this.hatCount, combo1Config);
                         }else{
@@ -710,14 +711,14 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 8100,
+            delay: 8000,
             callback: ()=>{
                 this.thud2.play();
                 this.NOfood = this.add.sprite(0, 0, 'NOfood').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 800,
+                    delay: 700,
                     callback: ()=>{
-                        if(this.NOhats > 0){
+                        if(this.foodCount > 0){
                             this.thud.play();
                             this.add.text(450, 360, 'x' + this.foodCount, combo1Config);
                         }else{
@@ -731,12 +732,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 9900,
+            delay: 9800,
             callback: ()=>{
                 this.thud2.play();
                 this.NOweapons = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 800,
+                    delay: 700,
                     callback: ()=>{
                         if(this.weaponCount > 0){
                             this.thud.play();
@@ -752,12 +753,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 11700,
+            delay: 11600,
             callback: ()=>{
                 this.thud2.play();
                 this.NOcriminals = this.add.sprite(0, 0, 'NOcriminals').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 800,
+                    delay: 700,
                     callback: ()=>{
                         if(this.criminalCount > 0){
                             this.thud.play();
@@ -773,7 +774,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 13500,
+            delay: 13400,
             callback: ()=>{
                 this.thud.play();
                 this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
@@ -823,7 +824,7 @@ class score extends Phaser.Scene{
             }
         }
         this.time.addEvent({
-            delay: 14500,
+            delay: 14400,
             callback: ()=>{
                 this.thud.play();
                 this.add.text(450, 170, "GRADE: " + this.grade, scoreConfig);
@@ -831,7 +832,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 15500,
+            delay: 15400,
             callback: ()=>{
                 this.thud.play();
                 this.add.text(650, 170, "You are " + fired +"% fired", scoreConfig);
@@ -839,7 +840,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 16500,
+            delay: 16400,
             callback: ()=>{
                 //next button
                 this.nextButton = this.add.sprite(700, 70, 'next').setInteractive();
@@ -899,6 +900,7 @@ class score extends Phaser.Scene{
         //next button pressed 
         if(this.nextButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
+                this.buttonPress.play();
                 //button moves down then up with delay
                 //go to fired scene if youre fired
                 if(fired >= 100){

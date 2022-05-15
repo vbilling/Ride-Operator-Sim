@@ -10,7 +10,9 @@ class menu extends Phaser.Scene{
         this.load.audio('whoosh', './assets/whoosh.wav');
         this.load.audio('thud', './assets/thud.wav');
         this.load.audio('thud2', './assets/thud2.wav');
-
+        this.load.audio('buttonPress', './assets/buttonPress.wav');
+        this.load.audio('correct', './assets/correct.wav');
+        this.load.audio('oceanWaves', './assets/oceanWaves.wav');
 
     }
     create(){
@@ -24,6 +26,9 @@ class menu extends Phaser.Scene{
         this.startButtonHover = false;
         //initilizing mouse
         this.pointer = this.input.activePointer;
+
+        //sounds
+        this.buttonPress = this.sound.add('buttonPress');
 
         
 
@@ -46,6 +51,8 @@ class menu extends Phaser.Scene{
     }
     update(){
         if(this.pointer.isDown && this.startButtonHover == true){
+            this.buttonPress.play();
+            this.buttonPress.volume = 0.5;
             this.scene.start("day1Scene");
         }; 
     }

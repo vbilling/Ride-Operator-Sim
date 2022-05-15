@@ -95,6 +95,12 @@ class day3 extends Phaser.Scene{
         allRiders_array = [];
         //adding sounds
         this.whoosh = this.sound.add('whoosh');
+        this.buttonPress = this.sound.add('buttonPress');
+        this.oceanWaves = this.sound.add('oceanWaves');
+        this.correct = this.sound.add('correct');
+        this.oceanWaves.play();
+        this.oceanWaves.loop = true;
+        this.oceanWaves.volume = 0.3;
         
         //spawn the first character (function is below)
         this.newCharacter();
@@ -115,15 +121,22 @@ class day3 extends Phaser.Scene{
             //flying across the screen
             if(this.p1.x < 320){
                 this.whoosh.play();
-                this.p1.setRotation(20);
-                this.p1.setVelocityX(-500);
-                this.p1.setVelocityY(-1000);
+                //this.p1.setRotation(20);
+                this.p1.setVelocityX(-700);
+                this.p1.setVelocityY(-300);
             }
             if(this.p1.x > 700){
                 this.whoosh.play();
-                this.p1.setRotation(-20);
-                this.p1.setVelocityX(500);
-                this.p1.setVelocityY(-1000);
+                //this.p1.setRotation(-20);
+                this.p1.setVelocityX(700);
+                this.p1.setVelocityY(-300);
+                this.time.addEvent({
+                    delay: 100,
+                    callback: ()=>{
+                        this.correct.play();
+                    },
+                    loop: false
+                })
             }
         });
         //initilizing mouse
@@ -365,7 +378,7 @@ class day3 extends Phaser.Scene{
         };
 
         //if the character is flung to the right (aka allowed to ride)
-        if(this.p1.x > 960 || this.p1.x < 30){
+        if(this.p1.x > 1000 || this.p1.x < -50){
             this.p1.destroy();
 
             //will spawn a new character (see below)
@@ -414,6 +427,7 @@ class day3 extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.doneButtonHover == true){
+            this.buttonPress.play();
             this.scene.start("coasterScene");
         }; 
     };
