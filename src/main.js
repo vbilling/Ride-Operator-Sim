@@ -17,9 +17,6 @@ let config = {
 
 let game = new Phaser.Game(config);
 
-//half the width of the screen, to note the middle
-let halfscreenwidth = game.config.width /2;
-
 //the scale of the characters and accessories
 let scale = 0.5; 
 

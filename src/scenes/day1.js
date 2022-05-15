@@ -3,8 +3,8 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
-        this.load.image('player', './assets/player.png')
-        
+        this.load.image('player', './assets/player.png');
+
         this.load.image('day1Title', './assets/day1Title.png');
         this.load.image('day1Background', './assets/day1Background.png');
 
@@ -198,7 +198,7 @@ class day1 extends Phaser.Scene{
         
 
         // Add the character
-        this.p1 = this.physics.add.sprite(400, 250, this.body_array[this.pick_body], 0).setInteractive();
+        this.p1 = this.physics.add.sprite(halfscreenwidth, 250, this.body_array[this.pick_body], 0).setInteractive();
         riderAccessories_array.push(this.body_array[this.pick_body]);
 
 
@@ -405,6 +405,9 @@ class day1 extends Phaser.Scene{
                 this.neck_accessory.destroy();
             };
         }
+
+
+
         //spawn a new character
         if(this.needCharacter == true){
             //set a timer so there is a delay
