@@ -3,6 +3,8 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
+        this.load.image('player', './assets/player.png')
+        
         this.load.image('day1Title', './assets/day1Title.png');
         this.load.image('day1Background', './assets/day1Background.png');
 
@@ -53,11 +55,9 @@ class day1 extends Phaser.Scene{
         this.load.image('bdayNecklace', './assets/bdayNecklace.png');
         this.load.image('chain', './assets/chain.png');
         this.load.image('shellNecklace', './assets/shellNecklace.png');
-        
 
         //wrist accessories 2
         this.load.image('handcuffs', './assets/handcuffs.png')
-
     }
 
     create(){
@@ -118,6 +118,10 @@ class day1 extends Phaser.Scene{
 
         this.physics.add.collider(this.p1, platforms);
 
+        this.add.image(280, 500, 'player');
+
+        this.add.image(700, 500, 'player');
+
         this.input.on('drag', (_pointer, _gameObject, dragX, dragY)=>{
             this.p1.x = dragX;
             this.p1.y = dragY;
@@ -130,6 +134,18 @@ class day1 extends Phaser.Scene{
             //this.p1.velocityFromAngle(50, 200, this.p1.body.velocity);
             this.p1.setFrame(0);
             this.p1.body.allowGravity = true;
+
+            //flying across the screen
+            if(this.p1.x < 320){
+                this.p1.setRotation(20);
+                this.p1.setVelocityX(-500);
+                this.p1.setVelocityY(-1000);
+            }
+            if(this.p1.x > 700){
+                this.p1.setRotation(-20);
+                this.p1.setVelocityX(500);
+                this.p1.setVelocityY(-1000);
+            }
         });
 
         //initilizing mouse
