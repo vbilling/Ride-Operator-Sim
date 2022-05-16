@@ -3,8 +3,12 @@ class day3 extends Phaser.Scene{
         super("day3Scene");
     }
     preload(){
+        this.load.image('day3Background', './assets/background-day3.png');
 
         if(day1Done == false || day2Done == false){
+
+            
+
             this.load.image('ground', './assets/ground.png');
             this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
             //Character Bodies
@@ -54,6 +58,7 @@ class day3 extends Phaser.Scene{
 
     create(){
         day3Done = true;
+        this.add.tileSprite(0,0, 960, 720, 'day3Background').setOrigin(0,0);
         this.add.text(70, 70, "DAY 3");
         //temporary instructions text
         this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");

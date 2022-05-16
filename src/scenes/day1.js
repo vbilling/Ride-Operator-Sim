@@ -9,7 +9,7 @@ class day1 extends Phaser.Scene{
 
 
         this.load.image('day1Title', './assets/day1Title.png');
-        this.load.image('day1Background', './assets/day1Background.png');
+        this.load.image('day1Background', './assets/background-day1.png');
 
         this.load.image('ground', './assets/ground.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
