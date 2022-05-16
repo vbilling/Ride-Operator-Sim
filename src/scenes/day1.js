@@ -107,7 +107,7 @@ class day1 extends Phaser.Scene{
         this.clock = 0;
 
         //implementing a game timer
-        this.gametimer = 5000;
+        this.gametimer = 6000;
         let gametimerConfig = {
             fontFamily: 'Chalkduster',
             fontSize: '30px',
@@ -241,7 +241,7 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 80){ //88 
+        if(this.hat_chance >= 88){ 
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
@@ -275,7 +275,7 @@ class day1 extends Phaser.Scene{
         this.wrist_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
-        if(this.wrist_chance >= 10){
+        if(this.wrist_chance >= 5){
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -369,7 +369,7 @@ class day1 extends Phaser.Scene{
         this.timertext.text = Math.round(this.gametimer/60);
         this.clock += 1;
         //if the timer runs out, go to next scene
-        if(Math.round(this.gametimer/60) < 0){
+        if(Math.round(this.gametimer/60) < 0){ // 60
             this.scene.start("coasterScene");
         };
 

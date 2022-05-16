@@ -237,7 +237,7 @@ class day2 extends Phaser.Scene{
         this.wrist_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
-        if(this.wrist_chance >= 10){
+        if(this.wrist_chance >= 5){
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -256,7 +256,7 @@ class day2 extends Phaser.Scene{
         this.wrist2_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist2 = false;
-        if(this.wrist2_chance >= 80){
+        if(this.wrist2_chance >= 90){
             this.wrist2 = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -307,7 +307,7 @@ class day2 extends Phaser.Scene{
         this.leg_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.leg = false;
-        if(this.leg_chance >= 90){
+        if(this.leg_chance >= 95){
             this.leg = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)

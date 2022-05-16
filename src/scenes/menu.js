@@ -33,6 +33,7 @@ class menu extends Phaser.Scene{
         //sounds
         this.buttonPress = this.sound.add('buttonPress');
 
+
         
 
         //start button glow when hovered over

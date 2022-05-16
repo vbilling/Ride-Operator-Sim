@@ -13,6 +13,19 @@ class score extends Phaser.Scene{
         this.load.image('NOfood', './assets/NOfood.png');
         this.load.image('NOweapons', './assets/NOweapons.png');
         this.load.image('NOcriminals', './assets/NOcriminals.png');
+        this.load.spritesheet('capacityMeter', './assets/capacityMeter.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 2});
+        this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
+        this.load.image('missingWristbandText', './assets/missingWristbandText.png');
+        this.load.image('TOOshortText', './assets/TOOshortText.png');
+        this.load.image('TOOtallText', './assets/TOOtallText.png');
+
+        //delete later
+        if(day1Done == false && day2Done == false && day3Done == false){
+            this.load.image('wristband1', './assets/wristband1.png');
+            this.load.image('wristband2', './assets/wristband2.png');
+            this.load.image('wristband3', './assets/wristband3.png');
+        }
+
 
     };
     create(){
@@ -28,8 +41,8 @@ class score extends Phaser.Scene{
             }
         };
         let combo1Config = {
-            fontFamily: 'Arial Black',
-            fontSize: '24px',
+            fontFamily: 'Avenir Next Heavy',
+            fontSize: '30px',
             color: 'red',
             align: 'center',
             padding: {
@@ -38,8 +51,8 @@ class score extends Phaser.Scene{
             }
         };
         let combo2Config = {
-            fontFamily: 'Arial Black',
-            fontSize: '24px',
+            fontFamily: 'Avenir Next Heavy',
+            fontSize: '30px',
             color: 'green',
             align: 'center',
             padding: {
@@ -68,7 +81,24 @@ class score extends Phaser.Scene{
         
 
         //score board
-        this.scoreBoard = this.add.sprite(0, 0, 'scoreBoard').setOrigin(0,0);
+        this.scoreBoard = this.add.sprite(0, 15, 'scoreBoard').setOrigin(0,0);
+
+        
+
+
+        //load the right wristband
+        if(day2Done == false){
+            this.add.sprite(840, 205, 'wristband1')
+        };
+        if(day2Done == true && day3Done == false){
+            this.add.sprite(840, 205, 'wristband2')
+        };
+        if(day3Done == true){
+            this.add.sprite(840, 205, 'wristband3')
+        }
+
+        this.capacityMeter = this.add.sprite(0, 15, 'capacityMeter').setOrigin(0, 0);
+        this.capacityMeter.setFrame(1);
 
         //total score 
         this.totalScore = 100;
@@ -91,6 +121,7 @@ class score extends Phaser.Scene{
         this.tooTall = 0;
         this.hatCount = 0;
         this.wrongWristband = 0;
+        this.noWristband = 0;
         this.foodCount = 0;
         this.weaponCount = 0;
         this.criminalCount = 0;
@@ -117,7 +148,7 @@ class score extends Phaser.Scene{
 
         for(let i = 0; i < (customers); i++){
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
-            this.customer = this.physics.add.sprite(60, 350, allRiders_array[i][1]);
+            this.customer = this.physics.add.sprite(60, 390, allRiders_array[i][1]); //370
             this.customer.body.allowGravity = false;
             //make an array for the customer sprites so that accessories can track them
             //basically do this if the coaster scene is not around to do it for you
@@ -138,7 +169,7 @@ class score extends Phaser.Scene{
             }else if(this.customerHeight == 0.4){
                 this.size = 'large';
                 riderSize_array.push(this.size);
-                this.customerNewHeight = (this.coasterscale + 0.02);
+                this.customerNewHeight = (this.coasterscale + 0.00);
                 this.customer.setScale(this.customerNewHeight);
             }else if(this.customerHeight == 0.5){
                 this.size = 'extra large';
@@ -149,147 +180,147 @@ class score extends Phaser.Scene{
             }
             //riderSprite_array[i]
             if(i == 0){ 
-                if(this.size == "small"){
+                if(this.size == "small"){ //perfect
                     this.customer.x = -100 + 49;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
-                if(this.size == "medium"){ 
+                if(this.size == "medium"){ //perfect
                     this.customer.x = -100 + 43;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 }; 
-                if(this.size == 'large'){
+                if(this.size == 'large'){ //perfect
                     this.customer.x = -100 + 30;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 }; 
-                if(this.size == 'extra large'){
+                if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 27;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 1){
                 if(this.size == "small"){ //perfect
                     this.customer.x = -100 - 30;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){ //perfect
                     this.customer.x = -100 - 25;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){ //perfect
                     this.customer.x = -100 - 4;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 5;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 2){
                 if(this.size == "small"){
                     this.customer.x = -333 + 49;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -333 + 43;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -333 + 30;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 27;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 3){
                 if(this.size == "small"){
                     this.customer.x = -333 -30;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -333 - 25;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -333 - 4;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 5;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 4){
                 if(this.size == "small"){
                     this.customer.x = -566 + 49;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -566 + 43;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -566 + 30;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 27;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 5){
                 if(this.size == "small"){
                     this.customer.x = -566 -30;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -566 - 25;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -566 - 4;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 5;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 6){
                 if(this.size == "small"){
                     this.customer.x = -799 + 49;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -799 + 43;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -799 + 30;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 27;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
             if(i == 7){
                 if(this.size == "small"){
                     this.customer.x = -799 -30;
-                    this.customer.y = 620 - 10;
+                    this.customer.y = 620 + 10;
                 };
                 if(this.size == "medium"){
                     this.customer.x = -799 - 25;
-                    this.customer.y = 620 - 25;
+                    this.customer.y = 620 - 5;
                 };
                 if(this.size == 'large'){
                     this.customer.x = -799 - 4;
-                    this.customer.y = 620 - 55;
+                    this.customer.y = 620 - 40;
                 };
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 5;
-                    this.customer.y = 620 - 70;
+                    this.customer.y = 620 - 60;
                 };
             };
 
@@ -435,10 +466,10 @@ class score extends Phaser.Scene{
                         //point value
                         first_array.push(-3);
                         //phrase to say
-                        first_array.push('wrong wristband');
+                        first_array.push('no wristband');
                         master_array.push(first_array);
                         first_array = [];
-                        this.wrongWristband += 1;
+                        this.noWristband += 1;
                     };
                 };
                 if(allRiders_array[i][a] == 'ankleMoniter'){ //is the day 1 wristband
@@ -521,16 +552,16 @@ class score extends Phaser.Scene{
         };
         
         //add coaster carts again so they are on top
-        this.cart1 = this.physics.add.sprite(-100, 620, 'coasterCart', 0)
+        this.cart1 = this.physics.add.sprite(-100, 640, 'coasterCart', 0)
         this.cart1.setScale(this.coasterscale);
         this.cart1.body.allowGravity = false;
-        this.cart2 = this.physics.add.sprite(-333, 620, 'coasterCart', 0)
+        this.cart2 = this.physics.add.sprite(-333, 640, 'coasterCart', 0)
         this.cart2.setScale(this.coasterscale);
         this.cart2.body.allowGravity = false;
-        this.cart3 = this.physics.add.sprite(-566, 620, 'coasterCart', 0)
+        this.cart3 = this.physics.add.sprite(-566, 640, 'coasterCart', 0)
         this.cart3.setScale(this.coasterscale);
         this.cart3.body.allowGravity = false;
-        this.cart4 = this.physics.add.sprite(-799, 620, 'coasterCart', 0)
+        this.cart4 = this.physics.add.sprite(-799, 640, 'coasterCart', 0)
         this.cart4.setScale(this.coasterscale);
         this.cart4.body.allowGravity = false;
 
@@ -538,6 +569,7 @@ class score extends Phaser.Scene{
         console.log('Too Tall:', this.tooTall);
         console.log("Hat count", this.hatCount);
         console.log("wrong wristband", this.wrongWristband);
+        console.log("no wristband", this.noWristband);
         console.log("Food count", this.foodCount);
         console.log("Weapon count", this.weaponCount);
         console.log("Criminal count", this.criminalCount);
@@ -553,156 +585,181 @@ class score extends Phaser.Scene{
             }
             this.totalScore += this.currentScore;
         }
-        //printing out the reasons and scores
-        for(let x = 0; x < master_array.length; x++){
-            //print if riders are missing
-            if(master_array[x][0] == 'Missing riders'){
-                //set after a delay
-                this.time.addEvent({
-                    delay: 2300,
-                    callback: ()=>{
-                        this.thud2.play();
-                        this.add.text(130, 210, "Missing " + this.missingRider + " riders", scoreConfig);
-                    },
-                    loop: false
-                })
 
-            };
-            //if there are too many riders
-            if(master_array[x][0] == 'Too many riders'){
-                this.time.addEvent({
-                    delay: 2300,
-                    callback: ()=>{
-                        this.thud2.play();
-                        this.add.text(130, 210, "Too many riders by " + this.moreRiders, scoreConfig);
-                    },
-                    loop: false
-                })
-
-            };
-            // //if some riders were too tall
-            // if(master_array[x][0] == 'Too tall'){
-            //     this.time.addEvent({
-            //         delay: 3700,
-            //         callback: ()=>{
-            //             this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
-            //         },
-            //         loop: false
-            //     })
-            // };
-            // //if some riders were too short
-            // if(master_array[x][0] == 'Too short'){
-            //     this.time.addEvent({
-            //         delay: 4000,
-            //         callback: ()=>{
-            //             this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
-            //         },
-            //         loop: false
-            //     })
-            // };
-            // //wrong wristband
-            // if(master_array[x][2] == 'wrong wristband'){
-            //     this.time.addEvent({
-            //         delay: 3000,
-            //         callback: ()=>{
-            //             this.add.text(130, 250, this.wrongWristband + " wrong wristband(s)", scoreConfig); //+ ": " + (master_array[x][1]*this.wrongWristband) + " points"
-            //         },
-            //         loop: false
-            //     })
-            // };
-            //if there are hats
-            // if(master_array[x][0] == 'hat'){
-            //     //check if missing riders or too many riders has been printed
-            //     //this.add.text(250, 260, "Hats X " + this.hatCount + ": " + (master_array[x][1]*this.hatCount) + " points", scoreConfig);
-            //     this.time.addEvent({
-            //         delay: 5000,
-            //         callback: ()=>{
-            //             this.NOhats = this.add.sprite(0, 0, 'NOhats').setOrigin(0, 0);
-            //             this.time.addEvent({
-            //                 delay: 700,
-            //                 callback: ()=>{
-            //                     this.add.text(250, 380, 'x' + this.hatCount, scoreConfig);
-            //                 },
-            //                 loop: false
-            //             })
-            //         },
-            //         loop: false
-            //     })
-            // };
-            // if(master_array[x][0] == 'Soda'){
-            //     //check if missing riders or too many riders has been printed
-            //     //this.add.text(250, 280, "Sodas X " + this.foodCount + ": " + (master_array[x][1]*this.foodCount) + " points", scoreConfig);
-            //     this.NOfood = this.add.sprite(0, 0, 'NOfood').setOrigin(0, 0);
-            // };
-            // if(master_array[x][0] == 'weapons'){
-            //     //check if missing riders or too many riders has been printed
-            //     //this.add.text(250, 300, "Weapons X " + this.weaponCount + ": " + (master_array[x][1]*this.weaponCount) + " points", scoreConfig);
-            //     this.NOweapons = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
-            // };
-            // if(master_array[x][0] == 'criminal'){
-            //     //check if missing riders or too many riders has been printed
-            //     //this.add.text(250, 320, "you let a criminal ride" + ": " + (master_array[x][1]*this.criminalCount) + " points");
-            //     this.NOcriminals = this.add.sprite(0, 0, 'NOcriminals').setOrigin(0, 0);
-            // };         
-
-        }
         //makeing the scoreboard stuff show up not dependent on if things were done wrong
+        //order: too tall, too short, capacity, missing wristbands, incorrect wristbands, hats, food/drinks, weapons, criminals, %fired
         this.time.addEvent({
-            delay: 3300,
+            delay: 2300,
             callback: ()=>{
-                if(this.wrongWristband > 0){
-                    this.thud2.play();
-                    this.add.text(130, 250, " wrong/missing wristband(s): " + this.wrongWristband, scoreConfig); //+ ": " + (master_array[x][1]*this.wrongWristband) + " points"
-                }else{
-                    this.thud2.play();
-                    this.add.text(130, 250, " wrong/missing wristband(s): " + this.wrongWristband, scoreConfig);
-                }
-                 
+                this.add.sprite(10, 25, 'TOOtallText').setOrigin(0,0);
+                this.thud2.play();
+                this.time.addEvent({
+                    delay: 700,
+                    callback: ()=>{
+                        if(this.tooTall > 0){
+                            this.thud.play();
+                            this.add.text(310, 207, 'x' + this.tooTall, combo1Config); 
+                        }else{
+                            this.thud.play();
+                            this.add.text(310, 207, 'x' + this.tooTall, combo2Config); 
+                        }
+                    },
+                    loop: false
+                }) 
             },
             loop: false
         })
         this.time.addEvent({
-            delay: 4300,
+            delay: 3700,
             callback: ()=>{
-                if(this.tooTall > 0){
-                    this.thud2.play();
-                    this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
-                }else{
-                    this.thud2.play();
-                    this.add.text(600, 210, this.tooTall + " rider(s) are too tall", scoreConfig); //+ ": " + (master_array[x][1]*this.tooTall) + " points"
-                }
-                
+                this.add.sprite(10, 5, 'TOOshortText').setOrigin(0,0);
+                this.thud2.play();
+                this.time.addEvent({
+                    delay: 700,
+                    callback: ()=>{
+                        if(this.tooShort > 0){
+                            this.thud.play();
+                            this.add.text(310, 260, 'x' + this.tooShort, combo1Config); 
+                        }else{
+                            this.thud.play();
+                            this.add.text(310, 260, 'x' + this.tooShort, combo2Config); 
+                        }
+                    },
+                    loop: false
+                }) 
             },
             loop: false
         })
-        this.time.addEvent({
-            delay: 5300,
-            callback: ()=>{
-                if(this.tooShort > 0){
+        if(customers == 0){
+            this.totalScore += (-2 * 8);
+            this.time.addEvent({
+                delay: 5100,
+                callback: ()=>{
                     this.thud2.play();
-                    this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
-                }else{
+                    this.capacityMeter.setFrame(0);
+                    this.time.addEvent({
+                        delay: 700,
+                        callback: ()=>{
+                            this.thud.play();
+                            this.add.text(395, 245, (customers), combo1Config);
+                        },
+                        loop: false
+                    })
+                },
+                loop: false
+            })
+
+        }else if(customers < 8){
+            this.time.addEvent({
+                delay: 5100,
+                callback: ()=>{
                     this.thud2.play();
-                    this.add.text(600, 250, this.tooShort + " rider(s) are too short", scoreConfig); //+ ": " + (master_array[x][1]*this.tooShort) + " points"
-                }
-                
-            },
-            loop: false
-        })
+                    this.capacityMeter.setFrame(0);
+                    this.time.addEvent({
+                        delay: 700,
+                        callback: ()=>{
+                            this.thud.play();
+                            this.add.text(395, 245, (customers), combo1Config);
+                        },
+                        loop: false
+                    })
+                },
+                loop: false
+            })
+        }
+        if(customers == 8){
+            this.time.addEvent({
+                delay: 5100,
+                callback: ()=>{
+                    this.thud2.play();
+                    this.capacityMeter.setFrame(1);
+                    this.time.addEvent({
+                        delay: 700,
+                        callback: ()=>{
+                            this.thud.play();
+                            this.add.text(460, 213, (customers), combo2Config);
+                        },
+                        loop: false
+                    })
+                },
+                loop: false
+            })
+        }
+        if(customers > 8){
+            this.time.addEvent({
+                delay: 5100,
+                callback: ()=>{
+                    this.thud2.play();
+                    this.capacityMeter.setFrame(2);
+                    this.time.addEvent({
+                        delay: 700,
+                        callback: ()=>{
+                            this.thud.play();
+                            this.add.text(520, 245, customers, combo1Config);
+                        },
+                        loop: false
+                    })
+                },
+                loop: false
+            })
+        }
         this.time.addEvent({
-            delay: 6300,
+            delay: 6500,
             callback: ()=>{
                 this.thud2.play();
-                this.NOhats = this.add.sprite(0, 0, 'NOhats').setOrigin(0, 0);
+                this.add.sprite(10, 17, 'missingWristbandText').setOrigin(0,0);
+                this.time.addEvent({
+                    delay: 700,
+                    callback: ()=>{
+                        if(this.noWristband > 0){
+                            this.thud.play();
+                            this.add.text(780, 222, 'x' + this.noWristband, combo1Config);
+                        }else{
+                            this.thud.play();
+                            this.add.text(780, 222, 'x' + this.noWristband, combo2Config);
+                        }
+                    },
+                    loop: false
+                })
+            },
+            loop: false
+        })
+        this.time.addEvent({
+            delay: 7900,
+            callback: ()=>{
+                this.thud2.play();
+                this.add.sprite(10, 15, 'incorrectWristbandText').setOrigin(0,0);
+                this.time.addEvent({
+                    delay: 700,
+                    callback: ()=>{
+                        if(this.wrongWristband > 0){
+                            this.thud.play();
+                            this.add.text(780, 268, 'x' + this.wrongWristband, combo1Config);
+                        }else{
+                            this.thud.play();
+                            this.add.text(780, 268, 'x' + this.wrongWristband, combo2Config);
+                        }
+                    },
+                    loop: false
+                })
+            },
+            loop: false
+        })
+
+        this.time.addEvent({
+            delay: 9300,
+            callback: ()=>{
+                this.thud2.play();
+                this.NOhats = this.add.sprite(0, 15, 'NOhats').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 700,
                     callback: ()=>{
                         if(this.hatCount > 0){
                             this.thud.play();
-                            this.add.text(250, 360, 'x' + this.hatCount, combo1Config);
+                            this.add.text(240, 375, 'x' + this.hatCount, combo1Config);
                         }else{
                             this.thud.play();
-                            this.add.text(250, 360, 'x' + this.hatCount, combo2Config);
+                            this.add.text(240, 375, 'x' + this.hatCount, combo2Config);
                         }
                     },
                     loop: false
@@ -711,19 +768,19 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 8000,
+            delay: 10700,
             callback: ()=>{
                 this.thud2.play();
-                this.NOfood = this.add.sprite(0, 0, 'NOfood').setOrigin(0, 0);
+                this.NOfood = this.add.sprite(0, 15, 'NOfood').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 700,
                     callback: ()=>{
                         if(this.foodCount > 0){
                             this.thud.play();
-                            this.add.text(450, 360, 'x' + this.foodCount, combo1Config);
+                            this.add.text(425, 375, 'x' + this.foodCount, combo1Config);
                         }else{
                             this.thud.play();
-                            this.add.text(450, 360, 'x' + this.foodCount, combo2Config);
+                            this.add.text(425, 375, 'x' + this.foodCount, combo2Config);
                         }
                     },
                     loop: false
@@ -732,19 +789,19 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 9800,
+            delay: 12100,
             callback: ()=>{
                 this.thud2.play();
-                this.NOweapons = this.add.sprite(0, 0, 'NOweapons').setOrigin(0, 0);
+                this.NOweapons = this.add.sprite(0, 15, 'NOweapons').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 700,
                     callback: ()=>{
                         if(this.weaponCount > 0){
                             this.thud.play();
-                            this.add.text(650, 360, 'x' + this.weaponCount, combo1Config);
+                            this.add.text(630, 375, 'x' + this.weaponCount, combo1Config);
                         }else{
                             this.thud.play();
-                            this.add.text(650, 360, 'x' + this.weaponCount, combo2Config);
+                            this.add.text(630, 375, 'x' + this.weaponCount, combo2Config);
                         }
                     },
                     loop: false
@@ -753,19 +810,19 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 11600,
+            delay: 13500,
             callback: ()=>{
                 this.thud2.play();
-                this.NOcriminals = this.add.sprite(0, 0, 'NOcriminals').setOrigin(0, 0);
+                this.NOcriminals = this.add.sprite(0, 15, 'NOcriminals').setOrigin(0, 0);
                 this.time.addEvent({
                     delay: 700,
                     callback: ()=>{
                         if(this.criminalCount > 0){
                             this.thud.play();
-                            this.add.text(800, 360, 'x' + this.criminalCount, combo1Config);
+                            this.add.text(800, 375, 'x' + this.criminalCount, combo1Config);
                         }else{
                             this.thud.play();
-                            this.add.text(800, 360, 'x' + this.criminalCount, combo2Config);
+                            this.add.text(800, 375, 'x' + this.criminalCount, combo2Config);
                         }
                     },
                     loop: false
@@ -773,69 +830,71 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
-        this.time.addEvent({
-            delay: 13400,
-            callback: ()=>{
-                this.thud.play();
-                this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
-                this.add.text(320, 170, this.totalScore, scoreConfig);
-            },
-            loop: false
-        })
+        // this.time.addEvent({
+        //     delay: 13400,
+        //     callback: ()=>{
+        //         this.thud.play();
+        //         this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
+        //         this.add.text(320, 170, this.totalScore, scoreConfig);
+        //     },
+        //     loop: false
+        // })
+
+
         
 
         this.percentage = 100 - this.totalScore;
         fired += this.percentage;
         //get grade from score
-        if(this.totalScore > 0){
-            this.grade = "F"
-            if(this.totalScore >= 10){
-                this.grade = "F+"
-                if(this.totalScore >= 20){
-                    this.grade = "D"
-                    if(this.totalScore >= 30){
-                        this.grade = "C-"
-                        if(this.totalScore >= 40){
-                            this.grade = "C"
-                            if(this.totalScore >= 50){
-                                this.grade = "C+"
-                                if(this.totalScore >= 60){
-                                    this.grade = "B-"
-                                    if(this.totalScore >= 70){
-                                        this.grade = "B"
-                                        if(this.totalScore >= 80){
-                                            this.grade = "B+"
-                                            if(this.totalScore >= 90){
-                                                this.grade = "A"
-                                                if(this.totalScore >= 90){
-                                                    this.grade = "A"
-                                                    if(this.totalScore >= 95){
-                                                        this.grade = "A+"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        this.time.addEvent({
-            delay: 14400,
-            callback: ()=>{
-                this.thud.play();
-                this.add.text(450, 170, "GRADE: " + this.grade, scoreConfig);
-            },
-            loop: false
-        })
+        // if(this.totalScore > 0){
+        //     this.grade = "F"
+        //     if(this.totalScore >= 10){
+        //         this.grade = "F+"
+        //         if(this.totalScore >= 20){
+        //             this.grade = "D"
+        //             if(this.totalScore >= 30){
+        //                 this.grade = "C-"
+        //                 if(this.totalScore >= 40){
+        //                     this.grade = "C"
+        //                     if(this.totalScore >= 50){
+        //                         this.grade = "C+"
+        //                         if(this.totalScore >= 60){
+        //                             this.grade = "B-"
+        //                             if(this.totalScore >= 70){
+        //                                 this.grade = "B"
+        //                                 if(this.totalScore >= 80){
+        //                                     this.grade = "B+"
+        //                                     if(this.totalScore >= 90){
+        //                                         this.grade = "A"
+        //                                         if(this.totalScore >= 90){
+        //                                             this.grade = "A"
+        //                                             if(this.totalScore >= 95){
+        //                                                 this.grade = "A+"
+        //                                             }
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // this.time.addEvent({
+        //     delay: 14400,
+        //     callback: ()=>{
+        //         this.thud.play();
+        //         this.add.text(450, 170, "GRADE: " + this.grade, scoreConfig);
+        //     },
+        //     loop: false
+        // })
         this.time.addEvent({
             delay: 15400,
             callback: ()=>{
                 this.thud.play();
-                this.add.text(650, 170, "You are " + fired +"% fired", scoreConfig);
+                this.add.text(390, 30, "You are " + fired +"% fired", scoreConfig);
             },
             loop: false
         })
@@ -860,6 +919,7 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
+
 
 
          
