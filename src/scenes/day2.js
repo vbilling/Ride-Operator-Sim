@@ -256,11 +256,11 @@ class day2 extends Phaser.Scene{
         this.wrist2_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist2 = false;
-        if(this.wrist2_chance >= 90){
+        if(this.wrist2_chance >= 97){
             this.wrist2 = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        wrist2_array = ['handcuffs', 'watch'];
+        wrist2_array = ['handcuffs'];
 
         if(this.wrist2 == true){
             this.pick_wrist2 = random(0,wrist2_array.length - 1);
@@ -273,7 +273,7 @@ class day2 extends Phaser.Scene{
         this.face_chance = random(0, 100);
         //console.log('this.face_chance', this.face_chance);
         this.face = false;
-        if(this.face_chance >= 70){
+        if(this.face_chance >= 80){
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
@@ -290,7 +290,7 @@ class day2 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 80){
+        if(this.waist_chance >= 89){
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -328,7 +328,7 @@ class day2 extends Phaser.Scene{
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        neck_array = ['bdayNecklace', 'chain', 'shellNecklace'];
+        neck_array = ['chain', 'shellNecklace'];
 
         if(this.neck == true){
             this.pick_neck = random(0,neck_array.length - 1);

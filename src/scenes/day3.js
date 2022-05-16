@@ -327,7 +327,7 @@ class day3 extends Phaser.Scene{
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        neck_array = ['bdayNecklace', 'chain', 'shellNecklace'];
+        neck_array = ['chain', 'shellNecklace'];
 
         if(this.neck == true){
             this.pick_neck = random(0,neck_array.length - 1);
