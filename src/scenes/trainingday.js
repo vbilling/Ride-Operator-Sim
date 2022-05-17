@@ -5,7 +5,11 @@ class trainingday extends Phaser.Scene{
     preload(){
         this.load.image('day1Background', './assets/background-day1.png');
         this.load.image('ground', './assets/ground.png');
+        this.load.image('directions', './assets/directions.png');
+        this.load.image('textBubble', './assets/textBubble.png');
+        this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
 
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -22,13 +26,16 @@ class trainingday extends Phaser.Scene{
         this.load.image('wristband2', './assets/wristband2.png');
         this.load.image('wristband3', './assets/wristband3.png');
 
+        
+
 
     }
     create(){
         //if training day was completed
         trainingDone = true;
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
-        this.textbox = this.add.rectangle(250, 20, 500, 115, 0xffffff).setOrigin(0, 0);
+        this.textbox = this.add.sprite(0, 0, 'textBubble').setOrigin(0, 0);
+
         this.ground = this.add.sprite(400, 695, 'ground');
         //number to keep track of which test rider we are on
         this.riderNum = 0;
@@ -43,7 +50,6 @@ class trainingday extends Phaser.Scene{
         this.readyButton.setAlpha(0);
         this.readyButton.setScale(0.4);
         this.readyButton.on("pointerover", () => {
-            console.log('here');
             this.readyButton.setFrame(1);
             this.readyButtonHover = true;
 
@@ -82,12 +88,24 @@ class trainingday extends Phaser.Scene{
                 })
             }
         });
+        //make an animation for the bouncing arrow
+        this.anims.create({
+            key: 'arrow',
+            frames: this.anims.generateFrameNames('bouncingArrow', {
+                start: 0, 
+                end: 7, 
+                first: 0}),
+                frameRate: 16,
+                repeat: -1,
+                yoyo: false
+        });
         //text configurations for all of the boss's text
         let mumblingConfig = {
-            fontFamily: 'Courier',
-            fontSize: '14px',
+            fontFamily: 'Copperplate',
+            fontSize: '16px',
             color: 'black',
             align: 'left',
+            lineSpacing: 7,
             padding: {
                 top: 5,
                 bottom: 4
@@ -105,39 +123,46 @@ class trainingday extends Phaser.Scene{
             },
             //fixedWidth: 100
         };
-        let instructionsConfig = {
-            fontFamily: 'Arial',
-            fontSize: '14px',
-            color: 'white',
-            align: 'center',
-            padding: {
-                top: 5,
-                bottom: 4
-            },
-            //fixedWidth: 100
-        };
         //create an array to hold all the dialogue
         bossText = [
-            "Ugh, another pimply teenage I have to train.",
-            "OH there you are! Welcome to your new job as a ride \noperator at The Boardwalk!",
-            "What was that mumbling about buying your mom a birthday\n present? Yeah I don't care but you should be able to\n afford it after three days of work.",
-            "That is, if you manage to not get fired.",
-            "Lets get started. Use your mouse to fling guests \nRIGHT to allow them to ride and \nLEFT to deny them.",
+            "Ugh, now where is that pimply teenager I have \nto train.",
+            "OH there you are! Welcome to your new job \nas a ride operator at",
+            "What was that mumbling about buying your \nlittle brother a birthday present? Yeah I \ndon't care...",
+            "...but i guess you should be able to afford \nit after three days of work. That is, if you \nmanage no to get fired.",
+            "Lets get started. Use your mouse to fling \nguests RIGHT to allow them to ride and \nLEFT to deny them.",
             "Good job.",
             "Guests must be taller than this line...",
             "...and shorter than this to ride.",
-            "Oh you want to know if ears count? Tell me, do you think \nhats and hair should count?!",
+            "Oh you want to know if ears count? Tell me,\n do you think hats and hair should count?!",
             "Lets practice",
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is BLUE.",
-            "Oh and VERY important: no HATS, FOOD, DRINKS, WEAPONS, \nor CRIMINALS allowed!!!",
-            "But MOST IMPORTANTLY, allow NO MORE than 8 guests ride \nat a time and also no less. Don't be losing me money.",
-            "Go ahead and Practice. Once you've let EXACTLY 8 guests \non, press this ready button. You'll have to keep track \nof how many guests you let on.",
+            "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
+            "But MOST IMPORTANTLY, allow NO MORE \nthan 8 guests ride at a time and also no less. \nDon't be losing me money.",
+            "Go ahead and Practice. Once you've let \nEXACTLY 8 guests on, press this ready button. \nYou'll have to keep track of how many guests you let on.",
             "See you tomorrow at your first shift!"
         ];
         //intructions on how to advance text
-        instructions = this.add.text(410, 140, "(press SPACE to advance text)", instructionsConfig);
+        this.instructions = this.add.sprite(0, 0, 'directions').setOrigin(0,0);
         //print the first boss's phrase
-        currentText = this.add.text(270, 50, bossText[0], mumblingConfig);
+        currentText = this.add.text(305, 65, '', mumblingConfig);
+        this.typewriteTextWrapped(bossText[0]);
+    };
+    typewriteText(text){
+	    const length = text.length
+	    let i = 0
+	    this.time.addEvent({
+		    callback: () => {
+			    currentText.text += text[i]
+			    ++i
+		    },
+		    repeat: length - 1,
+		    delay: 20 //50
+	    })
+    };
+    typewriteTextWrapped(text){
+	    const lines = currentText.getWrappedText(text)
+	    const wrappedText = lines.join('\n')
+	    this.typewriteText(wrappedText)
     };
     //make functions to create each test rider
     rider1(){
@@ -262,10 +287,7 @@ class trainingday extends Phaser.Scene{
                 if(this.counted == false){
                      this.riderNum += 1;
                      this.counted = true;
-                     //console.log(this.riderNum);
                 }
-                
-   
             };
         }
         if(this.wrist == true){
@@ -273,29 +295,28 @@ class trainingday extends Phaser.Scene{
             this.wrist_accessory.y = this.testRider.y;
         };
 
-        //console.log(this.riderNum);
-
-
-        
         //have text advance when space is pressed
         if(currentText.text == bossText[0]){
             //get rid of "press Space to advance"
             //instructions.destroy();
             //go to next phrase
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[1];
+                currentText.text = this.typewriteTextWrapped(bossText[1]);
+                this.logo = this.add.sprite(580, 135, 'boardwalkLogo');
+                this.logo.setScale(1.1);
             }
         }else if(currentText.text == bossText[1]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[2];
+                currentText.text = this.typewriteTextWrapped(bossText[2]);
+                this.logo.destroy();
             }
         }else if(currentText.text == bossText[2]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[3];
+                currentText.text = this.typewriteTextWrapped(bossText[3]);
             }
         }else if(currentText.text == bossText[3]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[4];
+                currentText.text = this.typewriteTextWrapped(bossText[4]);
                 this.rider1();
                 this.nextrider = false;
                 this.counted = false;
@@ -303,28 +324,36 @@ class trainingday extends Phaser.Scene{
         }else if(currentText.text == bossText[4]){
             //if the third character is flung out of bounds, go to next text
             if(this.riderNum == 1){
-                currentText.text = bossText[5];
+                currentText.text = this.typewriteTextWrapped(bossText[5]);
             }
         }else if (currentText.text == bossText[5]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[6];
+                currentText.text = this.typewriteTextWrapped(bossText[6]);
                 //have an arrow appear at the line
+                this.arrow1 = this.add.sprite(330, 443, 'bouncingArrow');
+                this.arrow1.setScale(0.2);
+                this.arrow1.play('arrow');
             }
 
         }else if (currentText.text == bossText[6]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[7];
+                currentText.text = this.typewriteTextWrapped(bossText[7]);
                 //have an arrow appear at the line
+                this.arrow2 = this.add.sprite(275, 267, 'bouncingArrow');
+                this.arrow2.setScale(0.2);
+                this.arrow2.play('arrow');
             }
         }else if (currentText.text == bossText[7]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[8];
+                currentText.text = this.typewriteTextWrapped(bossText[8]);
+                this.arrow1.destroy();
+                this.arrow2.destroy();
                 
             }
         }else if (currentText.text == bossText[8]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 //testing player on guest heights
-                currentText.text = bossText[9];
+                currentText.text = this.typewriteTextWrapped(bossText[9]);
                 this.rider4();
                 this.nextrider = false;
                 this.counted = false;
@@ -347,7 +376,7 @@ class trainingday extends Phaser.Scene{
                 };      
             }
             if(this.riderNum == 4){
-                currentText.text = bossText[10];
+                currentText.text = this.typewriteTextWrapped(bossText[10]);
                 this.rider7();
                 this.nextrider = false;
                 this.counted = false;
@@ -362,17 +391,17 @@ class trainingday extends Phaser.Scene{
                 };
             }
             if(this.riderNum == 6){
-                currentText.text = bossText[11];
+                currentText.text = this.typewriteTextWrapped(bossText[11]);
             }
 
         }else if(currentText.text == bossText[11]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                currentText.text = bossText[12];
+                currentText.text = this.typewriteTextWrapped(bossText[12]);
             }
         }else if(currentText.text == bossText[12]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 //let exactly 8 guests on
-                currentText.text = bossText[13];
+                currentText.text = this.typewriteTextWrapped(bossText[13]);
                 //ready button appears
                 this.readyButton.setAlpha(1);
             }

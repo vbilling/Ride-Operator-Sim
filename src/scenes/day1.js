@@ -3,22 +3,10 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
-        if(trainingDone == false){
         this.load.image('player', './assets/player.png');
 
         this.load.image('day1Title', './assets/day1Title.png');
-        this.load.image('day1Background', './assets/background-day1.png');
 
-        this.load.image('ground', './assets/ground.png');
-        this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        //Character Bodies
-        this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
-        this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -33,9 +21,7 @@ class day1 extends Phaser.Scene{
         this.load.image('corndog', '/assets/corndog.png');
         //left wrist accessories
         this.load.image('watch', './assets/watch.png');
-        this.load.image('wristband1', './assets/wristband1.png');
-        this.load.image('wristband2', './assets/wristband2.png');
-        this.load.image('wristband3', './assets/wristband3.png');
+
         //face accessories
         this.load.image('moustache', './assets/moustache.png');
         this.load.image('scar', './assets/scar.png');
@@ -59,7 +45,24 @@ class day1 extends Phaser.Scene{
 
         //wrist accessories 2
         this.load.image('handcuffs', './assets/handcuffs.png')
-        };
+        if(trainingDone == false){
+            this.load.image('wristband1', './assets/wristband1.png');
+            this.load.image('wristband2', './assets/wristband2.png');
+            this.load.image('wristband3', './assets/wristband3.png');
+            this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
+            this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+
+            this.load.image('day1Background', './assets/background-day1.png');
+            this.load.image('ground', './assets/ground.png');
+
+
+        }
     }
 
     create(){

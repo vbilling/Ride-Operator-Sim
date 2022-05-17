@@ -22,7 +22,6 @@ let keySpace;
 //for dialogue in training scene
 let bossText = [];
 let currentText;
-let instructions;
 let delayNow = false;
 let textNum = 0;
 

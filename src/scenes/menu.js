@@ -57,7 +57,7 @@ class menu extends Phaser.Scene{
         if(this.pointer.isDown && this.startButtonHover == true){
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("trainingdayScene");
+            this.scene.start("trainingIntroScene");
         }; 
     }
 }
