@@ -30,7 +30,6 @@ class trainingday extends Phaser.Scene{
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
         this.textbox = this.add.rectangle(250, 20, 500, 115, 0xffffff).setOrigin(0, 0);
         this.ground = this.add.sprite(400, 695, 'ground');
-
         //number to keep track of which test rider we are on
         this.riderNum = 0;
         this.delay = 0;
@@ -38,7 +37,6 @@ class trainingday extends Phaser.Scene{
         this.onerider = false;
         this.counted = false;
         this.nextrider = false;
-
         this.readyButtonHover = false;
         this.pointer = this.input.activePointer;
         this.readyButton = this.add.sprite(860, 70, 'readyButton').setInteractive();
@@ -47,7 +45,6 @@ class trainingday extends Phaser.Scene{
         this.readyButton.on("pointerover", () => {
             console.log('here');
             this.readyButton.setFrame(1);
-            //will tell code in update to go to next scene
             this.readyButtonHover = true;
 
         });
@@ -55,14 +52,8 @@ class trainingday extends Phaser.Scene{
             this.readyButton.setFrame(0);
             this.readyButtonHover = false;
         });
-
-
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        // let platforms = this.physics.add.staticGroup();
-        // platforms.create(400, 695, 'ground');
-        // this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'cat2', 0).setAlpha(0);
-        // this.physics.add.collider(this.testRider, platforms);
-        
+
         this.input.on('drag', (_pointer, _gameObject, dragX, dragY)=>{
             this.testRider.x = dragX;
             this.testRider.y = dragY;
@@ -91,7 +82,6 @@ class trainingday extends Phaser.Scene{
                 })
             }
         });
-
         //text configurations for all of the boss's text
         let mumblingConfig = {
             fontFamily: 'Courier',
@@ -126,7 +116,6 @@ class trainingday extends Phaser.Scene{
             },
             //fixedWidth: 100
         };
-
         //create an array to hold all the dialogue
         bossText = [
             "Ugh, another pimply teenage I have to train.",
@@ -149,7 +138,6 @@ class trainingday extends Phaser.Scene{
         instructions = this.add.text(410, 140, "(press SPACE to advance text)", instructionsConfig);
         //print the first boss's phrase
         currentText = this.add.text(270, 50, bossText[0], mumblingConfig);
-
     };
     //make functions to create each test rider
     rider1(){
@@ -162,27 +150,6 @@ class trainingday extends Phaser.Scene{
         this.input.setDraggable(this.testRider);
         this.physics.add.collider(this.testRider, platforms);
         this.onerider = true;
-
-    }
-    rider2(){
-        this.delay = 0;
-        let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
-        this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'duck2', 0).setInteractive();
-        this.testRider.setScale(0.35);
-        this.testRider.body.setSize(400, 990, 0.1, 1500);
-        this.input.setDraggable(this.testRider);
-        this.physics.add.collider(this.testRider, platforms);
-    }
-    rider3(){
-        this.delay = 0;
-        let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
-        this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'duck1', 0).setInteractive();
-        this.testRider.setScale(0.35);
-        this.testRider.body.setSize(400, 990, 0.1, 1500);
-        this.input.setDraggable(this.testRider);
-        this.physics.add.collider(this.testRider, platforms);
     }
     rider4(){
         this.delay = 0;
@@ -224,16 +191,6 @@ class trainingday extends Phaser.Scene{
         this.input.setDraggable(this.testRider);
         this.physics.add.collider(this.testRider, platforms);
     }
-    rider8(){
-        this.delay = 0;
-        let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
-        this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'duckpink', 0).setInteractive();
-        this.testRider.setScale(0.35);
-        this.testRider.body.setSize(400, 990, 0.1, 1500);
-        this.input.setDraggable(this.testRider);
-        this.physics.add.collider(this.testRider, platforms);
-    }
     rider9(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
@@ -263,11 +220,9 @@ class trainingday extends Phaser.Scene{
         this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
-        
         // Add the character
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, this.body_array[this.pick_body], 0).setInteractive();
         riderAccessories_array.push(this.body_array[this.pick_body]);
-
         this.testRider.setScale(this.scale);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
         this.input.setDraggable(this.testRider);
@@ -296,13 +251,7 @@ class trainingday extends Phaser.Scene{
 
     update(){
         //have advance text instructions fade in and out then dissapear at first click
-        // this.tweens.add({
-        //     target: this.instructions,
-        //     duration: 1500,
-        //     alpha: 0,
-        //     ease: 'Linear',
-        //     yoyo: true,
-        // })
+
         if(this.onerider == true){
             if(this.testRider.x > 1000 || this.testRider.x < -50){
                 this.testRider.destroy();
@@ -352,25 +301,6 @@ class trainingday extends Phaser.Scene{
                 this.counted = false;
             }
         }else if(currentText.text == bossText[4]){
-            //have 3 guests appear for player to practice flinging
-            // if(this.riderNum == 1 && this.nextrider == true){
-            //     this.delay += 1;
-            //     if(Math.round(this.delay/60) > 0.2){
-            //         this.rider2();
-            //         this.nextrider = false;
-            //         this.counted = false;
-            //     };
-            // }
-            // if(this.riderNum == 2 && this.nextrider == true){
-            //     this.delay += 1;
-            //     if(Math.round(this.delay/60) > 0.2){
-            //         this.rider3();
-            //         this.nextrider = false;
-            //         this.counted = false;
-            //     };      
-            // }
-            // //also have arrows that show left and right
-
             //if the third character is flung out of bounds, go to next text
             if(this.riderNum == 1){
                 currentText.text = bossText[5];
@@ -423,14 +353,6 @@ class trainingday extends Phaser.Scene{
                 this.counted = false;
             }
         }else if(currentText.text == bossText[10]){
-            // if(this.riderNum == 5 && this.nextrider == true){
-            //     this.delay += 1;
-            //     if(Math.round(this.delay/60) > 0.2){
-            //         this.rider8();
-            //         this.nextrider = false;
-            //         this.counted = false;
-            //     };
-            // }
             if(this.riderNum == 5 && this.nextrider == true){
                 this.delay += 1;
                 if(Math.round(this.delay/60) > 0.2){
