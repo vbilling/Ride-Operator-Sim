@@ -42,11 +42,11 @@ class day3Intro extends Phaser.Scene{
         //text fades in and out
         this.clock = 0;
         console.log(this.clock2);
-        this.cameras.main.fadeIn(1800, 0, 0, 0)
-        this.clock = this.time.delayedCall(5600, () => {
-            this.cameras.main.fadeOut(1800, 0, 0, 0);
+        this.cameras.main.fadeIn(1500, 0, 0, 0)
+        this.clock = this.time.delayedCall(4700, () => {
+            this.cameras.main.fadeOut(1500, 0, 0, 0);
         })
-        this.clock = this.time.delayedCall(7650, () => {
+        this.clock = this.time.delayedCall(6700, () => {
             this.scene.start('day3Scene');
         })
 

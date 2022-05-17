@@ -3,10 +3,8 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
+        if(trainingDone == false){
         this.load.image('player', './assets/player.png');
-
-        
-
 
         this.load.image('day1Title', './assets/day1Title.png');
         this.load.image('day1Background', './assets/background-day1.png');
@@ -61,6 +59,7 @@ class day1 extends Phaser.Scene{
 
         //wrist accessories 2
         this.load.image('handcuffs', './assets/handcuffs.png')
+        };
     }
 
     create(){
@@ -450,8 +449,6 @@ class day1 extends Phaser.Scene{
                 this.newCharacter();
                 this.needCharacter = false;
             };
-            
-
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){

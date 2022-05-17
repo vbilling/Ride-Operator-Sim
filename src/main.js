@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ menu, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, lose, win], 
+    scene: [ menu, trainingIntro, trainingday, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, lose, win], 
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -16,6 +16,19 @@ let config = {
 }
 
 let game = new Phaser.Game(config);
+
+let keySpace;
+
+//for dialogue in training scene
+let bossText = [];
+let currentText;
+let instructions;
+let delayNow = false;
+let textNum = 0;
+
+//for training characters
+let testRider;
+
 
 //half the width of the screen, to note the middle
 
@@ -57,6 +70,7 @@ var followers;
 var size = 32;
 
 //keeping track of what day it is
+let trainingDone = false;
 let day1Done = false;
 let day2Done = false;
 let day3Done = false;
