@@ -154,7 +154,7 @@ class trainingday extends Phaser.Scene{
                 yoyo: true
         });
         //text configurations for all of the boss's text
-        let mumblingConfig = {
+        this.mumblingConfig = {
             fontFamily: 'Copperplate',
             fontSize: '16px',
             color: 'black',
@@ -224,7 +224,7 @@ class trainingday extends Phaser.Scene{
         //intructions on how to advance text
         this.instructions = this.add.sprite(0, 0, 'directions').setOrigin(0,0);
         //print the first boss's phrase
-        currentText = this.add.text(305, 65, '', mumblingConfig);
+        currentText = this.add.text(305, 65, '', this.mumblingConfig);
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
@@ -394,6 +394,7 @@ class trainingday extends Phaser.Scene{
             //instructions.destroy();
             //go to next phrase
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.mumblingConfig.color = "blue";
                 currentText.text = this.typewriteTextWrapped(bossText[1]);
                 this.boss.setFrame(0);
                 this.startdelay2 = true;
