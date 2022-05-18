@@ -27,7 +27,7 @@ class score extends Phaser.Scene{
         }
 
         if(trainingDone == false){
-            this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 2})
+            this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6})
             this.load.image('coasterBackground', './assets/coasterBackground.png');
         }
 
@@ -43,6 +43,10 @@ class score extends Phaser.Scene{
         this.boss = this.add.sprite(230, 90, 'boss');
         this.boss.setScale(0.6);
         this.boss.setFrame(2);
+
+        //making the boss shake when hes angry
+        this.shake = false;
+        
         //score text config
         let scoreConfig = {
             fontFamily: 'Arial',
@@ -413,7 +417,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-5);
+                    first_array.push(-5); //-5
                     //phrase to say
                     first_array.push('OH NO A KNIFE');
                     master_array.push(first_array);
@@ -913,6 +917,17 @@ class score extends Phaser.Scene{
             callback: ()=>{
                 this.thud.play();
                 this.add.text(390, 30, "You are " + fired +"% fired", scoreConfig);
+                if(fired >= 90){
+                    this.boss.setFrame(6);
+                    this.boss.setScale(0.5);
+                    this.shake = true;
+                }else if(fired >= 60){
+                    this.boss.setFrame(5);
+                }else if(fired >= 40){
+                    this.boss.setFrame(4);
+                }else if(fired >= 20){
+                    this.boss.setFrame(3);
+                }
             },
             loop: false
         })
@@ -944,6 +959,13 @@ class score extends Phaser.Scene{
 
     };
     update(){
+        //make boss shake if youre fired
+        function randomDecimil(mn,mx){
+            return Math.random() * (mx - mn) + mn
+        }
+        if(fired >= 90 && this.shake == true){
+            this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
+        }
         this.delay += 1;
         if((this.delay/60) < 1.9){
             this.cart1.body.setVelocityX(490);

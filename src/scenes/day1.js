@@ -263,11 +263,11 @@ class day1 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 98){ //85
+        if(this.hold_chance >= 95){ //98
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
-        hold_array = ['soda1', 'soda2', 'knife'];
+        hold_array = ['soda1', 'soda2','knife'];  
 
         if(this.hold == true){
             this.pick_hold = random(0,hold_array.length - 1);

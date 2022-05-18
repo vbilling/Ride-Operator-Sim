@@ -6,7 +6,7 @@ class trainingday extends Phaser.Scene{
         this.load.image('day1Background', './assets/background-day1.png');
         this.load.image('ground', './assets/ground.png');
 
-        this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
 
 
         this.load.image('directions', './assets/directions.png');
