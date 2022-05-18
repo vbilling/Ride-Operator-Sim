@@ -2,14 +2,14 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ menu, trainingIntro, trainingday, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, lose, win], 
+    scene: [ trainingday, menu, trainingIntro, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, lose, win], 
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     physics: {
         default: "arcade", 
         arcade: {
-            debug: true,
+            debug: false,
             gravity: {y: 800}, 
         }
     }
