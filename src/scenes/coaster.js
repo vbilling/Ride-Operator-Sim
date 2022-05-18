@@ -18,9 +18,6 @@ class coaster extends Phaser.Scene{
     create(){
         //background
         this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
-        this.add.text(100, 100, 'Coaster Scene');
-        this.add.text(100, 130, 'Riders:');
-        this.add.text(200, 130, ridingCustomers);
 
         //sounds
         //this.game.sound.stopAll();

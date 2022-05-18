@@ -217,7 +217,7 @@ class trainingday extends Phaser.Scene{
             "Lets practice checking height. Fling these \n guests accordingly.",
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is BLUE.",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
-            "But MOST IMPORTANTLY, allow NO MORE \nthan 8 guests ride at a time and also no less. \nDon't be losing me money.",
+            "But MOST IMPORTANTLY, don't allow more \nthan 8 guests ride at a time and also no less. \nDon't be losing me money.",
             "You'll have to keep track of how many \nguests you let on. Once you've let EXACTLY 8 \nguests on, press this ready button.",
             "See you tomorrow at your first shift!"
         ];
