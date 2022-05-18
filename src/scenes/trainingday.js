@@ -497,18 +497,17 @@ class trainingday extends Phaser.Scene{
                 };      
             }
             if(this.riderNum == 4){
-                //this.startdelay2 = true;
                 currentText.text = this.typewriteTextWrapped(bossText[10]);
-                //if(this.delay2/60 > 1.5){
-                    this.wristband = this.add.sprite(850, 45, 'wristband1');
-                    //this.startdelay2 = false;
-                //};
-                //this.wristband.setScale(1.5);
+                this.startdelay2 = true;
                 this.rider7();
                 this.nextrider = false;
                 this.counted = false;
             }
         }else if(currentText.text == bossText[10]){
+            if(this.delay2/60 > 1.5){
+                this.wristband = this.add.sprite(845, 45, 'wristband1');
+                this.startdelay2 = false;
+            };
             if(this.riderNum == 5 && this.nextrider == true){
                 this.delay += 1;
                 if(Math.round(this.delay/60) > 0.2){

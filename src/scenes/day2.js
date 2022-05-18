@@ -98,7 +98,7 @@ class day2 extends Phaser.Scene{
         };
         //displaying the timer
         console.log("game timer", this.gametimer);
-        this.timertext = this.add.text(864, 27, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext = this.add.text(700, 40, this.gametimer, gametimerConfig).setOrigin(0);
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
         //the riders are reset 
@@ -155,7 +155,7 @@ class day2 extends Phaser.Scene{
         this.pointer = this.input.activePointer;
 
         //done button glow when hovered over
-        this.readyButton = this.add.sprite(860, 620, 'readyButton').setInteractive();
+        this.readyButton = this.add.sprite(860, 70, 'readyButton').setInteractive();
         this.readyButton.setScale(0.4)
         this.readyButton.on("pointerover", () => {
             this.readyButton.setFrame(1);
