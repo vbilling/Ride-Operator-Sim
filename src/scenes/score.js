@@ -26,19 +26,31 @@ class score extends Phaser.Scene{
             this.load.image('wristband3', './assets/wristband3.png');
         }
 
+        if(trainingDone == false){
+            this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 2})
+            this.load.image('coasterBackground', './assets/coasterBackground.png');
+        }
+
 
     };
     create(){
+        this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
+
         //total customers let on ride 
         this.totalCustomers = 0;
         this.totalCustomers = ridingCustomers + nonridingCustomers;
 
+        this.boss = this.add.sprite(230, 90, 'boss');
+        this.boss.setScale(0.6);
+        this.boss.setFrame(2);
         //score text config
         let scoreConfig = {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: 'red',
             align: 'center',
+            stroke: "black",
+            strokeThickness: 3,
             padding: {
                 top: 5,
                 bottom: 4
