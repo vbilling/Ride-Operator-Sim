@@ -46,11 +46,11 @@ class score extends Phaser.Scene{
         //score text config
         let scoreConfig = {
             fontFamily: 'Arial',
-            fontSize: '24px',
-            color: 'red',
+            fontSize: '30px',
+            color: 'white',
             align: 'center',
             stroke: "black",
-            strokeThickness: 3,
+            strokeThickness: 4,
             padding: {
                 top: 5,
                 bottom: 4

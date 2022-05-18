@@ -360,7 +360,8 @@ class trainingday extends Phaser.Scene{
     }
 
     update(){
-        //have advance text instructions fade in and out then dissapear at first click
+        //if 'this.directions' still exists, have it fade in and out
+        
 
         if(this.startdelay2 == true){
             this.delay2 += 1;
