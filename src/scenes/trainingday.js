@@ -215,7 +215,7 @@ class trainingday extends Phaser.Scene{
             "...and shorter than this to ride.",
             "Oh you want to know if ears count? Tell me,\n do you think hats and hair should count?!",
             "Lets practice checking height. Fling these \n guests accordingly.",
-            "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is BLUE.",
+            "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
             "But MOST IMPORTANTLY, don't allow more \nthan 8 guests ride at a time and also no less. \nDon't be losing me money.",
             "You'll have to keep track of how many \nguests you let on. Once you've let EXACTLY 8 \nguests on, press this ready button.",
@@ -497,7 +497,13 @@ class trainingday extends Phaser.Scene{
                 };      
             }
             if(this.riderNum == 4){
+                //this.startdelay2 = true;
                 currentText.text = this.typewriteTextWrapped(bossText[10]);
+                //if(this.delay2/60 > 1.5){
+                    this.wristband = this.add.sprite(850, 45, 'wristband1');
+                    //this.startdelay2 = false;
+                //};
+                //this.wristband.setScale(1.5);
                 this.rider7();
                 this.nextrider = false;
                 this.counted = false;
@@ -513,6 +519,7 @@ class trainingday extends Phaser.Scene{
             }
             if(this.riderNum == 6){
                 this.boss.setFrame(2);
+                this.wristband.destroy();
                 currentText.text = this.typewriteTextWrapped(bossText[11]);
                 //make rule sign glow
                 this.rulesSign.setAlpha(1);
