@@ -9,7 +9,7 @@ let config = {
     physics: {
         default: "arcade", 
         arcade: {
-            debug: false,
+            debug: true,
             gravity: {y: 800}, 
         }
     }
@@ -40,12 +40,18 @@ let scale = 0.5;
 let fired = 0;
 
 //keeping track of how many customers you let on the ride
-let customers = 0;
+let ridingCustomers = 0;
+
+//keeping track of how many customers you do not let on the ride 
+let nonridingCustomers = 0;
 
 //array of accessories rider has 
 let riderAccessories_array = [];
 //array full of all customers allowed on ride (riderAccessories_array is nested in this one)
 let allRiders_array = [];
+
+//array for customers who were not allowed to ride 
+let nonRiders_array = [];
 
 //an array of the rider sprites on coaster scene so that accessories can track their movements in update
 let riderSprite_array = [];

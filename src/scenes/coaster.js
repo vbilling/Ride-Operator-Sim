@@ -20,7 +20,7 @@ class coaster extends Phaser.Scene{
         this.background = this.add.tileSprite(0, 0, 960, 720, 'blueBackground').setOrigin(0, 0);
         this.add.text(100, 100, 'Coaster Scene');
         this.add.text(100, 130, 'Riders:');
-        this.add.text(200, 130, customers);
+        this.add.text(200, 130, ridingCustomers);
 
         //sounds
         //this.game.sound.stopAll();
@@ -98,7 +98,8 @@ class coaster extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
-        for(let i = 0; i < (customers); i++){
+        for(let i = 0; i < (ridingCustomers); i++){
+            //all riders array relies on number of customers
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 350, allRiders_array[i][1]);
             this.customer.body.allowGravity = false;
@@ -275,6 +276,8 @@ class coaster extends Phaser.Scene{
             };
 
             //if more customers are let on than allowed
+
+
 
 
             //now add the accessories (start a at 2 because first two values are height and body)
@@ -528,6 +531,8 @@ class coaster extends Phaser.Scene{
                 });
             };
         }
+        // for more than 8 riders
+
         this.roller1 = this.add.follower(curve, -180, 150, 'coasterCart');
         this.roller1.setScale(0.07);
         this.roller1.startFollow({

@@ -29,6 +29,10 @@ class score extends Phaser.Scene{
 
     };
     create(){
+        //total customers let on ride 
+        this.totalCustomers = 0;
+        this.totalCustomers = ridingCustomers + nonridingCustomers;
+
         //score text config
         let scoreConfig = {
             fontFamily: 'Arial',
@@ -146,7 +150,7 @@ class score extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.16;
 
-        for(let i = 0; i < (customers); i++){
+        for(let i = 0; i < (ridingCustomers); i++){
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 390, allRiders_array[i][1]); //370
             this.customer.body.allowGravity = false;
@@ -325,6 +329,8 @@ class score extends Phaser.Scene{
             };
 
             //if more customers are let on than allowed
+
+
 
             //now add the accessories (start a at 2 because first two values are height and body)
             for(let a = 2; a < (allRiders_array[i].length); a++){
@@ -532,17 +538,17 @@ class score extends Phaser.Scene{
                 first_array = [];   
             };
             //scoring if there are too many or not enough customers
-            if(customers < 8){
+            if(this.totalCustomers < 8){
                 first_array.push('Missing riders');
-                this.missingRider = (8 - customers);
+                this.missingRider = (8 - this.totalCustomers);
                 first_array.push(-1* this.missingRider);
                 first_array.push('Missing riders');
                 master_array.push(first_array);
                 first_array = [];
             };
-            if(customers > 8){
+            if(this.totalCustomers > 8){
                 first_array.push('Too many riders');
-                this.moreRiders = (customers - 8);
+                this.moreRiders = (this.totalCustomers - 8);
                 first_array.push(-1*this.moreRiders);
                 first_array.push('Too many riders by');
                 master_array.push(first_array);
@@ -630,7 +636,7 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
-        if(customers == 0){
+        if(this.totalCustomers == 0){
             this.totalScore += 34;
             this.time.addEvent({
                 delay: 5100,
@@ -641,7 +647,7 @@ class score extends Phaser.Scene{
                         delay: 700,
                         callback: ()=>{
                             this.thud.play();
-                            this.add.text(395, 245, (customers), combo1Config);
+                            this.add.text(395, 245, (this.totalCustomers), combo1Config);
                         },
                         loop: false
                     })
@@ -649,7 +655,7 @@ class score extends Phaser.Scene{
                 loop: false
             })
 
-        }else if(customers < 8){
+        }else if(this.totalCustomers < 8){
             this.time.addEvent({
                 delay: 5100,
                 callback: ()=>{
@@ -659,7 +665,7 @@ class score extends Phaser.Scene{
                         delay: 700,
                         callback: ()=>{
                             this.thud.play();
-                            this.add.text(395, 245, (customers), combo1Config);
+                            this.add.text(395, 245, (this.totalCustomers), combo1Config);
                         },
                         loop: false
                     })
@@ -667,7 +673,7 @@ class score extends Phaser.Scene{
                 loop: false
             })
         }
-        if(customers == 8){
+        if(this.totalCustomers == 8){
             this.time.addEvent({
                 delay: 5100,
                 callback: ()=>{
@@ -677,7 +683,7 @@ class score extends Phaser.Scene{
                         delay: 700,
                         callback: ()=>{
                             this.thud.play();
-                            this.add.text(460, 213, (customers), combo2Config);
+                            this.add.text(460, 213, (this.totalCustomers), combo2Config);
                         },
                         loop: false
                     })
@@ -685,7 +691,7 @@ class score extends Phaser.Scene{
                 loop: false
             })
         }
-        if(customers > 8){
+        if(this.totalCustomers > 8){
             this.time.addEvent({
                 delay: 5100,
                 callback: ()=>{
@@ -695,7 +701,7 @@ class score extends Phaser.Scene{
                         delay: 700,
                         callback: ()=>{
                             this.thud.play();
-                            this.add.text(520, 245, customers, combo1Config);
+                            this.add.text(520, 245, this.totalCustomers, combo1Config);
                         },
                         loop: false
                     })

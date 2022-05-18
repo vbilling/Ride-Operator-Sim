@@ -73,7 +73,9 @@ class day3 extends Phaser.Scene{
         let platforms = this.physics.add.staticGroup();
         platforms.create(400, 695, 'ground');
         //how many customers you let on the ride this round
-        customers = 0;
+        ridingCustomers = 0;
+        //how many customers you dont let on a ride this round
+        nonridingCustomers = 0;
         //will delay the next character spawn in
         this.delay = 0;
         //implementing a game timer
@@ -421,11 +423,19 @@ class day3 extends Phaser.Scene{
             this.delay += 1;
             if(Math.round(this.delay/60) > 0.2){
                 //add the character and their charastics to the array
-                if(this.p1.x > 960){
-                    customers += 1;
-                    console.log('customers', customers);
+                if(this.p1.x > 960 && ridingCustomers <= 8){
+                    ridingCustomers += 1;
+                    console.log('customers', ridingCustomers);
                     allRiders_array.push(riderAccessories_array);
                     console.log('all riders array', allRiders_array);
+                }
+                if(ridingCustomers > 8){
+                    nonridingCustomers += 1;
+                    console.log('Non Riding customers ', nonridingCustomers);
+                    console.log("These are extra riders");
+                    nonRiders_array.push(riderAccessories_array);
+                    console.log('non riders array', nonRiders_array);
+            
                 }
                 this.newCharacter();
                 this.needCharacter = false;
