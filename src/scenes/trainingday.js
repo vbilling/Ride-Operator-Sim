@@ -5,6 +5,10 @@ class trainingday extends Phaser.Scene{
     preload(){
         this.load.image('day1Background', './assets/background-day1.png');
         this.load.image('ground', './assets/ground.png');
+
+        this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 2});
+
+
         this.load.image('directions', './assets/directions.png');
         this.load.image('textBubble', './assets/textBubble.png');
         this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
@@ -29,9 +33,18 @@ class trainingday extends Phaser.Scene{
         this.load.image('wristband2', './assets/wristband2.png');
         this.load.image('wristband3', './assets/wristband3.png');
 
-        
-
-
+        if(menuDone == false){
+            //loading all the audio
+            this.load.audio('whoosh', './assets/whoosh.wav');
+            this.load.audio('thud', './assets/thud.wav');
+            this.load.audio('thud2', './assets/thud2.wav');
+            this.load.audio('buttonPress', './assets/buttonPress.wav');
+            this.load.audio('correct', './assets/correct.wav');
+            this.load.audio('oceanWaves', './assets/oceanWaves.wav');
+            this.load.audio('redButton1', './assets/redButton1.wav');
+            this.load.audio('redButton2', './assets/redButton2.wav');
+            this.load.audio('pop', './assets/pop.wav');
+        }
     }
     create(){
         //if training day was completed
@@ -39,6 +52,19 @@ class trainingday extends Phaser.Scene{
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
         this.textbox = this.add.sprite(0, 0, 'textBubble').setOrigin(0, 0);
         this.rulesSign = this.add.sprite(0, 0, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign.setAlpha(0);
+
+        this.boss = this.add.sprite(180, 90, 'boss');
+        this.boss.setScale(0.6);
+        this.boss.setFrame(1);
+
+        //sounds
+        this.oceanWaves = this.sound.add('oceanWaves');
+        this.oceanWaves.play();
+        this.oceanWaves.loop = true;
+        this.oceanWaves.volume = 0.3;
+        this.whoosh = this.sound.add('whoosh');
+        this.correct = this.sound.add('correct');
 
         this.ground = this.add.sprite(400, 695, 'ground');
         //number to keep track of which test rider we are on
@@ -78,18 +104,18 @@ class trainingday extends Phaser.Scene{
             this.testRider.body.allowGravity = true;
             //flying across the screen
             if(this.testRider.x < 320){ //thrown to the left
-                //this.whoosh.play();
+                this.whoosh.play();
                 this.testRider.setVelocityX(-800);
                 this.testRider.setVelocityY(-100);
             }
             if(this.testRider.x > 650){ //thrown to the right
-                //this.whoosh.play()
+                this.whoosh.play()
                 this.testRider.setVelocityX(800);
                 this.testRider.setVelocityY(-100);
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        //this.correct.play();
+                        this.correct.play();
                     },
                     loop: false
                 })
@@ -115,7 +141,7 @@ class trainingday extends Phaser.Scene{
                 first: 0}),
                 frameRate: 16,
                 repeat: -1,
-                yoyo: false
+                yoyo: true
         });
         this.anims.create({
             key: 'deny',
@@ -125,7 +151,7 @@ class trainingday extends Phaser.Scene{
                 first: 0}),
                 frameRate: 16,
                 repeat: -1,
-                yoyo: false
+                yoyo: true
         });
         //text configurations for all of the boss's text
         let mumblingConfig = {
@@ -157,7 +183,7 @@ class trainingday extends Phaser.Scene{
             color: '#87ed9c',
             align: 'center',
             stroke: 'black',
-            strokeThickness: 3,
+            strokeThickness: 5,
             padding: {
                 top: 5,
                 bottom: 4
@@ -170,7 +196,7 @@ class trainingday extends Phaser.Scene{
             color: '#ed8787',
             align: 'center',
             stroke: 'black',
-            strokeThickness: 3,
+            strokeThickness: 5,
             padding: {
                 top: 5,
                 bottom: 4
@@ -192,7 +218,7 @@ class trainingday extends Phaser.Scene{
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is BLUE.",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
             "But MOST IMPORTANTLY, allow NO MORE \nthan 8 guests ride at a time and also no less. \nDon't be losing me money.",
-            "Go ahead and Practice. Once you've let \nEXACTLY 8 guests on, press this ready button. \nYou'll have to keep track of how many guests you let on.",
+            "You'll have to keep track of how many \nguests you let on. Once you've let EXACTLY 8 \nguests on, press this ready button.",
             "See you tomorrow at your first shift!"
         ];
         //intructions on how to advance text
@@ -202,6 +228,7 @@ class trainingday extends Phaser.Scene{
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
+
 
 
     };
@@ -367,6 +394,7 @@ class trainingday extends Phaser.Scene{
             //go to next phrase
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[1]);
+                this.boss.setFrame(0);
                 this.startdelay2 = true;
 
             }
@@ -384,13 +412,15 @@ class trainingday extends Phaser.Scene{
         }else if(currentText.text == bossText[2]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[3]);
+                this.boss.setFrame(1);
             }
         }else if(currentText.text == bossText[3]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[4]);
-                this.allowArrow = this.add.sprite(800, 150, 'allowArrow');
+                this.boss.setFrame(0);
+                this.allowArrow = this.add.sprite(800, 300, 'allowArrow');
                 this.allowArrow.setScale(0.3);
-                this.denyArrow = this.add.sprite(130, 150, 'denyArrow');
+                this.denyArrow = this.add.sprite(130, 300, 'denyArrow');
                 this.denyArrow.setScale(0.3);
                 this.allowArrow.play('allow');
                 this.denyArrow.play('deny');
@@ -412,9 +442,9 @@ class trainingday extends Phaser.Scene{
             }
         }else if (currentText.text == bossText[5]){
             this.allowArrow.destroy();
+            this.denyArrow.destroy();
             this.allowtext.destroy();
             this.denytext.destroy();
-            this.denyArrow.destroy();
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[6]);
                 //have an arrow appear at the line
@@ -434,6 +464,7 @@ class trainingday extends Phaser.Scene{
         }else if (currentText.text == bossText[7]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[8]);
+                this.boss.setFrame(1);
                 this.arrow1.destroy();
                 this.arrow2.destroy();
                 
@@ -442,6 +473,7 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 //testing player on guest heights
                 currentText.text = this.typewriteTextWrapped(bossText[9]);
+                this.boss.setFrame(0);
                 this.rider4();
                 this.nextrider = false;
                 this.counted = false;
@@ -479,14 +511,18 @@ class trainingday extends Phaser.Scene{
                 };
             }
             if(this.riderNum == 6){
+                this.boss.setFrame(2);
                 currentText.text = this.typewriteTextWrapped(bossText[11]);
                 //make rule sign glow
+                this.rulesSign.setAlpha(1);
                 this.rulesSign.setFrame(1);
             }
 
         }else if(currentText.text == bossText[11]){
+            
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[12]);
+                this.boss.setFrame(0);
                 this.rulesSign.setFrame(0);
                 
             }

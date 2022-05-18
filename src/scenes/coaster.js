@@ -6,7 +6,7 @@ class coaster extends Phaser.Scene{
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
         //background
-        this.load.image('blueBackground', './assets/blueBackground.png');
+        this.load.image('coasterBackground', './assets/coasterBackground.png');
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -17,7 +17,7 @@ class coaster extends Phaser.Scene{
     };
     create(){
         //background
-        this.background = this.add.tileSprite(0, 0, 960, 720, 'blueBackground').setOrigin(0, 0);
+        this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
         this.add.text(100, 100, 'Coaster Scene');
         this.add.text(100, 130, 'Riders:');
         this.add.text(200, 130, ridingCustomers);

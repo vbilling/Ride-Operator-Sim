@@ -19,6 +19,7 @@ class menu extends Phaser.Scene{
 
     }
     create(){
+        menuDone = true;
         game.settings = {
             mass:1,
             position:[0,3],

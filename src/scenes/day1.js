@@ -4,9 +4,7 @@ class day1 extends Phaser.Scene{
     }
     preload(){
         this.load.image('player', './assets/player.png');
-
         this.load.image('day1Title', './assets/day1Title.png');
-
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -68,14 +66,16 @@ class day1 extends Phaser.Scene{
     create(){
         //load background
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
+        this.rulesSign = this.add.sprite(0, 0, 'rulesSign').setOrigin(0, 0);
+        this.day1Title = this.add.sprite(0, -20, 'day1Title').setOrigin(0,0);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
 
         //temporary instructions text
-        this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
-        this.add.text(130, 120, "Let no more and no less than 8 guests ride");
-        this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
-        this.add.text(130, 160, "Today's wristband color: blue");
+        // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
+        // this.add.text(130, 120, "Let no more and no less than 8 guests ride");
+        // this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
+        // this.add.text(130, 160, "Today's wristband color: blue");
 
         //will help pick random bodies and accessories
         function random(mn, mx) {

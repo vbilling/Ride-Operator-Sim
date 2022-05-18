@@ -4,6 +4,7 @@ class day3 extends Phaser.Scene{
     }
     preload(){
         this.load.image('day3Background', './assets/background-day3.png');
+        this.load.image('day3Title', './assets/day3Title.png');
 
         if(day1Done == false || day2Done == false){
 
@@ -59,12 +60,13 @@ class day3 extends Phaser.Scene{
     create(){
         day3Done = true;
         this.add.tileSprite(0,0, 960, 720, 'day3Background').setOrigin(0,0);
-        this.add.text(70, 70, "DAY 3");
+        this.rulesSign = this.add.sprite(0, 0, 'rulesSign').setOrigin(0, 0);
+        this.day3Title = this.add.sprite(0, 0, 'day3Title').setOrigin(0,0);
         //temporary instructions text
-        this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
-        this.add.text(130, 120, "Let no more and no less than 8 guests ride");
-        this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
-        this.add.text(130, 160, "Today's wristband color: pink");
+        // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
+        // this.add.text(130, 120, "Let no more and no less than 8 guests ride");
+        // this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
+        // this.add.text(130, 160, "Today's wristband color: pink");
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
