@@ -3,7 +3,7 @@ class trainingday extends Phaser.Scene{
         super("trainingdayScene");
     }
     preload(){
-        this.load.image('day1Background', './assets/background-day1.png');
+        this.load.image('day1Background', './assets/background_day1.png');
         this.load.image('ground', './assets/ground.png');
 
         this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
@@ -209,7 +209,7 @@ class trainingday extends Phaser.Scene{
             "Ugh, now where is that pimply teenager I have \nto train.",
             "OH there you are! Welcome to your new job \nas a ride operator at",
             "What was that mumbling about buying your \nlittle brother a birthday present? Yeah I \ndon't care...",
-            "...but i guess you should be able to afford \nit after three days of work. That is, if you \nmanage not to get fired.",
+            "...but I guess you should be able to afford \nit after three days of work. That is, if you \nmanage not to get fired.",
             "Lets get started. Use your mouse to fling \nguests RIGHT to allow them to ride and \nLEFT to deny them.",
             "Good job.",
             "Guests must be taller than this line...",
@@ -362,6 +362,8 @@ class trainingday extends Phaser.Scene{
 
     update(){
         //if 'this.directions' still exists, have it fade in and out
+        //can use a tween for this function 
+
         
 
         if(this.startdelay2 == true){

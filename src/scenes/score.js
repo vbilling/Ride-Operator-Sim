@@ -3,6 +3,11 @@ class score extends Phaser.Scene{
         super("scoreScene");
     }
     preload(){
+        //progress bar, temp stand in 
+        this.load.image('progressBar', './assets/platform.png');
+
+
+
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.image('blood', './assets/blood.png');
@@ -34,7 +39,16 @@ class score extends Phaser.Scene{
 
     };
     create(){
-        this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
+
+        if(day2Done == false){
+            this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay1').setOrigin(0, 0);
+        };
+        if(day2Done == true && day3Done == false){
+            this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay2').setOrigin(0, 0);
+        };
+        if(day3Done == true){
+            this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay3').setOrigin(0, 0);
+        }
 
         //total customers let on ride 
         this.totalCustomers = 0;
@@ -162,7 +176,7 @@ class score extends Phaser.Scene{
 
         console.log("all riders array:", allRiders_array);
 
-        for(let i = 0; i < (ridingCustomers); i++){
+        for(let i = 0; i < (ridingCustomers) - 1; i++){
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 390, allRiders_array[i][1]); //370
             this.body = 
@@ -945,12 +959,18 @@ class score extends Phaser.Scene{
         
                 });
                 this.nextButton.on("pointerout", () => {
-                    this.nextButton.setFrame(2);
+                    this.nextButton.setFrame(1);
                     this.nextButtonHover = false;
                 });
             },
             loop: false
         })
+
+        this.progressBar = this.add.image(halfscreenwidth, 40, 'progressBar');
+
+        this.progressBar.width = 2;
+
+        
 
 
 

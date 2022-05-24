@@ -3,7 +3,7 @@ class day2 extends Phaser.Scene{
         super("day2Scene");
     }
     preload(){
-        this.load.image('day2Background', './assets/background-day2.png');
+        this.load.image('day2Background', './assets/background_day2.png');
         this.load.image('day2Title', './assets/day2Title.png');
 
         if(day1Done == false){

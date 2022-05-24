@@ -6,7 +6,11 @@ class coaster extends Phaser.Scene{
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
         //background
-        this.load.image('coasterBackground', './assets/coasterBackground.png');
+        //this.load.image('coasterBackground', './assets/coasterBackground.png');
+        this.load.image('coasterBackgroundDay1', './assets/rollercoaster_background_day1.png');
+        this.load.image('coasterBackgroundDay2', './assets/rollercoaster_background_day2.png');
+        this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
+
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
         this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -17,7 +21,18 @@ class coaster extends Phaser.Scene{
     };
     create(){
         //background
-        this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
+        //this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
+
+        if(day2Done == false){
+            this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay1').setOrigin(0, 0);
+        };
+        if(day2Done == true && day3Done == false){
+            this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay2').setOrigin(0, 0);
+        };
+        if(day3Done == true){
+            this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay3').setOrigin(0, 0);
+        }
+
 
         //sounds
         //this.game.sound.stopAll();
@@ -95,7 +110,10 @@ class coaster extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
-        for(let i = 0; i < (ridingCustomers); i++){
+        for(let i = 0; i < (ridingCustomers) - 1; i++){
+
+            console.log('in coaster.js "i" is ', i);
+
             //all riders array relies on number of customers
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 350, allRiders_array[i][1]);
@@ -273,6 +291,8 @@ class coaster extends Phaser.Scene{
             };
 
             //if more customers are let on than allowed
+
+
 
 
 
@@ -529,6 +549,8 @@ class coaster extends Phaser.Scene{
             };
         }
         // for more than 8 riders
+
+
 
         this.roller1 = this.add.follower(curve, -180, 150, 'coasterCart');
         this.roller1.setScale(0.07);

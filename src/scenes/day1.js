@@ -57,8 +57,9 @@ class day1 extends Phaser.Scene{
             this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
             this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
 
-            this.load.image('day1Background', './assets/background-day1.png');
+            this.load.image('day1Background', './assets/background_day1.png');
             this.load.image('ground', './assets/ground.png');
+            this.load.image('rulesSign', './assets/rulesSign.png');
 
 
         }
@@ -409,6 +410,10 @@ class day1 extends Phaser.Scene{
             this.neck_accessory.y = this.p1.y;
         };
 
+        if(this.p1.y > game.config.height){
+            this.p1.y = 400;
+        }
+
         //if the character is flung to the right (aka allowed to ride)
         if(this.p1.x > 1000 || this.p1.x < -50){
             this.p1.destroy();
@@ -465,6 +470,8 @@ class day1 extends Phaser.Scene{
                 this.needCharacter = false;
             };
         }
+
+
 
         
         //will go to score scene if the done button is clicked
