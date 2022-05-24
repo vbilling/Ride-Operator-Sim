@@ -47,13 +47,14 @@ class day1 extends Phaser.Scene{
             this.load.image('wristband1', './assets/wristband1.png');
             this.load.image('wristband2', './assets/wristband2.png');
             this.load.image('wristband3', './assets/wristband3.png');
-            this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
-            this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-            this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-            this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-            this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-            this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-            this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+            this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2}); 
+            this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('cat3', './assets/cat3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
             this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
 
             this.load.image('day1Background', './assets/background-day1.png');
@@ -222,7 +223,7 @@ class day1 extends Phaser.Scene{
 
         //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2'];
+        this.body_array = ['cat1', 'cat2',  'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'cat3']; 
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         
@@ -263,11 +264,11 @@ class day1 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 95){ //98
+        if(this.hold_chance >= 95){ 
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
-        hold_array = ['soda1', 'soda2','knife'];  
+        hold_array = ['soda1', 'soda2','knife'];   
 
         if(this.hold == true){
             this.pick_hold = random(0,hold_array.length - 1);
@@ -349,7 +350,7 @@ class day1 extends Phaser.Scene{
         this.neck_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.neck = false;
-        if(this.neck_chance >= 95){
+        if(this.neck_chance >= 95){ 
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)

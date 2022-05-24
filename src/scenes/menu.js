@@ -16,6 +16,7 @@ class menu extends Phaser.Scene{
         this.load.audio('redButton1', './assets/redButton1.wav');
         this.load.audio('redButton2', './assets/redButton2.wav');
         this.load.audio('pop', './assets/pop.wav');
+        this.load.audio('deathmetal', './assets/deathmetal.wav');
 
     }
     create(){
@@ -33,6 +34,8 @@ class menu extends Phaser.Scene{
 
         //sounds
         this.buttonPress = this.sound.add('buttonPress');
+        this.game.sound.stopAll();
+
 
 
         
@@ -58,7 +61,7 @@ class menu extends Phaser.Scene{
         if(this.pointer.isDown && this.startButtonHover == true){
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("trainingIntroScene");
+            this.scene.start("day1Scene");
         }; 
     }
 }

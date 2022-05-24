@@ -103,9 +103,6 @@ class score extends Phaser.Scene{
         //score board
         this.scoreBoard = this.add.sprite(0, 15, 'scoreBoard').setOrigin(0,0);
 
-        
-
-
         //load the right wristband
         if(day2Done == false){
             this.add.sprite(840, 205, 'wristband1')
@@ -133,9 +130,6 @@ class score extends Phaser.Scene{
         riderSprite_array2 = [];
         accessorySprite_array2 = [];
 
-
-
-        
         //make variables for all the things that you could lose points on
         this.tooShort = 0;
         this.tooTall = 0;
@@ -166,9 +160,12 @@ class score extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.16;
 
+        console.log("all riders array:", allRiders_array);
+
         for(let i = 0; i < (ridingCustomers); i++){
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 390, allRiders_array[i][1]); //370
+            this.body = 
             this.customer.body.allowGravity = false;
             //make an array for the customer sprites so that accessories can track them
             //basically do this if the coaster scene is not around to do it for you
@@ -196,6 +193,8 @@ class score extends Phaser.Scene{
                 riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale + 0.05);
                 this.customer.setScale(this.customerNewHeight);
+                console.log("HERE YA GO", this.customer.frame);
+                this.customer.setFrame(2);
 
             }
             //riderSprite_array[i]
