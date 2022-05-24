@@ -653,7 +653,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         if(this.totalCustomers == 0){
-            this.totalScore += 34;
+            this.totalScore -= 34;
             this.time.addEvent({
                 delay: 5100,
                 callback: ()=>{
