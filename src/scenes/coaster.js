@@ -10,6 +10,7 @@ class coaster extends Phaser.Scene{
         this.load.image('coasterBackgroundDay1', './assets/rollercoaster_background_day1.png');
         this.load.image('coasterBackgroundDay2', './assets/rollercoaster_background_day2.png');
         this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
+        this.load.image('controlPanel', './assets/controlPanel.png');
 
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
@@ -46,6 +47,7 @@ class coaster extends Phaser.Scene{
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay3').setOrigin(0, 0);
         }
 
+
         tooShort = 0;
 
         //sounds
@@ -77,17 +79,8 @@ class coaster extends Phaser.Scene{
         this.buttonpressed = false;
         //initilizing the delay timer for the score scene to start after the button is pressed
         this.delay = 0;
-        //button
-        this.redButton = this.add.sprite(470, 650, 'redButton').setInteractive();
-        this.redButton.setScale(0.2);
-        this.redButton.on("pointerover", () => {
-            //will tell code in update to go to next scene
-            this.redButtonHover = true;
 
-        });
-        this.redButton.on("pointerout", () => {
-            this.redButtonHover = false;
-        });
+        
 
         //coaster wheel animation
         this.anims.create({
@@ -356,6 +349,17 @@ class coaster extends Phaser.Scene{
 
         //console.log('rider sprite array!!!:', riderSprite_array);
         //console.log('accessorySprite_array!!!', accessorySprite_array);
+        this.controlPanel = this.add.sprite(480,367, 'controlPanel');
+        this.redButton = this.add.sprite(470, 650, 'redButton').setInteractive();
+        this.redButton.setScale(0.1);
+        this.redButton.on("pointerover", () => {
+            //will tell code in update to go to next scene
+            this.redButtonHover = true;
+
+        });
+        this.redButton.on("pointerout", () => {
+            this.redButtonHover = false;
+        });
 
     };
     deleteShortRiders(){

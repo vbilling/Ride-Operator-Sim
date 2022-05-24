@@ -19,6 +19,9 @@ class day3 extends Phaser.Scene{
             this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
             this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
             this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+            this.load.spritesheet('dog1', './assets/dog1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
     
             //Accessories (organized so that certain accessories don't overlap)
             //head accessories
@@ -26,11 +29,15 @@ class day3 extends Phaser.Scene{
             this.load.image('cowhat2', './assets/cowhat2.png');
             this.load.image('cowhat3', './assets/cowhat3.png');
             this.load.image('partyhat', './assets/partyhat.png');
+            this.load.image('tiara', './assets/tiara.png');
             //held accessories
             this.load.image('soda1', './assets/soda1.png');
             this.load.image('soda2', './assets/soda2.png');
             this.load.image('knife', './assets/knife.png');
             this.load.image('corndog', '/assets/corndog.png');
+            this.load.image('donut', '/assets/donut.png');
+            this.load.image('scissors', '/assets/scissors.png');
+            this.load.image('spatula', '/assets/spatula.png');
             //left wrist accessories
             this.load.image('watch', './assets/watch.png');
             this.load.image('wristband1', './assets/wristband1.png');
@@ -195,7 +202,7 @@ class day3 extends Phaser.Scene{
         riderAccessories_array.push(this.scale);
                 //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2', 'cat3', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2'];
+        this.body_array = ['cat1', 'cat2', 'cat3', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'dog1'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         // Add the character
@@ -217,7 +224,7 @@ class day3 extends Phaser.Scene{
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
-        head_array = ['cowhat1', 'cowhat2', 'cowhat3', 'partyhat'];
+        head_array = ['cowhat1', 'cowhat2', 'cowhat3', 'partyhat', 'tiara'];
 
         if(this.hat == true){
             this.pick_hat = random(0,head_array.length - 1);
@@ -234,7 +241,7 @@ class day3 extends Phaser.Scene{
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
-        hold_array = ['soda1', 'soda2', 'knife', 'corndog'];
+        hold_array = ['soda1', 'soda2', 'knife', 'corndog', 'donut', 'scissors', 'spatula'];
 
         if(this.hold == true){
             this.pick_hold = random(0,hold_array.length - 1);

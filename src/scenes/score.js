@@ -413,6 +413,17 @@ class score extends Phaser.Scene{
                     first_array = [];
                     this.hatCount += 1;
                 };
+                if(allRiders_array[i][a] == 'tiara'){
+                    //name of accessory
+                    first_array.push('hat');
+                    //point value
+                    first_array.push(-2);
+                    //phrase to say
+                    first_array.push('No hats allowed...');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.hatCount += 1;
+                };
                 if(allRiders_array[i][a] == 'soda1' || allRiders_array[i][a] == 'soda2'){
                     //name of accessory
                     first_array.push('Soda');
@@ -452,7 +463,62 @@ class score extends Phaser.Scene{
                         follow: this.accessory,
                     });
                     this.bleed.setDepth(2);
-                    
+                };
+                if(allRiders_array[i][a] == 'spatula'){
+                    //name of accessory
+                    first_array.push('weapons');
+                    //point value
+                    first_array.push(-5); //-5
+                    //phrase to say
+                    first_array.push('OH NO A SPATULA');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.weaponCount += 1;
+
+                    //make them bleeding
+                    //bubble trail
+                    //myParticleSystem = myParticleManager.createEmitter
+                    this.bleed = this.add.particles('blood');
+                    this.bleeding = this.bleed.createEmitter({ 
+                        x: 30,
+                        y: 50,
+                        lifespan: { min: 20, max: 1500},
+                        speed: { min: 5, max: 10},
+                        gravityY: 100,
+                        frequency: 0.001,
+                        quantity: 0.001,
+                        scale: { start: 0.02, end: 0.004},
+                        follow: this.accessory,
+                    });
+                    this.bleed.setDepth(2);
+                };
+                if(allRiders_array[i][a] == 'scissors'){
+                    //name of accessory
+                    first_array.push('weapons');
+                    //point value
+                    first_array.push(-5); //-5
+                    //phrase to say
+                    first_array.push('OH NO SCISSORS');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.weaponCount += 1;
+
+                    //make them bleeding
+                    //bubble trail
+                    //myParticleSystem = myParticleManager.createEmitter
+                    this.bleed = this.add.particles('blood');
+                    this.bleeding = this.bleed.createEmitter({ 
+                        x: 30,
+                        y: 50,
+                        lifespan: { min: 20, max: 1500},
+                        speed: { min: 5, max: 10},
+                        gravityY: 100,
+                        frequency: 0.001,
+                        quantity: 0.001,
+                        scale: { start: 0.02, end: 0.004},
+                        follow: this.accessory,
+                    });
+                    this.bleed.setDepth(2);
                 };
                 if(allRiders_array[i][a] == 'wristband1'){ //is the day 1 wristband
                     if(day2Done == true || day3Done == true){
@@ -536,6 +602,19 @@ class score extends Phaser.Scene{
                     if(day3Done == false){
                         //name of accessory
                         first_array.push('corndog');
+                        //point value
+                        first_array.push(-2);
+                        //phrase to say
+                        first_array.push('NO FOOD ALLOWED');
+                        master_array.push(first_array);
+                        first_array = [];
+                        this.foodCount += 1;
+                    };
+                };
+                if(allRiders_array[i][a] == 'donut'){ //is the day 1 wristband
+                    if(day3Done == false){
+                        //name of accessory
+                        first_array.push('donut');
                         //point value
                         first_array.push(-2);
                         //phrase to say
