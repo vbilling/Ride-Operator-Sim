@@ -145,7 +145,6 @@ class score extends Phaser.Scene{
         accessorySprite_array2 = [];
 
         //make variables for all the things that you could lose points on
-        this.tooShort = 0;
         this.tooTall = 0;
         this.hatCount = 0;
         this.wrongWristband = 0;
@@ -176,10 +175,9 @@ class score extends Phaser.Scene{
 
         console.log("all riders array:", allRiders_array);
 
-        for(let i = 0; i < (ridingCustomers) - 1; i++){
+        for(let i = 0; i < (allRiders_array.length); i++){
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
             this.customer = this.physics.add.sprite(60, 390, allRiders_array[i][1]); //370
-            this.body = 
             this.customer.body.allowGravity = false;
             //make an array for the customer sprites so that accessories can track them
             //basically do this if the coaster scene is not around to do it for you
@@ -228,6 +226,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 27;
                     this.customer.y = 620 - 60;
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 1){
@@ -549,8 +548,7 @@ class score extends Phaser.Scene{
             };
             //scoring for height with this.customerHeight
             console.log('this.customerHeight', this.customerHeight);
-            if(this.customerHeight < 0.25){
-                this.tooShort += 1; 
+            if(this.customerHeight < 0.25){ 
                 first_array.push('Too short');
                 first_array.push(-5);
                 first_array.push('A rider was too short and fell out of the ride.');
@@ -600,7 +598,7 @@ class score extends Phaser.Scene{
         this.cart4.setScale(this.coasterscale);
         this.cart4.body.allowGravity = false;
 
-        console.log('Too short:', this.tooShort);
+        console.log('Too short:', tooShort);
         console.log('Too Tall:', this.tooTall);
         console.log("Hat count", this.hatCount);
         console.log("wrong wristband", this.wrongWristband);
@@ -652,12 +650,12 @@ class score extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 700,
                     callback: ()=>{
-                        if(this.tooShort > 0){
+                        if(tooShort > 0){
                             this.thud.play();
-                            this.add.text(310, 260, 'x' + this.tooShort, combo1Config); 
+                            this.add.text(310, 260, 'x' + tooShort, combo1Config); 
                         }else{
                             this.thud.play();
-                            this.add.text(310, 260, 'x' + this.tooShort, combo2Config); 
+                            this.add.text(310, 260, 'x' + tooShort, combo2Config); 
                         }
                     },
                     loop: false
@@ -880,51 +878,8 @@ class score extends Phaser.Scene{
 
         this.percentage = 100 - this.totalScore;
         fired += this.percentage;
-        //get grade from score
-        // if(this.totalScore > 0){
-        //     this.grade = "F"
-        //     if(this.totalScore >= 10){
-        //         this.grade = "F+"
-        //         if(this.totalScore >= 20){
-        //             this.grade = "D"
-        //             if(this.totalScore >= 30){
-        //                 this.grade = "C-"
-        //                 if(this.totalScore >= 40){
-        //                     this.grade = "C"
-        //                     if(this.totalScore >= 50){
-        //                         this.grade = "C+"
-        //                         if(this.totalScore >= 60){
-        //                             this.grade = "B-"
-        //                             if(this.totalScore >= 70){
-        //                                 this.grade = "B"
-        //                                 if(this.totalScore >= 80){
-        //                                     this.grade = "B+"
-        //                                     if(this.totalScore >= 90){
-        //                                         this.grade = "A"
-        //                                         if(this.totalScore >= 90){
-        //                                             this.grade = "A"
-        //                                             if(this.totalScore >= 95){
-        //                                                 this.grade = "A+"
-        //                                             }
-        //                                         }
-        //                                     }
-        //                                 }
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-        // this.time.addEvent({
-        //     delay: 14400,
-        //     callback: ()=>{
-        //         this.thud.play();
-        //         this.add.text(450, 170, "GRADE: " + this.grade, scoreConfig);
-        //     },
-        //     loop: false
-        // })
+  
+    
         this.time.addEvent({
             delay: 15400,
             callback: ()=>{
@@ -970,11 +925,6 @@ class score extends Phaser.Scene{
 
         this.progressBar.width = 2;
 
-        
-
-
-
-         
 
     };
     update(){
@@ -994,10 +944,16 @@ class score extends Phaser.Scene{
 
 
             //set velocity of bodies
+            
+            
             for(let b = 0; b < (riderSprite_array2.length); b++){
                 riderSprite_array2[b].body.setVelocityX(490);
-                //and make them change to surprised face
-                riderSprite_array2[b].setFrame(1);
+                //and make them change to surprised face unless headless
+                if(riderSize_array[b] == "extra large"){
+                    riderSprite_array2[b].setFrame(2);
+                }else{
+                    riderSprite_array2[b].setFrame(1);
+                }
             };
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){
@@ -1012,7 +968,11 @@ class score extends Phaser.Scene{
             for(let b = 0; b < (riderSprite_array2.length); b++){
                 riderSprite_array2[b].body.setVelocityX(0);
                 //and make them change to surprised face
-                riderSprite_array2[b].setFrame(0);
+                if(riderSize_array[b] == "extra large"){
+                    riderSprite_array2[b].setFrame(2);
+                }else{
+                    riderSprite_array2[b].setFrame(0);
+                }
             };
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){

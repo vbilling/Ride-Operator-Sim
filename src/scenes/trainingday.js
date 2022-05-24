@@ -5,6 +5,9 @@ class trainingday extends Phaser.Scene{
     preload(){
         this.load.image('day1Background', './assets/background_day1.png');
         this.load.image('ground', './assets/ground.png');
+        this.load.image('heightPole', './assets/height_pole.png');
+        this.load.image('exitSign', './assets/exit_sign.png');
+        this.load.image('enterSign', './assets/enter_sign.png');
 
         this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
 
@@ -54,6 +57,16 @@ class trainingday extends Phaser.Scene{
         this.textbox = this.add.sprite(0, 0, 'textBubble').setOrigin(0, 0);
         this.rulesSign = this.add.sprite(0, 0, 'rulesSign').setOrigin(0, 0);
         this.rulesSign.setAlpha(0);
+
+        this.exitSign = this.add.sprite(0, 550, 'exitSign').setOrigin(0, 0);
+        this.exitSign.setScale(0.3);
+        this.exitSign.setAlpha(0);
+        this.enterSign = this.add.sprite(700, 550, 'enterSign').setOrigin(0, 0);
+        this.enterSign.setScale(0.3);
+        this.enterSign.setAlpha(0);
+
+        this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole.setAlpha(0);
 
         this.boss = this.add.sprite(180, 90, 'boss');
         this.boss.setScale(0.6);
@@ -277,7 +290,7 @@ class trainingday extends Phaser.Scene{
         let platforms = this.physics.add.staticGroup();
         platforms.create(400, 695, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'bear1', 0).setInteractive();
-        this.testRider.setScale(0.45);
+        this.testRider.setScale(0.47);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
         this.input.setDraggable(this.testRider);
         this.physics.add.collider(this.testRider, platforms);
@@ -423,6 +436,8 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[4]);
                 this.boss.setFrame(0);
+                this.exitSign.setAlpha(1);
+                this.enterSign.setAlpha(1);
                 this.allowArrow = this.add.sprite(800, 300, 'allowArrow');
                 this.allowArrow.setScale(0.3);
                 this.denyArrow = this.add.sprite(130, 300, 'denyArrow');
@@ -453,7 +468,8 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[6]);
                 //have an arrow appear at the line
-                this.arrow1 = this.add.sprite(330, 443, 'bouncingArrow');
+                this.heightPole.setAlpha(1);
+                this.arrow1 = this.add.sprite(325, 442, 'bouncingArrow');
                 this.arrow1.setScale(0.2);
                 this.arrow1.play('arrow');
             }
@@ -462,7 +478,7 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[7]);
                 //have an arrow appear at the line
-                this.arrow2 = this.add.sprite(275, 267, 'bouncingArrow');
+                this.arrow2 = this.add.sprite(325, 267, 'bouncingArrow');
                 this.arrow2.setScale(0.2);
                 this.arrow2.play('arrow');
             }

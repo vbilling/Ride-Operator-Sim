@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [menu, lose, trainingday, trainingIntro, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, win], 
+    scene: [ menu, lose, trainingday, coaster, trainingIntro, day1Intro, day1, day2Intro, day2, day3Intro, day3, score, win], 
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -39,6 +39,9 @@ let scale = 0.5;
 //how close you are to getting fired
 let fired = 0;
 
+//global so that is can be controlled in coaster and show up in score
+let tooShort = 0;
+
 //keeping track of how many customers you let on the ride
 let ridingCustomers = 0;
 
@@ -69,7 +72,9 @@ let RC_Velocity = 900;
 //initilizing variables for the path
 var path;
 var curve;
+var curve2;
 var points;
+var points2;
 var graphics;
 var followers;
 var size = 32;

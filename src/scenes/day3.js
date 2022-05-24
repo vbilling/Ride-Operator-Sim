@@ -7,9 +7,9 @@ class day3 extends Phaser.Scene{
         this.load.image('day3Title', './assets/day3Title.png');
 
         if(day1Done == false || day2Done == false){
-
-            
-
+            this.load.image('heightPole', './assets/height_pole.png');
+            this.load.image('exitSign', './assets/exit_sign.png');
+            this.load.image('enterSign', './assets/enter_sign.png');
             this.load.image('ground', './assets/ground.png');
             this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
             //Character Bodies
@@ -79,6 +79,12 @@ class day3 extends Phaser.Scene{
         ridingCustomers = 0;
         //how many customers you dont let on a ride this round
         nonridingCustomers = 0;
+
+        this.exitSign = this.add.sprite(0, 550, 'exitSign').setOrigin(0, 0);
+        this.enterSign = this.add.sprite(700, 550, 'enterSign').setOrigin(0, 0);
+        this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
+        this.exitSign.setScale(0.3);
+        this.enterSign.setScale(0.3);
         //will delay the next character spawn in
         this.delay = 0;
         //implementing a game timer

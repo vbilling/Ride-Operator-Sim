@@ -18,6 +18,19 @@ class coaster extends Phaser.Scene{
         this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
 
+        if(menuDone == false){
+            this.load.audio('whoosh', './assets/whoosh.wav');
+            this.load.audio('thud', './assets/thud.wav');
+            this.load.audio('thud2', './assets/thud2.wav');
+            this.load.audio('buttonPress', './assets/buttonPress.wav');
+            this.load.audio('correct', './assets/correct.wav');
+            this.load.audio('oceanWaves', './assets/oceanWaves.wav');
+            this.load.audio('redButton1', './assets/redButton1.wav');
+            this.load.audio('redButton2', './assets/redButton2.wav');
+            this.load.audio('pop', './assets/pop.wav');
+            this.load.audio('deathmetal', './assets/deathmetal.wav');
+
+        };
     };
     create(){
         //background
@@ -33,11 +46,23 @@ class coaster extends Phaser.Scene{
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay3').setOrigin(0, 0);
         }
 
+        tooShort = 0;
 
         //sounds
         //this.game.sound.stopAll();
         this.redButton1 = this.sound.add('redButton1');
         this.redButton2 = this.sound.add('redButton2');
+
+        //will say which rider is too short and should be removed from score scene
+        this.short0 = false;
+        this.short1 = false;
+        this.short2 = false;
+        this.short3 = false;
+        this.short4 = false;
+        this.short5 = false;
+        this.short6 = false;
+        this.short7 = false;
+        this.short8 = false;
         
 
         //if the mouse is hovering over the red button
@@ -92,9 +117,23 @@ class coaster extends Phaser.Scene{
     
         curve = new Phaser.Curves.Spline(points);
 
+        //path for too short characters
+        curve2 = new Phaser.Curves.Spline([
+            -150, 150,
+            350, 350,
+            560, 380,
+            670, 280,
+            670, 160,
+            550, 80,
+            420, 150,
+            420, 900
+        ]);
+        points2 = curve2.getDistancePoints(size);
+        curve2 = new Phaser.Curves.Spline(points2);
+
         // graphics = this.add.graphics();
         // graphics.lineStyle(1, 0xffffff, 1);
-        // curve.draw(graphics, 64);
+        // curve2.draw(graphics, 64);
         // graphics.fillStyle(0x00ff00, 1);
 
         //will help me round to one or two digits
@@ -110,7 +149,7 @@ class coaster extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
-        for(let i = 0; i < (ridingCustomers) - 1; i++){
+        for(let i = 0; i < (ridingCustomers); i++){
 
             console.log('in coaster.js "i" is ', i);
 
@@ -290,13 +329,6 @@ class coaster extends Phaser.Scene{
                 };
             };
 
-            //if more customers are let on than allowed
-
-
-
-
-
-
             //now add the accessories (start a at 2 because first two values are height and body)
             //console.log('accessory ARRAY', allRiders_array[i]);
             //console.log("allRiders_array[i].length", allRiders_array[i].length);
@@ -326,231 +358,435 @@ class coaster extends Phaser.Scene{
         //console.log('accessorySprite_array!!!', accessorySprite_array);
 
     };
+    deleteShortRiders(){
+        if(this.short8 == true){
+            allRiders_array.splice(7, 1);
+            tooShort += 1;
+
+        };
+        if(this.short7 == true){
+            allRiders_array.splice(6, 1);
+            tooShort += 1;
+
+        };
+        if(this.short6 == true){
+            allRiders_array.splice(5, 1);
+            tooShort += 1;
+        };
+        if(this.short5 == true){
+            allRiders_array.splice(4, 1);
+            tooShort += 1;
+        };
+        if(this.short4 == true){
+            allRiders_array.splice(3, 1);
+            tooShort += 1;
+        };
+        if(this.short3 == true){
+            allRiders_array.splice(2, 1);
+            tooShort += 1;
+        };
+        if(this.short2 == true){
+            allRiders_array.splice(1, 1);
+            tooShort += 1;
+        };
+        if(this.short1 == true){
+            allRiders_array.splice(0, 1);
+            tooShort += 1;
+
+        };
+    }
     //adding all the rollar coaster cars that go around the loop
     //put it into a function to call later
     pathStart(){
-        //putting riders and accessories on the loopty loop
-        // for(let i = 0; i < (riderSprite_array.length); i++){
-        //     this.rider = this.add.follower(curve, -180, 140, allRiders_array[i][1]);
-        //     this.rider.setScale(0.06);
-        //     this.rider.setFrame(1);
-        //     for(let a = 2; a < (allRiders_array[i].length); a++){
-        //         this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[i][a]);
-        //         this.accessory2.setScale(0.06);
-        //         this.accessory2.startFollow({
-        //             duration: 6000,
-        //             positionOnPath: false,
-        //             ease: 'Sine.easeInOut',
-        //             delay: i * 160,
-        //             rotateToPath: true,
-        //         });
-        //     };
-        //     this.rider.startFollow({
-        //         duration: 6000,
-        //         positionOnPath: false,
-        //         ease: 'Sine.easeInOut',
-        //         delay: i * 160,
-        //         rotateToPath: true,
-        //     });
-        // };
         //separate out carts
-
+        //console.log("allRiders_array", allRiders_array);
         //check if there is one rider
         if(riderSprite_array.length > 0){
-            //create a new follower
-            this.rider01 = this.add.follower(curve, -160, 140, allRiders_array[0][1]);
-            this.rider01.setScale(0.06);
-            this.rider01.setFrame(1);
-            this.rider01.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 0 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[0].length); a++){
-                this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[0][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[0] == "small"){
+                this.rider01 = this.add.follower(curve2, -160, 140, allRiders_array[0][1]);
+                this.short1 = true;
+                this.rider01.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 0 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider01 = this.add.follower(curve, -160, 140, allRiders_array[0][1]);
+                this.rider01.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 0 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider01.setScale(0.06);
+            this.rider01.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[0].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -160, 140, allRiders_array[0][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 0 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[0][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 0 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
+
             };
         }
         if(riderSprite_array.length > 1){
             //create a new follower
-            this.rider02 = this.add.follower(curve, -180, 140, allRiders_array[1][1]);
-            this.rider02.setScale(0.06);
-            this.rider02.setFrame(1);
-            this.rider02.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 0 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[1].length); a++){
-                this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[1][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[1] == "small"){
+                this.short2 = true;
+                this.rider02 = this.add.follower(curve2, -180, 140, allRiders_array[1][1]);
+                this.rider02.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 0 * 160,
+                    rotateToPath: true,
+                });
+                
+            }else{
+                this.rider02 = this.add.follower(curve, -180, 140, allRiders_array[1][1]);
+                this.rider02.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 0 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider02.setScale(0.06);
+            this.rider02.setFrame(1);
+            for(let a = 2; a < (allRiders_array[1].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -180, 140, allRiders_array[1][a]);
+
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 0 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[1][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 0 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
             };
         }
         if(riderSprite_array.length > 2){
             //create a new follower
-            this.rider03 = this.add.follower(curve, -160, 140, allRiders_array[2][1]);
-            this.rider03.setScale(0.06);
-            this.rider03.setFrame(1);
-            this.rider03.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 1 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[2].length); a++){
-                this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[2][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[2] == "small"){
+                this.short3 = true;
+                this.rider03 = this.add.follower(curve2, -160, 140, allRiders_array[2][1]);
+                this.rider03.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 1 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider03 = this.add.follower(curve, -160, 140, allRiders_array[2][1]);
+                this.rider03.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 1 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider03.setScale(0.06);
+            this.rider03.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[2].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -160, 140, allRiders_array[2][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 1 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[2][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 1 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
             };
         }
         if(riderSprite_array.length > 3){
             //create a new follower
-            this.rider04 = this.add.follower(curve, -180, 140, allRiders_array[3][1]);
-            this.rider04.setScale(0.06);
-            this.rider04.setFrame(1);
-            this.rider04.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 1 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[3].length); a++){
-                this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[3][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[3] == "small"){
+                this.short4 = true;
+                this.rider04 = this.add.follower(curve2, -180, 140, allRiders_array[3][1]);
+                this.rider04.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 1 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider04 = this.add.follower(curve, -180, 140, allRiders_array[3][1]);
+                this.rider04.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 1 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider04.setScale(0.06);
+            this.rider04.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[3].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -180, 140, allRiders_array[3][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 1 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[3][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 1 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
             };
         }
         if(riderSprite_array.length > 4){
             //create a new follower
-            this.rider05 = this.add.follower(curve, -160, 140, allRiders_array[4][1]);
-            this.rider05.setScale(0.06);
-            this.rider05.setFrame(1);
-            this.rider05.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 2 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[3].length); a++){
-                this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[3][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[4] == "small"){
+                this.short5 = true;
+                this.rider05 = this.add.follower(curve2, -160, 140, allRiders_array[4][1]);
+                this.rider05.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 2 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider05 = this.add.follower(curve, -160, 140, allRiders_array[4][1]);
+                this.rider05.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 2 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider05.setScale(0.06);
+            this.rider05.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[4].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -160, 140, allRiders_array[4][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 2 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[4][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 2 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
             };
         }
         if(riderSprite_array.length > 5){
             //create a new follower
-            this.rider06 = this.add.follower(curve, -180, 140, allRiders_array[5][1]);
-            this.rider06.setScale(0.06);
-            this.rider06.setFrame(1);
-            this.rider06.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 2 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[4].length); a++){
-                this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[4][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[5] == "small"){
+                this.short6 = true;
+                this.rider06 = this.add.follower(curve2, -180, 140, allRiders_array[5][1]);
+                this.rider06.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 2 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider06 = this.add.follower(curve, -180, 140, allRiders_array[5][1]);
+                this.rider06.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 2 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider06.setScale(0.06);
+            this.rider06.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[5].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -180, 140, allRiders_array[5][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 2 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[5][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 2 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
+
             };
         }
         if(riderSprite_array.length > 6){
             //create a new follower
-            this.rider07 = this.add.follower(curve, -160, 140, allRiders_array[6][1]);
-            this.rider07.setScale(0.06);
-            this.rider07.setFrame(1);
-            this.rider07.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 3 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[5].length); a++){
-                this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[5][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[6] == "small"){
+                this.short7 = true;
+                this.rider07 = this.add.follower(curve2, -160, 140, allRiders_array[6][1]);
+                this.rider07.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 3 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider07 = this.add.follower(curve, -160, 140, allRiders_array[6][1]);
+                this.rider07.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 3 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider07.setScale(0.06);
+            this.rider07.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[6].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -160, 140, allRiders_array[6][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 3 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[6][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 3 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
             };
         }
         if(riderSprite_array.length > 7){
             //create a new follower
-            this.rider08 = this.add.follower(curve, -180, 140, allRiders_array[7][1]);
-            this.rider08.setScale(0.06);
-            this.rider08.setFrame(1);
-            this.rider08.startFollow({
-                duration: 6000,
-                positionOnPath: false,
-                ease: 'Sine.easeInOut',
-                delay: 3 * 160,
-                rotateToPath: true,
-            });
-            for(let a = 2; a < (allRiders_array[6].length); a++){
-                this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[6][a]);
-                this.accessory2.setScale(0.06);
-                this.accessory2.startFollow({
+            if(riderSize_array[7] == "small"){
+                this.short8 = true;
+                this.rider08 = this.add.follower(curve2, -180, 140, allRiders_array[7][1]);
+                this.rider08.startFollow({
+                    duration: 5600,
+                    positionOnPath: false,
+                    ease: 'Sine.easeInOut',
+                    delay: 3 * 160,
+                    rotateToPath: true,
+                });
+            }else{
+                this.rider08 = this.add.follower(curve, -180, 140, allRiders_array[7][1]);
+                this.rider08.startFollow({
                     duration: 6000,
                     positionOnPath: false,
                     ease: 'Sine.easeInOut',
                     delay: 3 * 160,
                     rotateToPath: true,
                 });
+            }
+            this.rider08.setScale(0.06);
+            this.rider08.setFrame(1);
+
+            for(let a = 2; a < (allRiders_array[7].length); a++){
+                if(riderSize_array[a] == "small"){
+                    this.accessory2 = this.add.follower(curve2, -180, 140, allRiders_array[7][a]);
+                    this.accessory2.startFollow({
+                        duration: 5600,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 3 * 160,
+                        rotateToPath: true,
+                    });
+                }else{
+                    this.accessory2 = this.add.follower(curve, -180, 140, allRiders_array[7][a]);
+                    this.accessory2.startFollow({
+                        duration: 6000,
+                        positionOnPath: false,
+                        ease: 'Sine.easeInOut',
+                        delay: 3 * 160,
+                        rotateToPath: true,
+                    });
+                }
+                this.accessory2.setScale(0.06);
             };
         }
-        // for more than 8 riders
-
-
 
         this.roller1 = this.add.follower(curve, -180, 150, 'coasterCart');
         this.roller1.setScale(0.07);
@@ -590,28 +826,11 @@ class coaster extends Phaser.Scene{
                 rotateToPath: true,
         });
 
-
-
-        //must have 2 riders per cart
-        // for (var i = 0; i < 4; i++)
-        // {
-        //     this.follower = this.add.follower(curve, -180, 150, 'coasterCart'); //100+(30 * i)
-        //     this.follower.setScale(0.07);
- 
-        //     this.follower.startFollow({
-        //         duration: 6000,
-        //         positionOnPath: false,
-        //         ease: 'Sine.easeInOut',
-        //         delay: i * 160,
-        //         rotateToPath: true,
-        //     });
-
-        // };
+        this.deleteShortRiders();
 
     };
     update(){
         
-
         //press red button to make coasters start
         if(this.redButtonHover == true){
             this.input.on('pointerdown', function (pointer) {

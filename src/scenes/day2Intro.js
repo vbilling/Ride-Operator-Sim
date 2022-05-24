@@ -9,12 +9,14 @@ class day2Intro extends Phaser.Scene{
             //particle
             this.load.image('glow', './assets/glow.png');
             this.load.image('day2IntroText', './assets/day2IntroText.png');
+            this.load.image('abstract_2', './assets/abstract_2.png');
         }
 
 
     }
     create(){
         //this.cameras.main.setBackgroundColor('#bb60f7')
+        this.add.sprite(0, 0, 'abstract_2').setOrigin(0,0)
         this.add.tileSprite(0, 0, 960, 720, 'day2IntroText').setOrigin(0, 0);
         this.wristband2 = this.add.image(880, 350, 'wristband2');
         this.wristband2.setScale(2);
