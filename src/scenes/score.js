@@ -1000,9 +1000,11 @@ class score extends Phaser.Scene{
             loop: false
         })
 
-        this.progressBar = this.add.image(halfscreenwidth, 40, 'progressBar');
+       //this.progressBar = this.add.image(halfscreenwidth, 40, 'progressBar');
 
-        this.progressBar.width = 2;
+        //this.progressBar.width = 2;
+
+        this.progressBar = this.add.rectangle(halfscreenwidth+85, 40, 500, 50, '0xff0000' );
 
 
     };
