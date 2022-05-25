@@ -34,6 +34,8 @@ class day2 extends Phaser.Scene{
             this.load.image('mask', './assets/mask.png');
             this.load.image('glasses1', './assets/glasses1.png');
             this.load.image('glasses2', './assets/glasses2.png');
+            this.load.image('pacifier1', './assets/pacifier1.png');
+            this.load.image('pacifier2', './assets/pacifier2.png');
             
             //waist accessories
             this.load.image('phanny1', './assets/phanny1.png');
@@ -50,6 +52,7 @@ class day2 extends Phaser.Scene{
             this.load.image('bdayNecklace', './assets/bdayNecklace.png');
             this.load.image('chain', './assets/chain.png');
             this.load.image('shellNecklace', './assets/shellNecklace.png');
+            this.load.image('bowtie', './assets/bowtie.png');
         }
 
     };
@@ -288,7 +291,7 @@ class day2 extends Phaser.Scene{
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
-        face_array = ['moustache', 'bandaid', 'glasses1', 'glasses2', 'mask', 'clownNose'];
+        face_array = ['moustache', 'bandaid', 'glasses1', 'glasses2', 'mask', 'clownNose', 'pacifier1', 'pacifier2'];
 
         if(this.face == true){
             this.pick_face = random(0,face_array.length - 1);
@@ -339,7 +342,7 @@ class day2 extends Phaser.Scene{
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        neck_array = ['chain', 'shellNecklace'];
+        neck_array = ['chain', 'shellNecklace', 'bowtie'];
 
         if(this.neck == true){
             this.pick_neck = random(0,neck_array.length - 1);
