@@ -17,7 +17,7 @@ class trainingday extends Phaser.Scene{
         this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
-        this.load.spritesheet('rulesSign', './assets/rulesSign.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('rulesSign2', './assets/rulesSign.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('allowArrow', './assets/allowArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
         this.load.spritesheet('denyArrow', './assets/denyArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
 
@@ -30,6 +30,7 @@ class trainingday extends Phaser.Scene{
         this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('dog1', './assets/dog1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('dog2', './assets/dog2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('duckyellow', './assets/duckyellow.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duckpink', './assets/duckpink.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duckblue', './assets/duckblue.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -56,7 +57,7 @@ class trainingday extends Phaser.Scene{
         trainingDone = true;
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
         this.textbox = this.add.sprite(0, 0, 'textBubble').setOrigin(0, 0);
-        this.rulesSign = this.add.sprite(0, 0, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(0, 0, 'rulesSign2').setOrigin(0, 0);
         this.rulesSign.setAlpha(0);
 
         this.exitSign = this.add.sprite(0, 550, 'exitSign').setOrigin(0, 0);
@@ -232,8 +233,7 @@ class trainingday extends Phaser.Scene{
             "Lets practice checking height. Fling these \n guests accordingly.",
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
-            "But MOST IMPORTANTLY, don't allow more \nthan 8 guests ride at a time and also no less. \nDon't be losing me money.",
-            "You'll have to keep track of how many \nguests you let on. Once you've let EXACTLY 8 \nguests on, press this ready button.",
+            "Practice as much as you need, then click \nready. The ready button will appear \n when you've let 8 riders on.",
             "See you tomorrow at your first shift!"
         ];
         //intructions on how to advance text

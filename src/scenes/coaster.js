@@ -142,7 +142,7 @@ class coaster extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
-        for(let i = 0; i < (ridingCustomers); i++){
+        for(let i = 0; i < (allRiders_array.length); i++){
 
             console.log('in coaster.js "i" is ', i);
 
