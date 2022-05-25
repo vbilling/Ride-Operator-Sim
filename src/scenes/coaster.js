@@ -11,6 +11,7 @@ class coaster extends Phaser.Scene{
         this.load.image('coasterBackgroundDay2', './assets/rollercoaster_background_day2.png');
         this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
         this.load.image('controlPanel', './assets/controlPanel.png');
+        this.load.image('loopOverlap', './assets/loopOverlap.png')
 
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
@@ -49,6 +50,8 @@ class coaster extends Phaser.Scene{
 
 
         tooShort = 0;
+        this.loop = false;
+        master_array = []
 
         //sounds
         //this.game.sound.stopAll();
@@ -360,42 +363,84 @@ class coaster extends Phaser.Scene{
         this.redButton.on("pointerout", () => {
             this.redButtonHover = false;
         });
+        this.loopOverlap = this.add.sprite(0,0, 'loopOverlap').setOrigin(0,0);
+        
 
     };
     deleteShortRiders(){
         if(this.short8 == true){
             allRiders_array.splice(7, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
 
         };
         if(this.short7 == true){
             allRiders_array.splice(6, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
 
         };
         if(this.short6 == true){
             allRiders_array.splice(5, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
         };
         if(this.short5 == true){
             allRiders_array.splice(4, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
         };
         if(this.short4 == true){
             allRiders_array.splice(3, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
         };
         if(this.short3 == true){
             allRiders_array.splice(2, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
         };
         if(this.short2 == true){
             allRiders_array.splice(1, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
         };
         if(this.short1 == true){
             allRiders_array.splice(0, 1);
             tooShort += 1;
+            first_array.push('Too short');
+            first_array.push(-5);
+            first_array.push('A rider was too short and fell out of the ride.');
+            master_array.push(first_array);
+            first_array = [];
 
         };
     }
@@ -831,8 +876,16 @@ class coaster extends Phaser.Scene{
         });
 
         this.deleteShortRiders();
+        if(this.loop == false){
+            this.addloop();
+        }
+        
 
     };
+    addloop(){
+        this.loopOverlap = this.add.sprite(0,0, 'loopOverlap').setOrigin(0,0);
+        this.loop = true;
+    }
     update(){
         
         //press red button to make coasters start
@@ -841,6 +894,7 @@ class coaster extends Phaser.Scene{
                 //button moves down then up with delay
                 this.redButton.setFrame(1);
                 this.redButton1.play();
+                
             }, this)
             this.input.on('pointerup', function (pointer) {
                 //button can only be pressed once

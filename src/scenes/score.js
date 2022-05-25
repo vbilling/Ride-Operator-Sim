@@ -135,7 +135,7 @@ class score extends Phaser.Scene{
         this.totalScore = 100;
 
         //clear the array in between each day
-        master_array = []
+        //master_array = []
 
         this.nextButtonHover = false;
 
