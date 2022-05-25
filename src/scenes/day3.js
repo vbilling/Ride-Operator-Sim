@@ -401,8 +401,7 @@ class day3 extends Phaser.Scene{
                 this.readyButton.setAlpha(1);
             }
 
-            //will spawn a new character (see below)
-            this.needCharacter = true;
+
             //destroy all accessories if they exist
             if(this.hold == true){
                 this.hold_accessory.destroy();
