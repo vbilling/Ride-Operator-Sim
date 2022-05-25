@@ -202,7 +202,7 @@ class score extends Phaser.Scene{
                 riderSize_array.push(this.size);
                 this.customerNewHeight = (this.coasterscale + 0.05);
                 this.customer.setScale(this.customerNewHeight);
-                console.log("HERE YA GO", this.customer.frame);
+                //.log("HERE YA GO", this.customer.frame);
                 this.customer.setFrame(2);
 
             }
@@ -625,7 +625,7 @@ class score extends Phaser.Scene{
                 };
             };
             //scoring for height with this.customerHeight
-            console.log('this.customerHeight', this.customerHeight);
+            //console.log('this.customerHeight', this.customerHeight);
             if(this.customerHeight < 0.25){ 
                 first_array.push('Too short');
                 first_array.push(-5);
@@ -970,8 +970,6 @@ class score extends Phaser.Scene{
             };
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){
-                console.log('accessorySprite_array2', accessorySprite_array2);
-                console.log('w', w);
                 accessorySprite_array2[w].body.setVelocityX(490);
             };
         }else{
