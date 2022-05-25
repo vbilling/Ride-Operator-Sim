@@ -17,6 +17,9 @@ class trainingday extends Phaser.Scene{
         this.load.audio('oh1', './assets/oh1.wav');
         this.load.audio('oh2', './assets/oh2.wav');
         this.load.audio('sigh1', './assets/sigh1.wav');
+        this.load.audio('huh', './assets/huh.wav');
+
+
 
 
         this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
@@ -88,13 +91,14 @@ class trainingday extends Phaser.Scene{
         this.oceanWaves.volume = 0.3;
         this.whoosh = this.sound.add('whoosh');
         this.correct = this.sound.add('correct');
-        this.question = this.sound.add('hmm');
+        this.question = this.sound.add('hmm', {volume: 2});
         this.question2 = this.sound.add('hmm2', {volume: 2});
         this.question2.setRate(1.2);
         this.ugh1 = this.sound.add('ugh1');
         this.oh1 = this.sound.add('oh1');
         this.oh2 = this.sound.add('oh2');
         this.sigh1 = this.sound.add('sigh1');
+        this.huh = this.sound.add('huh');
 
         this.ground = this.add.sprite(400, 695, 'ground');
         //number to keep track of which test rider we are on
@@ -456,12 +460,12 @@ class trainingday extends Phaser.Scene{
 
         }else if(currentText.text == bossText[1]){
             if(this.delay2/60 > 1.5){
-                this.logo = this.add.sprite(580, 135, 'boardwalkLogo');
+                this.logo = this.add.sprite(580, 135, 'boardwalkLogo').setAlpha(1);
                 this.logo.setScale(1.1);
                 this.startdelay2 = false;
             };
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                this.logo.destroy();
+                this.logo.setAlpha(0);
                 currentText.text = this.typewriteTextWrapped(bossText[2]);
                 this.question.play();
             }
@@ -526,7 +530,8 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[8]);
                 //play hmm audio
-                this.question.play();
+                this.huh.play();
+                //this.question.play();
                 this.boss.setFrame(1);
                 this.arrow1.destroy();
                 this.arrow2.destroy();
@@ -542,6 +547,7 @@ class trainingday extends Phaser.Scene{
                 this.counted = false;
             }
         }else if(currentText.text == bossText[9]){
+
             if(this.riderNum == 2 && this.nextrider == true){
                 this.delay += 1;
                 if(Math.round(this.delay/60) > 0.2){

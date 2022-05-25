@@ -43,6 +43,8 @@ class menu extends Phaser.Scene{
         this.buttonPress = this.sound.add('buttonPress');
         this.game.sound.stopAll();
 
+        
+
         //start button glow when hovered over
         this.startButton = this.physics.add.sprite(470, 640, 'redButton').setInteractive();
         this.startButton.body.allowGravity =false;
@@ -64,7 +66,7 @@ class menu extends Phaser.Scene{
         if(this.pointer.isDown && this.startButtonHover == true){
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("trainingdayScene");
+            this.scene.start("day1Scene");
         }; 
     }
 }

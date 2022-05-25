@@ -109,7 +109,7 @@ class day1 extends Phaser.Scene{
         this.clock = 0;
 
         //implementing a game timer
-        this.gametimer = 6000;
+        this.gametimer = 4000;
         let gametimerConfig = {
             fontFamily: 'Chalkduster',
             fontSize: '30px',
@@ -237,7 +237,7 @@ class day1 extends Phaser.Scene{
 
         //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2',  'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'cat3']; 
+        this.body_array = ['cat1', 'cat2',  'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'cat3', 'fox']; 
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         

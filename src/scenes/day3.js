@@ -195,7 +195,7 @@ class day3 extends Phaser.Scene{
         riderAccessories_array.push(this.scale);
                 //randomly generate which character body
         //add all character bodies to an array
-        this.body_array = ['cat1', 'cat2', 'cat3', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'dog1', 'dog2'];
+        this.body_array = ['cat1', 'cat2', 'cat3', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'dog1', 'dog2', 'fox'];
         //pick a random body
         this.pick_body = random(0,this.body_array.length - 1);
         // Add the character

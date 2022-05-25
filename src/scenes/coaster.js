@@ -11,6 +11,7 @@ class coaster extends Phaser.Scene{
         this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
         this.load.image('loopOverlap', './assets/loopOverlap.png')
         this.load.image('controlPanel', './assets/controlpanel.png');
+        this.load.image('bottomTrack', './assets/bottomTrack.png');
 
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
@@ -146,7 +147,7 @@ class coaster extends Phaser.Scene{
 
         for(let i = 0; i < (allRiders_array.length); i++){
 
-            console.log('in coaster.js "i" is ', i);
+            //console.log('in coaster.js "i" is ', i);
 
             //all riders array relies on number of customers
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
@@ -335,6 +336,7 @@ class coaster extends Phaser.Scene{
                 this.accessory.setScale(this.customerNewHeight);
             }
         };
+        this.bottomTrack = this.add.sprite(0,110,'bottomTrack');
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(820, 520, 'coasterCart', 0)
         this.cart1.setScale(this.coasterscale);
@@ -351,8 +353,11 @@ class coaster extends Phaser.Scene{
 
         //console.log('rider sprite array!!!:', riderSprite_array);
         //console.log('accessorySprite_array!!!', accessorySprite_array);
+        
         this.controlPanel = this.add.sprite(480,367, 'controlPanel');
+        this.controlPanel.setDepth(1.9);
         this.redButton = this.add.sprite(470, 650, 'redButton').setInteractive();
+        this.redButton.setDepth(2);
         this.redButton.setScale(0.1);
         this.redButton.on("pointerover", () => {
             //will tell code in update to go to next scene

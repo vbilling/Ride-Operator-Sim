@@ -5,8 +5,7 @@ class score extends Phaser.Scene{
     preload(){
         //progress bar, temp stand in 
         this.load.image('progressBar', './assets/platform.png');
-
-
+        this.load.image('firedMeter', './assets/firedMeter.png');
 
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
@@ -422,7 +421,7 @@ class score extends Phaser.Scene{
                     first_array = [];
                     this.hatCount += 1;
                     //delete the hat if they are too tall
-                    
+
                 };
                 if(allRiders_array[i][a] == 'soda1' || allRiders_array[i][a] == 'soda2'){
                     //name of accessory
@@ -662,6 +661,8 @@ class score extends Phaser.Scene{
             };
       
         };
+
+        this.bottomTrack = this.add.sprite(0, 220, 'bottomTrack');
         
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(-100, 640, 'coasterCart', 0)
@@ -891,7 +892,6 @@ class score extends Phaser.Scene{
             delay: 13500,
             callback: ()=>{
                 this.thud.play();
-                this.add.text(390, 30, "You are " + fired +"% fired", scoreConfig);
                 if(fired >= 90){
                     this.boss.setFrame(6);
                     this.boss.setScale(0.5);
@@ -911,7 +911,7 @@ class score extends Phaser.Scene{
             callback: ()=>{
                 //next button
                 this.pop.play();
-                this.nextButton = this.add.sprite(720, 60, 'nextButton').setInteractive();
+                this.nextButton = this.add.sprite(820, 80, 'nextButton').setInteractive();
                 this.nextButton.setScale(0.3);
                 this.nextButtonHover = false;
                 this.nextButton.on("pointerover", () => {
@@ -932,7 +932,10 @@ class score extends Phaser.Scene{
 
         //this.progressBar.width = 2;
 
-        this.progressBar = this.add.rectangle(halfscreenwidth+85, 40, 500, 50, '0xff0000' );
+        this.progressBar = this.add.rectangle(450, 40, 200, 50, '0xff0000' );
+        this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
+        this.firedMeter.setScale(0.9);
+        this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
 
 
     };

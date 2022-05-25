@@ -28,6 +28,7 @@ class load extends Phaser.Scene{
         this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('dog1', './assets/dog1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('dog2', './assets/dog2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('fox', './assets/fox.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
 
         //loading all the audio
         this.load.audio('whoosh', './assets/whoosh.wav');
