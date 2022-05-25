@@ -18,7 +18,6 @@ class score extends Phaser.Scene{
         this.load.image('NOfood', './assets/NOfood.png');
         this.load.image('NOweapons', './assets/NOweapons.png');
         this.load.image('NOcriminals', './assets/NOcriminals.png');
-        this.load.spritesheet('capacityMeter', './assets/capacityMeter.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 2});
         this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
         this.load.image('missingWristbandText', './assets/missingWristbandText.png');
         this.load.image('TOOshortText', './assets/TOOshortText.png');
@@ -128,8 +127,7 @@ class score extends Phaser.Scene{
             this.add.sprite(840, 205, 'wristband3')
         }
 
-        this.capacityMeter = this.add.sprite(0, 15, 'capacityMeter').setOrigin(0, 0);
-        this.capacityMeter.setFrame(1);
+
 
         //total score 
         this.totalScore = 100;
@@ -423,6 +421,8 @@ class score extends Phaser.Scene{
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
+                    //delete the hat if they are too tall
+                    
                 };
                 if(allRiders_array[i][a] == 'soda1' || allRiders_array[i][a] == 'soda2'){
                     //name of accessory
@@ -742,81 +742,9 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
-        if(this.totalCustomers == 0){
-            this.totalScore -= 34;
-            this.time.addEvent({
-                delay: 5100,
-                callback: ()=>{
-                    this.thud2.play();
-                    this.capacityMeter.setFrame(0);
-                    this.time.addEvent({
-                        delay: 700,
-                        callback: ()=>{
-                            this.thud.play();
-                            this.add.text(395, 245, (this.totalCustomers), combo1Config);
-                        },
-                        loop: false
-                    })
-                },
-                loop: false
-            })
-
-        }else if(this.totalCustomers < 8){
-            this.time.addEvent({
-                delay: 5100,
-                callback: ()=>{
-                    this.thud2.play();
-                    this.capacityMeter.setFrame(0);
-                    this.time.addEvent({
-                        delay: 700,
-                        callback: ()=>{
-                            this.thud.play();
-                            this.add.text(395, 245, (this.totalCustomers), combo1Config);
-                        },
-                        loop: false
-                    })
-                },
-                loop: false
-            })
-        }
-        if(this.totalCustomers == 8){
-            this.time.addEvent({
-                delay: 5100,
-                callback: ()=>{
-                    this.thud2.play();
-                    this.capacityMeter.setFrame(1);
-                    this.time.addEvent({
-                        delay: 700,
-                        callback: ()=>{
-                            this.thud.play();
-                            this.add.text(460, 213, (this.totalCustomers), combo2Config);
-                        },
-                        loop: false
-                    })
-                },
-                loop: false
-            })
-        }
-        if(this.totalCustomers > 8){
-            this.time.addEvent({
-                delay: 5100,
-                callback: ()=>{
-                    this.thud2.play();
-                    this.capacityMeter.setFrame(2);
-                    this.time.addEvent({
-                        delay: 700,
-                        callback: ()=>{
-                            this.thud.play();
-                            this.add.text(520, 245, this.totalCustomers, combo1Config);
-                        },
-                        loop: false
-                    })
-                },
-                loop: false
-            })
-        }
+        
         this.time.addEvent({
-            delay: 6500,
+            delay: 5100,
             callback: ()=>{
                 this.thud2.play();
                 this.add.sprite(10, 17, 'missingWristbandText').setOrigin(0,0);
@@ -837,7 +765,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 7900,
+            delay: 6500,
             callback: ()=>{
                 this.thud2.play();
                 this.add.sprite(10, 15, 'incorrectWristbandText').setOrigin(0,0);
@@ -859,7 +787,7 @@ class score extends Phaser.Scene{
         })
 
         this.time.addEvent({
-            delay: 9300,
+            delay: 7900,
             callback: ()=>{
                 this.thud2.play();
                 this.NOhats = this.add.sprite(0, 15, 'NOhats').setOrigin(0, 0);
@@ -880,7 +808,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 10700,
+            delay: 9300,
             callback: ()=>{
                 this.thud2.play();
                 this.NOfood = this.add.sprite(0, 15, 'NOfood').setOrigin(0, 0);
@@ -901,7 +829,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 12100,
+            delay: 10700,
             callback: ()=>{
                 this.thud2.play();
                 this.NOweapons = this.add.sprite(0, 15, 'NOweapons').setOrigin(0, 0);
@@ -922,7 +850,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 13500,
+            delay: 12100,
             callback: ()=>{
                 this.thud2.play();
                 this.NOcriminals = this.add.sprite(0, 15, 'NOcriminals').setOrigin(0, 0);
@@ -960,7 +888,7 @@ class score extends Phaser.Scene{
   
     
         this.time.addEvent({
-            delay: 15400,
+            delay: 13500,
             callback: ()=>{
                 this.thud.play();
                 this.add.text(390, 30, "You are " + fired +"% fired", scoreConfig);
@@ -979,7 +907,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 16400,
+            delay: 15400,
             callback: ()=>{
                 //next button
                 this.pop.play();
@@ -1032,12 +960,15 @@ class score extends Phaser.Scene{
                 //and make them change to surprised face unless headless
                 if(riderSize_array[b] == "extra large"){
                     riderSprite_array2[b].setFrame(2);
+                    //get rid of all head and face accessories
                 }else{
                     riderSprite_array2[b].setFrame(1);
                 }
             };
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){
+                console.log('accessorySprite_array2', accessorySprite_array2);
+                console.log('w', w);
                 accessorySprite_array2[w].body.setVelocityX(490);
             };
         }else{

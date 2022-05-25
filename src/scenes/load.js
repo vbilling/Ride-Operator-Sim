@@ -10,7 +10,6 @@ class load extends Phaser.Scene{
         this.load.image('enterSign', './assets/enter_sign.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
 
-        this.load.image('day1Background', './assets/background_day1.png');
         this.load.image('day2Background', './assets/background_day2.png');
         this.load.image('day2Title', './assets/day2Title.png');
         this.load.image('player', './assets/player.png');
@@ -41,6 +40,7 @@ class load extends Phaser.Scene{
         this.load.audio('redButton2', './assets/redButton2.wav');
         this.load.audio('pop', './assets/pop.wav');
         this.load.audio('deathmetal', './assets/deathmetal.wav');
+        
 
         
 

@@ -4,14 +4,13 @@ class coaster extends Phaser.Scene{
     }
     preload(){
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
         //background
         //this.load.image('coasterBackground', './assets/coasterBackground.png');
         this.load.image('coasterBackgroundDay1', './assets/rollercoaster_background_day1.png');
         this.load.image('coasterBackgroundDay2', './assets/rollercoaster_background_day2.png');
         this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
-        this.load.image('controlPanel', './assets/controlPanel.png');
         this.load.image('loopOverlap', './assets/loopOverlap.png')
+        this.load.image('controlPanel', './assets/controlpanel.png');
 
         //Character Bodies
         this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
@@ -364,6 +363,7 @@ class coaster extends Phaser.Scene{
             this.redButtonHover = false;
         });
         this.loopOverlap = this.add.sprite(0,0, 'loopOverlap').setOrigin(0,0);
+        this.loopOverlap.setAlpha(0);
         
 
     };
@@ -878,16 +878,19 @@ class coaster extends Phaser.Scene{
         });
 
         this.deleteShortRiders();
-        if(this.loop == false){
-            this.addloop();
-        }
+
+        this.time.addEvent({
+            delay: 2350,
+            callback: ()=>{
+                this.loopOverlap.setAlpha(1);
+                this.loopOverlap.setDepth(2);
+            },
+            loop: false
+        })
         
 
     };
-    addloop(){
-        this.loopOverlap = this.add.sprite(0,0, 'loopOverlap').setOrigin(0,0);
-        this.loop = true;
-    }
+
     update(){
         
         //press red button to make coasters start

@@ -11,8 +11,15 @@ class trainingday extends Phaser.Scene{
 
         this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
 
+        this.load.audio('hmm', './assets/hmm.wav');
+        this.load.audio('hmm2', './assets/hmm2.wav');
+        this.load.audio('ugh1', './assets/ugh1.wav');
+        this.load.audio('oh1', './assets/oh1.wav');
+        this.load.audio('oh2', './assets/oh2.wav');
+        this.load.audio('sigh1', './assets/sigh1.wav');
 
-        this.load.image('directions', './assets/directions.png');
+
+        this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
         this.load.image('textBubble', './assets/textBubble.png');
         this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
@@ -81,6 +88,13 @@ class trainingday extends Phaser.Scene{
         this.oceanWaves.volume = 0.3;
         this.whoosh = this.sound.add('whoosh');
         this.correct = this.sound.add('correct');
+        this.question = this.sound.add('hmm');
+        this.question2 = this.sound.add('hmm2', {volume: 2});
+        this.question2.setRate(1.2);
+        this.ugh1 = this.sound.add('ugh1');
+        this.oh1 = this.sound.add('oh1');
+        this.oh2 = this.sound.add('oh2');
+        this.sigh1 = this.sound.add('sigh1');
 
         this.ground = this.add.sprite(400, 695, 'ground');
         //number to keep track of which test rider we are on
@@ -169,6 +183,26 @@ class trainingday extends Phaser.Scene{
                 repeat: -1,
                 yoyo: true
         });
+        //intructions on how to advance text
+        this.directions = this.add.sprite(30, 0, 'directions').setOrigin(0,0);
+        this.directions.setFrame(12);
+        this.anims.create({
+            key: 'fade',
+            frames: this.anims.generateFrameNames('directions', {
+                start: 12, 
+                end: 0, 
+                first: 12}),
+                frameRate: 15,
+                repeat: 0,
+                yoyo: true
+        });
+        this.time.addEvent({
+            delay: 2000,
+            callback: ()=>{
+                this.directions.play('fade');
+            },
+            loop: true
+        }) 
         //text configurations for all of the boss's text
         this.mumblingConfig = {
             fontFamily: 'Copperplate',
@@ -236,13 +270,14 @@ class trainingday extends Phaser.Scene{
             "Practice as much as you need, then click \nready. The ready button will appear \n when you've let 8 riders on.",
             "See you tomorrow at your first shift!"
         ];
-        //intructions on how to advance text
-        this.instructions = this.add.sprite(0, 0, 'directions').setOrigin(0,0);
+
         //print the first boss's phrase
         currentText = this.add.text(305, 65, '', this.mumblingConfig);
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
+
+        this.ugh1.play();
 
 
 
@@ -377,8 +412,8 @@ class trainingday extends Phaser.Scene{
     update(){
         //if 'this.directions' still exists, have it fade in and out
         //can use a tween for this function 
-
         
+
 
         if(this.startdelay2 == true){
             this.delay2 += 1;
@@ -404,15 +439,16 @@ class trainingday extends Phaser.Scene{
             this.wrist_accessory.y = this.testRider.y;
         };
 
-
         //have text advance when space is pressed
         if(currentText.text == bossText[0]){
+            
             //get rid of "press Space to advance"
             //instructions.destroy();
             //go to next phrase
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                this.mumblingConfig.color = "blue";
                 currentText.text = this.typewriteTextWrapped(bossText[1]);
+                this.directions.setAlpha(0);
+                //this.oh1.play();
                 this.boss.setFrame(0);
                 this.startdelay2 = true;
 
@@ -427,10 +463,12 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 this.logo.destroy();
                 currentText.text = this.typewriteTextWrapped(bossText[2]);
+                this.question.play();
             }
         }else if(currentText.text == bossText[2]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[3]);
+                //this.sigh1.play();
                 this.boss.setFrame(1);
             }
         }else if(currentText.text == bossText[3]){
@@ -460,6 +498,7 @@ class trainingday extends Phaser.Scene{
             //if the third character is flung out of bounds, go to next text
             if(this.riderNum == 1){
                 currentText.text = this.typewriteTextWrapped(bossText[5]);
+                this.oh1.play();
             }
         }else if (currentText.text == bossText[5]){
             this.allowArrow.destroy();
@@ -486,6 +525,8 @@ class trainingday extends Phaser.Scene{
         }else if (currentText.text == bossText[7]){
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[8]);
+                //play hmm audio
+                this.question.play();
                 this.boss.setFrame(1);
                 this.arrow1.destroy();
                 this.arrow2.destroy();
@@ -541,6 +582,7 @@ class trainingday extends Phaser.Scene{
                 this.boss.setFrame(2);
                 this.wristband.destroy();
                 currentText.text = this.typewriteTextWrapped(bossText[11]);
+                this.oh2.play();
                 //make rule sign glow
                 this.rulesSign.setAlpha(1);
                 this.rulesSign.setFrame(1);
