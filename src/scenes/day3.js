@@ -79,11 +79,11 @@ class day3 extends Phaser.Scene{
         //how many customers you dont let on a ride this round
         nonridingCustomers = 0;
 
-        this.exitSign = this.add.sprite(0, 550, 'exitSign').setOrigin(0, 0);
-        this.enterSign = this.add.sprite(700, 550, 'enterSign').setOrigin(0, 0);
+        this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
+        this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
         this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
-        this.exitSign.setScale(0.3);
-        this.enterSign.setScale(0.3);
+        this.exitSign.setScale(0.4);
+        this.enterSign.setScale(0.4);
         //will delay the next character spawn in
         this.delay = 0;
         //implementing a game timer
@@ -230,7 +230,7 @@ class day3 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 85){ 
+        if(this.hold_chance >= 80){ 
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
@@ -266,7 +266,7 @@ class day3 extends Phaser.Scene{
         this.wrist2_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist2 = false;
-        if(this.wrist2_chance >= 90){
+        if(this.wrist2_chance >= 95){
             this.wrist2 = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -317,7 +317,7 @@ class day3 extends Phaser.Scene{
         this.leg_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.leg = false;
-        if(this.leg_chance >= 90){
+        if(this.leg_chance >= 97){
             this.leg = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)

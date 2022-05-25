@@ -99,11 +99,11 @@ class day1 extends Phaser.Scene{
         this.oceanWaves.loop = true;
         this.oceanWaves.volume = 0.3;
 
-        this.exitSign = this.add.sprite(0, 550, 'exitSign').setOrigin(0, 0);
-        this.enterSign = this.add.sprite(700, 550, 'enterSign').setOrigin(0, 0);
+        this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
+        this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
         this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
-        this.exitSign.setScale(0.3);
-        this.enterSign.setScale(0.3);
+        this.exitSign.setScale(0.4);
+        this.enterSign.setScale(0.4);
 
         //will count up for a text fade in timer
         this.clock = 0;

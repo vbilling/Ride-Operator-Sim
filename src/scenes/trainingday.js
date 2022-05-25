@@ -70,11 +70,11 @@ class trainingday extends Phaser.Scene{
         this.rulesSign = this.add.sprite(0, 0, 'rulesSign2').setOrigin(0, 0);
         this.rulesSign.setAlpha(0);
 
-        this.exitSign = this.add.sprite(0, 550, 'exitSign').setOrigin(0, 0);
-        this.exitSign.setScale(0.3);
+        this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
+        this.exitSign.setScale(0.4);
         this.exitSign.setAlpha(0);
-        this.enterSign = this.add.sprite(700, 550, 'enterSign').setOrigin(0, 0);
-        this.enterSign.setScale(0.3);
+        this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
+        this.enterSign.setScale(0.4);
         this.enterSign.setAlpha(0);
 
         this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
@@ -481,9 +481,9 @@ class trainingday extends Phaser.Scene{
                 this.boss.setFrame(0);
                 this.exitSign.setAlpha(1);
                 this.enterSign.setAlpha(1);
-                this.allowArrow = this.add.sprite(800, 300, 'allowArrow');
+                this.allowArrow = this.add.sprite(800, 400, 'allowArrow');
                 this.allowArrow.setScale(0.3);
-                this.denyArrow = this.add.sprite(130, 300, 'denyArrow');
+                this.denyArrow = this.add.sprite(130, 400, 'denyArrow');
                 this.denyArrow.setScale(0.3);
                 this.allowArrow.play('allow');
                 this.denyArrow.play('deny');
@@ -513,7 +513,7 @@ class trainingday extends Phaser.Scene{
                 currentText.text = this.typewriteTextWrapped(bossText[6]);
                 //have an arrow appear at the line
                 this.heightPole.setAlpha(1);
-                this.arrow1 = this.add.sprite(325, 442, 'bouncingArrow');
+                this.arrow1 = this.add.sprite(320, 442, 'bouncingArrow');
                 this.arrow1.setScale(0.2);
                 this.arrow1.play('arrow');
             }
@@ -522,7 +522,7 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 currentText.text = this.typewriteTextWrapped(bossText[7]);
                 //have an arrow appear at the line
-                this.arrow2 = this.add.sprite(325, 267, 'bouncingArrow');
+                this.arrow2 = this.add.sprite(320, 267, 'bouncingArrow');
                 this.arrow2.setScale(0.2);
                 this.arrow2.play('arrow');
             }
