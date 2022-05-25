@@ -837,6 +837,8 @@ class coaster extends Phaser.Scene{
             };
         }
 
+
+
         this.roller1 = this.add.follower(curve, -180, 150, 'coasterCart');
         this.roller1.setScale(0.07);
         this.roller1.startFollow({

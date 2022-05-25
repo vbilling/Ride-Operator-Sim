@@ -398,6 +398,10 @@ class day2 extends Phaser.Scene{
             this.wrist2_accessory.y = this.p1.y;
         };
 
+        if(this.p1.y > game.config.height){
+            this.p1.y = 400;
+        }
+
         //if the character is flung to the right (aka allowed to ride)
         if(this.p1.x > 1000 || this.p1.x < -50){
             this.p1.destroy();
