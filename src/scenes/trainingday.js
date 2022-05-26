@@ -103,6 +103,7 @@ class trainingday extends Phaser.Scene{
         this.sigh1 = this.sound.add('sigh1');
         this.huh = this.sound.add('huh');
         this.incorrect = this.sound.add('incorrect');
+        this.pop = this.sound.add('pop');
 
 
         this.ground = this.add.sprite(400, 695, 'ground');
@@ -582,7 +583,6 @@ class trainingday extends Phaser.Scene{
             }
         }else if(currentText.text == bossText[3]){
             this.startdirectionsTimer = true;
-            console.log(this.delay2);
             if(this.delay2/60 > 0){
                 this.threeDays.setAlpha(1);
                 this.startdelay2 = false;
@@ -718,6 +718,7 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[12]);
+                this.pop.play();
                 this.boss.setFrame(0);
                 this.rulesSign.setFrame(0);
                 

@@ -40,6 +40,7 @@ class day3 extends Phaser.Scene{
             this.load.image('phanny1', './assets/phanny1.png');
             this.load.image('phanny2', './assets/phanny2.png');
             this.load.image('gucciBelt', './assets/gucciBelt.png');
+            this.load.image('tutu', './assets/tutu.png');
     
             //left leg accessories
             this.load.image('ankleMoniter', './assets/ankleMoniter.png');
@@ -304,7 +305,7 @@ class day3 extends Phaser.Scene{
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        waist_array = ['phanny1', 'phanny2', 'gucciBelt'];
+        waist_array = ['phanny1', 'phanny2', 'gucciBelt', 'tutu'];
 
         if(this.waist == true){
             this.pick_waist = random(0,waist_array.length - 1);  

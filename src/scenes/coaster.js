@@ -892,6 +892,18 @@ class coaster extends Phaser.Scene{
             },
             loop: false
         })
+
+        this.anims.create({
+            key: 'blinking2',
+            frames: this.anims.generateFrameNames('redButton', {
+                start: 0, 
+                end: 1, 
+                first: 0}),
+                frameRate: 1.4,
+                repeat: -1,
+                yoyo: false
+        });
+        this.redButton.play('blinking2');
         
 
     };
@@ -902,7 +914,8 @@ class coaster extends Phaser.Scene{
         if(this.redButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
                 //button moves down then up with delay
-                this.redButton.setFrame(1);
+                this.redButton.setFrame(2);
+                this.redButton.stop();
                 this.redButton1.play();
                 
             }, this)
