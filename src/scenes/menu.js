@@ -7,7 +7,11 @@ class menu extends Phaser.Scene{
         this.load.image('titleText', './assets/titleText.png');
         this.load.image('boardwalkTitle', './assets/boardwalkTitle.png');
         this.load.image('background', './assets/rollercoaster_background_day1.png');
-        this.load.image('menuPanel', './assets/menuPanel.png')
+        this.load.image('menuPanel', './assets/menuPanel.png');
+        this.load.image('startText', './assets/startText.png');
+        this.load.image('happyBoss', './assets/happyBoss.png');
+        this.load.image('rainbow', './assets/rainbow.png');
+        this.load.image('sparkle', './assets/sparkle.png');
         this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
 
         //loading all the audio
@@ -30,11 +34,48 @@ class menu extends Phaser.Scene{
             position:[0,3],
             angularVelocity:1,
         };
-        this.background = this.add.sprite(0, 0, 'background').setOrigin(0,0);
-        this.titleText = this.add.image(0, 0, 'boardwalkTitle').setOrigin(0, 0);
+        var background = this.add.sprite(0, 0, 'background').setOrigin(0,0);
+        //sparkles
+        var textures = this.textures;
+        var origin = background.getTopLeft();
+        var titleTextSource = {
+            getRandomPoint: function (vec)
+            {
+                do
+                {
+                    var x = Phaser.Math.Between(0, 750); //titleText.width-1
+                    var y = Phaser.Math.Between(0, 300); //titleText.height -1
+                    var pixel = textures.getPixel(x, y, 'background');
+                } while (pixel.alpha < 255);
+        
+                return vec.setTo(x + origin.x, y + origin.y);
+            }
+        };
+        
+        var particles = this.add.particles('sparkle');
+        
+        particles.createEmitter({
+            x: 120,
+            y: 120,
+            lifespan: 4400,
+            gravityY: 10,
+            scale: { start: 0, end: 0.1, ease: 'Quad.easeOut' },
+            alpha: { start: 1, end: 0.25, ease: 'Quad.easeIn' },
+            //blendMode: 'ADD',
+            emitZone: { type: 'random', source: titleTextSource }
+        });
+        var titleText = this.add.image(30, -20, 'boardwalkTitle').setOrigin(0, 0);
 
-        this.controlpanel = this.add.sprite(450, 290, 'menuPanel');
+
+        this.happyBoss = this.add.sprite(500, 350, 'happyBoss');
+        this.happyBoss.setScale(1.2);
+
+        var rainbow = this.add.image(770, 320, 'rainbow').setScale(0.45);
+        var rainbow2 = this.add.sprite(220, 320, 'rainbow').setScale(0.45);
+        this.controlpanel = this.add.sprite(480, 310, 'menuPanel');
         this.controlpanel.setScale(1.2);
+        this.startText = this.add.sprite(500, 575, 'startText');
+        this.startText.setScale(0.6);
 
         //if the mouse is hovering over the down button
         this.startButtonHover = false;
@@ -48,9 +89,9 @@ class menu extends Phaser.Scene{
         
 
         //start button glow when hovered over
-        this.startButton = this.physics.add.sprite(470, 640, 'redButton').setInteractive();
+        this.startButton = this.physics.add.sprite(490, 650, 'redButton').setInteractive();
         this.startButton.body.allowGravity =false;
-        this.startButton.setScale(0.15);
+        this.startButton.setScale(0.17);
         this.startButton.body.setSize(300, 140, 0.1, 1500);
         this.startButton.on("pointerover", () => {
             this.startButton.setFrame(1);
@@ -62,6 +103,8 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(0);
             this.startButtonHover = false;
         });
+
+
 
     }
     update(){

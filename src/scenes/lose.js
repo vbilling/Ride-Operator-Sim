@@ -15,13 +15,13 @@ class lose extends Phaser.Scene{
     create(){
         this.pointer = this.input.activePointer;
         this.background = this.add.tileSprite(0, 0, 960, 720, 'redBackground').setOrigin(0, 0);
-        this.boss = this.add.sprite(450, 510, 'firedBoss');
+        this.firedboss = this.add.sprite(450, 510, 'firedBoss');
         this.firedText = this.add.sprite(0, 0, 'firedText').setOrigin(0,0);
         this.startoverButton = this.add.sprite(850, 670, 'startoverButton').setInteractive();
         this.startoverButton.setScale(0.35);
         this.startoverButtonHover = false;
-        this.boss.setFrame(6);
-        this.boss.setScale(2); 
+        this.firedboss.setFrame(6);
+        this.firedboss.setScale(2); 
         this.deathmetal = this.sound.add('deathmetal');
         this.deathmetal.play();
 
@@ -32,7 +32,7 @@ class lose extends Phaser.Scene{
         function randomDecimil(mn,mx){
             return Math.random() * (mx - mn) + mn
         }
-        this.boss.x = this.boss.x + randomDecimil(-1, 1);
+        this.firedboss.x = this.firedboss.x + randomDecimil(-1, 1);
 
         this.startoverButton.on("pointerover", () => {
             this.startoverButton.setFrame(1);

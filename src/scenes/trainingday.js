@@ -8,6 +8,7 @@ class trainingday extends Phaser.Scene{
         this.load.image('heightPole', './assets/height_pole.png');
         this.load.image('exitSign', './assets/exit_sign.png');
         this.load.image('enterSign', './assets/enter_sign.png');
+        this.load.image('threeDays', './assets/threeDays.png');
 
         this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
 
@@ -285,7 +286,7 @@ class trainingday extends Phaser.Scene{
             "Ugh, now where is that pimply teenager I have \nto train.",
             "OH there you are! Welcome to your new job \nas a ride operator at",
             "What was that mumbling about buying your \nlittle brother a birthday present? Yeah I \ndon't care...",
-            "...but I guess you should be able to afford \nit after three days of work. That is, if you \nmanage not to get fired.",
+            "...but I guess you should be able to afford \nit after                     of work. That is, if you \nmanage not to get fired.",
             "Lets get started. Use your mouse to fling \nguests RIGHT to allow them to ride and \nLEFT to deny them.",
             "Good job.",
             "Guests must be taller than this line...",
@@ -303,6 +304,8 @@ class trainingday extends Phaser.Scene{
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
         this.logo = this.add.sprite(580, 135, 'boardwalkLogo').setAlpha(0);
+        this.threeDays = this.add.sprite(-30, 0, 'threeDays').setOrigin(0,0);
+        this.threeDays.setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
 
         this.ugh1.play();
@@ -440,60 +443,54 @@ class trainingday extends Phaser.Scene{
     update(){
         //correct and incorrect audio feedback
         if(this.riderNum == 2){ //is too short
-            if(this.testRider.x < 50){
-                if(this.soundplayed == false){
+            if(this.soundplayed == false){
+                if(this.testRider.x < 50){
                     this.correct2.play();
+                    this.soundplayed = true;
                 }
-                this.soundplayed = true;
-            }
-            if(this.testRider.x > 650){
-                if(this.soundplayed == false){
+                if(this.testRider.x > 650){
                     this.incorrect.play();
+                    this.soundplayed = true;
                 }
-                this.soundplayed = true;
             }
         };
-        if(this.riderNum == 3){ //too tall
-            if(this.testRider.x < 50){
-                if(this.soundplayed == false){
-                    this.correct2.play();
-                }
-                this.soundplayed = true;
-            }
-            if(this.testRider.x > 650){
-                if(this.soundplayed == false){
+        if(this.riderNum == 3){ //correct height
+            if(this.soundplayed == false){
+                if(this.testRider.x < 50){
                     this.incorrect.play();
+                    this.soundplayed = true;
                 }
-                this.soundplayed = true;
+                if(this.testRider.x > 650){
+                    this.correct2.play();
+                    this.soundplayed = true;
+                }
+            }
+
+        };
+        if(this.riderNum == 4){ //wrong wristband
+            if(this.soundplayed == false){
+                if(this.testRider.x < 50){
+                    this.correct2.play();
+                    this.soundplayed = true;
+                }
+                if(this.testRider.x > 650){
+                    console.log('correct height');
+                    this.incorrect.play();
+                    this.soundplayed = true;
+                }
             }
         };
-        if(this.riderNum == 4){ //correct height
-            console.log('correct height');
-            if(this.testRider.x < 50){
-                if(this.soundplayed == false){
+        if(this.riderNum == 5){ //right wristband
+            if(this.soundplayed == false){
+                if(this.testRider.x < 50){
                     this.incorrect.play();
+                    this.soundplayed = true;
                 }
-                this.soundplayed = true;
-            }
-            if(this.testRider.x > 650){
-                if(this.soundplayed == false){
-                    this.correct2.play();
+                if(this.testRider.x > 650){
+                    this.correct.play();
+                    this.soundplayed = true;
                 }
-                this.soundplayed = true;
-            }
-        };
-        if(this.riderNum == 5){ //wrong wristband
-            if(this.testRider.x < 50){
-                if(this.soundplayed == false){
-                    this.correct2.play();
-                }
-                this.soundplayed = true;
-            }
-            if(this.testRider.x > 650){
-                if(this.soundplayed == false){
-                    this.incorrect.play();
-                }
-                this.soundplayed = true;
+
             }
         };
         if(this.riderNum == 6){ //correct wristband
@@ -551,7 +548,6 @@ class trainingday extends Phaser.Scene{
 
         //have text advance when space is pressed
         if(currentText.text == bossText[0]){
-            
             //get rid of "press Space to advance"
             //instructions.destroy();
             //go to next phrase
@@ -561,9 +557,7 @@ class trainingday extends Phaser.Scene{
                 //this.oh1.play();
                 this.boss.setFrame(0);
                 this.startdelay2 = true;
-
             }
-
         }else if(currentText.text == bossText[1]){
             this.startdirectionsTimer = true;
             if(this.delay2/60 > 1.5){
@@ -580,6 +574,7 @@ class trainingday extends Phaser.Scene{
         }else if(currentText.text == bossText[2]){
             this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdelay2 = true;
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[3]);
                 //this.sigh1.play();
@@ -587,7 +582,13 @@ class trainingday extends Phaser.Scene{
             }
         }else if(currentText.text == bossText[3]){
             this.startdirectionsTimer = true;
+            console.log(this.delay2);
+            if(this.delay2/60 > 0){
+                this.threeDays.setAlpha(1);
+                this.startdelay2 = false;
+            };
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.threeDays.setAlpha(0);
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[4]);
                 this.boss.setFrame(0);
