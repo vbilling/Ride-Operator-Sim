@@ -154,6 +154,14 @@ class trainingday extends Phaser.Scene{
                 this.whoosh.play();
                 this.testRider.setVelocityX(-800);
                 this.testRider.setVelocityY(-100);
+                this.time.addEvent({
+                    delay: 100,
+                    callback: ()=>{
+                        this.soundplayed = false;
+                    },
+                    loop: false
+                })
+
             }
             if(this.testRider.x > 650){ //thrown to the right
                 this.whoosh.play()
@@ -432,12 +440,9 @@ class trainingday extends Phaser.Scene{
     update(){
         //correct and incorrect audio feedback
         if(this.riderNum == 2){ //is too short
-            console.log('ridernum', this.riderNum);
             if(this.testRider.x < 50){
-                console.log('YES1')
                 if(this.soundplayed == false){
                     this.correct2.play();
-                    console.log("YES");
                 }
                 this.soundplayed = true;
             }
@@ -449,7 +454,6 @@ class trainingday extends Phaser.Scene{
             }
         };
         if(this.riderNum == 3){ //too tall
-            console.log('ridernum', this.riderNum);
             if(this.testRider.x < 50){
                 if(this.soundplayed == false){
                     this.correct2.play();
@@ -464,7 +468,7 @@ class trainingday extends Phaser.Scene{
             }
         };
         if(this.riderNum == 4){ //correct height
-            console.log('ridernum', this.riderNum);
+            console.log('correct height');
             if(this.testRider.x < 50){
                 if(this.soundplayed == false){
                     this.incorrect.play();
@@ -479,7 +483,6 @@ class trainingday extends Phaser.Scene{
             }
         };
         if(this.riderNum == 5){ //wrong wristband
-            console.log('ridernum', this.riderNum);
             if(this.testRider.x < 50){
                 if(this.soundplayed == false){
                     this.correct2.play();
@@ -494,7 +497,6 @@ class trainingday extends Phaser.Scene{
             }
         };
         if(this.riderNum == 6){ //correct wristband
-            console.log('ridernum', this.riderNum);
             if(this.testRider.x < 50){
                 if(this.soundplayed == false){
                     this.incorrect.play();
@@ -524,7 +526,7 @@ class trainingday extends Phaser.Scene{
         if(this.directionsTimer >= 200){
             this.directions.setAlpha(1);
         }else{
-            if(currentText.text > bossText[0]){
+            if(currentText.text != bossText[0]){
                 this.directions.setAlpha(0);
             }
         }
@@ -653,9 +655,9 @@ class trainingday extends Phaser.Scene{
                 
             }
         }else if (currentText.text == bossText[8]){
-            //this.startdirectionsTimer = true;
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                //this.startdirectionsTimer = false;
+                this.startdirectionsTimer = false;
                 //testing player on guest heights
                 currentText.text = this.typewriteTextWrapped(bossText[9]);
                 this.boss.setFrame(0);

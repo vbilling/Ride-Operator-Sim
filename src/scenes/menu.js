@@ -5,8 +5,9 @@ class menu extends Phaser.Scene{
     preload(){
         this.load.spritesheet('startButton', './assets/startButton.png', {frameWidth: 384, frameHeight: 512, startFrame: 0, endFrame: 1});
         this.load.image('titleText', './assets/titleText.png');
+        this.load.image('boardwalkTitle', './assets/boardwalkTitle.png');
         this.load.image('background', './assets/rollercoaster_background_day1.png');
-        this.load.image('menuPanel', './assets/menupanel.png')
+        this.load.image('menuPanel', './assets/menuPanel.png')
         this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
 
         //loading all the audio
@@ -30,7 +31,8 @@ class menu extends Phaser.Scene{
             angularVelocity:1,
         };
         this.background = this.add.sprite(0, 0, 'background').setOrigin(0,0);
-        this.titleText = this.add.image(0, 0, 'titleText').setOrigin(0, 0);
+        this.titleText = this.add.image(0, 0, 'boardwalkTitle').setOrigin(0, 0);
+
         this.controlpanel = this.add.sprite(450, 290, 'menuPanel');
         this.controlpanel.setScale(1.2);
 
