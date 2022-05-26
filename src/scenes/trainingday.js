@@ -18,8 +18,8 @@ class trainingday extends Phaser.Scene{
         this.load.audio('oh2', './assets/oh2.wav');
         this.load.audio('sigh1', './assets/sigh1.wav');
         this.load.audio('huh', './assets/huh.wav');
-
-
+        this.load.audio('correct2', './assets/correct2.wav');
+        this.load.audio('incorrect', './assets/incorrect.wav');
 
 
         this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
@@ -63,6 +63,7 @@ class trainingday extends Phaser.Scene{
         }
     }
     create(){
+        
         //if training day was completed
         trainingDone = true;
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
@@ -91,6 +92,7 @@ class trainingday extends Phaser.Scene{
         this.oceanWaves.volume = 0.3;
         this.whoosh = this.sound.add('whoosh');
         this.correct = this.sound.add('correct');
+        this.correct2 = this.sound.add('correct2');
         this.question = this.sound.add('hmm', {volume: 2});
         this.question2 = this.sound.add('hmm2', {volume: 2});
         this.question2.setRate(1.2);
@@ -99,6 +101,8 @@ class trainingday extends Phaser.Scene{
         this.oh2 = this.sound.add('oh2');
         this.sigh1 = this.sound.add('sigh1');
         this.huh = this.sound.add('huh');
+        this.incorrect = this.sound.add('incorrect');
+
 
         this.ground = this.add.sprite(400, 695, 'ground');
         //number to keep track of which test rider we are on
@@ -112,6 +116,15 @@ class trainingday extends Phaser.Scene{
         this.counted = false;
         this.nextrider = false;
         this.readyButtonHover = false;
+
+
+        //will make "press space directions appear again if the player takes forever to continue"
+        this.directionsTimer = 0;
+        this.startdirectionsTimer = false;
+
+        //if the sound effect had already been played once
+        this.soundplayed = true;
+
         this.pointer = this.input.activePointer;
         this.readyButton = this.add.sprite(860, 70, 'readyButton').setInteractive();
         this.readyButton.setAlpha(0);
@@ -150,11 +163,13 @@ class trainingday extends Phaser.Scene{
                     delay: 100,
                     callback: ()=>{
                         this.correct.play();
+                        this.soundplayed = false;
                     },
                     loop: false
                 })
             }
         });
+
         //make an animation for the bouncing arrow
         this.anims.create({
             key: 'arrow',
@@ -201,7 +216,7 @@ class trainingday extends Phaser.Scene{
                 yoyo: true
         });
         this.time.addEvent({
-            delay: 2000,
+            delay: 1800,
             callback: ()=>{
                 this.directions.play('fade');
             },
@@ -279,6 +294,7 @@ class trainingday extends Phaser.Scene{
         currentText = this.add.text(305, 65, '', this.mumblingConfig);
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
+        this.logo = this.add.sprite(580, 135, 'boardwalkLogo').setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
 
         this.ugh1.play();
@@ -414,15 +430,103 @@ class trainingday extends Phaser.Scene{
     }
 
     update(){
-        //if 'this.directions' still exists, have it fade in and out
-        //can use a tween for this function 
+        //correct and incorrect audio feedback
+        if(this.riderNum == 2){ //is too short
+            console.log('ridernum', this.riderNum);
+            if(this.testRider.x < 50){
+                console.log('YES1')
+                if(this.soundplayed == false){
+                    this.correct2.play();
+                    console.log("YES");
+                }
+                this.soundplayed = true;
+            }
+            if(this.testRider.x > 650){
+                if(this.soundplayed == false){
+                    this.incorrect.play();
+                }
+                this.soundplayed = true;
+            }
+        };
+        if(this.riderNum == 3){ //too tall
+            console.log('ridernum', this.riderNum);
+            if(this.testRider.x < 50){
+                if(this.soundplayed == false){
+                    this.correct2.play();
+                }
+                this.soundplayed = true;
+            }
+            if(this.testRider.x > 650){
+                if(this.soundplayed == false){
+                    this.incorrect.play();
+                }
+                this.soundplayed = true;
+            }
+        };
+        if(this.riderNum == 4){ //correct height
+            console.log('ridernum', this.riderNum);
+            if(this.testRider.x < 50){
+                if(this.soundplayed == false){
+                    this.incorrect.play();
+                }
+                this.soundplayed = true;
+            }
+            if(this.testRider.x > 650){
+                if(this.soundplayed == false){
+                    this.correct2.play();
+                }
+                this.soundplayed = true;
+            }
+        };
+        if(this.riderNum == 5){ //wrong wristband
+            console.log('ridernum', this.riderNum);
+            if(this.testRider.x < 50){
+                if(this.soundplayed == false){
+                    this.correct2.play();
+                }
+                this.soundplayed = true;
+            }
+            if(this.testRider.x > 650){
+                if(this.soundplayed == false){
+                    this.incorrect.play();
+                }
+                this.soundplayed = true;
+            }
+        };
+        if(this.riderNum == 6){ //correct wristband
+            console.log('ridernum', this.riderNum);
+            if(this.testRider.x < 50){
+                if(this.soundplayed == false){
+                    this.incorrect.play();
+                }
+                this.soundplayed = true;
+            }
+            if(this.testRider.x > 650){
+                if(this.soundplayed == false){
+                    this.correct2.play();
+                }
+                this.soundplayed = true;
+            }
+        };
         
-
-
         if(this.startdelay2 == true){
             this.delay2 += 1;
         }else{
             this.delay2 = 0;
+        }
+
+        if(this.startdirectionsTimer == true){
+            this.directionsTimer += 1;
+        }else{
+            this.directionsTimer = 0;
+        }
+
+        if(this.directionsTimer >= 200){
+            this.directions.setAlpha(1);
+        }else{
+            if(currentText.text > bossText[0]){
+                this.directions.setAlpha(0);
+            }
         }
 
         if(this.onerider == true){
@@ -459,24 +563,30 @@ class trainingday extends Phaser.Scene{
             }
 
         }else if(currentText.text == bossText[1]){
+            this.startdirectionsTimer = true;
             if(this.delay2/60 > 1.5){
-                this.logo = this.add.sprite(580, 135, 'boardwalkLogo').setAlpha(1);
+                this.logo.setAlpha(1);
                 this.logo.setScale(1.1);
                 this.startdelay2 = false;
             };
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 this.logo.setAlpha(0);
                 currentText.text = this.typewriteTextWrapped(bossText[2]);
                 this.question.play();
             }
         }else if(currentText.text == bossText[2]){
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[3]);
                 //this.sigh1.play();
                 this.boss.setFrame(1);
             }
         }else if(currentText.text == bossText[3]){
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[4]);
                 this.boss.setFrame(0);
                 this.exitSign.setAlpha(1);
@@ -498,18 +608,19 @@ class trainingday extends Phaser.Scene{
                 this.counted = false;
             }
         }else if(currentText.text == bossText[4]){
-
-            //if the third character is flung out of bounds, go to next text
+            //if character is flung out of bounds, go to next text
             if(this.riderNum == 1){
                 currentText.text = this.typewriteTextWrapped(bossText[5]);
                 this.oh1.play();
             }
         }else if (currentText.text == bossText[5]){
+            this.startdirectionsTimer = true;
             this.allowArrow.destroy();
             this.denyArrow.destroy();
             this.allowtext.destroy();
             this.denytext.destroy();
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[6]);
                 //have an arrow appear at the line
                 this.heightPole.setAlpha(1);
@@ -519,7 +630,9 @@ class trainingday extends Phaser.Scene{
             }
 
         }else if (currentText.text == bossText[6]){
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[7]);
                 //have an arrow appear at the line
                 this.arrow2 = this.add.sprite(320, 267, 'bouncingArrow');
@@ -527,7 +640,9 @@ class trainingday extends Phaser.Scene{
                 this.arrow2.play('arrow');
             }
         }else if (currentText.text == bossText[7]){
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[8]);
                 //play hmm audio
                 this.huh.play();
@@ -538,7 +653,9 @@ class trainingday extends Phaser.Scene{
                 
             }
         }else if (currentText.text == bossText[8]){
+            //this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                //this.startdirectionsTimer = false;
                 //testing player on guest heights
                 currentText.text = this.typewriteTextWrapped(bossText[9]);
                 this.boss.setFrame(0);
@@ -547,7 +664,6 @@ class trainingday extends Phaser.Scene{
                 this.counted = false;
             }
         }else if(currentText.text == bossText[9]){
-
             if(this.riderNum == 2 && this.nextrider == true){
                 this.delay += 1;
                 if(Math.round(this.delay/60) > 0.2){
@@ -595,15 +711,18 @@ class trainingday extends Phaser.Scene{
             }
 
         }else if(currentText.text == bossText[11]){
-            
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[12]);
                 this.boss.setFrame(0);
                 this.rulesSign.setFrame(0);
                 
             }
         }else if(currentText.text == bossText[12]){
+            this.startdirectionsTimer = true;
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 //let exactly 8 guests on
                 currentText.text = this.typewriteTextWrapped(bossText[13]);
                 
