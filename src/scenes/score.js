@@ -932,7 +932,11 @@ class score extends Phaser.Scene{
 
         //this.progressBar.width = 2;
 
-        this.progressBar = this.add.rectangle(450, 40, 200, 50, '0xff0000' );
+        this.progressBar = this.add.rectangle(450, 40, 200, 30, '0xff0000' );
+
+        this.progressBar.width = fired *5;
+
+
         this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
         this.firedMeter.setScale(0.9);
         this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
