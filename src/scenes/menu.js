@@ -9,10 +9,14 @@ class menu extends Phaser.Scene{
         this.load.image('background', './assets/rollercoaster_background_day1.png');
         this.load.image('menuPanel', './assets/menuPanel.png');
         this.load.image('startText', './assets/startText.png');
+        this.load.image('chaosText', './assets/chaos.png');
+        this.load.image('endlessText', './assets/endless.png');
         this.load.image('happyBoss', './assets/happyBoss.png');
         this.load.image('rainbow', './assets/rainbow.png');
         this.load.image('sparkle', './assets/sparkle.png');
-        this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('blueButton', './assets/blueButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('greenButton', './assets/greenButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 2});
 
         //loading all the audio
         this.load.audio('whoosh', './assets/whoosh.wav');
@@ -77,6 +81,14 @@ class menu extends Phaser.Scene{
         this.startText = this.add.sprite(500, 575, 'startText');
         this.startText.setScale(0.6);
 
+        this.chaosText = this.add.sprite(680, 575, 'chaosText');
+        this.chaosText.setBlendMode(Phaser.BlendModes.DARKEN);
+        this.chaosText.setScale(0.6);
+
+        this.endlessText = this.add.sprite(310, 575, 'endlessText');
+        this.endlessText.setBlendMode(Phaser.BlendModes.DARKEN);
+        this.endlessText.setScale(0.6);
+
         //if the mouse is hovering over the down button
         this.startButtonHover = false;
         //initilizing mouse
@@ -89,8 +101,8 @@ class menu extends Phaser.Scene{
         
 
         //start button glow when hovered over
-        this.startButton = this.physics.add.sprite(490, 650, 'redButton').setInteractive();
-        this.startButton.body.allowGravity =false;
+        this.startButton = this.physics.add.sprite(490, 650, 'blueButton').setInteractive();
+        this.startButton.body.allowGravity = false;
         this.startButton.setScale(0.17);
         this.startButton.body.setSize(300, 140, 0.1, 1500);
         this.startButton.on("pointerover", () => {
@@ -103,6 +115,16 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(0);
             this.startButtonHover = false;
         });
+
+        this.chaosButton = this.physics.add.sprite(670, 650, 'redButton').setInteractive();
+        this.chaosButton.body.allowGravity = false;
+        this.chaosButton.setBlendMode(Phaser.BlendModes.DARKEN);
+        this.chaosButton.setScale(0.17);
+
+        this.endlessButton = this.physics.add.sprite(300, 650, 'greenButton').setInteractive();
+        this.endlessButton.body.allowGravity = false;
+        this.endlessButton.setBlendMode(Phaser.BlendModes.DARKEN);
+        this.endlessButton.setScale(0.17);
 
 
 
