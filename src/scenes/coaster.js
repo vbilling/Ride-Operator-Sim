@@ -940,6 +940,7 @@ class coaster extends Phaser.Scene{
         if(this.coasterstart == true){
             //this.cart1.anims.play('wheels');
             //set a timer and then have scene change to score
+            //this timer causes the scene to end too early
             this.delay += 1;
             if(Math.round(this.delay/60) > 5.9){
                 this.scene.start('scoreScene');
