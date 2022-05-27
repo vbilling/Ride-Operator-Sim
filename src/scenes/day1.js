@@ -3,6 +3,7 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
+        this.load.image('day1Background', './assets/background_day1.png');
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
         this.load.image('cowhat1', './assets/cowhat1.png');
@@ -42,6 +43,16 @@ class day1 extends Phaser.Scene{
         this.load.image('phanny2', './assets/phanny2.png');
         this.load.image('gucciBelt', './assets/gucciBelt.png');
         this.load.image('tutu', './assets/tutu.png');
+        this.load.image('bikini1', './assets/bikini1.png');
+        this.load.image('bikini2', './assets/bikini2.png');
+        this.load.image('bikini3', './assets/bikini3.png');
+        this.load.image('bikini4', './assets/bikini4.png');
+        this.load.image('bikini5', './assets/bikini5.png');
+        this.load.image('swimTrunks1', './assets/swimTrunks1.png');
+        this.load.image('swimTrunks2', './assets/swimTrunks2.png');
+        this.load.image('swimTrunks3', './assets/swimTrunks3.png');
+        this.load.image('swimTrunks4', './assets/swimTrunks4.png');
+
 
         //left leg accessories
         this.load.image('ankleMoniter', './assets/ankleMoniter.png');
@@ -261,11 +272,11 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 88){ 
+        if(this.hat_chance >= 60){ //88
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
-        head_array = ['cowhat1', 'cowhat2', 'cowhat3', 'partyhat'];
+        head_array = ['cowhat1', 'cowhat2', 'cowhat3', 'partyhat', 'tiara'];
 
         if(this.hat == true){
             this.pick_hat = random(0,head_array.length - 1);
@@ -278,11 +289,11 @@ class day1 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 95){ 
+        if(this.hold_chance >= 60){ //95
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
-        hold_array = ['soda1', 'soda2', 'knife'];   
+        hold_array = ['soda1', 'soda2', 'knife', 'spatula'];   
 
         if(this.hold == true){
             this.pick_hold = random(0,hold_array.length - 1);
@@ -313,7 +324,7 @@ class day1 extends Phaser.Scene{
         this.face_chance = random(0, 100);
         //console.log('this.face_chance', this.face_chance);
         this.face = false;
-        if(this.face_chance >= 90){
+        if(this.face_chance >= 60){
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
@@ -329,11 +340,12 @@ class day1 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 70){ //95
+        if(this.waist_chance >= 60){ //95
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        waist_array = ['phanny1', 'phanny2', 'gucciBelt', 'tutu'];
+        waist_array = ['phanny1', 'phanny2', 'gucciBelt', 'tutu', 'bikini1', 'bikini2', 'bikini3', 'bikini4', 'bikini5', 
+        'swimTrunks1', 'swimTrunks2', 'swimTrunks3', 'swimTrunks4'];
 
         if(this.waist == true){
             this.pick_waist = random(0,waist_array.length - 1);  
@@ -362,7 +374,7 @@ class day1 extends Phaser.Scene{
         this.neck_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.neck = false;
-        if(this.neck_chance >= 95){ 
+        if(this.neck_chance >= 60){  //95
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)

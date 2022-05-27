@@ -46,7 +46,7 @@ class load extends Phaser.Scene{
         
 
 
-        this.scene.start("menuScene");
+        this.scene.start("winScene");
 
     }
 

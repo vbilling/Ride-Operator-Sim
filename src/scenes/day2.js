@@ -42,6 +42,15 @@ class day2 extends Phaser.Scene{
             this.load.image('phanny2', './assets/phanny2.png');
             this.load.image('gucciBelt', './assets/gucciBelt.png');
             this.load.image('tutu', './assets/tutu.png');
+            this.load.image('bikini1', './assets/bikini1.png');
+            this.load.image('bikini2', './assets/bikini2.png');
+            this.load.image('bikini3', './assets/bikini3.png');
+            this.load.image('bikini4', './assets/bikini4.png');
+            this.load.image('bikini5', './assets/bikini5.png');
+            this.load.image('swimTrunks1', './assets/swimTrunks1.png');
+            this.load.image('swimTrunks2', './assets/swimTrunks2.png');
+            this.load.image('swimTrunks3', './assets/swimTrunks3.png');
+            this.load.image('swimTrunks4', './assets/swimTrunks4.png');
     
             //left leg accessories
             this.load.image('ankleMoniter', './assets/ankleMoniter.png');
@@ -311,7 +320,8 @@ class day2 extends Phaser.Scene{
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        waist_array = ['phanny1', 'phanny2', 'gucciBelt', 'tutu'];
+        waist_array = ['phanny1', 'phanny2', 'gucciBelt', 'tutu', 'bikini1', 'bikini2', 'bikini3', 'bikini4', 'bikini5', 
+        'swimTrunks1', 'swimTrunks2', 'swimTrunks3', 'swimTrunks4'];
 
         if(this.waist == true){
             this.pick_waist = random(0,waist_array.length - 1);  

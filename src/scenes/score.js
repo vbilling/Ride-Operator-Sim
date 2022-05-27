@@ -1015,7 +1015,7 @@ class score extends Phaser.Scene{
                 };
                 //if you are done with day 3 and not fired!
                 if(day3Done == true && fired < 100){
-                    this.scene.start('winScene');
+                    this.scene.start('winIntroScene');
                     this.buttonPress.play();
                 }
             }, this)

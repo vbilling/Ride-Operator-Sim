@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ load, menu, lose, trainingday, trainingIntro, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, win], 
+    scene: [ load, menu, lose, trainingday, trainingIntro, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, win, winIntro],
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -78,6 +78,14 @@ var points2;
 var graphics;
 var followers;
 var size = 32;
+
+var follower2;
+var path2;
+var graphics2;
+
+var follower3;
+var path3;
+var graphics3;
 
 //keeping track of what day it is
 let menuDone = false;
