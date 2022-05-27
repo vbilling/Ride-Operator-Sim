@@ -13,6 +13,7 @@ class win extends Phaser.Scene{
         this.load.image('menuButton', './assets/menuButton.png');
         this.load.image('broText', './assets/broText.png');
         this.load.image('bdayBackground', './assets/bdayBackground.png');
+        this.load.image('downArrow', './assets/downArrow.png');
         
 
     }
@@ -48,6 +49,25 @@ class win extends Phaser.Scene{
 
         this.broText = this.add.sprite(710, 370, 'broText');
         this.broText.setAlpha(0);
+
+        let textConfig = {
+            fontFamily: 'Avenir',
+            fontSize: '30px',
+            color: 'white',
+            align: 'center',
+            stroke: 'black', //#526aba
+            strokeThickness: 3,
+            padding: {
+                top: 5,
+                bottom: 4
+            },
+            //fixedWidth: 100
+        };
+
+        this.text1 = this.add.text(180, 220, 'Press to open', textConfig);
+        this.downArrow = this.add.sprite(270, 330, 'downArrow');
+        this.downArrow.setScale(0.5);
+        this.downArrow.setAngle(180);
 
 
         //koala jumping up and down path
@@ -111,7 +131,6 @@ class win extends Phaser.Scene{
     update(){
 
         if(this.pointer2.isDown && this.pointerOver == true){
-            console.log('oh yeah');
             this.falsePresent.setAlpha(0);
             this.present2 = this.add.follower(this.line3, 20, 50, 'present2').setOrigin(0,0);
             this.present2.startFollow({
@@ -125,6 +144,8 @@ class win extends Phaser.Scene{
             this.glowing.setAlpha(1);
             this.menuButton.setAlpha(1);
             this.broText.setAlpha(1);
+            this.text1.setAlpha(0);
+            this.downArrow.setAlpha(0)
 
         }; 
         if(this.pointer2.isDown && this.menuPointer == true){

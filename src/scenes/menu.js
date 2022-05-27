@@ -163,7 +163,7 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(2);
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("day1Scene");
+            this.scene.start("trainingIntroScene");
         }; 
     }
 }

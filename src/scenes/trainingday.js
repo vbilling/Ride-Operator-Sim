@@ -69,7 +69,7 @@ class trainingday extends Phaser.Scene{
         trainingDone = true;
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
         this.textbox = this.add.sprite(0, 0, 'textBubble').setOrigin(0, 0);
-        this.rulesSign = this.add.sprite(15, -175, 'rulesSign2').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -100, 'rulesSign2').setOrigin(0, 0);
         this.rulesSign.setAlpha(0);
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
@@ -288,7 +288,7 @@ class trainingday extends Phaser.Scene{
             "Ugh, now where is that pimply teenager I have \nto train.",
             "OH there you are! Welcome to your new job \nas a ride operator at",
             "What was that mumbling about buying your \nlittle brother a birthday present? Yeah I \ndon't care...",
-            "...but I guess you should be able to afford \nit after                     of work. That is, if you \nmanage not to get fired.",
+            "...but I guess you should be able to afford \nit after three days of work. That is, if you \nmanage not to get fired.",
             "Lets get started. Use your mouse to fling \nguests RIGHT to allow them to ride and \nLEFT to deny them.",
             "Good job.",
             "Guests must be taller than this line...",
@@ -307,8 +307,8 @@ class trainingday extends Phaser.Scene{
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
         this.logo = this.add.sprite(580, 135, 'boardwalkLogo').setAlpha(0);
-        this.threeDays = this.add.sprite(-30, 0, 'threeDays').setOrigin(0,0);
-        this.threeDays.setAlpha(0);
+        //this.threeDays = this.add.sprite(-30, 0, 'threeDays').setOrigin(0,0);
+        //this.threeDays.setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
 
         this.ugh1.play();
@@ -586,11 +586,11 @@ class trainingday extends Phaser.Scene{
         }else if(currentText.text == bossText[3]){
             this.startdirectionsTimer = true;
             if(this.delay2/60 > 0){
-                this.threeDays.setAlpha(1);
+                //this.threeDays.setAlpha(1);
                 this.startdelay2 = false;
             };
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                this.threeDays.setAlpha(0);
+                //this.threeDays.setAlpha(0);
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[4]);
                 this.boss.setFrame(0);

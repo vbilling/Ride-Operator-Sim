@@ -3,7 +3,7 @@ class day3 extends Phaser.Scene{
         super("day3Scene");
     }
     preload(){
-        if(day1Done == false && day2DOne == false){
+        if(day1Done == false && day2Done == false){
             this.load.image('cowhat1', './assets/cowhat1.png');
             this.load.image('cowhat2', './assets/cowhat2.png');
             this.load.image('cowhat3', './assets/cowhat3.png');
@@ -113,7 +113,8 @@ class day3 extends Phaser.Scene{
         };
         //displaying the timer
         //console.log("game timer", this.gametimer);
-        this.timertext = this.add.text(700, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext = this.add.text(860, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.wristbandCheck = this.add.image(950, 0, 'wristband3');
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
         //the riders are reset 
@@ -314,7 +315,7 @@ class day3 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 80){ 
+        if(this.hold_chance >= 80){ //80 
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays

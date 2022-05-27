@@ -137,7 +137,8 @@ class day1 extends Phaser.Scene{
         };
         //displaying the timer
         console.log("game timer", this.gametimer);
-        this.timertext = this.add.text(700, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext = this.add.text(860, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.wristbandCheck = this.add.image(950, 0, 'wristband1');
 
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
@@ -325,7 +326,7 @@ class day1 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 60){ //95
+        if(this.waist_chance >= 70){ //95
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)

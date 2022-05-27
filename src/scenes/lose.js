@@ -3,18 +3,14 @@ class lose extends Phaser.Scene{
         super("loseScene");
     }
     preload(){
-        this.load.image('redBackground', './assets/redBackground2.png');
+        this.load.image('redBackground3', './assets/redBackground2.png');
         this.load.image('firedText', './assets/firedText.png');
         this.load.spritesheet('startoverButton', './assets/startoverButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        if(trainingDone == false){
-            this.load.image('firedBoss', './assets/firedBoss.png');
-              
-        }
-
+        this.load.image('firedBoss', './assets/firedBoss.png');
     }
     create(){
         this.pointer = this.input.activePointer;
-        this.background = this.add.tileSprite(0, 0, 960, 720, 'redBackground').setOrigin(0, 0);
+        this.background3 = this.add.tileSprite(0, 0, 960, 720, 'redBackground3').setOrigin(0, 0);
         this.firedboss = this.add.sprite(450, 510, 'firedBoss');
         this.firedText = this.add.sprite(0, 0, 'firedText').setOrigin(0,0);
         this.startoverButton = this.add.sprite(850, 670, 'startoverButton').setInteractive();
@@ -24,8 +20,6 @@ class lose extends Phaser.Scene{
         this.firedboss.setScale(2); 
         this.deathmetal = this.sound.add('deathmetal');
         this.deathmetal.play();
-
-
 
     }
     update(){

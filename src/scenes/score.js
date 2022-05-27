@@ -449,19 +449,19 @@ class score extends Phaser.Scene{
                     //make them bleeding
                     //bubble trail
                     //myParticleSystem = myParticleManager.createEmitter
-                    this.bleed = this.add.particles('blood');
-                    this.bleeding = this.bleed.createEmitter({ 
-                        x: 30,
-                        y: 50,
-                        lifespan: { min: 20, max: 1500},
-                        speed: { min: 5, max: 10},
-                        gravityY: 100,
-                        frequency: 0.001,
-                        quantity: 0.001,
-                        scale: { start: 0.02, end: 0.004},
-                        follow: this.accessory,
-                    });
-                    this.bleed.setDepth(2);
+                    // this.bleed = this.add.particles('blood');
+                    // this.bleeding = this.bleed.createEmitter({ 
+                    //     x: 30,
+                    //     y: 50,
+                    //     lifespan: { min: 20, max: 1500},
+                    //     speed: { min: 5, max: 10},
+                    //     gravityY: 100,
+                    //     frequency: 0.001,
+                    //     quantity: 0.001,
+                    //     scale: { start: 0.02, end: 0.004},
+                    //     follow: this.accessory,
+                    // });
+                    //this.bleed.setDepth(2);
                 };
                 if(allRiders_array[i][a] == 'spatula'){
                     //name of accessory
@@ -477,19 +477,19 @@ class score extends Phaser.Scene{
                     //make them bleeding
                     //bubble trail
                     //myParticleSystem = myParticleManager.createEmitter
-                    this.bleed = this.add.particles('blood');
-                    this.bleeding = this.bleed.createEmitter({ 
-                        x: 30,
-                        y: 50,
-                        lifespan: { min: 20, max: 1500},
-                        speed: { min: 5, max: 10},
-                        gravityY: 100,
-                        frequency: 0.001,
-                        quantity: 0.001,
-                        scale: { start: 0.02, end: 0.004},
-                        follow: this.accessory,
-                    });
-                    this.bleed.setDepth(2);
+                    // this.bleed = this.add.particles('blood');
+                    // this.bleeding = this.bleed.createEmitter({ 
+                    //     x: 30,
+                    //     y: 50,
+                    //     lifespan: { min: 20, max: 1500},
+                    //     speed: { min: 5, max: 10},
+                    //     gravityY: 100,
+                    //     frequency: 0.001,
+                    //     quantity: 0.001,
+                    //     scale: { start: 0.02, end: 0.004},
+                    //     follow: this.accessory,
+                    // });
+                    //this.bleed.setDepth(2);
                 };
                 if(allRiders_array[i][a] == 'scissors'){
                     //name of accessory
@@ -505,6 +505,21 @@ class score extends Phaser.Scene{
                     //make them bleeding
                     //bubble trail
                     //myParticleSystem = myParticleManager.createEmitter
+                    // this.bleed = this.add.particles('blood');
+                    // this.bleeding = this.bleed.createEmitter({ 
+                    //     x: 30,
+                    //     y: 50,
+                    //     lifespan: { min: 20, max: 1500},
+                    //     speed: { min: 5, max: 10},
+                    //     gravityY: 100,
+                    //     frequency: 0.001,
+                    //     quantity: 0.001,
+                    //     scale: { start: 0.02, end: 0.004},
+                    //     follow: this.accessory,
+                    // });
+                    //this.bleed.setDepth(2);
+                };
+                if(allRiders_array[i][a] == 'scissors' ||allRiders_array[i][a] == 'spatula'||allRiders_array[i][a] == 'knife'){
                     this.bleed = this.add.particles('blood');
                     this.bleeding = this.bleed.createEmitter({ 
                         x: 30,
@@ -517,8 +532,9 @@ class score extends Phaser.Scene{
                         scale: { start: 0.02, end: 0.004},
                         follow: this.accessory,
                     });
-                    this.bleed.setDepth(2);
-                };
+                    //this.bleed.setDepth(2);
+
+                }
                 if(allRiders_array[i][a] == 'wristband1'){ //is the day 1 wristband
                     if(day2Done == true || day3Done == true){
                         //name of accessory
@@ -667,16 +683,20 @@ class score extends Phaser.Scene{
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(-100, 640, 'coasterCart', 0)
         this.cart1.setScale(this.coasterscale);
+        //this.cart1.setDepth(2);
         this.cart1.body.allowGravity = false;
         this.cart2 = this.physics.add.sprite(-333, 640, 'coasterCart', 0)
         this.cart2.setScale(this.coasterscale);
         this.cart2.body.allowGravity = false;
+        //this.cart2.setDepth(2);
         this.cart3 = this.physics.add.sprite(-566, 640, 'coasterCart', 0)
         this.cart3.setScale(this.coasterscale);
         this.cart3.body.allowGravity = false;
+        //this.cart3.setDepth(2);
         this.cart4 = this.physics.add.sprite(-799, 640, 'coasterCart', 0)
         this.cart4.setScale(this.coasterscale);
         this.cart4.body.allowGravity = false;
+        //this.cart4.setDepth(2);
 
         console.log('Too short:', tooShort);
         console.log('Too Tall:', this.tooTall);
@@ -958,12 +978,10 @@ class score extends Phaser.Scene{
             this.cart3.body.setVelocityX(490);
             this.cart4.body.setVelocityX(490);
 
-
             //set velocity of bodies
-            
-            
             for(let b = 0; b < (riderSprite_array2.length); b++){
                 riderSprite_array2[b].body.setVelocityX(490);
+                //riderSprite_array2[b].setDepth(1.9);
                 //and make them change to surprised face unless headless
                 if(riderSize_array[b] == "extra large"){
                     riderSprite_array2[b].setFrame(2);
@@ -975,6 +993,7 @@ class score extends Phaser.Scene{
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){
                 accessorySprite_array2[w].body.setVelocityX(490);
+                //accessorySprite_array2[w].setDepth(1.9);
             };
         }else{
             this.cart1.body.setVelocityX(0);
