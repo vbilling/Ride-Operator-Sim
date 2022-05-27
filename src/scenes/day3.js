@@ -103,7 +103,7 @@ class day3 extends Phaser.Scene{
             //fixedWidth: 100
         };
         //displaying the timer
-        console.log("game timer", this.gametimer);
+        //console.log("game timer", this.gametimer);
         this.timertext = this.add.text(700, 40, this.gametimer, gametimerConfig).setOrigin(0);
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;

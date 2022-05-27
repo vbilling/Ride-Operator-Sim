@@ -329,7 +329,7 @@ class day1 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 95){
+        if(this.waist_chance >= 70){ //95
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)

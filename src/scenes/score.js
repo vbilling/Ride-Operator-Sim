@@ -370,7 +370,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-2);
+                    first_array.push(-4);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
@@ -381,7 +381,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-2);
+                    first_array.push(-4);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
@@ -392,7 +392,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-2);
+                    first_array.push(-4);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
@@ -403,7 +403,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-2);
+                    first_array.push(-4);
                     //phrase to say
                     first_array.push('No hats allowed...even if its your birthday');
                     master_array.push(first_array);
@@ -414,7 +414,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-2);
+                    first_array.push(-4);
                     //phrase to say
                     first_array.push('No hats allowed...');
                     master_array.push(first_array);
@@ -427,7 +427,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('Soda');
                     //point value
-                    first_array.push(-2);
+                    first_array.push(-4);
                     //phrase to say
                     first_array.push('No drinks allowed!!');
                     master_array.push(first_array);
@@ -439,7 +439,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-5); //-5
+                    first_array.push(-6); //-5
                     //phrase to say
                     first_array.push('OH NO A KNIFE');
                     master_array.push(first_array);
@@ -467,7 +467,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-5); //-5
+                    first_array.push(-6); //-5
                     //phrase to say
                     first_array.push('OH NO A SPATULA');
                     master_array.push(first_array);
@@ -495,7 +495,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-5); //-5
+                    first_array.push(-6); //-5
                     //phrase to say
                     first_array.push('OH NO SCISSORS');
                     master_array.push(first_array);
@@ -576,7 +576,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('criminal');
                         //point value
-                        first_array.push(-6);
+                        first_array.push(-7);
                         //phrase to say
                         first_array.push('You let a criminal ride');
                         master_array.push(first_array);
@@ -589,7 +589,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('criminal');
                         //point value
-                        first_array.push(-6);
+                        first_array.push(-7);
                         //phrase to say
                         first_array.push('You let a criminal ride');
                         master_array.push(first_array);
@@ -602,7 +602,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('corndog');
                         //point value
-                        first_array.push(-2);
+                        first_array.push(-4);
                         //phrase to say
                         first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
@@ -615,7 +615,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('donut');
                         //point value
-                        first_array.push(-2);
+                        first_array.push(-4);
                         //phrase to say
                         first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
@@ -628,7 +628,7 @@ class score extends Phaser.Scene{
             //console.log('this.customerHeight', this.customerHeight);
             if(this.customerHeight < 0.25){ 
                 first_array.push('Too short');
-                first_array.push(-5);
+                first_array.push(-7);
                 first_array.push('A rider was too short and fell out of the ride.');
                 master_array.push(first_array);
                 first_array = [];
@@ -637,7 +637,7 @@ class score extends Phaser.Scene{
             if(this.customerHeight > 0.43){
                 this.tooTall += 1;   
                 first_array.push('Too tall');
-                first_array.push(-5);
+                first_array.push(-7);
                 first_array.push('A rider was too tall and lost their head');
                 master_array.push(first_array);
                 first_array = [];   
