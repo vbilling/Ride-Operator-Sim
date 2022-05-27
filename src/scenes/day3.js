@@ -70,7 +70,7 @@ class day3 extends Phaser.Scene{
     create(){
         day3Done = true;
         this.add.tileSprite(0,0, 960, 720, 'day3Background').setOrigin(0,0);
-        this.rulesSign = this.add.sprite(0, 0, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -175, 'rulesSign').setOrigin(0, 0);
         this.day3Title = this.add.sprite(0, 0, 'day3Title').setOrigin(0,0);
         //temporary instructions text
         // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
@@ -237,23 +237,7 @@ class day3 extends Phaser.Scene{
             this.head_accessory = this.add.sprite(this.p1.x, this.p1.y +8, head_array[this.pick_hat], 0);
             this.head_accessory.setScale(this.scale);
         };
-        
-        //held accessories
-        this.hold_chance = random(0, 100);
-        //console.log('this.hold_chance', this.hold_chance);
-        this.hold = false;
-        if(this.hold_chance >= 80){ 
-            this.hold = true;
-        }
-        //then put all accessories in the aproporate arrays
-        hold_array = ['soda1', 'soda2', 'knife', 'corndog', 'donut', 'scissors', 'spatula'];
-
-        if(this.hold == true){
-            this.pick_hold = random(0,hold_array.length - 1);
-            riderAccessories_array.push(hold_array[this.pick_hold]);
-            this.hold_accessory = this.add.sprite(this.p1.x, this.p1.y +8, hold_array[this.pick_hold], 0);
-            this.hold_accessory.setScale(this.scale);
-        };
+    
 
         //wrist accessories
         this.wrist_chance = random(0, 100);
@@ -324,6 +308,23 @@ class day3 extends Phaser.Scene{
             riderAccessories_array.push(waist_array[this.pick_waist]);  
             this.waist_accessory = this.add.sprite(this.p1.x, this.p1.y, waist_array[this.pick_waist], 0);
             this.waist_accessory.setScale(this.scale);
+        };
+
+        //held accessories
+        this.hold_chance = random(0, 100);
+        //console.log('this.hold_chance', this.hold_chance);
+        this.hold = false;
+        if(this.hold_chance >= 80){ 
+            this.hold = true;
+        }
+        //then put all accessories in the aproporate arrays
+        hold_array = ['soda1', 'soda2', 'knife', 'corndog', 'donut', 'scissors', 'spatula'];
+
+        if(this.hold == true){
+            this.pick_hold = random(0,hold_array.length - 1);
+            riderAccessories_array.push(hold_array[this.pick_hold]);
+            this.hold_accessory = this.add.sprite(this.p1.x, this.p1.y +8, hold_array[this.pick_hold], 0);
+            this.hold_accessory.setScale(this.scale);
         };
 
         //left leg accessory

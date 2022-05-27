@@ -42,11 +42,7 @@ class load extends Phaser.Scene{
         this.load.audio('pop', './assets/pop.wav');
         this.load.audio('deathmetal', './assets/deathmetal.wav');
         
-
-        
-
-
-        this.scene.start("winScene");
+        this.scene.start("menuScene");
 
     }
 

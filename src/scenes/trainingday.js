@@ -28,7 +28,7 @@ class trainingday extends Phaser.Scene{
         this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
-        this.load.spritesheet('rulesSign2', './assets/rulesSign.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
+        this.load.image('rulesSign2', './assets/rulesSign.png');
         this.load.spritesheet('allowArrow', './assets/allowArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
         this.load.spritesheet('denyArrow', './assets/denyArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
 
@@ -69,7 +69,7 @@ class trainingday extends Phaser.Scene{
         trainingDone = true;
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
         this.textbox = this.add.sprite(0, 0, 'textBubble').setOrigin(0, 0);
-        this.rulesSign = this.add.sprite(0, 0, 'rulesSign2').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -175, 'rulesSign2').setOrigin(0, 0);
         this.rulesSign.setAlpha(0);
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
@@ -297,7 +297,8 @@ class trainingday extends Phaser.Scene{
             "Lets practice checking height. Fling these \n guests accordingly.",
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
-            "Practice as much as you need, then click \nready. The ready button will appear \n when you've let 8 riders on.",
+            //"Practice as much as you need, then click \nready. The ready button will appear \n when you've let 8 riders on.",
+            "Alright you should be ready now!",
             "See you tomorrow at your first shift!"
         ];
 
@@ -729,24 +730,25 @@ class trainingday extends Phaser.Scene{
                 this.startdirectionsTimer = false;
                 //let exactly 8 guests on
                 currentText.text = this.typewriteTextWrapped(bossText[13]);
+                this.readyButton.setAlpha(1);
+                this.pop.play();
                 
             }
         }else if(currentText.text == bossText[13]){
             //ready button appears
-            this.readyButton.setAlpha(1);
-            this.pop.play();
+            //this.pop.play();
             if(this.pointer.isDown && this.readyButtonHover == true){
                 this.scene.start("day1IntroScene");
                 //this.buttonPress.play();
             }; 
-            if(this.nextrider == true){
-                this.delay += 1;
-                if(Math.round(this.delay/60) > 0.2){
-                    this.newCharacters();
-                    this.nextrider = false;
-                };
+            // if(this.nextrider == true){
+            //     this.delay += 1;
+            //     if(Math.round(this.delay/60) > 0.2){
+            //         this.newCharacters();
+            //         this.nextrider = false;
+            //     };
 
-            }
+            // }
         }
 
     
