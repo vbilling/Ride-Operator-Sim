@@ -349,7 +349,7 @@ class day3 extends Phaser.Scene{
         this.neck_chance = random(0, 100);
         //console.log('this.leg_chance', this.leg_chance);
         this.neck = false;
-        if(this.neck_chance >= 70){
+        if(this.neck_chance >= 88){
             this.neck = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
