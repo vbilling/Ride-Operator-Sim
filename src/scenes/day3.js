@@ -14,10 +14,10 @@ class day3 extends Phaser.Scene{
             this.load.image('soda1', './assets/soda1.png');
             this.load.image('soda2', './assets/soda2.png');
             this.load.image('knife', './assets/knife.png');
-            this.load.image('corndog', '/assets/corndog.png');
-            this.load.image('donut', '/assets/donut.png');
-            this.load.image('scissors', '/assets/scissors.png');
-            this.load.image('spatula', '/assets/spatula.png');
+            this.load.image('corndog', './assets/corndog.png');
+            this.load.image('donut', './assets/donut.png');
+            this.load.image('scissors', './assets/scissors.png');
+            this.load.image('spatula', './assets/spatula.png');
     
             //left wrist accessories
             this.load.image('wristband1', './assets/wristband1.png');
