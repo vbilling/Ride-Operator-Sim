@@ -10,19 +10,25 @@ class win extends Phaser.Scene{
         this.load.image('body', './assets/speck.png');
         this.load.image('glowing', './assets/glowing.png');
         this.load.image('birthdayText', './assets/birthdayText.png');
+        this.load.image('menuButton', './assets/menuButton.png');
+        this.load.image('broText', './assets/broText.png');
+        this.load.image('bdayBackground', './assets/bdayBackground.png');
+        
 
     }
     create(){
+        this.add.image(0,0, 'bdayBackground').setOrigin(0,0);
         this.pointer2 = this.input.activePointer;
 
         this.pointerOver = false;
+        this.menuPointer = false;
 
-        this.present1 = this.add.sprite(-10, 50, 'present1').setOrigin(0,0);
-        this.presentBody = this.physics.add.sprite(250, 450, 'body').setInteractive();
+        this.present1 = this.add.sprite(20, 50, 'present1').setOrigin(0,0);
+        this.presentBody = this.physics.add.sprite(270, 450, 'body').setInteractive();
         this.presentBody.setAlpha(1);
         this.presentBody.body.allowGravity = false;
         this.presentBody.body.setSize(350, 100); //0.1, 1500
-        this.falsePresent = this.add.sprite(-10, 50, 'present2').setOrigin(0,0);
+        this.falsePresent = this.add.sprite(20, 50, 'present2').setOrigin(0,0);
 
         this.birthdayText = this.add.sprite(0, 0, 'birthdayText').setOrigin(0,0);
 
@@ -30,8 +36,18 @@ class win extends Phaser.Scene{
         this.koala3.setFrame(1);
         this.koala3.setAlpha(0);
 
-        this.glowing = this.add.sprite(10, 220, 'glowing').setOrigin(0,0);
+        this.glowing = this.add.sprite(30, 220, 'glowing').setOrigin(0,0);
         this.glowing.setAlpha(0);
+
+        this.menuButton = this.physics.add.sprite(850, 650, 'menuButton');
+        this.menuButton.body.allowGravity = false;
+        this.menuButton.setScale(0.2);
+        this.menuButton.body.setSize(870, 300);
+        this.menuButton.setInteractive();
+        this.menuButton.setAlpha(0);
+
+        this.broText = this.add.sprite(710, 370, 'broText');
+        this.broText.setAlpha(0);
 
 
         //koala jumping up and down path
@@ -60,7 +76,7 @@ class win extends Phaser.Scene{
         follower3 = { t: 0, vec: new Phaser.Math.Vector2() };
 
         //  The curves do not have to be joined
-        this.line3 = new Phaser.Curves.Line([ 200, 500, 200, 300 ]);
+        this.line3 = new Phaser.Curves.Line([ 230, 500, 230, 350 ]);
         path3 = this.add.path();
         path3.add(this.line3);
         //this.present2 = this.add.follower(line3, -10, 50, 'present2').setOrigin(0,0);
@@ -72,6 +88,13 @@ class win extends Phaser.Scene{
         this.presentBody.on("pointerout", () => {
             this.pointerOver = false;
         });
+        this.menuButton.on("pointerover", () => {
+            this.menuPointer = true;
+        });
+        this.menuButton.on("pointerout", () => {
+            this.menuPointer = false;
+        });
+
         this.anims.create({
             key: 'eyes',
             frames: this.anims.generateFrameNames('koala', {
@@ -90,7 +113,7 @@ class win extends Phaser.Scene{
         if(this.pointer2.isDown && this.pointerOver == true){
             console.log('oh yeah');
             this.falsePresent.setAlpha(0);
-            this.present2 = this.add.follower(this.line3, -10, 50, 'present2').setOrigin(0,0);
+            this.present2 = this.add.follower(this.line3, 20, 50, 'present2').setOrigin(0,0);
             this.present2.startFollow({
                 duration: 700,
                 yoyo: false,
@@ -100,7 +123,12 @@ class win extends Phaser.Scene{
             this.koala3.setAlpha(1);
             this.koala3.play('eyes');
             this.glowing.setAlpha(1);
+            this.menuButton.setAlpha(1);
+            this.broText.setAlpha(1);
 
+        }; 
+        if(this.pointer2.isDown && this.menuPointer == true){
+            this.scene.start('menuScene');
         }; 
         // graphics2.clear();
         // graphics2.lineStyle(2, 0xffffff, 1);

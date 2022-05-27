@@ -32,7 +32,6 @@ class menu extends Phaser.Scene{
 
     }
     create(){
-        menuDone = true;
         game.settings = {
             mass:1,
             position:[0,3],
@@ -141,7 +140,9 @@ class menu extends Phaser.Scene{
                 repeat: -1,
                 yoyo: false
         });
-        this.startButton.play('blinking');
+        if(menuDone == false){
+            this.startButton.play('blinking');
+        }
 
         this.startButton.on("pointerover", () => {
             //will tell code in update to go to next scene
@@ -151,6 +152,8 @@ class menu extends Phaser.Scene{
         this.startButton.on("pointerout", () => {
             this.startButtonHover = false;
         });
+
+        menuDone = true;
 
 
 
