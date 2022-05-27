@@ -75,7 +75,7 @@ class day2 extends Phaser.Scene{
         };
         //making a ground for character to fall on
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         //how many customers you let on the ride this round
         ridingCustomers = 0;
         //how many customers you dont let on a ride this round
@@ -83,7 +83,7 @@ class day2 extends Phaser.Scene{
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
-        this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
         this.exitSign.setScale(0.4);
         this.enterSign.setScale(0.4);
 
@@ -120,6 +120,8 @@ class day2 extends Phaser.Scene{
         this.oceanWaves.play();
         this.oceanWaves.loop = true;
         this.oceanWaves.volume = 0.3;
+
+        this.ground = this.add.sprite(480, 390, 'ground');
         
         //spawn the first character (function is below)
         this.newCharacter();
@@ -186,7 +188,7 @@ class day2 extends Phaser.Scene{
             return Math.random() * (mx - mn) + mn
         }
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         //clear the accessories array for the new rider
         riderAccessories_array = []
         //respawn delay is reset

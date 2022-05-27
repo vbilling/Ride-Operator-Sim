@@ -107,7 +107,7 @@ class menu extends Phaser.Scene{
         this.startButton.setScale(0.17);
         this.startButton.body.setSize(300, 140, 0.1, 1500);
         this.startButton.on("pointerover", () => {
-            this.startButton.setFrame(2);
+            this.startButton.setFrame(1);
             this.startButton.stop();
             //will tell code in update to go to next scene
             this.startButtonHover = true;
@@ -157,6 +157,7 @@ class menu extends Phaser.Scene{
     }
     update(){
         if(this.pointer.isDown && this.startButtonHover == true){
+            this.startButton.setFrame(2);
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
             this.scene.start("trainingIntroScene");

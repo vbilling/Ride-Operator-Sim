@@ -79,7 +79,7 @@ class trainingday extends Phaser.Scene{
         this.enterSign.setScale(0.4);
         this.enterSign.setAlpha(0);
 
-        this.heightPole = this.add.sprite(0, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
         this.heightPole.setAlpha(0);
 
         this.boss = this.add.sprite(180, 90, 'boss');
@@ -106,7 +106,8 @@ class trainingday extends Phaser.Scene{
         this.pop = this.sound.add('pop');
 
 
-        this.ground = this.add.sprite(400, 695, 'ground');
+        this.ground = this.add.sprite(480, 390, 'ground');
+        //this.ground.body.allowGravity = false;
         //number to keep track of which test rider we are on
         this.riderNum = 0;
         this.delay = 0;
@@ -335,7 +336,7 @@ class trainingday extends Phaser.Scene{
     rider1(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'cat2', 0).setInteractive();
         this.testRider.setScale(0.35);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
@@ -346,7 +347,7 @@ class trainingday extends Phaser.Scene{
     rider4(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'cat1', 0).setInteractive();
         this.testRider.setScale(0.2);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
@@ -356,7 +357,7 @@ class trainingday extends Phaser.Scene{
     rider5(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'bear1', 0).setInteractive();
         this.testRider.setScale(0.47);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
@@ -366,7 +367,7 @@ class trainingday extends Phaser.Scene{
     rider6(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'cat1', 0).setInteractive();
         this.testRider.setScale(0.3);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
@@ -376,7 +377,7 @@ class trainingday extends Phaser.Scene{
     rider7(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'duckyellow', 0).setInteractive();
         this.testRider.setScale(0.35);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
@@ -386,7 +387,7 @@ class trainingday extends Phaser.Scene{
     rider9(){
         this.delay = 0;
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         this.testRider = this.physics.add.sprite(halfscreenwidth, 400, 'duckblue', 0).setInteractive();
         this.testRider.setScale(0.35);
         this.testRider.body.setSize(400, 990, 0.1, 1500);
@@ -401,7 +402,7 @@ class trainingday extends Phaser.Scene{
             return Math.random() * (mx - mn) + mn
         }
         let platforms = this.physics.add.staticGroup();
-        platforms.create(400, 695, 'ground');
+        platforms.create(480, 1020, 'ground');
         //respawn delay is reset
         this.delay = 0;
         //set the scale of them which will affect height
@@ -627,7 +628,7 @@ class trainingday extends Phaser.Scene{
                 currentText.text = this.typewriteTextWrapped(bossText[6]);
                 //have an arrow appear at the line
                 this.heightPole.setAlpha(1);
-                this.arrow1 = this.add.sprite(320, 442, 'bouncingArrow');
+                this.arrow1 = this.add.sprite(337, 440, 'bouncingArrow');
                 this.arrow1.setScale(0.2);
                 this.arrow1.play('arrow');
             }
@@ -638,7 +639,7 @@ class trainingday extends Phaser.Scene{
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[7]);
                 //have an arrow appear at the line
-                this.arrow2 = this.add.sprite(320, 267, 'bouncingArrow');
+                this.arrow2 = this.add.sprite(337, 265, 'bouncingArrow');
                 this.arrow2.setScale(0.2);
                 this.arrow2.play('arrow');
             }
@@ -718,7 +719,6 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[12]);
-                this.pop.play();
                 this.boss.setFrame(0);
                 this.rulesSign.setFrame(0);
                 
@@ -734,6 +734,7 @@ class trainingday extends Phaser.Scene{
         }else if(currentText.text == bossText[13]){
             //ready button appears
             this.readyButton.setAlpha(1);
+            this.pop.play();
             if(this.pointer.isDown && this.readyButtonHover == true){
                 this.scene.start("day1IntroScene");
                 //this.buttonPress.play();
