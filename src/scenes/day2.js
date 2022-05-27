@@ -252,7 +252,7 @@ class day2 extends Phaser.Scene{
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
-        wrist_array = ['watch', 'wristband2', 'wristband2', 'wristband2', 'wristband2', 'wristband3', 'wristband2', 'wristband2','wristband2'];
+        wrist_array = ['watch', 'wristband2', 'wristband2', 'wristband2', 'wristband2', 'wristband2', 'wristband2', 'wristband2', 'wristband2','wristband3', 'wristband2', 'wristband2','wristband2'];
 
         if(this.wrist == true){
             this.pick_wrist = random(0,wrist_array.length - 1);
@@ -267,7 +267,7 @@ class day2 extends Phaser.Scene{
         this.wrist2_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist2 = false;
-        if(this.wrist2_chance >= 90){
+        if(this.wrist2_chance >= 97){
             this.wrist2 = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -301,7 +301,7 @@ class day2 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 60){
+        if(this.waist_chance >= 70){
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -319,7 +319,7 @@ class day2 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 80){ //85
+        if(this.hold_chance >= 85){ //85
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
