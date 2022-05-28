@@ -891,7 +891,7 @@ class score extends Phaser.Scene{
             delay: 13400,
             callback: ()=>{
                 this.thud.play();
-                this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+                this.firednumber.setAlpha(1);
             },
             loop: false
         })
@@ -954,8 +954,8 @@ class score extends Phaser.Scene{
 
         this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
         this.firedMeter.setScale(0.9);
-        //this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
-        //number.setAlpha(0);
+        this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+        this.firednumber.setAlpha(0);
 
 
     };
