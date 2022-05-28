@@ -3,65 +3,66 @@ class trainingday extends Phaser.Scene{
         super("trainingdayScene");
     }
     preload(){
-        this.load.image('day1Background', './assets/background_day1.png');
-        this.load.image('ground', './assets/ground.png');
-        this.load.image('heightPole', './assets/height_pole.png');
-        this.load.image('exitSign', './assets/exit_sign.png');
-        this.load.image('enterSign', './assets/enter_sign.png');
-        this.load.image('threeDays', './assets/threeDays.png');
+        // this.load.image('day1Background', './assets/background_day1.png');
+        // //this.load.image('ground', './assets/ground.png');
+        // //this.load.image('heightPole', './assets/height_pole.png');
+        // //this.load.image('exitSign', './assets/exit_sign.png');
+        // //this.load.image('enterSign', './assets/enter_sign.png');
+        // this.load.image('threeDays', './assets/threeDays.png');
 
-        this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
+        // this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
+        // this.load.spritesheet('contract', './assets/contract.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 2});
 
-        this.load.audio('hmm', './assets/hmm.wav');
-        this.load.audio('hmm2', './assets/hmm2.wav');
-        this.load.audio('ugh1', './assets/ugh1.wav');
-        this.load.audio('oh1', './assets/oh1.wav');
-        this.load.audio('oh2', './assets/oh2.wav');
-        this.load.audio('sigh1', './assets/sigh1.wav');
-        this.load.audio('huh', './assets/huh.wav');
-        this.load.audio('correct2', './assets/correct2.wav');
-        this.load.audio('incorrect', './assets/incorrect.wav');
+        // this.load.audio('hmm', './assets/hmm.wav');
+        // this.load.audio('hmm2', './assets/hmm2.wav');
+        // this.load.audio('ugh1', './assets/ugh1.wav');
+        // this.load.audio('oh1', './assets/oh1.wav');
+        // this.load.audio('oh2', './assets/oh2.wav');
+        // this.load.audio('sigh1', './assets/sigh1.wav');
+        // this.load.audio('huh', './assets/huh.wav');
+        // this.load.audio('correct2', './assets/correct2.wav');
+        // this.load.audio('incorrect', './assets/incorrect.wav');
 
 
-        this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
-        this.load.image('textBubble', './assets/textBubble.png');
-        this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
-        this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
-        this.load.image('rulesSign2', './assets/rulesSign.png');
-        this.load.spritesheet('allowArrow', './assets/allowArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
-        this.load.spritesheet('denyArrow', './assets/denyArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
+        // this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
+        // this.load.image('textBubble', './assets/textBubble.png');
+        // this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
+        // //this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
+        // this.load.image('rulesSign2', './assets/rulesSign.png');
+        // this.load.spritesheet('allowArrow', './assets/allowArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
+        // this.load.spritesheet('denyArrow', './assets/denyArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
 
-        this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2}); 
-        this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('cat3', './assets/cat3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('dog1', './assets/dog1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('dog2', './assets/dog2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('duckyellow', './assets/duckyellow.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duckpink', './assets/duckpink.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duckblue', './assets/duckblue.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        //this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2}); 
+        //this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('cat3', './assets/cat3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('dog1', './assets/dog1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        //this.load.spritesheet('dog2', './assets/dog2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+        // this.load.spritesheet('duckyellow', './assets/duckyellow.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('duckpink', './assets/duckpink.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('duckblue', './assets/duckblue.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
 
-        this.load.image('wristband1', './assets/wristband1.png');
-        this.load.image('wristband2', './assets/wristband2.png');
-        this.load.image('wristband3', './assets/wristband3.png');
+        // this.load.image('wristband1', './assets/wristband1.png');
+        // this.load.image('wristband2', './assets/wristband2.png');
+        // this.load.image('wristband3', './assets/wristband3.png');
 
-        if(menuDone == false){
-            //loading all the audio
-            this.load.audio('whoosh', './assets/whoosh.wav');
-            this.load.audio('thud', './assets/thud.wav');
-            this.load.audio('thud2', './assets/thud2.wav');
-            this.load.audio('buttonPress', './assets/buttonPress.wav');
-            this.load.audio('correct', './assets/correct.wav');
-            this.load.audio('oceanWaves', './assets/oceanWaves.wav');
-            this.load.audio('redButton1', './assets/redButton1.wav');
-            this.load.audio('redButton2', './assets/redButton2.wav');
-            this.load.audio('pop', './assets/pop.wav');
-        }
+        // if(menuDone == false){
+        //     //loading all the audio
+        //     this.load.audio('whoosh', './assets/whoosh.wav');
+        //     this.load.audio('thud', './assets/thud.wav');
+        //     this.load.audio('thud2', './assets/thud2.wav');
+        //     this.load.audio('buttonPress', './assets/buttonPress.wav');
+        //     this.load.audio('correct', './assets/correct.wav');
+        //     this.load.audio('oceanWaves', './assets/oceanWaves.wav');
+        //     this.load.audio('redButton1', './assets/redButton1.wav');
+        //     this.load.audio('redButton2', './assets/redButton2.wav');
+        //     this.load.audio('pop', './assets/pop.wav');
+        // }
     }
     create(){
         
@@ -85,6 +86,10 @@ class trainingday extends Phaser.Scene{
         this.boss = this.add.sprite(180, 90, 'boss');
         this.boss.setScale(0.6);
         this.boss.setFrame(1);
+
+        this.contract = this.add.sprite(0,0, 'contract').setOrigin(0,0);
+        this.contract.setInteractive();
+        this.contract.setAlpha(0);
 
         //sounds
         this.oceanWaves = this.sound.add('oceanWaves');
@@ -118,7 +123,7 @@ class trainingday extends Phaser.Scene{
         this.onerider = false;
         this.counted = false;
         this.nextrider = false;
-        this.readyButtonHover = false;
+        this.contractHover = false;
 
 
         //will make "press space directions appear again if the player takes forever to continue"
@@ -129,17 +134,18 @@ class trainingday extends Phaser.Scene{
         this.soundplayed = true;
 
         this.pointer = this.input.activePointer;
-        this.readyButton = this.add.sprite(860, 70, 'readyButton').setInteractive();
-        this.readyButton.setAlpha(0);
-        this.readyButton.setScale(0.4);
-        this.readyButton.on("pointerover", () => {
-            this.readyButton.setFrame(1);
-            this.readyButtonHover = true;
+        // this.readyButton = this.add.sprite(860, 70, 'readyButton').setInteractive();
+        // this.readyButton.setAlpha(0);
+        // this.readyButton.setScale(0.4);
+        this.contract.on("pointerover", () => {
+            this.contract.setFrame(1);
+            this.contract.stop();
+            this.contractHover = true;
 
         });
-        this.readyButton.on("pointerout", () => {
-            this.readyButton.setFrame(0);
-            this.readyButtonHover = false;
+        this.contract.on("pointerout", () => {
+            this.contract.setFrame(0);
+            this.contractHover = false;
         });
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
@@ -212,6 +218,15 @@ class trainingday extends Phaser.Scene{
                 frameRate: 16,
                 repeat: -1,
                 yoyo: true
+        });
+        this.anims.create({
+            key: 'contractBlink',
+            frames: this.anims.generateFrameNames('contract', {
+                start: 0, 
+                end: 1, 
+                first: 0}),
+                frameRate: 2,
+                repeat: -1,
         });
         //intructions on how to advance text
         this.directions = this.add.sprite(30, 0, 'directions').setOrigin(0,0);
@@ -298,7 +313,7 @@ class trainingday extends Phaser.Scene{
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
             //"Practice as much as you need, then click \nready. The ready button will appear \n when you've let 8 riders on.",
-            "Alright you should be ready now!",
+            "Alright you should be ready now just \nsign this contract!",
             "See you tomorrow at your first shift!"
         ];
 
@@ -441,6 +456,15 @@ class trainingday extends Phaser.Scene{
         }else{
             riderAccessories_array.push("no wristband");
         }
+    }
+    advanceScene(){
+        this.time.addEvent({
+            delay: 1300,
+            callback: ()=>{
+                this.scene.start("day1IntroScene");
+            },
+            loop: false
+        }) 
     }
 
     update(){
@@ -720,27 +744,28 @@ class trainingday extends Phaser.Scene{
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[12]);
+                this.contract.setAlpha(1);
+                this.contract.setFrame(1);
+                this.contract.play('contractBlink');
                 this.boss.setFrame(0);
                 this.rulesSign.setFrame(0);
                 
             }
         }else if(currentText.text == bossText[12]){
-            this.startdirectionsTimer = true;
-            if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                this.startdirectionsTimer = false;
-                //let exactly 8 guests on
+            //this.startdirectionsTimer = true;
+            //if the contract is clicked
+            if(this.pointer.isDown && this.contractHover == true){
+                this.contract.stop();
+                this.contract.setFrame(2);
                 currentText.text = this.typewriteTextWrapped(bossText[13]);
-                this.readyButton.setAlpha(1);
-                this.pop.play();
-                
-            }
-        }else if(currentText.text == bossText[13]){
-            //ready button appears
-            //this.pop.play();
-            if(this.pointer.isDown && this.readyButtonHover == true){
-                this.scene.start("day1IntroScene");
-                //this.buttonPress.play();
             }; 
+        }else if(currentText.text == bossText[13]){
+            //set a timer then next scene
+            this.advanceScene();
+            // if(this.pointer.isDown && this.contractHover == true){
+            //     this.scene.start("day1IntroScene");
+            //     //this.buttonPress.play();
+            // }; 
             // if(this.nextrider == true){
             //     this.delay += 1;
             //     if(Math.round(this.delay/60) > 0.2){

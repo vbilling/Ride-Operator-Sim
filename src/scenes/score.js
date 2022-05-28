@@ -3,38 +3,34 @@ class score extends Phaser.Scene{
         super("scoreScene");
     }
     preload(){
-        //progress bar, temp stand in 
-        this.load.image('progressBar', './assets/platform.png');
-        this.load.image('firedMeter', './assets/firedMeter.png');
+        // //progress bar, temp stand in 
+        // this.load.image('progressBar', './assets/platform.png');
+        // this.load.image('firedMeter', './assets/firedMeter.png');
 
-        this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        this.load.image('blood', './assets/blood.png');
+        // this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+        // this.load.image('blood', './assets/blood.png');
 
-        //for score board
-        this.load.image('scoreBoard', './assets/scoreBoard.png');
-        this.load.image('NOhats', './assets/NOhats.png');
-        this.load.image('NOfood', './assets/NOfood.png');
-        this.load.image('NOweapons', './assets/NOweapons.png');
-        this.load.image('NOcriminals', './assets/NOcriminals.png');
-        this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
-        this.load.image('missingWristbandText', './assets/missingWristbandText.png');
-        this.load.image('TOOshortText', './assets/TOOshortText.png');
-        this.load.image('TOOtallText', './assets/TOOtallText.png');
-
+        // //for score board
+        // this.load.image('scoreBoard', './assets/scoreBoard.png');
+        // this.load.image('NOhats', './assets/NOhats.png');
+        // this.load.image('NOfood', './assets/NOfood.png');
+        // this.load.image('NOweapons', './assets/NOweapons.png');
+        // this.load.image('NOcriminals', './assets/NOcriminals.png');
+        // this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
+        // this.load.image('missingWristbandText', './assets/missingWristbandText.png');
+        // this.load.image('TOOshortText', './assets/TOOshortText.png');
+        // this.load.image('TOOtallText', './assets/TOOtallText.png');
         //delete later
-        if(day1Done == false && day2Done == false && day3Done == false){
-            this.load.image('wristband1', './assets/wristband1.png');
-            this.load.image('wristband2', './assets/wristband2.png');
-            this.load.image('wristband3', './assets/wristband3.png');
-        }
-
-        if(trainingDone == false){
-            this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6})
-            this.load.image('coasterBackground', './assets/coasterBackground.png');
-        }
-
-
+        // if(day1Done == false && day2Done == false && day3Done == false){
+        //     this.load.image('wristband1', './assets/wristband1.png');
+        //     this.load.image('wristband2', './assets/wristband2.png');
+        //     this.load.image('wristband3', './assets/wristband3.png');
+        // }
+        // if(trainingDone == false){
+        //     this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6})
+        //     this.load.image('coasterBackground', './assets/coasterBackground.png');
+        // }
     };
     create(){
 
@@ -891,15 +887,14 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
-        // this.time.addEvent({
-        //     delay: 13400,
-        //     callback: ()=>{
-        //         this.thud.play();
-        //         this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
-        //         this.add.text(320, 170, this.totalScore, scoreConfig);
-        //     },
-        //     loop: false
-        // })
+        this.time.addEvent({
+            delay: 13400,
+            callback: ()=>{
+                this.thud.play();
+                this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+            },
+            loop: false
+        })
 
 
         
@@ -909,7 +904,7 @@ class score extends Phaser.Scene{
   
     
         this.time.addEvent({
-            delay: 13500,
+            delay: 14700,
             callback: ()=>{
                 this.thud.play();
                 if(fired >= 90){
@@ -959,7 +954,8 @@ class score extends Phaser.Scene{
 
         this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
         this.firedMeter.setScale(0.9);
-        this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+        //this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+        //number.setAlpha(0);
 
 
     };

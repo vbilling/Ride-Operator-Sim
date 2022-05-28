@@ -3,32 +3,32 @@ class menu extends Phaser.Scene{
         super("menuScene");
     }
     preload(){
-        this.load.spritesheet('startButton', './assets/startButton.png', {frameWidth: 384, frameHeight: 512, startFrame: 0, endFrame: 1});
-        this.load.image('titleText', './assets/titleText.png');
-        this.load.image('boardwalkTitle', './assets/boardwalkTitle.png');
-        this.load.image('background', './assets/rollercoaster_background_day1.png');
-        this.load.image('menuPanel', './assets/menuPanel.png');
-        this.load.image('startText', './assets/startText.png');
-        this.load.spritesheet('chaosText', './assets/chaos.png', {frameWidth: 300, frameHeight: 200, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('endlessText', './assets/endless.png', {frameWidth: 300, frameHeight: 200, startFrame: 0, endFrame: 1});
-        this.load.image('happyBoss', './assets/happyBoss.png');
-        this.load.image('rainbow', './assets/rainbow.png');
-        this.load.image('sparkle', './assets/sparkle.png');
-        this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 3});
-        this.load.spritesheet('blueButton', './assets/blueButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('greenButton', './assets/greenButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 3});
+        // this.load.spritesheet('startButton', './assets/startButton.png', {frameWidth: 384, frameHeight: 512, startFrame: 0, endFrame: 1});
+        // this.load.image('titleText', './assets/titleText.png');
+        // this.load.image('boardwalkTitle', './assets/boardwalkTitle.png');
+        // this.load.image('background', './assets/rollercoaster_background_day1.png');
+        // this.load.image('menuPanel', './assets/menuPanel.png');
+        // this.load.image('startText', './assets/startText.png');
+        // this.load.spritesheet('chaosText', './assets/chaos.png', {frameWidth: 300, frameHeight: 200, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('endlessText', './assets/endless.png', {frameWidth: 300, frameHeight: 200, startFrame: 0, endFrame: 1});
+        // this.load.image('happyBoss', './assets/happyBoss.png');
+        // this.load.image('rainbow', './assets/rainbow.png');
+        // this.load.image('sparkle', './assets/sparkle.png');
+        // this.load.spritesheet('redButton', './assets/redButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 3});
+        // this.load.spritesheet('blueButton', './assets/blueButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 2});
+        // this.load.spritesheet('greenButton', './assets/greenButton.png', {frameWidth: 768, frameHeight: 1024, startFrame: 0, endFrame: 3});
 
         //loading all the audio
-        this.load.audio('whoosh', './assets/whoosh.wav');
-        this.load.audio('thud', './assets/thud.wav');
-        this.load.audio('thud2', './assets/thud2.wav');
-        this.load.audio('buttonPress', './assets/buttonPress.wav');
-        this.load.audio('correct', './assets/correct.wav');
-        this.load.audio('oceanWaves', './assets/oceanWaves.wav');
+        // this.load.audio('whoosh', './assets/whoosh.wav');
+        // this.load.audio('thud', './assets/thud.wav');
+        // this.load.audio('thud2', './assets/thud2.wav');
+        // this.load.audio('buttonPress', './assets/buttonPress.wav');
+        // this.load.audio('correct', './assets/correct.wav');
+        // this.load.audio('oceanWaves', './assets/oceanWaves.wav');
         //this.load.audio('redButton1', './assets/redButton1.wav');
         //this.load.audio('redButton2', './assets/redButton2.wav');
         //this.load.audio('pop', './assets/pop.wav');
-        this.load.audio('deathmetal', './assets/deathmetal.wav');
+        //this.load.audio('deathmetal', './assets/deathmetal.wav');
 
     }
     create(){
@@ -163,7 +163,7 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(2);
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("day1IntroScene");
+            this.scene.start("day1Scene");
         }; 
     }
 }

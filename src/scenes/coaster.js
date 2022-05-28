@@ -3,36 +3,36 @@ class coaster extends Phaser.Scene{
         super("coasterScene");
     }
     preload(){
-        this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        //background
-        //this.load.image('coasterBackground', './assets/coasterBackground.png');
-        this.load.image('coasterBackgroundDay1', './assets/rollercoaster_background_day1.png');
-        this.load.image('coasterBackgroundDay2', './assets/rollercoaster_background_day2.png');
-        this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
-        this.load.image('loopOverlap', './assets/loopOverlap.png')
-        this.load.image('controlPanel', './assets/controlpanel.png');
-        this.load.image('bottomTrack', './assets/bottomTrack.png');
+        // this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
+        // //background
+        // //this.load.image('coasterBackground', './assets/coasterBackground.png');
+        // this.load.image('coasterBackgroundDay1', './assets/rollercoaster_background_day1.png');
+        // this.load.image('coasterBackgroundDay2', './assets/rollercoaster_background_day2.png');
+        // this.load.image('coasterBackgroundDay3', './assets/rollercoaster_background_day3.png');
+        // this.load.image('loopOverlap', './assets/loopOverlap.png')
+        // this.load.image('controlPanel', './assets/controlpanel.png');
+        // this.load.image('bottomTrack', './assets/bottomTrack.png');
 
         //Character Bodies
-        this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
-        this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1}); 
+        // this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
 
-        if(menuDone == false){
-            this.load.audio('whoosh', './assets/whoosh.wav');
-            this.load.audio('thud', './assets/thud.wav');
-            this.load.audio('thud2', './assets/thud2.wav');
-            this.load.audio('buttonPress', './assets/buttonPress.wav');
-            this.load.audio('correct', './assets/correct.wav');
-            this.load.audio('oceanWaves', './assets/oceanWaves.wav');
-            this.load.audio('redButton1', './assets/redButton1.wav');
-            this.load.audio('redButton2', './assets/redButton2.wav');
-            this.load.audio('pop', './assets/pop.wav');
-            this.load.audio('deathmetal', './assets/deathmetal.wav');
+        // if(menuDone == false){
+        //     this.load.audio('whoosh', './assets/whoosh.wav');
+        //     this.load.audio('thud', './assets/thud.wav');
+        //     this.load.audio('thud2', './assets/thud2.wav');
+        //     this.load.audio('buttonPress', './assets/buttonPress.wav');
+        //     this.load.audio('correct', './assets/correct.wav');
+        //     this.load.audio('oceanWaves', './assets/oceanWaves.wav');
+        //     this.load.audio('redButton1', './assets/redButton1.wav');
+        //     this.load.audio('redButton2', './assets/redButton2.wav');
+        //     this.load.audio('pop', './assets/pop.wav');
+        //     this.load.audio('deathmetal', './assets/deathmetal.wav');
 
-        };
+        // };
     };
     create(){
         //background
