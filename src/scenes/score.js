@@ -759,9 +759,57 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
+        this.time.addEvent({
+            delay: 4500, //3700
+            callback: ()=>{
+                this.capacityMeter = this.add.sprite(0, 20, 'capacityMeter').setOrigin(0,0);
+                this.thud2.play();
+                if(ridingCustomers == 0){
+                    this.capacityMeter.setFrame(0);
+                }
+                if(ridingCustomers == 1){
+                    this.capacityMeter.setFrame(1);
+                }
+                if(ridingCustomers == 2){
+                    this.capacityMeter.setFrame(2);
+                }
+                if(ridingCustomers == 3){
+                    this.capacityMeter.setFrame(3);
+                }
+                if(ridingCustomers == 4){
+                    this.capacityMeter.setFrame(4);
+                }
+                if(ridingCustomers == 5){
+                    this.capacityMeter.setFrame(5);
+                }
+                if(ridingCustomers == 6){
+                    this.capacityMeter.setFrame(6);
+                }
+                if(ridingCustomers == 7){
+                    this.capacityMeter.setFrame(7);
+                }
+                if(ridingCustomers == 8){
+                    this.capacityMeter.setFrame(8);
+                }
+                this.time.addEvent({
+                    delay: 600,
+                    callback: ()=>{
+                        if(ridingCustomers < 8){
+                            this.thud.play();
+                            this.add.text(460, 215, ridingCustomers, combo1Config);
+                        }else{
+                            this.thud.play();
+                            this.add.text(460, 215, ridingCustomers, combo2Config);
+                        }
+                    },
+                    loop: false
+                }) 
+            },
+            loop: false
+        })
         
         this.time.addEvent({
-            delay: 4500, //4800
+            delay: 5600, //4800
             callback: ()=>{
                 this.thud2.play();
                 this.add.sprite(10, 17, 'missingWristbandText').setOrigin(0,0);
@@ -782,7 +830,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 5600,
+            delay: 6700,
             callback: ()=>{
                 this.thud2.play();
                 this.add.sprite(10, 15, 'incorrectWristbandText').setOrigin(0,0);
@@ -804,7 +852,7 @@ class score extends Phaser.Scene{
         })
 
         this.time.addEvent({
-            delay: 6700,
+            delay: 7800,
             callback: ()=>{
                 this.thud2.play();
                 this.NOhats = this.add.sprite(0, 15, 'NOhats').setOrigin(0, 0);
@@ -825,7 +873,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 7800,
+            delay: 8900,
             callback: ()=>{
                 this.thud2.play();
                 this.NOfood = this.add.sprite(0, 15, 'NOfood').setOrigin(0, 0);
@@ -846,7 +894,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 8900,
+            delay: 10000,
             callback: ()=>{
                 this.thud2.play();
                 this.NOweapons = this.add.sprite(0, 15, 'NOweapons').setOrigin(0, 0);
@@ -867,7 +915,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 10000,
+            delay: 11100,
             callback: ()=>{
                 this.thud2.play();
                 this.NOcriminals = this.add.sprite(0, 15, 'NOcriminals').setOrigin(0, 0);
@@ -888,7 +936,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 11100,
+            delay: 12200,
             callback: ()=>{
                 this.thud.play();
                 this.firednumber.setAlpha(1);
@@ -904,7 +952,7 @@ class score extends Phaser.Scene{
   
     
         this.time.addEvent({
-            delay: 12200,
+            delay: 13300,
             callback: ()=>{
                 this.thud.play();
                 if(fired >= 90){
@@ -922,7 +970,7 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 13300,
+            delay: 14400,
             callback: ()=>{
                 //next button
                 this.pop.play();
