@@ -62,8 +62,8 @@ class day1 extends Phaser.Scene{
         this.clock = 0;
 
         //implementing a game timer
-        this.originalGameTimer = 1000; //4000
-        this.gametimer = 1000;
+        this.originalGameTimer = 4000; //4000
+        this.gametimer = 4000;
         let gametimerConfig = {
             fontFamily: 'Copperplate',
             fontSize: '40px',
@@ -80,6 +80,7 @@ class day1 extends Phaser.Scene{
         //displaying the timer
         console.log("game timer", this.gametimer);
         this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext.setAlpha(0);
         this.wristbandCheck = this.add.image(950, 0, 'wristband1');
         //counting the riders
         this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);

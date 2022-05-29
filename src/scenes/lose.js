@@ -12,8 +12,10 @@ class lose extends Phaser.Scene{
     create(){
         loseDone = true;
         this.pointer = this.input.activePointer;
+        game.sound.stopAll()
         this.deathmetal = this.sound.add('deathmetal');
         this.deathmetal.play();
+        this.deathmetal.volume = 0.2;
         this.background3 = this.add.tileSprite(0, 0, 960, 720, 'redBackground3').setOrigin(0, 0);
         this.firedboss = this.add.sprite(450, 510, 'firedBoss');
         this.firedText = this.add.sprite(0, 0, 'firedText').setOrigin(0,0);

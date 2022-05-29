@@ -104,8 +104,8 @@ class day3 extends Phaser.Scene{
         this.timerClock.setScale(0.8);
 
         //implementing a game timer
-        this.originalGameTimer = 6000;
-        this.gametimer = 6000;
+        this.originalGameTimer = 5000;
+        this.gametimer = 5000;
         let gametimerConfig = {
             fontFamily: 'Copperplate',
             fontSize: '40px',
@@ -122,6 +122,7 @@ class day3 extends Phaser.Scene{
         //displaying the timer
         //console.log("game timer", this.gametimer);
         this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext.setAlpha(0);
         this.wristbandCheck = this.add.image(950, 0, 'wristband3');
         this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
         //if the mouse is hovering over the down button
@@ -133,9 +134,9 @@ class day3 extends Phaser.Scene{
         this.buttonPress = this.sound.add('buttonPress');
         this.oceanWaves = this.sound.add('oceanWaves');
         this.correct = this.sound.add('correct');
-        this.oceanWaves.play();
-        this.oceanWaves.loop = true;
-        this.oceanWaves.volume = 0.3;
+        //this.oceanWaves.play();
+        //this.oceanWaves.loop = true;
+        //this.oceanWaves.volume = 0.3;
         this.tick1 = this.sound.add('tick1');
         this.tick2 = this.sound.add('tick2');
 
