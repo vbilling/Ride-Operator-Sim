@@ -237,7 +237,7 @@ class load extends Phaser.Scene{
 
     }
     create(){
-        this.scene.start("scoreScene");
+        this.scene.start("day3Scene");
     }
 
 

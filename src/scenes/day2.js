@@ -322,6 +322,16 @@ class day2 extends Phaser.Scene{
 
 
     };
+    advanceScene(){
+        this.time.addEvent({
+            delay: 700,
+            callback: ()=>{
+                this.buttonPress.play();
+                this.scene.start("coasterScene");
+            },
+            loop: false
+        }) 
+    }
 
 
     update(){
@@ -379,7 +389,8 @@ class day2 extends Phaser.Scene{
                 //will spawn a new character (see below)
                 this.needCharacter = true;
             }else{
-                this.readyButton.setAlpha(1);
+                this.advanceScene();
+                //this.readyButton.setAlpha(1);
             }
 
 
@@ -461,29 +472,37 @@ class day2 extends Phaser.Scene{
         }
 
         //the timer clock ticking up
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - (this.originalGameTimer/8))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - (this.originalGameTimer/8))){
             this.timerClock.setFrame(1);
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*2))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*2))){
             this.timerClock.setFrame(2);
+            this.tick2.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*3))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*3))){
             this.timerClock.setFrame(3);
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*4))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*4))){
             this.timerClock.setFrame(4);
+            this.tick2.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*5))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*5))){
             this.timerClock.setFrame(5);
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*6))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*6))){
             this.timerClock.setFrame(6);
+            this.tick2.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*7))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*7))){
             this.timerClock.setFrame(7);
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*8))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*8))){
             this.timerClock.setFrame(8);
+            this.tick2.play();
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){

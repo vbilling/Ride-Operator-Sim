@@ -38,8 +38,6 @@ class day1 extends Phaser.Scene{
         this.timerClock.setScale(0.8);
         this.timerClock.setFrame(0);
 
-        //tick audio play once
-        this.tickPlayed = false;
 
 
         //adding sounds
@@ -64,8 +62,8 @@ class day1 extends Phaser.Scene{
         this.clock = 0;
 
         //implementing a game timer
-        this.originalGameTimer = 4000; //4000
-        this.gametimer = 4000;
+        this.originalGameTimer = 1000; //4000
+        this.gametimer = 1000;
         let gametimerConfig = {
             fontFamily: 'Copperplate',
             fontSize: '40px',
@@ -348,14 +346,6 @@ class day1 extends Phaser.Scene{
             loop: false
         }) 
     }
-    // tick1Audio(){
-    //     this.tick1.play()
-    //     this.tickPlayed = true;
-    // }
-    // tick2Audio(){
-    //     this.tick2.play()
-    //     this.tickPlayed = true;
-    // }
 
     update(){
         //for game timer
@@ -497,34 +487,40 @@ class day1 extends Phaser.Scene{
         }
 
         //the timer clock ticking up
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - (this.originalGameTimer/8))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - (this.originalGameTimer/8))){
             this.timerClock.setFrame(1);
-           //this.tick1Audio();
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*2))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*2))){
             this.timerClock.setFrame(2);
-            //this.tick2Audio();
+            this.tick2.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*3))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*3))){
             this.timerClock.setFrame(3);
-            //this.tick1Audio();
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*4))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*4))){
             this.timerClock.setFrame(4);
-            //this.tick2Audio();
+            this.tick2.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*5))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*5))){
             this.timerClock.setFrame(5);
-            //this.tick1Audio();
+            this.tick1.play();
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*6))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*6))){
             this.timerClock.setFrame(6);
+            this.tick2.play();
+            this.tick2.volume = 1.1;
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*7))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*7))){
             this.timerClock.setFrame(7);
+            this.tick1.play();
+            this.tick2.volume = 1.2;
         }
-        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*8))){
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*8))){
             this.timerClock.setFrame(8);
+            this.tick2.play();
+            this.tick2.volume = 1.3;
         }
 
         

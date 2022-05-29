@@ -106,6 +106,7 @@ class score extends Phaser.Scene{
         this.thud2 = this.sound.add('thud2');
         this.buttonPress = this.sound.add('buttonPress');
         this.pop = this.sound.add('pop');
+        this.sigh1 = this.sound.add('sigh1');
         
 
         //score board
@@ -954,16 +955,17 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 13300,
             callback: ()=>{
-                this.thud.play();
-                if(fired >= 90){
+                //this.thud.play();
+                if(fired >= 70){
                     this.boss.setFrame(6);
                     this.boss.setScale(0.5);
                     this.shake = true;
-                }else if(fired >= 60){
+                }else if(fired >= 50){
                     this.boss.setFrame(5);
-                }else if(fired >= 40){
+                }else if(fired >= 35){
                     this.boss.setFrame(4);
-                }else if(fired >= 20){
+                }else if(fired >= 15){
+                    this.sigh1.play();
                     this.boss.setFrame(3);
                 }
             },
