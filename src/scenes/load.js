@@ -240,7 +240,7 @@ class load extends Phaser.Scene{
 
     }
     create(){
-        this.scene.start("day1Scene");
+        this.scene.start("winScene");
     }
 
 

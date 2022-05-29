@@ -121,34 +121,38 @@ class menu extends Phaser.Scene{
         this.chaosButton.body.allowGravity = false;
         //this.chaosButton.setBlendMode(Phaser.BlendModes.DARKEN);
         this.chaosButton.setScale(0.17);
-        this.chaosButton.on("pointerover", () => {
-            this.chaosButton.setFrame(1);
-            this.chaosButton.stop();
-            //will tell code in update to go to next scene
-            this.chaosButtonHover = true;
-
-        });
-        this.chaosButton.on("pointerout", () => {
-            this.chaosButton.setFrame(0);
-            this.chaosButtonHover = false;
-        });
-
-
+        if(winDone == true){
+            this.chaosButton.on("pointerover", () => {
+                this.chaosButton.setFrame(1);
+                this.chaosButton.stop();
+                //will tell code in update to go to next scene
+                this.chaosButtonHover = true;
+    
+            });
+            this.chaosButton.on("pointerout", () => {
+                this.chaosButton.setFrame(0);
+                this.chaosButtonHover = false;
+            });
+        }
+ 
         this.endlessButton = this.physics.add.sprite(300, 650, 'greenButton').setInteractive();
         this.endlessButton.body.allowGravity = false;
         //this.endlessButton.setBlendMode(Phaser.BlendModes.DARKEN);
         this.endlessButton.setScale(0.17);
-        this.endlessButton.on("pointerover", () => {
-            this.endlessButton.setFrame(1);
-            this.endlessButton.stop();
-            //will tell code in update to go to next scene
-            this.endlessButtonHover = true;
+        if(winDone == true){
+            this.endlessButton.on("pointerover", () => {
+                this.endlessButton.setFrame(1);
+                this.endlessButton.stop();
+                //will tell code in update to go to next scene
+                this.endlessButtonHover = true;
+    
+            });
+            this.endlessButton.on("pointerout", () => {
+                this.endlessButton.setFrame(0);
+                this.endlessButtonHover = false;
+            });
 
-        });
-        this.endlessButton.on("pointerout", () => {
-            this.endlessButton.setFrame(0);
-            this.endlessButtonHover = false;
-        });
+        }
 
         this.anims.create({
             key: 'blinking',
