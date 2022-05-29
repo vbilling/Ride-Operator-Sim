@@ -11,6 +11,8 @@ class load extends Phaser.Scene{
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.image('menuButton', './assets/menuButton.png');
 
+        this.load.spritesheet('timerClock', './assets/timerClock.png', {frameWidth: 404, frameHeight: 304, startFrame: 0, endFrame: 8});
+
         this.load.image('day1Background', './assets/background_day1.png');
         this.load.image('day2Background', './assets/background_day2.png');
         this.load.image('day2Title', './assets/day2Title.png');
@@ -59,6 +61,9 @@ class load extends Phaser.Scene{
         this.load.audio('redButton2', './assets/redButton2.wav');
         this.load.audio('pop', './assets/pop.wav');
         this.load.audio('deathmetal', './assets/deathmetal.wav');
+        this.load.audio('tick1', './assets/tick1.wav');
+        this.load.audio('tick2', './assets/tick2.wav');
+        this.load.audio('trumpet', './assets/trumpet.wav');
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -138,7 +143,9 @@ class load extends Phaser.Scene{
 
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
         this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('capacityMeter', './assets/capacitymeter.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 8});
         this.load.image('blood', './assets/blood.png');
+
 
         //for score board
         this.load.image('scoreBoard', './assets/scoreBoard.png');
@@ -222,11 +229,15 @@ class load extends Phaser.Scene{
         this.load.image('winText', './assets/winText.png');
         this.load.image('greenBackground', './assets/greenBackground.png');
 
+        //chaos mode
+        this.load.image('comingSoon', './assets/comingSoon.png');
+
+
         
 
     }
     create(){
-        this.scene.start("menuScene");
+        this.scene.start("scoreScene");
     }
 
 

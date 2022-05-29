@@ -31,6 +31,16 @@ class day1 extends Phaser.Scene{
         //will delay the next character spawn in
         this.delay = 0;
 
+        this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
+        this.capacityMeter.setScale(0.9);
+
+        this.timerClock = this.add.sprite(850, 70, 'timerClock');
+        this.timerClock.setScale(0.8);
+        this.timerClock.setFrame(0);
+
+        //tick audio play once
+        this.tickPlayed = false;
+
 
         //adding sounds
         this.whoosh = this.sound.add('whoosh');
@@ -41,6 +51,8 @@ class day1 extends Phaser.Scene{
         this.oceanWaves.loop = true;
         this.oceanWaves.volume = 0.3;
         this.pop = this.sound.add('pop');
+        this.tick1 = this.sound.add('tick1');
+        this.tick2 = this.sound.add('tick2');
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
@@ -52,6 +64,7 @@ class day1 extends Phaser.Scene{
         this.clock = 0;
 
         //implementing a game timer
+        this.originalGameTimer = 4000; //4000
         this.gametimer = 4000;
         let gametimerConfig = {
             fontFamily: 'Copperplate',
@@ -71,7 +84,7 @@ class day1 extends Phaser.Scene{
         this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
         this.wristbandCheck = this.add.image(950, 0, 'wristband1');
         //counting the riders
-        this.riderCount = this.add.text(70,40, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
+        this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
 
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
@@ -335,6 +348,14 @@ class day1 extends Phaser.Scene{
             loop: false
         }) 
     }
+    // tick1Audio(){
+    //     this.tick1.play()
+    //     this.tickPlayed = true;
+    // }
+    // tick2Audio(){
+    //     this.tick2.play()
+    //     this.tickPlayed = true;
+    // }
 
     update(){
         //for game timer
@@ -415,8 +436,6 @@ class day1 extends Phaser.Scene{
             };
         }
 
-
-
         //spawn a new character
         if(this.needCharacter == true){
             //set a timer so there is a delay
@@ -447,6 +466,65 @@ class day1 extends Phaser.Scene{
                 // }
   
             };
+        }
+        //change capacity meter to match amount of riders
+        if (ridingCustomers == 0){
+            this.capacityMeter.setFrame(0);
+        }
+        if (ridingCustomers == 1){
+            this.capacityMeter.setFrame(1);
+        }
+        if (ridingCustomers == 2){
+            this.capacityMeter.setFrame(2);
+        }
+        if (ridingCustomers == 3){
+            this.capacityMeter.setFrame(3);
+        }
+        if (ridingCustomers == 4){
+            this.capacityMeter.setFrame(4);
+        }
+        if (ridingCustomers == 5){
+            this.capacityMeter.setFrame(5);
+        }
+        if (ridingCustomers == 6){
+            this.capacityMeter.setFrame(6);
+        }
+        if (ridingCustomers == 7){
+            this.capacityMeter.setFrame(7);
+        }
+        if (ridingCustomers == 8){
+            this.capacityMeter.setFrame(8);
+        }
+
+        //the timer clock ticking up
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - (this.originalGameTimer/8))){
+            this.timerClock.setFrame(1);
+           //this.tick1Audio();
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*2))){
+            this.timerClock.setFrame(2);
+            //this.tick2Audio();
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*3))){
+            this.timerClock.setFrame(3);
+            //this.tick1Audio();
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*4))){
+            this.timerClock.setFrame(4);
+            //this.tick2Audio();
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*5))){
+            this.timerClock.setFrame(5);
+            //this.tick1Audio();
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*6))){
+            this.timerClock.setFrame(6);
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*7))){
+            this.timerClock.setFrame(7);
+        }
+        if(Math.floor(this.gametimer) < Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*8))){
+            this.timerClock.setFrame(8);
         }
 
         

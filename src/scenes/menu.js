@@ -82,13 +82,11 @@ class menu extends Phaser.Scene{
 
         this.chaosText = this.add.image(680, 575, 'chaosText');
         this.chaosText.setScale(0.6);
-        this.chaosText.setFrame(1);
-
         this.endlessText = this.add.sprite(310, 575, 'endlessText');
         this.endlessText.setScale(0.6);
-        this.endlessText.setFrame(1);
         //if the mouse is hovering over the down button
         this.startButtonHover = false;
+        this.chaosButtonHover = false;
         //initilizing mouse
         this.pointer = this.input.activePointer;
 
@@ -120,19 +118,38 @@ class menu extends Phaser.Scene{
 
         this.chaosButton = this.physics.add.sprite(670, 650, 'redButton').setInteractive();
         this.chaosButton.body.allowGravity = false;
-        this.chaosButton.setBlendMode(Phaser.BlendModes.DARKEN);
+        //this.chaosButton.setBlendMode(Phaser.BlendModes.DARKEN);
         this.chaosButton.setScale(0.17);
-        this.chaosButton.setFrame(3);
+        this.chaosButton.on("pointerover", () => {
+            this.chaosButton.setFrame(1);
+            this.chaosButton.stop();
+            //will tell code in update to go to next scene
+            this.chaosButtonHover = true;
+
+        });
+        this.chaosButton.on("pointerout", () => {
+            this.chaosButton.setFrame(0);
+            this.chaosButtonHover = false;
+        });
 
         this.endlessButton = this.physics.add.sprite(300, 650, 'greenButton').setInteractive();
         this.endlessButton.body.allowGravity = false;
-        this.endlessButton.setBlendMode(Phaser.BlendModes.DARKEN);
+        //this.endlessButton.setBlendMode(Phaser.BlendModes.DARKEN);
         this.endlessButton.setScale(0.17);
-        this.endlessButton.setFrame(3);
 
         this.anims.create({
             key: 'blinking',
             frames: this.anims.generateFrameNames('blueButton', {
+                start: 0, 
+                end: 1, 
+                first: 0}),
+                frameRate: 1.4,
+                repeat: -1,
+                yoyo: false
+        });
+        this.anims.create({
+            key: 'blinking2',
+            frames: this.anims.generateFrameNames('redButton', {
                 start: 0, 
                 end: 1, 
                 first: 0}),
@@ -152,6 +169,18 @@ class menu extends Phaser.Scene{
         this.startButton.on("pointerout", () => {
             this.startButtonHover = false;
         });
+        if(winDone == false){
+            this.chaosText.setFrame(1);
+            this.endlessText.setFrame(1);
+            this.chaosButton.setFrame(3);
+            this.endlessButton.setFrame(3);
+        }else{
+            this.chaosText.setFrame(0);
+            //this.endlessText.setFrame(0);
+            this.chaosButton.setFrame(0);
+            this.chaosButton.play('blinking2');
+            //this.endlessButton.setFrame(0);
+        }
 
         menuDone = true;
 
@@ -163,7 +192,18 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(2);
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("day1Scene");
+            if(loseDone == false && winDone == false){
+                this.scene.start("day1Scene");
+            }else{
+                this.scene.start("day1IntroScene");
+            }
         }; 
+        if(this.pointer.isDown && this.chaosButtonHover == true){
+            this.chaosButton.setFrame(2);
+            this.buttonPress.play();
+            this.buttonPress.volume = 0.5;
+            this.scene.start('chaosScene');
+        }; 
+
     }
 }

@@ -10,6 +10,7 @@ class lose extends Phaser.Scene{
         //this.load.audio('deathmetal', './assets/deathmetal.wav');
     }
     create(){
+        loseDone = true;
         this.pointer = this.input.activePointer;
         this.deathmetal = this.sound.add('deathmetal');
         this.deathmetal.play();

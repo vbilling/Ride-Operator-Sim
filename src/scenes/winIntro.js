@@ -12,6 +12,10 @@ class winIntro extends Phaser.Scene{
 
         this.winText = this.add.sprite(0, 0, 'winText').setOrigin(0,0);
 
+        this.trumpet = this.sound.add('trumpet');
+        this.trumpet.play();
+        this.trumpet.volume = 0.15;
+
 
         this.clock = 0
         

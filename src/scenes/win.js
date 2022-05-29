@@ -17,6 +17,7 @@ class win extends Phaser.Scene{
 
     }
     create(){
+        winDone = true;
         this.add.image(0,0, 'bdayBackground').setOrigin(0,0);
         this.pointer2 = this.input.activePointer;
 
