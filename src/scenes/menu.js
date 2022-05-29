@@ -220,7 +220,7 @@ class menu extends Phaser.Scene{
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
             if(loseDone == false && winDone == false){
-                this.scene.start("day1Scene");
+                this.scene.start("trainingIntroScene");
             }else{
                 this.scene.start("day1IntroScene");
             }
