@@ -87,6 +87,7 @@ class menu extends Phaser.Scene{
         //if the mouse is hovering over the down button
         this.startButtonHover = false;
         this.chaosButtonHover = false;
+        this.endlessButtonHover = false;
         //initilizing mouse
         this.pointer = this.input.activePointer;
 
@@ -132,10 +133,22 @@ class menu extends Phaser.Scene{
             this.chaosButtonHover = false;
         });
 
+
         this.endlessButton = this.physics.add.sprite(300, 650, 'greenButton').setInteractive();
         this.endlessButton.body.allowGravity = false;
         //this.endlessButton.setBlendMode(Phaser.BlendModes.DARKEN);
         this.endlessButton.setScale(0.17);
+        this.endlessButton.on("pointerover", () => {
+            this.endlessButton.setFrame(1);
+            this.endlessButton.stop();
+            //will tell code in update to go to next scene
+            this.endlessButtonHover = true;
+
+        });
+        this.endlessButton.on("pointerout", () => {
+            this.endlessButton.setFrame(0);
+            this.endlessButtonHover = false;
+        });
 
         this.anims.create({
             key: 'blinking',
@@ -150,6 +163,16 @@ class menu extends Phaser.Scene{
         this.anims.create({
             key: 'blinking2',
             frames: this.anims.generateFrameNames('redButton', {
+                start: 0, 
+                end: 1, 
+                first: 0}),
+                frameRate: 1.4,
+                repeat: -1,
+                yoyo: false
+        });
+        this.anims.create({
+            key: 'blinking3',
+            frames: this.anims.generateFrameNames('greenButton', {
                 start: 0, 
                 end: 1, 
                 first: 0}),
@@ -203,6 +226,12 @@ class menu extends Phaser.Scene{
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
             this.scene.start('chaosScene');
+        }; 
+        if(this.pointer.isDown && this.endlessButtonHover == true){
+            this.endlessButton.setFrame(2);
+            this.buttonPress.play();
+            this.buttonPress.volume = 0.5;
+            this.scene.start('endlessScene');
         }; 
 
     }

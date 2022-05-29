@@ -232,12 +232,15 @@ class load extends Phaser.Scene{
         //chaos mode
         this.load.image('comingSoon', './assets/comingSoon.png');
 
+        //endless mode
+        this.load.image('comingSoon2', './assets/comingSoon2.png');
+
 
         
 
     }
     create(){
-        this.scene.start("day3Scene");
+        this.scene.start("winScene");
     }
 
 
