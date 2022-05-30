@@ -4,13 +4,13 @@ class day3Intro extends Phaser.Scene{
     }
     preload(){
 
-        if(day1Done == false){
-            this.load.image('wristband3', './assets/wristband3.png');
-            //particle
-            this.load.image('glow', './assets/glow.png');
-            this.load.image('day3IntroText', './assets/day3IntroText.png');
-            this.load.image('abstract_3', './assets/abstract_3.png');
-        }
+        // if(day1Done == false){
+        //     this.load.image('wristband3', './assets/wristband3.png');
+        //     //particle
+        //     this.load.image('glow', './assets/glow.png');
+        //     this.load.image('day3IntroText', './assets/day3IntroText.png');
+        //     this.load.image('abstract_3', './assets/abstract_3.png');
+        // }
 
 
     }

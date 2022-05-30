@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS, 
     width: 960, 
     height: 720, 
-    scene: [ load, menu, lose, trainingday, trainingIntro, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, win, winIntro],
+    scene: [ load, menu, lose, trainingday, trainingIntro, day1Intro, day1, coaster, day2Intro, day2, day3Intro, day3, score, win, winIntro, chaos, endless],
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -93,6 +93,8 @@ let trainingDone = false;
 let day1Done = false;
 let day2Done = false;
 let day3Done = false;
+let loseDone = false;
+let winDone = false;
 
 
 //will be used in score array to make a nested array for accessories and their point values

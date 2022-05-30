@@ -3,16 +3,16 @@ class day1Intro extends Phaser.Scene{
         super("day1IntroScene");
     }
     preload(){
-        this.load.image('day1IntroText', './assets/day1IntroText.png');
-        this.load.image('wristband1', './assets/wristband1.png');
-        this.load.image('day2IntroText', './assets/day2IntroText.png');
-        this.load.image('day3IntroText', './assets/day3IntroText.png');
-        this.load.image('abstract_1', './assets/abstract_1.png');
-        this.load.image('abstract_2', './assets/abstract_2.png');
-        this.load.image('abstract_3', './assets/abstract_3.png');
+        // this.load.image('day1IntroText', './assets/day1IntroText.png');
+        // this.load.image('wristband1', './assets/wristband1.png');
+        // this.load.image('day2IntroText', './assets/day2IntroText.png');
+        // this.load.image('day3IntroText', './assets/day3IntroText.png');
+        // this.load.image('abstract_1', './assets/abstract_1.png');
+        // this.load.image('abstract_2', './assets/abstract_2.png');
+        // this.load.image('abstract_3', './assets/abstract_3.png');
 
-        //particle
-        this.load.image('glow', './assets/glow.png');
+        // //particle
+        // this.load.image('glow', './assets/glow.png');
 
     }
     create(){

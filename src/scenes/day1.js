@@ -3,84 +3,16 @@ class day1 extends Phaser.Scene{
         super("day1Scene");
     }
     preload(){
-        this.load.image('day1Background', './assets/background_day1.png');
-        //Accessories (organized so that certain accessories don't overlap)
-        //head accessories
-        this.load.image('cowhat1', './assets/cowhat1.png');
-        this.load.image('cowhat2', './assets/cowhat2.png');
-        this.load.image('cowhat3', './assets/cowhat3.png');
-        this.load.image('partyhat', './assets/partyhat.png');
-        this.load.image('tiara', './assets/tiara.png');
-
-        //held accessories
-        this.load.image('soda1', './assets/soda1.png');
-        this.load.image('soda2', './assets/soda2.png');
-        this.load.image('knife', './assets/knife.png');
-        this.load.image('corndog', './assets/corndog.png');
-        this.load.image('donut', './assets/donut.png');
-        this.load.image('scissors', './assets/scissors.png');
-        this.load.image('spatula', './assets/spatula.png');
-
-        //left wrist accessories
-        this.load.image('wristband1', './assets/wristband1.png');
-        this.load.image('wristband2', './assets/wristband2.png');
-        this.load.image('wristband3', './assets/wristband3.png');
-        this.load.image('watch', './assets/watch.png');
-
-        //face accessories
-        this.load.image('moustache', './assets/moustache.png');
-        this.load.image('scar', './assets/scar.png');
-        this.load.image('bandaid', './assets/bandaid.png');
-        this.load.image('clownNose', './assets/clownNose.png');
-        this.load.image('mask', './assets/mask.png');
-        this.load.image('glasses1', './assets/glasses1.png');
-        this.load.image('glasses2', './assets/glasses2.png');
-        this.load.image('pacifier1', './assets/pacifier1.png');
-        this.load.image('pacifier2', './assets/pacifier2.png');
-        
-        //waist accessories
-        this.load.image('phanny1', './assets/phanny1.png');
-        this.load.image('phanny2', './assets/phanny2.png');
-        this.load.image('gucciBelt', './assets/gucciBelt.png');
-        this.load.image('tutu', './assets/tutu.png');
-        this.load.image('bikini1', './assets/bikini1.png');
-        this.load.image('bikini2', './assets/bikini2.png');
-        this.load.image('bikini3', './assets/bikini3.png');
-        this.load.image('bikini4', './assets/bikini4.png');
-        this.load.image('bikini5', './assets/bikini5.png');
-        this.load.image('swimTrunks1', './assets/swimTrunks1.png');
-        this.load.image('swimTrunks2', './assets/swimTrunks2.png');
-        this.load.image('swimTrunks3', './assets/swimTrunks3.png');
-        this.load.image('swimTrunks4', './assets/swimTrunks4.png');
-
-
-        //left leg accessories
-        this.load.image('ankleMoniter', './assets/ankleMoniter.png');
-
-        //wrist accessories 2
-        this.load.image('handcuffs', './assets/handcuffs.png')
-
-        //neck accessories
-        this.load.image('bdayNecklace', './assets/bdayNecklace.png');
-        this.load.image('chain', './assets/chain.png');
-        this.load.image('shellNecklace', './assets/shellNecklace.png');
-        this.load.image('bowtie', './assets/bowtie.png');
 
     }
 
     create(){
         //load background
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
-        this.rulesSign = this.add.sprite(15, -175, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -100, 'rulesSign').setOrigin(0, 0);
         this.day1Title = this.add.sprite(0, -20, 'day1Title').setOrigin(0,0);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
-
-        //temporary instructions text
-        // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
-        // this.add.text(130, 120, "Let no more and no less than 8 guests ride");
-        // this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
-        // this.add.text(130, 160, "Today's wristband color: blue");
 
         //will help pick random bodies and accessories
         function random(mn, mx) {
@@ -98,9 +30,15 @@ class day1 extends Phaser.Scene{
 
         //will delay the next character spawn in
         this.delay = 0;
-        //day 1 title
-        //this.day1Title = this.add.image(0, 0, 'day1Title').setOrigin(0,0);
-        //this.day1Title.setAlpha(0);
+
+        this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
+        this.capacityMeter.setScale(0.9);
+
+        this.timerClock = this.add.sprite(850, 70, 'timerClock');
+        this.timerClock.setScale(0.8);
+        this.timerClock.setFrame(0);
+
+
 
         //adding sounds
         this.whoosh = this.sound.add('whoosh');
@@ -110,10 +48,13 @@ class day1 extends Phaser.Scene{
         this.oceanWaves.play();
         this.oceanWaves.loop = true;
         this.oceanWaves.volume = 0.3;
+        this.pop = this.sound.add('pop');
+        this.tick1 = this.sound.add('tick1');
+        this.tick2 = this.sound.add('tick2');
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
-        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
         this.exitSign.setScale(0.4);
         this.enterSign.setScale(0.4);
 
@@ -121,10 +62,11 @@ class day1 extends Phaser.Scene{
         this.clock = 0;
 
         //implementing a game timer
+        this.originalGameTimer = 4000; //4000
         this.gametimer = 4000;
         let gametimerConfig = {
-            fontFamily: 'Chalkduster',
-            fontSize: '30px',
+            fontFamily: 'Copperplate',
+            fontSize: '40px',
             color: 'white',
             align: 'center',
             stroke: '#415392', //#526aba
@@ -137,8 +79,11 @@ class day1 extends Phaser.Scene{
         };
         //displaying the timer
         console.log("game timer", this.gametimer);
-        this.timertext = this.add.text(860, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
+        this.timertext.setAlpha(0);
         this.wristbandCheck = this.add.image(950, 0, 'wristband1');
+        //counting the riders
+        this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
 
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
@@ -273,7 +218,7 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 95){ //88
+        if(this.hat_chance >= 95){ //95
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
@@ -310,7 +255,7 @@ class day1 extends Phaser.Scene{
         this.face_chance = random(0, 100);
         //console.log('this.face_chance', this.face_chance);
         this.face = false;
-        if(this.face_chance >= 60){
+        if(this.face_chance >= 60){ //60
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
@@ -326,7 +271,7 @@ class day1 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 70){ //95
+        if(this.waist_chance >= 95){ //95
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -392,11 +337,22 @@ class day1 extends Phaser.Scene{
         //adding accessories to an array (this will represent each character and be nested in allRiders_array if allowed to ride)
         console.log('riderAccessories_array:', riderAccessories_array);
     };
+    advanceScene(){
+        this.time.addEvent({
+            delay: 700,
+            callback: ()=>{
+                this.buttonPress.play();
+                this.scene.start("coasterScene");
+            },
+            loop: false
+        }) 
+    }
 
     update(){
         //for game timer
         this.gametimer -= 1;
         this.timertext.text = Math.round(this.gametimer/60);
+        this.riderCount.text = 'Riders: ' + ridingCustomers;
         this.clock += 1;
         //if the timer runs out, go to next scene
         if(Math.round(this.gametimer/60) < 0){ // 60
@@ -445,7 +401,8 @@ class day1 extends Phaser.Scene{
                 //will spawn a new character (see below)
                 this.needCharacter = true;
             }else{
-                this.readyButton.setAlpha(1);
+                this.advanceScene();
+                //this.readyButton.setAlpha(1);
             }
             //destroy all accessories if they exist
             if(this.hold == true){
@@ -470,8 +427,6 @@ class day1 extends Phaser.Scene{
                 this.neck_accessory.destroy();
             };
         }
-
-
 
         //spawn a new character
         if(this.needCharacter == true){
@@ -504,6 +459,72 @@ class day1 extends Phaser.Scene{
   
             };
         }
+        //change capacity meter to match amount of riders
+        if (ridingCustomers == 0){
+            this.capacityMeter.setFrame(0);
+        }
+        if (ridingCustomers == 1){
+            this.capacityMeter.setFrame(1);
+        }
+        if (ridingCustomers == 2){
+            this.capacityMeter.setFrame(2);
+        }
+        if (ridingCustomers == 3){
+            this.capacityMeter.setFrame(3);
+        }
+        if (ridingCustomers == 4){
+            this.capacityMeter.setFrame(4);
+        }
+        if (ridingCustomers == 5){
+            this.capacityMeter.setFrame(5);
+        }
+        if (ridingCustomers == 6){
+            this.capacityMeter.setFrame(6);
+        }
+        if (ridingCustomers == 7){
+            this.capacityMeter.setFrame(7);
+        }
+        if (ridingCustomers == 8){
+            this.capacityMeter.setFrame(8);
+        }
+
+        //the timer clock ticking up
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - (this.originalGameTimer/8))){
+            this.timerClock.setFrame(1);
+            this.tick1.play();
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*2))){
+            this.timerClock.setFrame(2);
+            this.tick2.play();
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*3))){
+            this.timerClock.setFrame(3);
+            this.tick1.play();
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*4))){
+            this.timerClock.setFrame(4);
+            this.tick2.play();
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*5))){
+            this.timerClock.setFrame(5);
+            this.tick1.play();
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*6))){
+            this.timerClock.setFrame(6);
+            this.tick2.play();
+            this.tick2.volume = 1.1;
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*7))){
+            this.timerClock.setFrame(7);
+            this.tick1.play();
+            this.tick2.volume = 1.2;
+        }
+        if(Math.floor(this.gametimer) == Math.floor(this.originalGameTimer - ((this.originalGameTimer/8)*8))){
+            this.timerClock.setFrame(8);
+            this.tick2.play();
+            this.tick2.volume = 1.3;
+        }
+
         
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){

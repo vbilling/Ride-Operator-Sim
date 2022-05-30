@@ -3,14 +3,18 @@ class winIntro extends Phaser.Scene{
         super("winIntroScene");
     }
     preload(){
-        this.load.image('winText', './assets/winText.png');
-        this.load.image('greenBackground', './assets/greenBackground.png');
+        // this.load.image('winText', './assets/winText.png');
+        // this.load.image('greenBackground', './assets/greenBackground.png');
 
     }
     create(){
         this.add.sprite(0,0, 'greenBackground').setOrigin(0,0);
 
         this.winText = this.add.sprite(0, 0, 'winText').setOrigin(0,0);
+
+        this.trumpet = this.sound.add('trumpet');
+        this.trumpet.play();
+        this.trumpet.volume = 0.15;
 
 
         this.clock = 0

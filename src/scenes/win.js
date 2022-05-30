@@ -3,21 +3,21 @@ class win extends Phaser.Scene{
         super("winScene");
     }
     preload(){
-        this.load.spritesheet('koala', './assets/koala.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2})
-        this.load.image('present1', './assets/present1.png');
-        this.load.image('present2', './assets/present2.png');
+        // this.load.spritesheet('koala', './assets/koala.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2})
+        // this.load.image('present1', './assets/present1.png');
+        // this.load.image('present2', './assets/present2.png');
 
-        this.load.image('body', './assets/speck.png');
-        this.load.image('glowing', './assets/glowing.png');
-        this.load.image('birthdayText', './assets/birthdayText.png');
-        this.load.image('menuButton', './assets/menuButton.png');
-        this.load.image('broText', './assets/broText.png');
-        this.load.image('bdayBackground', './assets/bdayBackground.png');
-        this.load.image('downArrow', './assets/downArrow.png');
+        // this.load.image('body', './assets/speck.png');
+        // this.load.image('glowing', './assets/glowing.png');
+        // this.load.image('birthdayText', './assets/birthdayText.png');
+        // this.load.image('broText', './assets/broText.png');
+        // this.load.image('bdayBackground', './assets/bdayBackground.png');
+        // this.load.image('downArrow', './assets/downArrow.png');
         
 
     }
     create(){
+        winDone = true;
         this.add.image(0,0, 'bdayBackground').setOrigin(0,0);
         this.pointer2 = this.input.activePointer;
 

@@ -3,38 +3,34 @@ class score extends Phaser.Scene{
         super("scoreScene");
     }
     preload(){
-        //progress bar, temp stand in 
-        this.load.image('progressBar', './assets/platform.png');
-        this.load.image('firedMeter', './assets/firedMeter.png');
+        // //progress bar, temp stand in 
+        // this.load.image('progressBar', './assets/platform.png');
+        // this.load.image('firedMeter', './assets/firedMeter.png');
 
-        this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        this.load.image('blood', './assets/blood.png');
+        // this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
+        // this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+        // this.load.image('blood', './assets/blood.png');
 
-        //for score board
-        this.load.image('scoreBoard', './assets/scoreBoard.png');
-        this.load.image('NOhats', './assets/NOhats.png');
-        this.load.image('NOfood', './assets/NOfood.png');
-        this.load.image('NOweapons', './assets/NOweapons.png');
-        this.load.image('NOcriminals', './assets/NOcriminals.png');
-        this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
-        this.load.image('missingWristbandText', './assets/missingWristbandText.png');
-        this.load.image('TOOshortText', './assets/TOOshortText.png');
-        this.load.image('TOOtallText', './assets/TOOtallText.png');
-
+        // //for score board
+        // this.load.image('scoreBoard', './assets/scoreBoard.png');
+        // this.load.image('NOhats', './assets/NOhats.png');
+        // this.load.image('NOfood', './assets/NOfood.png');
+        // this.load.image('NOweapons', './assets/NOweapons.png');
+        // this.load.image('NOcriminals', './assets/NOcriminals.png');
+        // this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
+        // this.load.image('missingWristbandText', './assets/missingWristbandText.png');
+        // this.load.image('TOOshortText', './assets/TOOshortText.png');
+        // this.load.image('TOOtallText', './assets/TOOtallText.png');
         //delete later
-        if(day1Done == false && day2Done == false && day3Done == false){
-            this.load.image('wristband1', './assets/wristband1.png');
-            this.load.image('wristband2', './assets/wristband2.png');
-            this.load.image('wristband3', './assets/wristband3.png');
-        }
-
-        if(trainingDone == false){
-            this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6})
-            this.load.image('coasterBackground', './assets/coasterBackground.png');
-        }
-
-
+        // if(day1Done == false && day2Done == false && day3Done == false){
+        //     this.load.image('wristband1', './assets/wristband1.png');
+        //     this.load.image('wristband2', './assets/wristband2.png');
+        //     this.load.image('wristband3', './assets/wristband3.png');
+        // }
+        // if(trainingDone == false){
+        //     this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6})
+        //     this.load.image('coasterBackground', './assets/coasterBackground.png');
+        // }
     };
     create(){
 
@@ -110,6 +106,7 @@ class score extends Phaser.Scene{
         this.thud2 = this.sound.add('thud2');
         this.buttonPress = this.sound.add('buttonPress');
         this.pop = this.sound.add('pop');
+        this.sigh1 = this.sound.add('sigh1');
         
 
         //score board
@@ -125,7 +122,8 @@ class score extends Phaser.Scene{
         if(day3Done == true){
             this.add.sprite(840, 205, 'wristband3')
         }
-
+        this.capacityMeter = this.add.sprite(0, 20, 'capacityMeter').setOrigin(0,0);
+        this.capacityMeter.setFrame(4);
 
 
         //total score 
@@ -727,7 +725,7 @@ class score extends Phaser.Scene{
                 this.add.sprite(10, 25, 'TOOtallText').setOrigin(0,0);
                 this.thud2.play();
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.tooTall > 0){
                             this.thud.play();
@@ -743,12 +741,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 3700,
+            delay: 3400, //3700
             callback: ()=>{
                 this.add.sprite(10, 5, 'TOOshortText').setOrigin(0,0);
                 this.thud2.play();
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(tooShort > 0){
                             this.thud.play();
@@ -763,14 +761,61 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
+        this.time.addEvent({
+            delay: 4500, //3700
+            callback: ()=>{
+                this.thud2.play();
+                if(ridingCustomers == 0){
+                    this.capacityMeter.setFrame(0);
+                }
+                if(ridingCustomers == 1){
+                    this.capacityMeter.setFrame(1);
+                }
+                if(ridingCustomers == 2){
+                    this.capacityMeter.setFrame(2);
+                }
+                if(ridingCustomers == 3){
+                    this.capacityMeter.setFrame(3);
+                }
+                if(ridingCustomers == 4){
+                    this.capacityMeter.setFrame(4);
+                }
+                if(ridingCustomers == 5){
+                    this.capacityMeter.setFrame(5);
+                }
+                if(ridingCustomers == 6){
+                    this.capacityMeter.setFrame(6);
+                }
+                if(ridingCustomers == 7){
+                    this.capacityMeter.setFrame(7);
+                }
+                if(ridingCustomers == 8){
+                    this.capacityMeter.setFrame(8);
+                }
+                this.time.addEvent({
+                    delay: 600,
+                    callback: ()=>{
+                        if(ridingCustomers < 8){
+                            this.thud.play();
+                            this.add.text(460, 215, ridingCustomers, combo1Config);
+                        }else{
+                            this.thud.play();
+                            this.add.text(460, 215, ridingCustomers, combo2Config);
+                        }
+                    },
+                    loop: false
+                }) 
+            },
+            loop: false
+        })
         
         this.time.addEvent({
-            delay: 5100,
+            delay: 5600, //4800
             callback: ()=>{
                 this.thud2.play();
                 this.add.sprite(10, 17, 'missingWristbandText').setOrigin(0,0);
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.noWristband > 0){
                             this.thud.play();
@@ -786,12 +831,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 6500,
+            delay: 6700,
             callback: ()=>{
                 this.thud2.play();
                 this.add.sprite(10, 15, 'incorrectWristbandText').setOrigin(0,0);
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.wrongWristband > 0){
                             this.thud.play();
@@ -808,12 +853,12 @@ class score extends Phaser.Scene{
         })
 
         this.time.addEvent({
-            delay: 7900,
+            delay: 7800,
             callback: ()=>{
                 this.thud2.play();
                 this.NOhats = this.add.sprite(0, 15, 'NOhats').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.hatCount > 0){
                             this.thud.play();
@@ -829,12 +874,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 9300,
+            delay: 8900,
             callback: ()=>{
                 this.thud2.play();
                 this.NOfood = this.add.sprite(0, 15, 'NOfood').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.foodCount > 0){
                             this.thud.play();
@@ -850,12 +895,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 10700,
+            delay: 10000,
             callback: ()=>{
                 this.thud2.play();
                 this.NOweapons = this.add.sprite(0, 15, 'NOweapons').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.weaponCount > 0){
                             this.thud.play();
@@ -871,12 +916,12 @@ class score extends Phaser.Scene{
             loop: false
         })
         this.time.addEvent({
-            delay: 12100,
+            delay: 11100,
             callback: ()=>{
                 this.thud2.play();
                 this.NOcriminals = this.add.sprite(0, 15, 'NOcriminals').setOrigin(0, 0);
                 this.time.addEvent({
-                    delay: 700,
+                    delay: 600,
                     callback: ()=>{
                         if(this.criminalCount > 0){
                             this.thud.play();
@@ -891,15 +936,14 @@ class score extends Phaser.Scene{
             },
             loop: false
         })
-        // this.time.addEvent({
-        //     delay: 13400,
-        //     callback: ()=>{
-        //         this.thud.play();
-        //         this.add.text(140, 170, "TOTAL SCORE:", scoreConfig);
-        //         this.add.text(320, 170, this.totalScore, scoreConfig);
-        //     },
-        //     loop: false
-        // })
+        this.time.addEvent({
+            delay: 12200,
+            callback: ()=>{
+                this.thud.play();
+                this.firednumber.setAlpha(1);
+            },
+            loop: false
+        })
 
 
         
@@ -909,25 +953,26 @@ class score extends Phaser.Scene{
   
     
         this.time.addEvent({
-            delay: 13500,
+            delay: 13300,
             callback: ()=>{
-                this.thud.play();
-                if(fired >= 90){
+                //this.thud.play();
+                if(fired >= 70){
                     this.boss.setFrame(6);
                     this.boss.setScale(0.5);
                     this.shake = true;
-                }else if(fired >= 60){
+                }else if(fired >= 50){
                     this.boss.setFrame(5);
-                }else if(fired >= 40){
+                }else if(fired >= 35){
                     this.boss.setFrame(4);
-                }else if(fired >= 20){
+                }else if(fired >= 15){
+                    this.sigh1.play();
                     this.boss.setFrame(3);
                 }
             },
             loop: false
         })
         this.time.addEvent({
-            delay: 15400,
+            delay: 14400,
             callback: ()=>{
                 //next button
                 this.pop.play();
@@ -960,6 +1005,7 @@ class score extends Phaser.Scene{
         this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
         this.firedMeter.setScale(0.9);
         this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+        this.firednumber.setAlpha(0);
 
 
     };
