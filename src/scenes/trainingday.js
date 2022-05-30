@@ -532,6 +532,11 @@ class trainingday extends Phaser.Scene{
         }
 
         if(this.onerider == true){
+
+            if(this.testRider.y > game.config.height ){
+                this.testRider.y = 400;
+            }
+
             if(this.testRider.x > 1000 || this.testRider.x < -50){
                 this.testRider.destroy();
                 if(this.wrist == true){

@@ -416,6 +416,7 @@ class day2 extends Phaser.Scene{
             this.wrist2_accessory.y = this.p1.y;
         };
 
+        //resets character if they fall off the platform 
         if(this.p1.y > game.config.height){
             this.p1.y = 400;
         }
