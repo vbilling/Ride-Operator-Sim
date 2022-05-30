@@ -1013,7 +1013,7 @@ class score extends Phaser.Scene{
     coasterTimer(){
         //timer for ending the scene
         this.nextSceneTimer = this.time.addEvent({
-            delay: 1890,
+            delay:1890,
             callback:() =>{
                 this.cart1.body.setVelocityX(0);
                 this.cart2.body.setVelocityX(0);
@@ -1032,7 +1032,8 @@ class score extends Phaser.Scene{
                 //set velocity of the accessories
                 for(let w = 0; w < (accessorySprite_array2.length); w++){
                     accessorySprite_array2[w].body.setVelocityX(0);
-                };    
+                };
+    
             },
             loop: false
         });
@@ -1047,8 +1048,8 @@ class score extends Phaser.Scene{
         if(fired >= 90 && this.shake == true){
             this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
         }
-        
-        
+        //this.delay += 1;
+        //if((this.delay/60) < 1.9){
             this.cart1.body.setVelocityX(490);
             this.cart2.body.setVelocityX(490);
             this.cart3.body.setVelocityX(490);
@@ -1073,9 +1074,9 @@ class score extends Phaser.Scene{
             };
 
             this.coasterTimer();
+        //}else{
 
-
-        
+        //}
         //next button pressed 
         if(this.nextButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
