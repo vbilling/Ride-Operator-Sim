@@ -186,7 +186,7 @@ class day1 extends Phaser.Scene{
         this.delay = 0;
 
         //set the scale of them which will affect height
-        this.height = 0.25//randomDecimil(0.2, 0.5);
+        this.height = randomDecimil(0.2, 0.5);
         this.scale = this.height; 
 
         console.log('height:', this.scale);
