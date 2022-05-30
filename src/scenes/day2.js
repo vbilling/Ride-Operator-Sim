@@ -11,7 +11,7 @@ class day2 extends Phaser.Scene{
         day2Done = true;
         this.add.text(70, 70, "DAY 2");
         this.add.tileSprite(0,0, 960, 720, 'day2Background').setOrigin(0,0);
-        this.rulesSign = this.add.sprite(15, -175, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -100, 'rulesSign').setOrigin(0, 0);
         this.day2Title = this.add.sprite(0, 0, 'day2Title').setOrigin(0,0);
         //temporary instructions text
         // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
@@ -32,7 +32,7 @@ class day2 extends Phaser.Scene{
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
-        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
         this.exitSign.setScale(0.4);
         this.enterSign.setScale(0.4);
 
@@ -46,8 +46,8 @@ class day2 extends Phaser.Scene{
         this.timerClock.setScale(0.8);
 
         //implementing a game timer
-        this.originalGameTimer = 5000;
-        this.gametimer = 5000;
+        this.originalGameTimer = 4500;
+        this.gametimer = 4500;
         let gametimerConfig = {
             fontFamily: 'Copperplate',
             fontSize: '40px',

@@ -122,7 +122,8 @@ class score extends Phaser.Scene{
         if(day3Done == true){
             this.add.sprite(840, 205, 'wristband3')
         }
-
+        this.capacityMeter = this.add.sprite(0, 20, 'capacityMeter').setOrigin(0,0);
+        this.capacityMeter.setFrame(4);
 
 
         //total score 
@@ -763,7 +764,6 @@ class score extends Phaser.Scene{
         this.time.addEvent({
             delay: 4500, //3700
             callback: ()=>{
-                this.capacityMeter = this.add.sprite(0, 20, 'capacityMeter').setOrigin(0,0);
                 this.thud2.play();
                 if(ridingCustomers == 0){
                     this.capacityMeter.setFrame(0);

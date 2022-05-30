@@ -369,6 +369,17 @@ class coaster extends Phaser.Scene{
         });
         this.loopOverlap = this.add.sprite(0,0, 'loopOverlap').setOrigin(0,0);
         this.loopOverlap.setAlpha(0);
+        this.anims.create({
+            key: 'blinking2',
+            frames: this.anims.generateFrameNames('redButton', {
+                start: 0, 
+                end: 1, 
+                first: 0}),
+                frameRate: 1.4,
+                repeat: -1,
+                yoyo: false
+        });
+        this.redButton.play('blinking2');
         
 
     };
@@ -892,18 +903,6 @@ class coaster extends Phaser.Scene{
             },
             loop: false
         })
-
-        this.anims.create({
-            key: 'blinking2',
-            frames: this.anims.generateFrameNames('redButton', {
-                start: 0, 
-                end: 1, 
-                first: 0}),
-                frameRate: 1.4,
-                repeat: -1,
-                yoyo: false
-        });
-        this.redButton.play('blinking2');
         
 
     };

@@ -70,7 +70,7 @@ class day3 extends Phaser.Scene{
     create(){
         day3Done = true;
         this.add.tileSprite(0,0, 960, 720, 'day3Background').setOrigin(0,0);
-        this.rulesSign = this.add.sprite(15, -175, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -100, 'rulesSign').setOrigin(0, 0);
         this.day3Title = this.add.sprite(0, 0, 'day3Title').setOrigin(0,0);
         //temporary instructions text
         // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
@@ -91,7 +91,7 @@ class day3 extends Phaser.Scene{
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
-        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
         this.exitSign.setScale(0.4);
         this.enterSign.setScale(0.4);
         //will delay the next character spawn in

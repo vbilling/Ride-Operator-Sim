@@ -3,66 +3,7 @@ class trainingday extends Phaser.Scene{
         super("trainingdayScene");
     }
     preload(){
-        // this.load.image('day1Background', './assets/background_day1.png');
-        // //this.load.image('ground', './assets/ground.png');
-        // //this.load.image('heightPole', './assets/height_pole.png');
-        // //this.load.image('exitSign', './assets/exit_sign.png');
-        // //this.load.image('enterSign', './assets/enter_sign.png');
-        // this.load.image('threeDays', './assets/threeDays.png');
 
-        // this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6});
-        // this.load.spritesheet('contract', './assets/contract.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 2});
-
-        // this.load.audio('hmm', './assets/hmm.wav');
-        // this.load.audio('hmm2', './assets/hmm2.wav');
-        // this.load.audio('ugh1', './assets/ugh1.wav');
-        // this.load.audio('oh1', './assets/oh1.wav');
-        // this.load.audio('oh2', './assets/oh2.wav');
-        // this.load.audio('sigh1', './assets/sigh1.wav');
-        // this.load.audio('huh', './assets/huh.wav');
-        // this.load.audio('correct2', './assets/correct2.wav');
-        // this.load.audio('incorrect', './assets/incorrect.wav');
-
-
-        // this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
-        // this.load.image('textBubble', './assets/textBubble.png');
-        // this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
-        // //this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        // this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
-        // this.load.image('rulesSign2', './assets/rulesSign.png');
-        // this.load.spritesheet('allowArrow', './assets/allowArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
-        // this.load.spritesheet('denyArrow', './assets/denyArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});
-
-        //this.load.spritesheet('cat1', './assets/cat1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2}); 
-        //this.load.spritesheet('cat2', './assets/cat2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('cat3', './assets/cat3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('duck1', './assets/duck1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('duck2', './assets/duck2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('duck3', './assets/duck3.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('bear1', './assets/bear1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('bear2', './assets/bear2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('dog1', './assets/dog1.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        //this.load.spritesheet('dog2', './assets/dog2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
-        // this.load.spritesheet('duckyellow', './assets/duckyellow.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        // this.load.spritesheet('duckpink', './assets/duckpink.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-        // this.load.spritesheet('duckblue', './assets/duckblue.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
-
-        // this.load.image('wristband1', './assets/wristband1.png');
-        // this.load.image('wristband2', './assets/wristband2.png');
-        // this.load.image('wristband3', './assets/wristband3.png');
-
-        // if(menuDone == false){
-        //     //loading all the audio
-        //     this.load.audio('whoosh', './assets/whoosh.wav');
-        //     this.load.audio('thud', './assets/thud.wav');
-        //     this.load.audio('thud2', './assets/thud2.wav');
-        //     this.load.audio('buttonPress', './assets/buttonPress.wav');
-        //     this.load.audio('correct', './assets/correct.wav');
-        //     this.load.audio('oceanWaves', './assets/oceanWaves.wav');
-        //     this.load.audio('redButton1', './assets/redButton1.wav');
-        //     this.load.audio('redButton2', './assets/redButton2.wav');
-        //     this.load.audio('pop', './assets/pop.wav');
-        // }
     }
     create(){
         
@@ -80,7 +21,7 @@ class trainingday extends Phaser.Scene{
         this.enterSign.setScale(0.4);
         this.enterSign.setAlpha(0);
 
-        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
         this.heightPole.setAlpha(0);
 
         this.boss = this.add.sprite(180, 90, 'boss');
@@ -99,6 +40,7 @@ class trainingday extends Phaser.Scene{
         this.whoosh = this.sound.add('whoosh');
         this.correct = this.sound.add('correct');
         this.correct2 = this.sound.add('correct2');
+        this.correct2.volume = 0.7;
         this.question = this.sound.add('hmm', {volume: 2});
         this.question2 = this.sound.add('hmm2', {volume: 2});
         this.question2.setRate(1.2);
@@ -108,6 +50,7 @@ class trainingday extends Phaser.Scene{
         this.sigh1 = this.sound.add('sigh1');
         this.huh = this.sound.add('huh');
         this.incorrect = this.sound.add('incorrect');
+        this.incorrect.volume = 0.7;
         this.pop = this.sound.add('pop');
 
 
@@ -459,7 +402,7 @@ class trainingday extends Phaser.Scene{
     }
     advanceScene(){
         this.time.addEvent({
-            delay: 1300,
+            delay: 1400,
             callback: ()=>{
                 this.scene.start("day1IntroScene");
             },
@@ -575,10 +518,10 @@ class trainingday extends Phaser.Scene{
 
         //have text advance when space is pressed
         if(currentText.text == bossText[0]){
-            //get rid of "press Space to advance"
-            //instructions.destroy();
+            this.startdirectionsTimer = true;
             //go to next phrase
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
+                this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[1]);
                 this.directions.setAlpha(0);
                 //this.oh1.play();

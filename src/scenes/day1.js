@@ -9,7 +9,7 @@ class day1 extends Phaser.Scene{
     create(){
         //load background
         this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
-        this.rulesSign = this.add.sprite(15, -175, 'rulesSign').setOrigin(0, 0);
+        this.rulesSign = this.add.sprite(15, -100, 'rulesSign').setOrigin(0, 0);
         this.day1Title = this.add.sprite(0, -20, 'day1Title').setOrigin(0,0);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
@@ -54,7 +54,7 @@ class day1 extends Phaser.Scene{
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
-        this.heightPole = this.add.sprite(20, 0, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
         this.exitSign.setScale(0.4);
         this.enterSign.setScale(0.4);
 
@@ -186,7 +186,7 @@ class day1 extends Phaser.Scene{
         this.delay = 0;
 
         //set the scale of them which will affect height
-        this.height = randomDecimil(0.2, 0.5);
+        this.height = 0.25//randomDecimil(0.2, 0.5);
         this.scale = this.height; 
 
         console.log('height:', this.scale);
