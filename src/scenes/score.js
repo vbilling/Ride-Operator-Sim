@@ -979,8 +979,8 @@ class score extends Phaser.Scene{
             callback: ()=>{
                 //next button
                 this.pop.play();
-                this.nextButton = this.add.sprite(820, 80, 'nextButton').setInteractive();
-                this.nextButton.setScale(0.3);
+                this.nextButton = this.add.sprite(820, 85, 'nextButton').setInteractive();
+                this.nextButton.setScale(0.18);
                 this.nextButtonHover = false;
                 this.nextButton.on("pointerover", () => {
                     //will tell code in update to go to next scene
@@ -989,7 +989,7 @@ class score extends Phaser.Scene{
         
                 });
                 this.nextButton.on("pointerout", () => {
-                    this.nextButton.setFrame(1);
+                    this.nextButton.setFrame(0);
                     this.nextButtonHover = false;
                 });
             },

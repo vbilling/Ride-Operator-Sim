@@ -49,9 +49,11 @@ class trainingday extends Phaser.Scene{
         this.oh2 = this.sound.add('oh2');
         this.sigh1 = this.sound.add('sigh1');
         this.huh = this.sound.add('huh');
+        this.huh.volume = 1.5;
         this.incorrect = this.sound.add('incorrect');
         this.incorrect.volume = 0.7;
         this.pop = this.sound.add('pop');
+        this.scribble = this.sound.add('scribble');
 
 
         this.ground = this.add.sprite(480, 390, 'ground');
@@ -122,7 +124,7 @@ class trainingday extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        this.correct.play();
+                        //this.correct.play();
                         this.soundplayed = false;
                     },
                     loop: false
@@ -703,6 +705,7 @@ class trainingday extends Phaser.Scene{
             //this.startdirectionsTimer = true;
             //if the contract is clicked
             if(this.pointer.isDown && this.contractHover == true){
+                this.scribble.play();
                 this.contract.stop();
                 this.contract.setFrame(2);
                 currentText.text = this.typewriteTextWrapped(bossText[13]);
