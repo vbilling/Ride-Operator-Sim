@@ -13,7 +13,9 @@ class load extends Phaser.Scene{
         this.load.image('day1Header', './assets/day1Header.png');
         this.load.image('day2Header', './assets/day2Header.png');
         this.load.image('day3Header', './assets/day3Header.png');
-        this.load.image('menuButton', './assets/menuButton.png');
+        this.load.spritesheet('menuButton', './assets/menuButton.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
+
+        this.load.image('glow2', './assets/glow2.png');
 
         this.load.spritesheet('timerClock', './assets/timerClock.png', {frameWidth: 404, frameHeight: 304, startFrame: 0, endFrame: 8});
 
@@ -71,6 +73,11 @@ class load extends Phaser.Scene{
         this.load.audio('rollerCoasterAudio', './assets/rollerCoaster.wav');
         this.load.audio('scream', './assets/scream.wav');
         this.load.audio('lightbulb', './assets/lightbulb.mp3');
+        this.load.audio('scribble', './assets/scribble.wav');
+        this.load.audio('bounce', './assets/bounce.wav');
+        this.load.audio('happyBirthday', './assets/happyBirthday.wav');
+        this.load.audio('gasp', './assets/gasp.wav');
+        this.load.audio('glitter', './assets/glitter.wav');
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -246,7 +253,7 @@ class load extends Phaser.Scene{
     
     }
     create(){
-        this.scene.start("day1Scene");
+        this.scene.start("menuScene");
     }
 
 

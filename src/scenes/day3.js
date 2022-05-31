@@ -118,7 +118,7 @@ class day3 extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        this.correct.play();
+                        //this.correct.play();
                     },
                     loop: false
                 })

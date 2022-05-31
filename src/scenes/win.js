@@ -18,6 +18,12 @@ class win extends Phaser.Scene{
     }
     create(){
         winDone = true;
+        this.happyBirthdaySong = this.sound.add('happyBirthday');
+        this.gasp = this.sound.add('gasp');
+        this.glitter = this.sound.add('glitter');
+        this.happyBirthdaySong.play();
+        this.happyBirthdaySong.volume = 0.2;
+
         this.add.image(0,0, 'bdayBackground').setOrigin(0,0);
         this.pointer2 = this.input.activePointer;
 
@@ -25,6 +31,8 @@ class win extends Phaser.Scene{
         this.menuPointer = false;
 
         this.presentOpen = false;
+
+        this.bounce = this.sound.add('bounce');
 
         this.present1 = this.add.sprite(20, 50, 'present1').setOrigin(0,0);
         //this.presentBody = this.physics.add.sprite(270, 450, 'present2');
@@ -86,6 +94,7 @@ class win extends Phaser.Scene{
         path2.add(line2);
 
         this.koala2 = this.add.follower(line1, 650, 450, 'koala').setScale(0.3);
+        this.koalaBounce = true;
         this.koala2.startFollow({
             duration: 1000,
             yoyo: true,
@@ -115,10 +124,13 @@ class win extends Phaser.Scene{
         // });
         this.menuButton.on("pointerover", () => {
             this.menuPointer = true;
+            this.menuButton.setFrame(1);
         });
         this.menuButton.on("pointerout", () => {
             this.menuPointer = false;
+            this.menuButton.setFrame(0);
         });
+        this.buttonPress = this.sound.add('buttonPress');
 
         this.anims.create({
             key: 'eyes',
@@ -149,13 +161,43 @@ class win extends Phaser.Scene{
         //     this.downArrow.setAlpha(0)
 
         // });
+        this.koalaBouncey();
 
 
     }
+    koalaBouncey(){
+            this.time.addEvent({
+                delay: 2000,
+                callback: ()=>{
+                    if(this.koalaBounce == true){
+                    this.bounce.play();
+                    }
+                },
+                loop: true
+            }) 
+ 
+    }
+    advanceScene(){
+        this.time.addEvent({
+            delay: 1,
+            callback: ()=>{
+                this.buttonPress.play();
+            },
+            loop: false
+        }) 
+        this.time.addEvent({
+            delay: 600,
+            callback: ()=>{
+                //this.buttonPress.play();
+                this.scene.start("menuScene");
+            },
+            loop: false
+        }) 
+    }
     update(){
 
-        if(this.pointer2.isDown && this.presentOpen == false){ //&& this.pointerOver == true
-            console.log('yes');
+        if(this.pointer2.isDown && this.presentOpen == false){ //&& this.pointerOver == true\
+            this.gasp.play();
             this.falsePresent.setAlpha(0);
             this.present2 = this.add.follower(this.line3, 20, 50, 'present2').setOrigin(0,0);
             this.present2.startFollow({
@@ -163,6 +205,7 @@ class win extends Phaser.Scene{
                 yoyo: false,
                 ease: 'Linear', //'Sine.easeInOut'
             });
+            this.koalaBounce = false;
             this.koala2.setAlpha(0);
             this.koala3.setAlpha(1);
             this.koala3.play('eyes');
@@ -172,9 +215,35 @@ class win extends Phaser.Scene{
             this.text1.setAlpha(0);
             this.downArrow.setAlpha(0)
             this.presentOpen = true;
+            this.glitter.play()
+
+            this.particles = this.add.particles('glow2');
+            this.emitter = this.particles.createEmitter({
+                //frame: 'yellow',
+                x: 270, y: 450,
+                lifespan: { min: 900, max: 2100 },
+                angle: { start: 0, end: 360, steps: 64 },
+                speed: 60,
+                quantity: 20,//64 
+                scale: { start: 0.2, end: 0.1 },
+                frequency: 10, //32
+                blendMode: 'ADD'
+            });
+            this.particles2 = this.add.particles('glow');
+            this.emitter2 = this.particles2.createEmitter({
+                //frame: 'yellow',
+                x: 270, y: 450,
+                lifespan: { min: 900, max: 2100 },
+                angle: { start: 0, end: 360, steps: 64 },
+                speed: 60,
+                quantity: 20,//64 
+                scale: { start: 0.1, end: 0.1 },
+                frequency: 10, //32
+                //blendMode: 'ADD'
+            });
         }; 
         if(this.pointer2.isDown && this.menuPointer == true){
-            this.scene.start('menuScene');
+            this.advanceScene();
         }; 
         // graphics2.clear();
         // graphics2.lineStyle(2, 0xffffff, 1);

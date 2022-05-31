@@ -27,6 +27,7 @@ class lose extends Phaser.Scene{
         this.menuButton.setAlpha(0);
         this.firedboss.setFrame(6);
         this.firedboss.setScale(2); 
+        this.buttonPress = this.sound.add('buttonPress');
 
         this.time.addEvent({
             delay: 2000,
@@ -46,14 +47,17 @@ class lose extends Phaser.Scene{
         this.menuButton.on("pointerover", () => {
             //this.menuButton.setFrame(1);
             this.menuButtonHover = true;
+            this.menuButton.setFrame(1);
         });
         this.menuButton.on("pointerout", () => {
             //this.menuButton.setFrame(2);
             this.menuButtonHover = false;
+            this.menuButton.setFrame(0);
         });
 
         if(this.menuButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
+                this.buttonPress.play();
                 this.scene.start('menuScene');
             }, this)
         }

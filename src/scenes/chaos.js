@@ -19,17 +19,37 @@ class chaos extends Phaser.Scene{
         this.menuButton.setInteractive();
         this.menuButton.on("pointerover", () => {
             this.menuPointer = true;
+            this.menuButton.setFrame(1);
         });
         this.menuButton.on("pointerout", () => {
             this.menuPointer = false;
+            this.menuButton.setFrame(0);
         });
+        this.buttonPress = this.sound.add('buttonPress');
 
 
 
     }
+    advanceScene(){
+        this.time.addEvent({
+            delay: 1,
+            callback: ()=>{
+                this.buttonPress.play();
+            },
+            loop: false
+        }) 
+        this.time.addEvent({
+            delay: 500,
+            callback: ()=>{
+                //this.buttonPress.play();
+                this.scene.start("menuScene");
+            },
+            loop: false
+        }) 
+    }
     update(){
         if(this.pointer2.isDown && this.menuPointer == true){
-            this.scene.start('menuScene');
+            this.advanceScene();
         }; 
 
 

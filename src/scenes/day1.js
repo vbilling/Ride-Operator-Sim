@@ -53,7 +53,9 @@ class day1 extends Phaser.Scene{
         this.oceanWaves.volume = 0.3;
         this.pop = this.sound.add('pop');
         this.tick1 = this.sound.add('tick1');
+        this.tick1.volume = 0.4;
         this.tick2 = this.sound.add('tick2');
+        this.tick2.volume = 0.4;
         this.lightbulb = this.sound.add('lightbulb');
         this.lightbulb.volume = 0.4;
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
@@ -130,7 +132,7 @@ class day1 extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        this.correct.play();
+                        //this.correct.play();
                     },
                     loop: false
                 })
