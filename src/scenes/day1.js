@@ -8,9 +8,12 @@ class day1 extends Phaser.Scene{
 
     create(){
         //load background
-        this.add.tileSprite(0,0, 960, 720, 'day1Background').setOrigin(0,0);
+        this.add.tileSprite(0, 80, 960, 720, 'day1Background').setOrigin(0,0);
         this.rulesSign = this.add.sprite(15, -100, 'rulesSign').setOrigin(0, 0);
-        this.day1Title = this.add.sprite(0, -20, 'day1Title').setOrigin(0,0);
+        this.header = this.add.sprite(0, 0, 'header').setOrigin(0,0);
+        this.dayheader = this.add.sprite(0, 0, 'day1Header').setOrigin(0,0);
+        this.day1Title = this.add.sprite(340, 67, 'day1Title').setOrigin(0,0);
+        this.day1Title.setScale(0.3);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
 
@@ -31,11 +34,11 @@ class day1 extends Phaser.Scene{
         //will delay the next character spawn in
         this.delay = 0;
 
-        this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
-        this.capacityMeter.setScale(0.9);
+        //this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
+        //this.capacityMeter.setScale(0.9);
 
-        this.timerClock = this.add.sprite(850, 70, 'timerClock');
-        this.timerClock.setScale(0.8);
+        this.timerClock = this.add.sprite(754, 93, 'timerClock');
+        this.timerClock.setScale(0.65);
         this.timerClock.setFrame(0);
 
 
@@ -51,6 +54,7 @@ class day1 extends Phaser.Scene{
         this.pop = this.sound.add('pop');
         this.tick1 = this.sound.add('tick1');
         this.tick2 = this.sound.add('tick2');
+        this.lightbulb = this.sound.add('lightbulb');
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
@@ -81,9 +85,9 @@ class day1 extends Phaser.Scene{
         console.log("game timer", this.gametimer);
         this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
         this.timertext.setAlpha(0);
-        this.wristbandCheck = this.add.image(950, 0, 'wristband1');
+        this.wristbandCheck = this.add.image(420, 15, 'wristband1');
         //counting the riders
-        this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
+        //this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
 
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
@@ -341,7 +345,7 @@ class day1 extends Phaser.Scene{
         this.time.addEvent({
             delay: 700,
             callback: ()=>{
-                this.buttonPress.play();
+                //this.buttonPress.play();
                 this.scene.start("coasterScene");
             },
             loop: false
@@ -352,7 +356,7 @@ class day1 extends Phaser.Scene{
         //for game timer
         this.gametimer -= 1;
         this.timertext.text = Math.round(this.gametimer/60);
-        this.riderCount.text = 'Riders: ' + ridingCustomers;
+        //this.riderCount.text = 'Riders: ' + ridingCustomers;
         this.clock += 1;
         //if the timer runs out, go to next scene
         if(Math.round(this.gametimer/60) < 0){ // 60
@@ -439,8 +443,11 @@ class day1 extends Phaser.Scene{
                     console.log('customers', ridingCustomers);
                     allRiders_array.push(riderAccessories_array);
                     if(ridingCustomers < 8){
+                        this.lightbulb.play();
                         console.log('all riders array', allRiders_array);
                         this.newCharacter();
+                    }else{
+                        this.buttonPress.play();
                     }
                 }else if(this.p1.x < 0){
                     if(ridingCustomers < 8){
@@ -461,31 +468,31 @@ class day1 extends Phaser.Scene{
         }
         //change capacity meter to match amount of riders
         if (ridingCustomers == 0){
-            this.capacityMeter.setFrame(0);
+            this.header.setFrame(0);
         }
         if (ridingCustomers == 1){
-            this.capacityMeter.setFrame(1);
+            this.header.setFrame(1);
         }
         if (ridingCustomers == 2){
-            this.capacityMeter.setFrame(2);
+            this.header.setFrame(2);
         }
         if (ridingCustomers == 3){
-            this.capacityMeter.setFrame(3);
+            this.header.setFrame(3);
         }
         if (ridingCustomers == 4){
-            this.capacityMeter.setFrame(4);
+            this.header.setFrame(4);
         }
         if (ridingCustomers == 5){
-            this.capacityMeter.setFrame(5);
+            this.header.setFrame(5);
         }
         if (ridingCustomers == 6){
-            this.capacityMeter.setFrame(6);
+            this.header.setFrame(6);
         }
         if (ridingCustomers == 7){
-            this.capacityMeter.setFrame(7);
+            this.header.setFrame(7);
         }
         if (ridingCustomers == 8){
-            this.capacityMeter.setFrame(8);
+            this.header.setFrame(8);
         }
 
         //the timer clock ticking up
@@ -529,7 +536,6 @@ class day1 extends Phaser.Scene{
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){
             this.scene.start("coasterScene");
-            this.buttonPress.play();
         }; 
     
 

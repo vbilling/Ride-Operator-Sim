@@ -3,75 +3,18 @@ class day3 extends Phaser.Scene{
         super("day3Scene");
     }
     preload(){
-        // if(day1Done == false && day2Done == false){
-        //     this.load.image('cowhat1', './assets/cowhat1.png');
-        //     this.load.image('cowhat2', './assets/cowhat2.png');
-        //     this.load.image('cowhat3', './assets/cowhat3.png');
-        //     this.load.image('partyhat', './assets/partyhat.png');
-        //     this.load.image('tiara', './assets/tiara.png');
-    
-        //     //held accessories
-        //     this.load.image('soda1', './assets/soda1.png');
-        //     this.load.image('soda2', './assets/soda2.png');
-        //     this.load.image('knife', './assets/knife.png');
-        //     this.load.image('corndog', './assets/corndog.png');
-        //     this.load.image('donut', './assets/donut.png');
-        //     this.load.image('scissors', './assets/scissors.png');
-        //     this.load.image('spatula', './assets/spatula.png');
-    
-        //     //left wrist accessories
-        //     this.load.image('wristband1', './assets/wristband1.png');
-        //     this.load.image('wristband2', './assets/wristband2.png');
-        //     this.load.image('wristband3', './assets/wristband3.png');
-        //     this.load.image('watch', './assets/watch.png');
-    
-        //     //face accessories
-        //     this.load.image('moustache', './assets/moustache.png');
-        //     this.load.image('scar', './assets/scar.png');
-        //     this.load.image('bandaid', './assets/bandaid.png');
-        //     this.load.image('clownNose', './assets/clownNose.png');
-        //     this.load.image('mask', './assets/mask.png');
-        //     this.load.image('glasses1', './assets/glasses1.png');
-        //     this.load.image('glasses2', './assets/glasses2.png');
-        //     this.load.image('pacifier1', './assets/pacifier1.png');
-        //     this.load.image('pacifier2', './assets/pacifier2.png');
-            
-        //     //waist accessories
-        //     this.load.image('phanny1', './assets/phanny1.png');
-        //     this.load.image('phanny2', './assets/phanny2.png');
-        //     this.load.image('gucciBelt', './assets/gucciBelt.png');
-        //     this.load.image('tutu', './assets/tutu.png');
-        //     this.load.image('bikini1', './assets/bikini1.png');
-        //     this.load.image('bikini2', './assets/bikini2.png');
-        //     this.load.image('bikini3', './assets/bikini3.png');
-        //     this.load.image('bikini4', './assets/bikini4.png');
-        //     this.load.image('bikini5', './assets/bikini5.png');
-        //     this.load.image('swimTrunks1', './assets/swimTrunks1.png');
-        //     this.load.image('swimTrunks2', './assets/swimTrunks2.png');
-        //     this.load.image('swimTrunks3', './assets/swimTrunks3.png');
-        //     this.load.image('swimTrunks4', './assets/swimTrunks4.png');
-    
-        //     //left leg accessories
-        //     this.load.image('ankleMoniter', './assets/ankleMoniter.png');
-    
-        //     //wrist accessories 2
-        //     this.load.image('handcuffs', './assets/handcuffs.png')
-    
-        //     //neck accessories
-        //     this.load.image('bdayNecklace', './assets/bdayNecklace.png');
-        //     this.load.image('chain', './assets/chain.png');
-        //     this.load.image('shellNecklace', './assets/shellNecklace.png');
-        //     this.load.image('bowtie', './assets/bowtie.png');
-        // }
 
 
     };
 
     create(){
         day3Done = true;
-        this.add.tileSprite(0,0, 960, 720, 'day3Background').setOrigin(0,0);
+        this.add.tileSprite(0,80, 960, 720, 'day3Background').setOrigin(0,0);
         this.rulesSign = this.add.sprite(15, -100, 'rulesSign').setOrigin(0, 0);
-        this.day3Title = this.add.sprite(0, 0, 'day3Title').setOrigin(0,0);
+        this.header = this.add.sprite(0, 0, 'header').setOrigin(0,0);
+        this.dayheader = this.add.sprite(0, 0, 'day3Header').setOrigin(0,0);
+        this.day3Title = this.add.sprite(340, 67, 'day3Title').setOrigin(0,0);
+        this.day3Title.setScale(0.3);
         //temporary instructions text
         // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
         // this.add.text(130, 120, "Let no more and no less than 8 guests ride");
@@ -91,17 +34,17 @@ class day3 extends Phaser.Scene{
 
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
-        this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
+        this.heightPole = this.add.sprite(22, -6, 'heightPole').setOrigin(0,0);
         this.exitSign.setScale(0.4);
         this.enterSign.setScale(0.4);
         //will delay the next character spawn in
         this.delay = 0;
 
-        this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
-        this.capacityMeter.setScale(0.9);
+        //this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
+        //this.capacityMeter.setScale(0.9);
 
-        this.timerClock = this.add.sprite(850, 70, 'timerClock');
-        this.timerClock.setScale(0.8);
+        this.timerClock = this.add.sprite(754, 93, 'timerClock');
+        this.timerClock.setScale(0.65);
 
         //implementing a game timer
         this.originalGameTimer = 5000;
@@ -123,8 +66,8 @@ class day3 extends Phaser.Scene{
         //console.log("game timer", this.gametimer);
         this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
         this.timertext.setAlpha(0);
-        this.wristbandCheck = this.add.image(950, 0, 'wristband3');
-        this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
+        this.wristbandCheck = this.add.image(420, 15, 'wristband3');
+        //this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
         //the riders are reset 
@@ -139,6 +82,7 @@ class day3 extends Phaser.Scene{
         //this.oceanWaves.volume = 0.3;
         this.tick1 = this.sound.add('tick1');
         this.tick2 = this.sound.add('tick2');
+        this.lightbulb = this.sound.add('lightbulb');
 
         this.ground = this.add.sprite(480, 390, 'ground');
         
@@ -380,7 +324,7 @@ class day3 extends Phaser.Scene{
         this.time.addEvent({
             delay: 700,
             callback: ()=>{
-                this.buttonPress.play();
+                //this.buttonPress.play();
                 this.scene.start("coasterScene");
             },
             loop: false
@@ -392,7 +336,7 @@ class day3 extends Phaser.Scene{
         //for game timer
         this.gametimer -= 1;
         this.timertext.text = Math.round(this.gametimer/60);
-        this.riderCount.text = 'Riders: ' + ridingCustomers;
+        //this.riderCount.text = 'Riders: ' + ridingCustomers;
         //if the timer runs out, go to next scene
         if(Math.round(this.gametimer/60) < 0){
             this.scene.start("coasterScene");
@@ -486,8 +430,11 @@ class day3 extends Phaser.Scene{
                     console.log('customers', ridingCustomers);
                     allRiders_array.push(riderAccessories_array);
                     if(ridingCustomers < 8){
+                        this.lightbulb.play();
                         console.log('all riders array', allRiders_array);
                         this.newCharacter();
+                    }else{
+                        this.buttonPress.play();
                     }
                 }else if(this.p1.x < 0){
                     if(ridingCustomers < 8){
@@ -499,31 +446,31 @@ class day3 extends Phaser.Scene{
         }
         //change capacity meter to match amount of riders
         if (ridingCustomers == 0){
-            this.capacityMeter.setFrame(0);
+            this.header.setFrame(0);
         }
         if (ridingCustomers == 1){
-            this.capacityMeter.setFrame(1);
+            this.header.setFrame(1);
         }
         if (ridingCustomers == 2){
-            this.capacityMeter.setFrame(2);
+            this.header.setFrame(2);
         }
         if (ridingCustomers == 3){
-            this.capacityMeter.setFrame(3);
+            this.header.setFrame(3);
         }
         if (ridingCustomers == 4){
-            this.capacityMeter.setFrame(4);
+            this.header.setFrame(4);
         }
         if (ridingCustomers == 5){
-            this.capacityMeter.setFrame(5);
+            this.header.setFrame(5);
         }
         if (ridingCustomers == 6){
-            this.capacityMeter.setFrame(6);
+            this.header.setFrame(6);
         }
         if (ridingCustomers == 7){
-            this.capacityMeter.setFrame(7);
+            this.header.setFrame(7);
         }
         if (ridingCustomers == 8){
-            this.capacityMeter.setFrame(8);
+            this.header.setFrame(8);
         }
 
         //the timer clock ticking up
@@ -561,7 +508,7 @@ class day3 extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){
-            this.buttonPress.play();
+            //this.buttonPress.play();
             this.scene.start("coasterScene");
         }; 
     };
