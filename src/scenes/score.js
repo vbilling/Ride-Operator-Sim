@@ -1009,6 +1009,37 @@ class score extends Phaser.Scene{
 
 
     };
+
+    coasterTimer(){
+        //timer for ending the scene
+        this.nextSceneTimer = this.time.addEvent({
+            delay:1890,
+            callback:() =>{
+                this.cart1.body.setVelocityX(0);
+                this.cart2.body.setVelocityX(0);
+                this.cart3.body.setVelocityX(0);
+                this.cart4.body.setVelocityX(0);
+                //set velocity of bodies
+                for(let b = 0; b < (riderSprite_array2.length); b++){
+                    riderSprite_array2[b].body.setVelocityX(0);
+                    //and make them change to surprised face
+                    if(riderSize_array[b] == "extra large"){
+                        riderSprite_array2[b].setFrame(2);
+                    }else{
+                        riderSprite_array2[b].setFrame(0);
+                    }
+                };
+                //set velocity of the accessories
+                for(let w = 0; w < (accessorySprite_array2.length); w++){
+                    accessorySprite_array2[w].body.setVelocityX(0);
+                };
+    
+            },
+            loop: false
+        });
+        }
+    
+
     update(){
         //make boss shake if youre fired
         function randomDecimil(mn,mx){
@@ -1017,8 +1048,8 @@ class score extends Phaser.Scene{
         if(fired >= 90 && this.shake == true){
             this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
         }
-        this.delay += 1;
-        if((this.delay/60) < 1.9){
+        //this.delay += 1;
+        //if((this.delay/60) < 1.9){
             this.cart1.body.setVelocityX(490);
             this.cart2.body.setVelocityX(490);
             this.cart3.body.setVelocityX(490);
@@ -1041,27 +1072,11 @@ class score extends Phaser.Scene{
                 accessorySprite_array2[w].body.setVelocityX(490);
                 //accessorySprite_array2[w].setDepth(1.9);
             };
-        }else{
-            this.cart1.body.setVelocityX(0);
-            this.cart2.body.setVelocityX(0);
-            this.cart3.body.setVelocityX(0);
-            this.cart4.body.setVelocityX(0);
-            //set velocity of bodies
-            for(let b = 0; b < (riderSprite_array2.length); b++){
-                riderSprite_array2[b].body.setVelocityX(0);
-                //and make them change to surprised face
-                if(riderSize_array[b] == "extra large"){
-                    riderSprite_array2[b].setFrame(2);
-                }else{
-                    riderSprite_array2[b].setFrame(0);
-                }
-            };
-            //set velocity of the accessories
-            for(let w = 0; w < (accessorySprite_array2.length); w++){
-                accessorySprite_array2[w].body.setVelocityX(0);
-            };
 
-        }
+            this.coasterTimer();
+        //}else{
+
+        //}
         //next button pressed 
         if(this.nextButtonHover == true){
             this.input.on('pointerdown', function (pointer) {

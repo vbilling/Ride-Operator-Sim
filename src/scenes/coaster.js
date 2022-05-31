@@ -379,8 +379,7 @@ class coaster extends Phaser.Scene{
                 repeat: -1,
                 yoyo: false
         });
-        this.redButton.play('blinking2');
-        
+        this.redButton.play('blinking2');        
 
     };
     deleteShortRiders(){
@@ -907,6 +906,17 @@ class coaster extends Phaser.Scene{
 
     };
 
+    sceneTimer(){
+            //timer for ending the scene
+            this.nextSceneTimer = this.time.addEvent({
+                delay: 5200,
+                callback:() =>{
+                    this.scene.start('scoreScene');
+                },
+                loop: false
+            });
+    }
+
     update(){
         
         //press red button to make coasters start
@@ -939,11 +949,13 @@ class coaster extends Phaser.Scene{
         if(this.coasterstart == true){
             //this.cart1.anims.play('wheels');
             //set a timer and then have scene change to score
-            //this timer causes the scene to end too early
-            this.delay += 1;
+            //this timer causes the scene to end too early on chrome browser
+            /*this.delay += 1;
             if(Math.round(this.delay/60) > 5.9){
                 this.scene.start('scoreScene');
-            };
+            };*/
+            this.sceneTimer();
+            
             
             this.cart1.body.setVelocityX(RC_Velocity);
             this.cart2.body.setVelocityX(RC_Velocity);

@@ -221,11 +221,7 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(2);
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            if(loseDone == false && winDone == false){
-                this.scene.start("trainingIntroScene");
-            }else{
-                this.scene.start("day1IntroScene");
-            }
+            this.scene.start("trainingdayScene");
         }; 
         if(this.pointer.isDown && this.chaosButtonHover == true){
             this.chaosButton.setFrame(2);
