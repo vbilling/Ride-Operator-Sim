@@ -156,7 +156,7 @@ class load extends Phaser.Scene{
         this.load.image('firedMeter', './assets/firedMeter.png');
 
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.spritesheet('capacityMeter', './assets/capacitymeter.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 8});
         this.load.image('blood', './assets/blood.png');
 
@@ -253,7 +253,7 @@ class load extends Phaser.Scene{
     
     }
     create(){
-        this.scene.start("day3Scene");
+        this.scene.start("scoreScene");
     }
 
 
