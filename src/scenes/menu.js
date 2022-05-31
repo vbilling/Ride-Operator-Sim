@@ -32,6 +32,9 @@ class menu extends Phaser.Scene{
 
     }
     create(){
+        day1Done = false;
+        day2Done = false;
+        day3Done = false;
         game.settings = {
             mass:1,
             position:[0,3],
@@ -221,7 +224,11 @@ class menu extends Phaser.Scene{
             this.startButton.setFrame(2);
             this.buttonPress.play();
             this.buttonPress.volume = 0.5;
-            this.scene.start("trainingdayScene");
+            if(trainingDone == false){
+                this.scene.start("trainingIntroScene");
+            }else{
+                this.scene.start("day1IntroScene");
+            }
         }; 
         if(this.pointer.isDown && this.chaosButtonHover == true){
             this.chaosButton.setFrame(2);
