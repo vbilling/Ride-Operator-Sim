@@ -1051,8 +1051,8 @@ class score extends Phaser.Scene{
         if(fired >= 90 && this.shake == true){
             this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
         }
-        //this.delay += 1;
-        //if((this.delay/60) < 1.9){
+        this.delay += 1;
+        if(this.delay == 1){
             this.cart1.body.setVelocityX(490);
             this.cart2.body.setVelocityX(490);
             this.cart3.body.setVelocityX(490);
@@ -1075,11 +1075,9 @@ class score extends Phaser.Scene{
                 accessorySprite_array2[w].body.setVelocityX(490);
                 //accessorySprite_array2[w].setDepth(1.9);
             };
-
-            this.coasterTimer();
-        //}else{
-
-        //}
+        }
+        this.coasterTimer();
+        
         //next button pressed 
         if(this.nextButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
