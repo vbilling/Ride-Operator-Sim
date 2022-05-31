@@ -989,7 +989,7 @@ class score extends Phaser.Scene{
         
                 });
                 this.nextButton.on("pointerout", () => {
-                    this.nextButton.setFrame(1);
+                    this.nextButton.setFrame(0);
                     this.nextButtonHover = false;
                 });
             },
