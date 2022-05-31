@@ -64,6 +64,8 @@ class load extends Phaser.Scene{
         this.load.audio('tick1', './assets/tick1.wav');
         this.load.audio('tick2', './assets/tick2.wav');
         this.load.audio('trumpet', './assets/trumpet.wav');
+        this.load.audio('rollerCoasterAudio', './assets/rollerCoaster.wav');
+        this.load.audio('scream', './assets/scream.wav');
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -240,7 +242,7 @@ class load extends Phaser.Scene{
 
     }
     create(){
-        this.scene.start("menuScene");
+        this.scene.start("day1Scene");
     }
 
 

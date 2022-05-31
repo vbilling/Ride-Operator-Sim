@@ -53,10 +53,21 @@ class coaster extends Phaser.Scene{
         this.loop = false;
         master_array = []
 
+        //how many times to call the scream function
+        this.screams = 0;
+
         //sounds
         //this.game.sound.stopAll();
         this.redButton1 = this.sound.add('redButton1');
         this.redButton2 = this.sound.add('redButton2');
+        this.rollerCoasterAudio = this.sound.add('rollerCoasterAudio');
+        this.scream = this.sound.add('scream');
+        this.scream2 = this.sound.add('scream');
+        this.scream3 = this.sound.add('scream');
+        this.scream4 = this.sound.add('scream');
+        this.scream5 = this.sound.add('scream');
+        this.scream6 = this.sound.add('scream');
+        this.scream7= this.sound.add('scream');
 
         //will say which rider is too short and should be removed from score scene
         this.short0 = false;
@@ -459,15 +470,105 @@ class coaster extends Phaser.Scene{
 
         };
     }
+    riderScream(){
+        console.log('screams', this.screams);
+        if(this.screams >= 1){
+            this.time.addEvent({
+                delay: 3500,
+                callback: ()=>{
+                    this.scream.play();
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 2){
+            this.time.addEvent({
+                delay: 3600,
+                callback: ()=>{
+                    this.scream2.play()
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 3){
+            this.time.addEvent({
+                delay: 3800,
+                callback: ()=>{
+                    this.scream3.play()
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 4){
+            this.time.addEvent({
+                delay: 3900,
+                callback: ()=>{
+                    this.scream4.play()
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 5){
+            this.time.addEvent({
+                delay: 4100,
+                callback: ()=>{
+                    this.scream5.play()
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 6){
+            this.time.addEvent({
+                delay: 4200,
+                callback: ()=>{
+                    this.scream6.play()
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 7){
+            this.time.addEvent({
+                delay: 4400,
+                callback: ()=>{
+                    this.scream7.play()
+                },
+                loop: false
+            })
+
+        }
+        if(this.screams >= 8){
+            this.time.addEvent({
+                delay: 4500,
+                callback: ()=>{
+                    this.scream.play()
+                },
+                loop: false
+            })
+
+        }
+
+    }
     //adding all the rollar coaster cars that go around the loop
     //put it into a function to call later
     pathStart(){
+        //play sound
+        this.rollerCoasterAudio.play();
+
         //separate out carts
         //console.log("allRiders_array", allRiders_array);
         //check if there is one rider
         if(riderSprite_array.length > 0){
             if(riderSize_array[0] == "small"){
                 this.rider01 = this.add.follower(curve2, -160, 140, allRiders_array[0][1]);
+                //add delayed audio
+                this.screams += 1;
+                this.riderScream();
                 this.short1 = true;
                 this.rider01.startFollow({
                     duration: 5600,
@@ -517,6 +618,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[1] == "small"){
                 this.short2 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider02 = this.add.follower(curve2, -180, 140, allRiders_array[1][1]);
                 this.rider02.startFollow({
                     duration: 5600,
@@ -566,6 +669,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[2] == "small"){
                 this.short3 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider03 = this.add.follower(curve2, -160, 140, allRiders_array[2][1]);
                 this.rider03.startFollow({
                     duration: 5600,
@@ -614,6 +719,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[3] == "small"){
                 this.short4 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider04 = this.add.follower(curve2, -180, 140, allRiders_array[3][1]);
                 this.rider04.startFollow({
                     duration: 5600,
@@ -662,6 +769,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[4] == "small"){
                 this.short5 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider05 = this.add.follower(curve2, -160, 140, allRiders_array[4][1]);
                 this.rider05.startFollow({
                     duration: 5600,
@@ -710,6 +819,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[5] == "small"){
                 this.short6 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider06 = this.add.follower(curve2, -180, 140, allRiders_array[5][1]);
                 this.rider06.startFollow({
                     duration: 5600,
@@ -759,6 +870,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[6] == "small"){
                 this.short7 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider07 = this.add.follower(curve2, -160, 140, allRiders_array[6][1]);
                 this.rider07.startFollow({
                     duration: 5600,
@@ -807,6 +920,8 @@ class coaster extends Phaser.Scene{
             //create a new follower
             if(riderSize_array[7] == "small"){
                 this.short8 = true;
+                this.screams += 1;
+                this.riderScream();
                 this.rider08 = this.add.follower(curve2, -180, 140, allRiders_array[7][1]);
                 this.rider08.startFollow({
                     duration: 5600,

@@ -21,14 +21,17 @@ class win extends Phaser.Scene{
         this.add.image(0,0, 'bdayBackground').setOrigin(0,0);
         this.pointer2 = this.input.activePointer;
 
-        this.pointerOver = false;
+        //this.pointerOver = false;
         this.menuPointer = false;
 
+        this.presentOpen = false;
+
         this.present1 = this.add.sprite(20, 50, 'present1').setOrigin(0,0);
-        this.presentBody = this.physics.add.sprite(270, 450, 'body').setInteractive();
-        this.presentBody.setAlpha(1);
-        this.presentBody.body.allowGravity = false;
-        this.presentBody.body.setSize(350, 100); //0.1, 1500
+        //this.presentBody = this.physics.add.sprite(270, 450, 'present2');
+        //this.presentBody.setAlpha(1);
+        //this.presentBody.body.allowGravity = false;
+        //this.presentBody.body.setSize(350, 100); //0.1, 1500
+        //this.presentBody.setInteractive();
         this.falsePresent = this.add.sprite(20, 50, 'present2').setOrigin(0,0);
 
         this.birthdayText = this.add.sprite(0, 0, 'birthdayText').setOrigin(0,0);
@@ -64,7 +67,7 @@ class win extends Phaser.Scene{
             //fixedWidth: 100
         };
 
-        this.text1 = this.add.text(180, 220, 'Press to open', textConfig);
+        this.text1 = this.add.text(180, 220, 'Click to open', textConfig);
         this.downArrow = this.add.sprite(270, 330, 'downArrow');
         this.downArrow.setScale(0.5);
         this.downArrow.setAngle(180);
@@ -101,13 +104,15 @@ class win extends Phaser.Scene{
         path3.add(this.line3);
         //this.present2 = this.add.follower(line3, -10, 50, 'present2').setOrigin(0,0);
 
-        this.presentBody.on("pointerover", () => {
-            //will tell code in update to go to next scene
-            this.pointerOver = true;
-        });
-        this.presentBody.on("pointerout", () => {
-            this.pointerOver = false;
-        });
+        // this.presentBody.on("pointerover", () => {
+        //     //will tell code in update to go to next scene
+        //     this.pointerOver = true;
+        //     console.log('pointerover')
+        // });
+        // this.presentBody.on("pointerout", () => {
+        //     this.pointerOver = false;
+        //     console.log('pointerout')
+        // });
         this.menuButton.on("pointerover", () => {
             this.menuPointer = true;
         });
@@ -126,11 +131,31 @@ class win extends Phaser.Scene{
                 yoyo: false
         });
 
+        // this.presentBody.on('pointerdown', function (pointer) {
+        //     this.falsePresent.setAlpha(0);
+        //     this.present2 = this.add.follower(this.line3, 20, 50, 'present2').setOrigin(0,0);
+        //     this.present2.startFollow({
+        //         duration: 700,
+        //         yoyo: false,
+        //         ease: 'Linear', //'Sine.easeInOut'
+        //     });
+        //     this.koala2.setAlpha(0);
+        //     this.koala3.setAlpha(1);
+        //     this.koala3.play('eyes');
+        //     this.glowing.setAlpha(1);
+        //     this.menuButton.setAlpha(1);
+        //     this.broText.setAlpha(1);
+        //     this.text1.setAlpha(0);
+        //     this.downArrow.setAlpha(0)
+
+        // });
+
 
     }
     update(){
 
-        if(this.pointer2.isDown && this.pointerOver == true){
+        if(this.pointer2.isDown && this.presentOpen == false){ //&& this.pointerOver == true
+            console.log('yes');
             this.falsePresent.setAlpha(0);
             this.present2 = this.add.follower(this.line3, 20, 50, 'present2').setOrigin(0,0);
             this.present2.startFollow({
@@ -146,7 +171,7 @@ class win extends Phaser.Scene{
             this.broText.setAlpha(1);
             this.text1.setAlpha(0);
             this.downArrow.setAlpha(0)
-
+            this.presentOpen = true;
         }; 
         if(this.pointer2.isDown && this.menuPointer == true){
             this.scene.start('menuScene');

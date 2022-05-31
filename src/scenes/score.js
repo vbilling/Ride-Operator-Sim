@@ -103,9 +103,12 @@ class score extends Phaser.Scene{
 
         //load sounds
         this.thud = this.sound.add('thud');
+        this.thud.volume = 0.15;
         this.thud2 = this.sound.add('thud2');
+        this.thud2.volume = 0.15;
         this.buttonPress = this.sound.add('buttonPress');
         this.pop = this.sound.add('pop');
+        this.pop.volume = 0.5
         this.sigh1 = this.sound.add('sigh1');
         
 
