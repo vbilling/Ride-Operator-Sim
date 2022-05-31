@@ -6,7 +6,7 @@ class load extends Phaser.Scene{
         this.load.image('ground', './assets/ground.png');
         this.load.image('heightPole', './assets/height_pole.png');
         this.load.image('exitSign', './assets/exit_sign.png');
-        this.load.image('rulesSign', './assets/rulesSign.png');
+        this.load.spritesheet('rulesSign', './assets/rulesSign.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
         this.load.image('enterSign', './assets/enter_sign.png');
         this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.spritesheet('header', './assets/header.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 8});
@@ -253,7 +253,7 @@ class load extends Phaser.Scene{
     
     }
     create(){
-        this.scene.start("menuScene");
+        this.scene.start("day3Scene");
     }
 
 
