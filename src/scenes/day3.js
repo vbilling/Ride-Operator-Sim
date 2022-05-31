@@ -83,6 +83,7 @@ class day3 extends Phaser.Scene{
         this.tick1 = this.sound.add('tick1');
         this.tick2 = this.sound.add('tick2');
         this.lightbulb = this.sound.add('lightbulb');
+        this.lightbulb.volume = 0.4;
 
         this.ground = this.add.sprite(480, 390, 'ground');
         

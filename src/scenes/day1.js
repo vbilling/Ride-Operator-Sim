@@ -55,7 +55,7 @@ class day1 extends Phaser.Scene{
         this.tick1 = this.sound.add('tick1');
         this.tick2 = this.sound.add('tick2');
         this.lightbulb = this.sound.add('lightbulb');
-
+        this.lightbulb.volume = 0.4;
         this.exitSign = this.add.sprite(-50, 490, 'exitSign').setOrigin(0, 0);
         this.enterSign = this.add.sprite(620, 490, 'enterSign').setOrigin(0, 0);
         this.heightPole = this.add.sprite(20, -6, 'heightPole').setOrigin(0,0);
@@ -190,7 +190,7 @@ class day1 extends Phaser.Scene{
         this.delay = 0;
 
         //set the scale of them which will affect height
-        this.height = randomDecimil(0.2, 0.3); //randomDecimil(0.2, 0.5);
+        this.height = randomDecimil(0.2, 0.5); //randomDecimil(0.2, 0.5);
         this.scale = this.height; 
 
         console.log('height:', this.scale);

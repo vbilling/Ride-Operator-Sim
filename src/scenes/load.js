@@ -243,11 +243,10 @@ class load extends Phaser.Scene{
         this.load.image('comingSoon2', './assets/comingSoon2.png');
 
 
-        
-
+    
     }
     create(){
-        this.scene.start("day2Scene");
+        this.scene.start("day1Scene");
     }
 
 

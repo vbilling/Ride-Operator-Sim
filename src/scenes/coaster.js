@@ -471,7 +471,6 @@ class coaster extends Phaser.Scene{
         };
     }
     riderScream(){
-        console.log('screams', this.screams);
         if(this.screams >= 1){
             this.time.addEvent({
                 delay: 3500,
