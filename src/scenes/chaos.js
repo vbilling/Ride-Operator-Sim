@@ -6,6 +6,7 @@ class chaos extends Phaser.Scene{
 
     }
     create(){
+        choasDone = true;
         this.comingSoon = this.add.sprite(0, 0, 'comingSoon').setOrigin(0,0);
 
         //menu button

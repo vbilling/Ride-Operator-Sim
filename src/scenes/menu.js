@@ -205,7 +205,9 @@ class menu extends Phaser.Scene{
             this.chaosText.setFrame(0);
             //this.endlessText.setFrame(0);
             this.chaosButton.setFrame(0);
-            this.chaosButton.play('blinking2');
+            if(chaosDone == false){
+                this.chaosButton.play('blinking2');
+            }
             //this.endlessButton.setFrame(0);
         }
 

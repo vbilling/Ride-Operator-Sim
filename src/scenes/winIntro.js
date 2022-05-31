@@ -9,7 +9,7 @@ class winIntro extends Phaser.Scene{
     }
     create(){
         this.add.sprite(0,0, 'greenBackground').setOrigin(0,0);
-
+        game.sound.stopAll();
         this.winText = this.add.sprite(0, 0, 'winText').setOrigin(0,0);
 
         this.trumpet = this.sound.add('trumpet');

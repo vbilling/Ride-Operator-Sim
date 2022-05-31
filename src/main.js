@@ -95,6 +95,7 @@ let day2Done = false;
 let day3Done = false;
 let loseDone = false;
 let winDone = false;
+let chaosDone = false;
 
 
 //will be used in score array to make a nested array for accessories and their point values

@@ -218,7 +218,7 @@ class day1 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 95){ //95
+        if(this.hat_chance >= 90){ //95
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
