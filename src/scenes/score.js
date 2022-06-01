@@ -6,7 +6,9 @@ class score extends Phaser.Scene{
 
     };
     create(){
-        console.log('master array 1', master_array);
+        riderSize_array = [];
+
+        this.cartRun = false;
 
         if(day2Done == false){
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay1').setOrigin(0, 0);
@@ -672,7 +674,6 @@ class score extends Phaser.Scene{
             }
             if(master_array[m][0] == 'food'){
                 food = food + master_array[m][1];
-                console.log('food:', food);
             }
             if(master_array[m][0] == 'too short'){
                 tooShort1 = tooShort1 + master_array[m][1];
@@ -1000,6 +1001,7 @@ class score extends Phaser.Scene{
         this.coasterTimer();
 
         this.runJustOnce = false;
+        console.log('riderSize_array', riderSize_array);
 
 
     };
@@ -1044,8 +1046,8 @@ class score extends Phaser.Scene{
             this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
         }
 
-        this.delay += 1;
-        if(this.delay == 1){
+        //this.delay += 1;
+        if(this.cartRun == false){
             console.log("Should just run once");
             this.cart1.body.setVelocityX(490);
             this.cart2.body.setVelocityX(490);
@@ -1069,6 +1071,7 @@ class score extends Phaser.Scene{
                 accessorySprite_array2[w].body.setVelocityX(490);
                 //accessorySprite_array2[w].setDepth(1.9);
             };
+            this.cartRun = true;
         }
         
         //next button pressed 
