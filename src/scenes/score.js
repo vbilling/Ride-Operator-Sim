@@ -728,7 +728,7 @@ class score extends Phaser.Scene{
                         if(this.tooTall > 0){
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo1Config);
-                            //this.progressBar.width = tooTall * 2.85 + this.progressBar.width;
+                            this.progressBar.width = tooTall * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo2Config); 
@@ -750,7 +750,7 @@ class score extends Phaser.Scene{
                         if(tooShort > 0){
                             this.thud.play();
                             this.add.text(310, 260, 'x' + tooShort, combo1Config);
-                            //this.progressBar.width = tooShort1 * 2.85 + this.progressBar.width; 
+                            this.progressBar.width = tooShort1 * 2.85 + this.progressBar.width; 
                         }else{
                             this.thud.play();
                             this.add.text(310, 260, 'x' + tooShort, combo2Config); 
@@ -798,11 +798,11 @@ class score extends Phaser.Scene{
                         if(ridingCustomers < 8){
                             this.thud.play();
                             this.add.text(460, 215, ridingCustomers, combo1Config);
-                            //this.progressBar.width = missingRiders * 2.85 + this.progressBar.width;
+                            this.progressBar.width = missingRiders * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(460, 215, ridingCustomers, combo2Config);
-                            //this.progressBar.width = tooManyRiders * 2.85 + this.progressBar.width;
+                            this.progressBar.width = tooManyRiders * 2.85 + this.progressBar.width;
                         }
                     },
                     loop: false
@@ -822,7 +822,7 @@ class score extends Phaser.Scene{
                         if(this.noWristband > 0){
                             this.thud.play();
                             this.add.text(780, 222, 'x' + this.noWristband, combo1Config);
-                            //this.progressBar.width = noWristband * 2.85 + this.progressBar.width;
+                            this.progressBar.width = noWristband * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(780, 222, 'x' + this.noWristband, combo2Config);
@@ -844,7 +844,7 @@ class score extends Phaser.Scene{
                         if(this.wrongWristband > 0){
                             this.thud.play();
                             this.add.text(780, 268, 'x' + this.wrongWristband, combo1Config);
-                            //this.progressBar.width = wrongWristband * 2.85 + this.progressBar.width;
+                            this.progressBar.width = wrongWristband * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(780, 268, 'x' + this.wrongWristband, combo2Config);
@@ -867,7 +867,7 @@ class score extends Phaser.Scene{
                         if(this.hatCount > 0){
                             this.thud.play();
                             this.add.text(240, 375, 'x' + this.hatCount, combo1Config);
-                            //this.progressBar.width = hat * 2.85 + this.progressBar.width;
+                            this.progressBar.width = hat * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(240, 375, 'x' + this.hatCount, combo2Config);
@@ -889,7 +889,7 @@ class score extends Phaser.Scene{
                         if(this.foodCount > 0){
                             this.thud.play();
                             this.add.text(425, 375, 'x' + this.foodCount, combo1Config);
-                            //this.progressBar.width = food * 2.85 + this.progressBar.width;
+                            this.progressBar.width = food * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(425, 375, 'x' + this.foodCount, combo2Config);
@@ -911,7 +911,7 @@ class score extends Phaser.Scene{
                         if(this.weaponCount > 0){
                             this.thud.play();
                             this.add.text(630, 375, 'x' + this.weaponCount, combo1Config);
-                            //this.progressBar.width = weapons * 2.85 + this.progressBar.width;
+                            this.progressBar.width = weapons * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(630, 375, 'x' + this.weaponCount, combo2Config);
@@ -933,7 +933,7 @@ class score extends Phaser.Scene{
                         if(this.criminalCount > 0){
                             this.thud.play();
                             this.add.text(800, 375, 'x' + this.criminalCount, combo1Config);
-                            //this.progressBar.width = criminal * 2.85 + this.progressBar.width;
+                            this.progressBar.width = criminal * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(800, 375, 'x' + this.criminalCount, combo2Config);
@@ -1033,7 +1033,7 @@ class score extends Phaser.Scene{
             loop: false
         });
         }
-        
+
     randomDecimil(mn,mx){
         return Math.random() * (mx - mn) + mn;
     }
