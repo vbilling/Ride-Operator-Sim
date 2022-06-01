@@ -390,7 +390,9 @@ class coaster extends Phaser.Scene{
                 repeat: -1,
                 yoyo: false
         });
-        this.redButton.play('blinking2');        
+        this.redButton.play('blinking2');      
+
+        this.justRunOnce = false;
 
     };
     deleteShortRiders(){
@@ -1059,18 +1061,13 @@ class coaster extends Phaser.Scene{
             }, this)
         };
 
+        
         //will make coaster move when button is pressed
         if(this.coasterstart == true){
-            //this.cart1.anims.play('wheels');
-            //set a timer and then have scene change to score
-            //this timer causes the scene to end too early on chrome browser
-            /*this.delay += 1;
-            if(Math.round(this.delay/60) > 5.9){
-                this.scene.start('scoreScene');
-            };*/
+            if(this.justRunOnce == false){
+            this.justRunOnce = true;
+            console.log("Should Just Run Once")
             this.sceneTimer();
-            
-            
             this.cart1.body.setVelocityX(RC_Velocity);
             this.cart2.body.setVelocityX(RC_Velocity);
             this.cart3.body.setVelocityX(RC_Velocity);
@@ -1088,4 +1085,5 @@ class coaster extends Phaser.Scene{
             };
         };
     };
+    }
 };

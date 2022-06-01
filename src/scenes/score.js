@@ -3,34 +3,7 @@ class score extends Phaser.Scene{
         super("scoreScene");
     }
     preload(){
-        // //progress bar, temp stand in 
-        // this.load.image('progressBar', './assets/platform.png');
-        // this.load.image('firedMeter', './assets/firedMeter.png');
 
-        // this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
-        // this.load.spritesheet('nextButton', './assets/nextButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        // this.load.image('blood', './assets/blood.png');
-
-        // //for score board
-        // this.load.image('scoreBoard', './assets/scoreBoard.png');
-        // this.load.image('NOhats', './assets/NOhats.png');
-        // this.load.image('NOfood', './assets/NOfood.png');
-        // this.load.image('NOweapons', './assets/NOweapons.png');
-        // this.load.image('NOcriminals', './assets/NOcriminals.png');
-        // this.load.image('incorrectWristbandText', './assets/incorrectWristbandText.png');
-        // this.load.image('missingWristbandText', './assets/missingWristbandText.png');
-        // this.load.image('TOOshortText', './assets/TOOshortText.png');
-        // this.load.image('TOOtallText', './assets/TOOtallText.png');
-        //delete later
-        // if(day1Done == false && day2Done == false && day3Done == false){
-        //     this.load.image('wristband1', './assets/wristband1.png');
-        //     this.load.image('wristband2', './assets/wristband2.png');
-        //     this.load.image('wristband3', './assets/wristband3.png');
-        // }
-        // if(trainingDone == false){
-        //     this.load.spritesheet('boss', './assets/boss.png', {frameWidth: 480, frameHeight: 360, startFrame: 0, endFrame: 6})
-        //     this.load.image('coasterBackground', './assets/coasterBackground.png');
-        // }
     };
     create(){
 
@@ -1010,6 +983,8 @@ class score extends Phaser.Scene{
         this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
         this.firednumber.setAlpha(0);
 
+        this.coasterTimer();
+
 
     };
 
@@ -1053,6 +1028,7 @@ class score extends Phaser.Scene{
         }
         this.delay += 1;
         if(this.delay == 1){
+            console.log("Should just run once");
             this.cart1.body.setVelocityX(490);
             this.cart2.body.setVelocityX(490);
             this.cart3.body.setVelocityX(490);
@@ -1076,7 +1052,6 @@ class score extends Phaser.Scene{
                 //accessorySprite_array2[w].setDepth(1.9);
             };
         }
-        this.coasterTimer();
         
         //next button pressed 
         if(this.nextButtonHover == true){
@@ -1101,8 +1076,6 @@ class score extends Phaser.Scene{
                 }
             }, this)
         }
-
-
 
     };
 };
