@@ -7,8 +7,6 @@ class coaster extends Phaser.Scene{
     };
     create(){
         //background
-        //this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackground').setOrigin(0, 0);
-
         if(day2Done == false){
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay1').setOrigin(0, 0);
         };
@@ -18,8 +16,6 @@ class coaster extends Phaser.Scene{
         if(day3Done == true){
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay3').setOrigin(0, 0);
         }
-
-
         tooShort = 0;
         this.loop = false;
         master_array = [];
@@ -52,7 +48,6 @@ class coaster extends Phaser.Scene{
         this.short7 = false;
         this.short8 = false;
         
-
         //if the mouse is hovering over the red button
         this.redButtonHover = false;
         //will activate coaster to move after button is pressed
@@ -63,8 +58,6 @@ class coaster extends Phaser.Scene{
         accessorySprite_array = [];
         //roller coaster button has not been pressed yet
         this.buttonpressed = false;
-        //initilizing the delay timer for the score scene to start after the button is pressed
-        this.delay = 0;
 
         //coaster wheel animation
         // this.anims.create({
@@ -127,7 +120,6 @@ class coaster extends Phaser.Scene{
         this.coasterscale = 0.18;
 
         for(let i = 0; i < (allRiders_array.length); i++){
-
             //console.log('in coaster.js "i" is ', i);
 
             //all riders array relies on number of customers
@@ -331,9 +323,6 @@ class coaster extends Phaser.Scene{
         this.cart4 = this.physics.add.sprite(121, 520, 'coasterCart', 0)
         this.cart4.setScale(this.coasterscale);
         this.cart4.body.allowGravity = false;
-
-        //console.log('rider sprite array!!!:', riderSprite_array);
-        //console.log('accessorySprite_array!!!', accessorySprite_array);
         
         this.controlPanel = this.add.sprite(480,367, 'controlPanel');
         this.controlPanel.setDepth(1.9);
@@ -366,10 +355,11 @@ class coaster extends Phaser.Scene{
 
     };
     deleteShortRiders(){
+
         if(this.short8 == true){
             //replace with something blank instead of just deleting so the spot is held
-            allRiders_array.splice(7, 1);
-
+            //allRiders_array.splice(7, 1);
+            allRiders_array[7][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -379,7 +369,8 @@ class coaster extends Phaser.Scene{
 
         };
         if(this.short7 == true){
-            allRiders_array.splice(6, 1);
+            //allRiders_array.splice(6, 1);
+            allRiders_array[6][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -389,7 +380,8 @@ class coaster extends Phaser.Scene{
 
         };
         if(this.short6 == true){
-            allRiders_array.splice(5, 1);
+            //allRiders_array.splice(5, 1);
+            allRiders_array[5][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -398,7 +390,8 @@ class coaster extends Phaser.Scene{
             first_array = [];
         };
         if(this.short5 == true){
-            allRiders_array.splice(4, 1);
+            //allRiders_array.splice(4, 1);
+            allRiders_array[4][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -407,7 +400,8 @@ class coaster extends Phaser.Scene{
             first_array = [];
         };
         if(this.short4 == true){
-            allRiders_array.splice(3, 1);
+            //allRiders_array.splice(3, 1);
+            allRiders_array[3][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -416,7 +410,8 @@ class coaster extends Phaser.Scene{
             first_array = [];
         };
         if(this.short3 == true){
-            allRiders_array.splice(2, 1);
+            //allRiders_array.splice(2, 1);
+            allRiders_array[2][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -425,7 +420,8 @@ class coaster extends Phaser.Scene{
             first_array = [];
         };
         if(this.short2 == true){
-            allRiders_array.splice(1, 1);
+            //allRiders_array.splice(1, 1);
+            allRiders_array[1][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -434,7 +430,8 @@ class coaster extends Phaser.Scene{
             first_array = [];
         };
         if(this.short1 == true){
-            allRiders_array.splice(0, 1);
+            //allRiders_array.splice(0, 1);
+            allRiders_array[0][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
@@ -531,7 +528,6 @@ class coaster extends Phaser.Scene{
     pathStart(){
         //play sound
         this.rollerCoasterAudio.play();
-
         //separate out carts
         //console.log("allRiders_array", allRiders_array);
         //check if there is one rider
@@ -572,6 +568,7 @@ class coaster extends Phaser.Scene{
                         delay: 0 * 160,
                         rotateToPath: true,
                     });
+                    
                 }else{
                     this.accessory2 = this.add.follower(curve, -160, 140, allRiders_array[0][a]);
                     this.accessory2.startFollow({
@@ -989,7 +986,6 @@ class coaster extends Phaser.Scene{
             loop: false
         })
         
-
     };
 
     sceneTimer(){
@@ -1009,8 +1005,8 @@ class coaster extends Phaser.Scene{
         if(this.redButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
                 //button moves down then up with delay
-                this.redButton.setFrame(2);
                 this.redButton.stop();
+                this.redButton.setFrame(2);
                 this.redButton1.play();
                 
             }, this)
@@ -1018,17 +1014,15 @@ class coaster extends Phaser.Scene{
                 //button can only be pressed once
                 if(this.buttonpressed == false){
                     this.pathStart();
-
-                    this.coasterstart = true;
                 }
+                //keeps track of if the button is pressed so it can't be pressed agian
+                this.buttonpressed = true;
                 //button moves down then up with delay
                 this.redButton.setFrame(0);
                 this.redButton2.play();
                 //start background coaster
                 //will make coaster move
-                //this.coasterstart = true;
-                //keeps track of if the button is pressed so it can't be pressed agian
-                this.buttonpressed = true;
+                this.coasterstart = true;
             }, this)
         };
 
@@ -1036,25 +1030,28 @@ class coaster extends Phaser.Scene{
         //will make coaster move when button is pressed
         if(this.coasterstart == true){
             if(this.justRunOnce == false){
-            this.justRunOnce = true;
-            console.log("Should Just Run Once")
-            this.sceneTimer();
-            this.cart1.body.setVelocityX(RC_Velocity);
-            this.cart2.body.setVelocityX(RC_Velocity);
-            this.cart3.body.setVelocityX(RC_Velocity);
-            this.cart4.body.setVelocityX(RC_Velocity);
+                this.justRunOnce = true;
+                console.log("Should Just Run Once")
+                this.sceneTimer();
 
-            //set velocity of bodies
-            for(let b = 0; b < (riderSprite_array.length); b++){
-                riderSprite_array[b].body.setVelocityX(RC_Velocity);
-                //and make them change to surprised face
-                riderSprite_array[b].setFrame(1);
-            };
-            //set velocity of the accessories
-            for(let w = 0; w < (accessorySprite_array.length); w++){
-                accessorySprite_array[w].body.setVelocityX(RC_Velocity);
+                //maybe make these stop once they are off screen 
+                this.cart1.body.setVelocityX(RC_Velocity);
+                this.cart2.body.setVelocityX(RC_Velocity);
+                this.cart3.body.setVelocityX(RC_Velocity);
+                this.cart4.body.setVelocityX(RC_Velocity);
+
+                //set velocity of bodies
+                for(let b = 0; b < (riderSprite_array.length); b++){
+                    riderSprite_array[b].body.setVelocityX(RC_Velocity);
+                    //and make them change to surprised face
+                    riderSprite_array[b].setFrame(1);
+                };
+                //set velocity of the accessories
+                for(let w = 0; w < (accessorySprite_array.length); w++){
+                    accessorySprite_array[w].body.setVelocityX(RC_Velocity);
+                };
+                
             };
         };
-    };
     }
 };

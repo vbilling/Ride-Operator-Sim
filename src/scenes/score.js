@@ -6,6 +6,7 @@ class score extends Phaser.Scene{
 
     };
     create(){
+        console.log('master array 1', master_array);
 
         if(day2Done == false){
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay1').setOrigin(0, 0);
@@ -197,7 +198,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 27;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 1){
@@ -216,7 +217,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 5;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 2){
@@ -235,7 +236,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 27;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 3){
@@ -254,7 +255,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 5;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 4){
@@ -273,7 +274,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 27;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 5){
@@ -292,7 +293,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 5;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 6){
@@ -311,7 +312,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 27;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
             if(i == 7){
@@ -330,13 +331,9 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 5;
                     this.customer.y = 620 - 60;
-                    this.customer.setFrame(2);
+                    //this.customer.setFrame(2);
                 };
             };
-
-            //if more customers are let on than allowed
-
-
 
             //now add the accessories (start a at 2 because first two values are height and body)
             for(let a = 2; a < (allRiders_array[i].length); a++){
@@ -363,8 +360,6 @@ class score extends Phaser.Scene{
                     first_array.push('hat');
                     //point value
                     first_array.push(-5);
-                    //phrase to say
-                    // first_array.push('No hats allowed');
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
@@ -374,8 +369,6 @@ class score extends Phaser.Scene{
                     first_array.push('hat');
                     //point value
                     first_array.push(-5);
-                    //phrase to say
-                    // first_array.push('No hats allowed');
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
@@ -385,8 +378,6 @@ class score extends Phaser.Scene{
                     first_array.push('hat');
                     //point value
                     first_array.push(-5);
-                    //phrase to say
-                    // first_array.push('No hats allowed...even if its your birthday');
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
@@ -396,21 +387,27 @@ class score extends Phaser.Scene{
                     first_array.push('hat');
                     //point value
                     first_array.push(-5);
-                    //phrase to say
-                    // first_array.push('No hats allowed...');
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
                     //delete the hat if they are too tall
 
                 };
-                if(allRiders_array[i][a] == 'soda1' || allRiders_array[i][a] == 'soda2'){
+                if(allRiders_array[i][a] == 'soda1'){
                     //name of accessory
-                    first_array.push('soda');
+                    first_array.push('food');
                     //point value
                     first_array.push(-5);
-                    //phrase to say
-                    // first_array.push('No drinks allowed!!');
+                    master_array.push(first_array);
+                    first_array = [];
+                    this.foodCount += 1;
+                    
+                };
+                if(allRiders_array[i][a] == 'soda2'){
+                    //name of accessory
+                    first_array.push('food');
+                    //point value
+                    first_array.push(-5);
                     master_array.push(first_array);
                     first_array = [];
                     this.foodCount += 1;
@@ -421,36 +418,16 @@ class score extends Phaser.Scene{
                     first_array.push('weapons');
                     //point value
                     first_array.push(-8); //-5
-                    //phrase to say
-                    // first_array.push('OH NO A KNIFE');
                     master_array.push(first_array);
                     first_array = [];
                     this.weaponCount += 1;
 
-                    //make them bleeding
-                    //bubble trail
-                    //myParticleSystem = myParticleManager.createEmitter
-                    // this.bleed = this.add.particles('blood');
-                    // this.bleeding = this.bleed.createEmitter({ 
-                    //     x: 30,
-                    //     y: 50,
-                    //     lifespan: { min: 20, max: 1500},
-                    //     speed: { min: 5, max: 10},
-                    //     gravityY: 100,
-                    //     frequency: 0.001,
-                    //     quantity: 0.001,
-                    //     scale: { start: 0.02, end: 0.004},
-                    //     follow: this.accessory,
-                    // });
-                    //this.bleed.setDepth(2);
                 };
                 if(allRiders_array[i][a] == 'spatula'){
                     //name of accessory
                     first_array.push('weapons');
                     //point value
                     first_array.push(-8); //-5
-                    //phrase to say
-                    // first_array.push('OH NO A SPATULA');
                     master_array.push(first_array);
                     first_array = [];
                     this.weaponCount += 1;
@@ -460,8 +437,6 @@ class score extends Phaser.Scene{
                     first_array.push('weapons');
                     //point value
                     first_array.push(-8); //-5
-                    //phrase to say
-                    // first_array.push('OH NO SCISSORS');
                     master_array.push(first_array);
                     first_array = [];
                     this.weaponCount += 1;
@@ -488,8 +463,6 @@ class score extends Phaser.Scene{
                         first_array.push('wrong wristband');
                         //point value
                         first_array.push(-3);
-                        //phrase to say
-                        // first_array.push('wrong wristband');
                         master_array.push(first_array);
                         first_array = [];
                         this.wrongWristband += 1;
@@ -501,8 +474,6 @@ class score extends Phaser.Scene{
                         first_array.push('wrong wristband');
                         //point value
                         first_array.push(-3);
-                        //phrase to say
-                        // first_array.push('wrong wristband');
                         master_array.push(first_array);
                         first_array = [];
                         this.wrongWristband += 1;
@@ -527,8 +498,6 @@ class score extends Phaser.Scene{
                         first_array.push('no wristband');
                         //point value
                         first_array.push(-5);
-                        //phrase to say
-                        // first_array.push('no wristband');
                         master_array.push(first_array);
                         first_array = [];
                         this.noWristband += 1;
@@ -540,8 +509,6 @@ class score extends Phaser.Scene{
                         first_array.push('no wristband');
                         //point value
                         first_array.push(-5);
-                        //phrase to say
-                        // first_array.push('no wristband');
                         master_array.push(first_array);
                         first_array = [];
                         this.noWristband += 1;
@@ -553,8 +520,6 @@ class score extends Phaser.Scene{
                         first_array.push('criminal');
                         //point value
                         first_array.push(-8);
-                        //phrase to say
-                        // first_array.push('You let a criminal ride');
                         master_array.push(first_array);
                         first_array = [];
                         this.criminalCount += 1;
@@ -566,8 +531,6 @@ class score extends Phaser.Scene{
                         first_array.push('criminal');
                         //point value
                         first_array.push(-8);
-                        //phrase to say
-                        // first_array.push('You let a criminal ride');
                         master_array.push(first_array);
                         first_array = [];
                         this.criminalCount += 1;
@@ -579,8 +542,6 @@ class score extends Phaser.Scene{
                         first_array.push('food');
                         //point value
                         first_array.push(-5);
-                        //phrase to say
-                        // first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
                         first_array = [];
                         this.foodCount += 1;
@@ -592,23 +553,24 @@ class score extends Phaser.Scene{
                         first_array.push('food');
                         //point value
                         first_array.push(-5);
-                        //phrase to say
-                        // first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
                         first_array = [];
                         this.foodCount += 1;
                     };
                 };
+                if(this.size == 'small'){
+                    this.accessory.setAlpha(0);
+                }
             };
             //scoring for height with this.customerHeight
             //console.log('this.customerHeight', this.customerHeight);
-            if(this.customerHeight < 0.25){ 
-                first_array.push('too short');
-                first_array.push(-7);
-                // first_array.push('A rider was too short and fell out of the ride.');
-                master_array.push(first_array);
-                first_array = [];
-            };
+            // if(this.customerHeight < 0.25){ 
+            //     first_array.push('too short');
+            //     first_array.push(-15);
+            //     // first_array.push('A rider was too short and fell out of the ride.');
+            //     master_array.push(first_array);
+            //     first_array = [];
+            // };
             //too tall
             if(this.customerHeight > 0.43){
                 this.tooTall += 1;   
@@ -627,14 +589,14 @@ class score extends Phaser.Scene{
                 master_array.push(first_array);
                 first_array = [];
             };
-            if(this.totalCustomers > 8){
-                first_array.push('too many riders');
-                this.moreRiders = (this.totalCustomers - 8);
-                first_array.push(-1*this.moreRiders);
-                // first_array.push('Too many riders by');
-                master_array.push(first_array);
-                first_array = [];
-            };
+            // if(this.totalCustomers > 8){
+            //     first_array.push('too many riders');
+            //     this.moreRiders = (this.totalCustomers - 8);
+            //     first_array.push(-1*this.moreRiders);
+            //     // first_array.push('Too many riders by');
+            //     master_array.push(first_array);
+            //     first_array = [];
+            // };
       
         };
 
@@ -677,7 +639,7 @@ class score extends Phaser.Scene{
         let wrongWristband = 0;
         let noWristband = 0;
         let criminal = 0;
-        let food;
+        let food = 0;
         let tooShort1 = 0;
         let tooTall = 0;
         let missingRiders = 0;
@@ -687,6 +649,8 @@ class score extends Phaser.Scene{
             for(let s = 0; s < master_array[m].length; s++){
                 this.currentScore = master_array[m][1];
             }
+            //console.log('master_array[m][0]', master_array[m][0]);
+            //console.log("master_array[m][1]",master_array[m][1]);
             // grabbing individual scores
             if(master_array[m][0] == 'hat'){
                 hat = hat + master_array[m][1];
@@ -708,6 +672,7 @@ class score extends Phaser.Scene{
             }
             if(master_array[m][0] == 'food'){
                 food = food + master_array[m][1];
+                console.log('food:', food);
             }
             if(master_array[m][0] == 'too short'){
                 tooShort1 = tooShort1 + master_array[m][1];
@@ -748,7 +713,7 @@ class score extends Phaser.Scene{
         this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
         this.firedMeter.setScale(0.9);
         this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
-        this.firednumber.setAlpha(1);
+        this.firednumber.setAlpha(0);
 
         //makeing the scoreboard stuff show up not dependent on if things were done wrong
         //order: too tall, too short, capacity, missing wristbands, incorrect wristbands, hats, food/drinks, weapons, criminals, %fired
@@ -763,7 +728,7 @@ class score extends Phaser.Scene{
                         if(this.tooTall > 0){
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo1Config);
-                            this.progressBar.width = tooTall * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = tooTall * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo2Config); 
@@ -785,7 +750,7 @@ class score extends Phaser.Scene{
                         if(tooShort > 0){
                             this.thud.play();
                             this.add.text(310, 260, 'x' + tooShort, combo1Config);
-                            this.progressBar.width = tooShort1 * 2.85 + this.progressBar.width; 
+                            //this.progressBar.width = tooShort1 * 2.85 + this.progressBar.width; 
                         }else{
                             this.thud.play();
                             this.add.text(310, 260, 'x' + tooShort, combo2Config); 
@@ -833,11 +798,11 @@ class score extends Phaser.Scene{
                         if(ridingCustomers < 8){
                             this.thud.play();
                             this.add.text(460, 215, ridingCustomers, combo1Config);
-                            this.progressBar.width = missingRiders * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = missingRiders * 2.85 + this.progressBar.width;
                         }else{
-                            // this.thud.play();
-                            // this.add.text(460, 215, ridingCustomers, combo2Config);
-                            // this.progressBar.width = tooManyRiders * 2.85 + this.progressBar.width;
+                            this.thud.play();
+                            this.add.text(460, 215, ridingCustomers, combo2Config);
+                            //this.progressBar.width = tooManyRiders * 2.85 + this.progressBar.width;
                         }
                     },
                     loop: false
@@ -857,7 +822,7 @@ class score extends Phaser.Scene{
                         if(this.noWristband > 0){
                             this.thud.play();
                             this.add.text(780, 222, 'x' + this.noWristband, combo1Config);
-                            this.progressBar.width = noWristband * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = noWristband * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(780, 222, 'x' + this.noWristband, combo2Config);
@@ -879,7 +844,7 @@ class score extends Phaser.Scene{
                         if(this.wrongWristband > 0){
                             this.thud.play();
                             this.add.text(780, 268, 'x' + this.wrongWristband, combo1Config);
-                            this.progressBar.width = wrongWristband * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = wrongWristband * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(780, 268, 'x' + this.wrongWristband, combo2Config);
@@ -902,7 +867,7 @@ class score extends Phaser.Scene{
                         if(this.hatCount > 0){
                             this.thud.play();
                             this.add.text(240, 375, 'x' + this.hatCount, combo1Config);
-                            this.progressBar.width = hat * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = hat * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(240, 375, 'x' + this.hatCount, combo2Config);
@@ -924,7 +889,7 @@ class score extends Phaser.Scene{
                         if(this.foodCount > 0){
                             this.thud.play();
                             this.add.text(425, 375, 'x' + this.foodCount, combo1Config);
-                            this.progressBar.width = (food * 2.85) + (soda *2.85) + this.progressBar.width;
+                            //this.progressBar.width = food * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(425, 375, 'x' + this.foodCount, combo2Config);
@@ -946,7 +911,7 @@ class score extends Phaser.Scene{
                         if(this.weaponCount > 0){
                             this.thud.play();
                             this.add.text(630, 375, 'x' + this.weaponCount, combo1Config);
-                            this.progressBar.width = weapons * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = weapons * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(630, 375, 'x' + this.weaponCount, combo2Config);
@@ -968,7 +933,7 @@ class score extends Phaser.Scene{
                         if(this.criminalCount > 0){
                             this.thud.play();
                             this.add.text(800, 375, 'x' + this.criminalCount, combo1Config);
-                            this.progressBar.width = criminal * 2.85 + this.progressBar.width;
+                            //this.progressBar.width = criminal * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(800, 375, 'x' + this.criminalCount, combo2Config);
