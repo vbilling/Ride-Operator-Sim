@@ -684,14 +684,86 @@ class score extends Phaser.Scene{
         console.log("Too many riders by", this.moreRiders);
 
         console.log("master array", master_array);
-
+        //stores individual point loss
+        let hat = 0;
+        let soda = 0;
+        let weapons= 0;
+        let wrongWristband = 0;
+        let noWristband = 0;
+        let criminal = 0;
+        let food;
+        let tooShort1 = 0;
+        let tooTall = 0;
+        let missingRiders = 0;
+        let tooManyRiders = 0;
         //adding scores to total score
         for(let m = 0; m < master_array.length; m++){
             for(let s = 0; s < master_array[m].length; s++){
                 this.currentScore = master_array[m][1];
+                
+            }
+            // grabbing individual scores
+            if(master_array[m][0] == 'hat'){
+                hat = hat + master_array[m][1];
+            }
+            if(master_array[m][0] == 'soda'){
+                soda = soda + master_array[m][1];
+            }
+            if(master_array[m][0] == 'weapons'){
+                weapons = weapons + master_array[m][1];
+            }
+            if(master_array[m][2] == 'wrong wristband'){
+                wrongWristband = wrongWristband + master_array[m][1];
+            }
+            if(master_array[m][0] == 'no wristband'){
+                noWristband = noWristband + master_array[m][1];
+            }
+            if(master_array[m][0] == 'criminal'){
+                criminal = criminal + master_array[m][1];
+            }
+            if(master_array[m][2] == 'NO FOOD ALLOWED'){
+                food = food + master_array[m][1];
+            }
+            if(master_array[m][0] == 'Too short'){
+                tooShort1 = tooShort1 + master_array[m][1];
+            }
+            if(master_array[m][0] == 'Too tall'){
+                tooTall = tooTall + master_array[m][1];
+            }
+            if(master_array[m][0] == 'Missing Riders'){
+                missingRiders = missingRiders + master_array[m][1];
+            }
+            if(master_array[m][0] == 'Too many riders'){
+                tooManyRiders = tooManyRiders + master_array[m][1];
             }
             this.totalScore += this.currentScore;
         }
+        hat = hat * -1;
+        soda = soda * -1;
+        weapons = weapons * -1;
+        wrongWristband = wrongWristband * -1;
+        noWristband = noWristband * -1;
+        criminal = criminal * -1;
+        food = food * -1;
+        tooShort1 = tooShort1 * -1;
+        tooTall = tooTall * -1;
+        missingRiders =  missingRiders * -1;
+        tooManyRiders = tooManyRiders * -1;
+
+        
+
+        this.progressBar = this.add.rectangle(450, 40, 200, 30, '0xff0000' );
+
+        this.progressBar.width = fired * 2.85;
+        
+        this.percentage = 100 - this.totalScore;
+        fired += this.percentage;
+        
+        console.log("fired", fired);
+        this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
+        this.firedMeter.setScale(0.9);
+        this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
+        this.firednumber.setAlpha(0);
 
         //makeing the scoreboard stuff show up not dependent on if things were done wrong
         //order: too tall, too short, capacity, missing wristbands, incorrect wristbands, hats, food/drinks, weapons, criminals, %fired
@@ -705,7 +777,8 @@ class score extends Phaser.Scene{
                     callback: ()=>{
                         if(this.tooTall > 0){
                             this.thud.play();
-                            this.add.text(310, 207, 'x' + this.tooTall, combo1Config); 
+                            this.add.text(310, 207, 'x' + this.tooTall, combo1Config);
+                            this.progressBar.width = tooTall * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo2Config); 
@@ -726,7 +799,8 @@ class score extends Phaser.Scene{
                     callback: ()=>{
                         if(tooShort > 0){
                             this.thud.play();
-                            this.add.text(310, 260, 'x' + tooShort, combo1Config); 
+                            this.add.text(310, 260, 'x' + tooShort, combo1Config);
+                            this.progressBar.width = tooShort1 * 2.85 + this.progressBar.width; 
                         }else{
                             this.thud.play();
                             this.add.text(310, 260, 'x' + tooShort, combo2Config); 
@@ -774,9 +848,11 @@ class score extends Phaser.Scene{
                         if(ridingCustomers < 8){
                             this.thud.play();
                             this.add.text(460, 215, ridingCustomers, combo1Config);
+                            this.progressBar.width = missingRiders * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(460, 215, ridingCustomers, combo2Config);
+                            this.progressBar.width = tooManyRiders * 2.85 + this.progressBar.width;
                         }
                     },
                     loop: false
@@ -796,6 +872,7 @@ class score extends Phaser.Scene{
                         if(this.noWristband > 0){
                             this.thud.play();
                             this.add.text(780, 222, 'x' + this.noWristband, combo1Config);
+                            this.progressBar.width = noWristband * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(780, 222, 'x' + this.noWristband, combo2Config);
@@ -817,6 +894,7 @@ class score extends Phaser.Scene{
                         if(this.wrongWristband > 0){
                             this.thud.play();
                             this.add.text(780, 268, 'x' + this.wrongWristband, combo1Config);
+                            this.progressBar.width = wrongWristband * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(780, 268, 'x' + this.wrongWristband, combo2Config);
@@ -839,6 +917,7 @@ class score extends Phaser.Scene{
                         if(this.hatCount > 0){
                             this.thud.play();
                             this.add.text(240, 375, 'x' + this.hatCount, combo1Config);
+                            this.progressBar.width = hat * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(240, 375, 'x' + this.hatCount, combo2Config);
@@ -860,6 +939,7 @@ class score extends Phaser.Scene{
                         if(this.foodCount > 0){
                             this.thud.play();
                             this.add.text(425, 375, 'x' + this.foodCount, combo1Config);
+                            this.progressBar.width = (food * 2.85) + (soda *2.85) + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(425, 375, 'x' + this.foodCount, combo2Config);
@@ -881,6 +961,7 @@ class score extends Phaser.Scene{
                         if(this.weaponCount > 0){
                             this.thud.play();
                             this.add.text(630, 375, 'x' + this.weaponCount, combo1Config);
+                            this.progressBar.width = weapons * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(630, 375, 'x' + this.weaponCount, combo2Config);
@@ -902,6 +983,7 @@ class score extends Phaser.Scene{
                         if(this.criminalCount > 0){
                             this.thud.play();
                             this.add.text(800, 375, 'x' + this.criminalCount, combo1Config);
+                            this.progressBar.width = criminal * 2.85 + this.progressBar.width;
                         }else{
                             this.thud.play();
                             this.add.text(800, 375, 'x' + this.criminalCount, combo2Config);
@@ -924,8 +1006,7 @@ class score extends Phaser.Scene{
 
         
 
-        this.percentage = 100 - this.totalScore;
-        fired += this.percentage;
+        
   
     
         this.time.addEvent({
@@ -969,21 +1050,11 @@ class score extends Phaser.Scene{
             loop: false
         })
 
-       //this.progressBar = this.add.image(halfscreenwidth, 40, 'progressBar');
-
-        //this.progressBar.width = 2;
-
-        this.progressBar = this.add.rectangle(450, 40, 200, 30, '0xff0000' );
-
-        this.progressBar.width = fired *5;
-
-
-        this.firedMeter = this.add.sprite(100, -5, 'firedMeter').setOrigin(0,0);
-        this.firedMeter.setScale(0.9);
-        this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
-        this.firednumber.setAlpha(0);
+ 
 
         this.coasterTimer();
+
+        this.runJustOnce = false;
 
 
     };
@@ -1021,11 +1092,13 @@ class score extends Phaser.Scene{
     update(){
         //make boss shake if youre fired
         function randomDecimil(mn,mx){
-            return Math.random() * (mx - mn) + mn
+            return Math.random() * (mx - mn) + mn;
         }
+
         if(fired >= 90 && this.shake == true){
             this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
         }
+
         this.delay += 1;
         if(this.delay == 1){
             console.log("Should just run once");
