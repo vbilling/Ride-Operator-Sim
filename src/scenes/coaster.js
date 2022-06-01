@@ -398,7 +398,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(7, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -408,7 +408,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(6, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -418,7 +418,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(5, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -427,7 +427,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(4, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -436,7 +436,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(3, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -445,7 +445,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(2, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -454,7 +454,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(1, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
@@ -463,7 +463,7 @@ class coaster extends Phaser.Scene{
             allRiders_array.splice(0, 1);
             tooShort += 1;
             first_array.push('Too short');
-            first_array.push(-5);
+            first_array.push(-8);
             first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
