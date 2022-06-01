@@ -16,6 +16,8 @@ class day1 extends Phaser.Scene{
         this.day1Title.setScale(0.3);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
+        day2Done = false;
+        day3Done = false;
 
         //will help pick random bodies and accessories
         function random(mn, mx) {

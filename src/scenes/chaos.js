@@ -34,7 +34,7 @@ class chaos extends Phaser.Scene{
         this.time.addEvent({
             delay: 1,
             callback: ()=>{
-                this.buttonPress.play();
+                //this.buttonPress.play();
             },
             loop: false
         }) 
