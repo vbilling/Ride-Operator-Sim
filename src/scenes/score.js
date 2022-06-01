@@ -983,6 +983,8 @@ class score extends Phaser.Scene{
         this.firednumber = this.add.text(650, 17, fired +"% FIRED", scoreConfig);
         this.firednumber.setAlpha(0);
 
+        this.coasterTimer();
+
 
     };
 
@@ -1026,6 +1028,7 @@ class score extends Phaser.Scene{
         }
         this.delay += 1;
         if(this.delay == 1){
+            console.log("Should just run once");
             this.cart1.body.setVelocityX(490);
             this.cart2.body.setVelocityX(490);
             this.cart3.body.setVelocityX(490);
@@ -1049,7 +1052,6 @@ class score extends Phaser.Scene{
                 //accessorySprite_array2[w].setDepth(1.9);
             };
         }
-        this.coasterTimer();
         
         //next button pressed 
         if(this.nextButtonHover == true){
@@ -1074,8 +1076,6 @@ class score extends Phaser.Scene{
                 }
             }, this)
         }
-
-
 
     };
 };
