@@ -404,7 +404,7 @@ class trainingday extends Phaser.Scene{
     }
     advanceScene(){
         this.time.addEvent({
-            delay: 1400,
+            delay: 1500,
             callback: ()=>{
                 this.scene.start("day1IntroScene");
             },

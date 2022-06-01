@@ -30,7 +30,7 @@ class lose extends Phaser.Scene{
         this.buttonPress = this.sound.add('buttonPress');
 
         this.time.addEvent({
-            delay: 2000,
+            delay: 10000,
             callback: ()=>{
                 this.menuButton.setAlpha(1);
             },
