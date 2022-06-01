@@ -29,6 +29,8 @@ let textNum = 0;
 let testRider;
 
 
+
+
 //half the width of the screen, to note the middle
 
 let halfscreenwidth = game.config.width /2;

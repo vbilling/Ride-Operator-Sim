@@ -646,6 +646,7 @@ class score extends Phaser.Scene{
         let tooTall = 0;
         let missingRiders = 0;
         let tooManyRiders = 0;
+
         //adding scores to total score
         for(let m = 0; m < master_array.length; m++){
             for(let s = 0; s < master_array[m].length; s++){
@@ -700,8 +701,6 @@ class score extends Phaser.Scene{
         tooTall = tooTall * -1;
         missingRiders =  missingRiders * -1;
         tooManyRiders = tooManyRiders * -1;
-
-        
 
         this.progressBar = this.add.rectangle(450, 40, 200, 30, '0xff0000' );
 
@@ -1034,16 +1033,18 @@ class score extends Phaser.Scene{
             loop: false
         });
         }
+        
+    randomDecimil(mn,mx){
+        return Math.random() * (mx - mn) + mn;
+    }
     
 
     update(){
         //make boss shake if youre fired
-        function randomDecimil(mn,mx){
-            return Math.random() * (mx - mn) + mn;
-        }
+
 
         if(fired >= 90 && this.shake == true){
-            this.boss.x = this.boss.x + randomDecimil(-0.5, 0.5);
+            this.boss.x = this.boss.x + this.randomDecimil(-0.5, 0.5);
         }
 
         //this.delay += 1;

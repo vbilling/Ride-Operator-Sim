@@ -119,8 +119,8 @@ class coaster extends Phaser.Scene{
         //the scale for the coaster carts (will also be used to calculate character heights)
         this.coasterscale = 0.18;
 
+
         for(let i = 0; i < (allRiders_array.length); i++){
-            //console.log('in coaster.js "i" is ', i);
 
             //all riders array relies on number of customers
             this.customerHeight = roundTo(allRiders_array[i][0], 1);
@@ -302,13 +302,16 @@ class coaster extends Phaser.Scene{
             //console.log('accessory ARRAY', allRiders_array[i]);
             //console.log("allRiders_array[i].length", allRiders_array[i].length);
             for(let a = 2; a < (allRiders_array[i].length); a++){
+                //console.log('allRiders_array[i][a]', allRiders_array[i][a]);
                 this.accessory = this.physics.add.sprite(this.customer.x, this.customer.y, allRiders_array[i][a]);
                 this.accessory.body.allowGravity = false;
+                //console.log('this accessory', this.accessory);
                 //add accessories to an array
                 accessorySprite_array.push(this.accessory);
                 this.accessory.setScale(this.customerNewHeight);
             }
         };
+        //console.log('howdy:', accessorySprite_array);
         this.bottomTrack = this.add.sprite(0,110,'bottomTrack');
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(820, 520, 'coasterCart', 0)
@@ -998,8 +1001,29 @@ class coaster extends Phaser.Scene{
                 loop: false
             });
     }
+    // deleteCart1(){
+    //     this.time.addEvent({
+    //         delay: 2000,
+    //         callback:() =>{
+    //             console.log('called');
+    //             this.cart1.destroy();
+    //             this.cart2.destroy();
+    //             this.cart3.destroy();
+    //             this.cart4.destroy();
+    //             for(let b = 0; b < (riderSprite_array.length); b++){
+    //                 riderSprite_array[b].destroy();
+    //             };
+    //             for(let w = 0; w < (accessorySprite_array.length); w++){
+    //                 accessorySprite_array[w].destroy();
+    //             };
+    //         },
+    //         loop: false
+    //     });
+
+    // }
 
     update(){
+        console.log('update');
         
         //press red button to make coasters start
         if(this.redButtonHover == true){
@@ -1015,14 +1039,15 @@ class coaster extends Phaser.Scene{
                 if(this.buttonpressed == false){
                     this.pathStart();
                 }
+                //will make coaster move
+                this.coasterstart = true;
                 //keeps track of if the button is pressed so it can't be pressed agian
                 this.buttonpressed = true;
                 //button moves down then up with delay
                 this.redButton.setFrame(0);
                 this.redButton2.play();
                 //start background coaster
-                //will make coaster move
-                this.coasterstart = true;
+
             }, this)
         };
 
@@ -1047,9 +1072,12 @@ class coaster extends Phaser.Scene{
                     riderSprite_array[b].setFrame(1);
                 };
                 //set velocity of the accessories
+                console.log('here', accessorySprite_array);
                 for(let w = 0; w < (accessorySprite_array.length); w++){
+                    console.log('w', w);
                     accessorySprite_array[w].body.setVelocityX(RC_Velocity);
                 };
+                //this.deleteCart1();
                 
             };
         };
