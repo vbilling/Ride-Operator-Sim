@@ -183,7 +183,7 @@ class day3 extends Phaser.Scene{
         this.hat_chance = random(0, 100);
         //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
-        if(this.hat_chance >= 95){ 
+        if(this.hat_chance >= 90){ 
             this.hat = true;
         }
         //then put all accessories in the aproporate arrays (making these arrays global)
@@ -237,7 +237,7 @@ class day3 extends Phaser.Scene{
         this.face_chance = random(0, 100);
         //console.log('this.face_chance', this.face_chance);
         this.face = false;
-        if(this.face_chance >= 70){
+        if(this.face_chance >= 60){
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
@@ -254,7 +254,7 @@ class day3 extends Phaser.Scene{
         this.waist_chance = random(0, 100);
         //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
-        if(this.waist_chance >= 70){
+        if(this.waist_chance >= 30){
             this.waist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -272,7 +272,7 @@ class day3 extends Phaser.Scene{
         this.hold_chance = random(0, 100);
         //console.log('this.hold_chance', this.hold_chance);
         this.hold = false;
-        if(this.hold_chance >= 90){ //80 
+        if(this.hold_chance >= 80){ //80 
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays

@@ -76,9 +76,9 @@ class score extends Phaser.Scene{
 
         //load sounds
         this.thud = this.sound.add('thud');
-        this.thud.volume = 0.15;
+        this.thud.volume = 0.2;
         this.thud2 = this.sound.add('thud2');
-        this.thud2.volume = 0.15;
+        this.thud2.volume = 0.2;
         this.buttonPress = this.sound.add('buttonPress');
         this.pop = this.sound.add('pop');
         this.pop.volume = 0.5
@@ -344,7 +344,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-4);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
@@ -355,7 +355,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-4);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
@@ -366,7 +366,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-4);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No hats allowed');
                     master_array.push(first_array);
@@ -377,7 +377,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-4);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No hats allowed...even if its your birthday');
                     master_array.push(first_array);
@@ -388,7 +388,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('hat');
                     //point value
-                    first_array.push(-4);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No hats allowed...');
                     master_array.push(first_array);
@@ -401,7 +401,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('Soda');
                     //point value
-                    first_array.push(-4);
+                    first_array.push(-5);
                     //phrase to say
                     first_array.push('No drinks allowed!!');
                     master_array.push(first_array);
@@ -413,7 +413,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-6); //-5
+                    first_array.push(-8); //-5
                     //phrase to say
                     first_array.push('OH NO A KNIFE');
                     master_array.push(first_array);
@@ -441,7 +441,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-6); //-5
+                    first_array.push(-8); //-5
                     //phrase to say
                     first_array.push('OH NO A SPATULA');
                     master_array.push(first_array);
@@ -469,7 +469,7 @@ class score extends Phaser.Scene{
                     //name of accessory
                     first_array.push('weapons');
                     //point value
-                    first_array.push(-6); //-5
+                    first_array.push(-8); //-5
                     //phrase to say
                     first_array.push('OH NO SCISSORS');
                     master_array.push(first_array);
@@ -553,7 +553,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('no wristband');
                         //point value
-                        first_array.push(-3);
+                        first_array.push(-5);
                         //phrase to say
                         first_array.push('no wristband');
                         master_array.push(first_array);
@@ -566,7 +566,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('criminal');
                         //point value
-                        first_array.push(-7);
+                        first_array.push(-8);
                         //phrase to say
                         first_array.push('You let a criminal ride');
                         master_array.push(first_array);
@@ -579,7 +579,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('criminal');
                         //point value
-                        first_array.push(-7);
+                        first_array.push(-8);
                         //phrase to say
                         first_array.push('You let a criminal ride');
                         master_array.push(first_array);
@@ -592,7 +592,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('corndog');
                         //point value
-                        first_array.push(-4);
+                        first_array.push(-5);
                         //phrase to say
                         first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
@@ -605,7 +605,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('donut');
                         //point value
-                        first_array.push(-4);
+                        first_array.push(-5);
                         //phrase to say
                         first_array.push('NO FOOD ALLOWED');
                         master_array.push(first_array);
