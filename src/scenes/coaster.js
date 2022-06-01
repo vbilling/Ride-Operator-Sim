@@ -61,6 +61,7 @@ class coaster extends Phaser.Scene{
         this.redButton1 = this.sound.add('redButton1');
         this.redButton2 = this.sound.add('redButton2');
         this.rollerCoasterAudio = this.sound.add('rollerCoasterAudio');
+        this.rollerCoasterAudio.volume = 1.2;
         this.scream = this.sound.add('scream');
         this.scream2 = this.sound.add('scream');
         this.scream3 = this.sound.add('scream');
