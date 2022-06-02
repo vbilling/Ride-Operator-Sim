@@ -200,7 +200,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 27;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 1){
@@ -219,7 +219,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){ //perfect
                     this.customer.x = -100 + 5;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 2){
@@ -238,7 +238,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 27;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 3){
@@ -257,7 +257,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -333 + 5;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 4){
@@ -276,7 +276,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 27;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 5){
@@ -295,7 +295,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -566 + 5;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 6){
@@ -314,7 +314,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 27;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
             if(i == 7){
@@ -333,7 +333,7 @@ class score extends Phaser.Scene{
                 if(this.size == 'extra large'){
                     this.customer.x = -799 + 5;
                     this.customer.y = 620 - 60;
-                    //this.customer.setFrame(2);
+                    this.customer.setFrame(2);
                 };
             };
 
@@ -516,10 +516,10 @@ class score extends Phaser.Scene{
                         this.wrongWristband += 1;
                     };
                 };
-                if(allRiders_array[i][a] == 'no wristband'){ //is the day 1 wristband
+                if(allRiders_array[i][a] == 'noWristband'){ //is the day 1 wristband
                     if(day3Done == false){
                         //name of accessory
-                        first_array.push('no wristband');
+                        first_array.push('noWristband');
                         //point value
                         first_array.push(-5);
                         master_array.push(first_array);
@@ -529,7 +529,7 @@ class score extends Phaser.Scene{
                 };
                 if(allRiders_array[i][a] == 'watch'){ 
                         //name of accessory
-                        first_array.push('no wristband');
+                        first_array.push('noWristband');
                         //point value
                         first_array.push(-5);
                         master_array.push(first_array);
@@ -688,7 +688,7 @@ class score extends Phaser.Scene{
             if(master_array[m][0] == 'wrong wristband'){
                 wrongWristband = wrongWristband + master_array[m][1];
             }
-            if(master_array[m][0] == 'no wristband'){
+            if(master_array[m][0] == 'noWristband'){
                 noWristband = noWristband + master_array[m][1];
             }
             if(master_array[m][0] == 'criminal'){
@@ -1104,18 +1104,18 @@ class score extends Phaser.Scene{
                 //go to fired scene if youre fired
                 if(fired >= 100){
                     this.scene.start('loseScene');
-                    this.buttonPress.play();
+                    //this.buttonPress.play();
                 }else if(day2Done == false){
                     this.scene.start('day2IntroScene');
-                    this.buttonPress.play();
+                    //this.buttonPress.play();
                 }else if(day2Done == true && day3Done == false){
                     this.scene.start('day3IntroScene');
-                    this.buttonPress.play();
+                    //this.buttonPress.play();
                 };
                 //if you are done with day 3 and not fired!
                 if(day3Done == true && fired < 100){
                     this.scene.start('winIntroScene');
-                    this.buttonPress.play();
+                    //this.buttonPress.play();
                 }
             }, this)
         }

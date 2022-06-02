@@ -20,6 +20,7 @@ class load extends Phaser.Scene{
         this.load.image('glow2', './assets/glow2.png');
         this.load.image('spark', './assets/spark.png');
         this.load.image('bulbs', './assets/bulbs.png');
+        this.load.image('noWristband', './assets/noWristband.png');
 
         this.load.spritesheet('timerClock', './assets/timerClock.png', {frameWidth: 404, frameHeight: 304, startFrame: 0, endFrame: 8});
 
@@ -60,6 +61,7 @@ class load extends Phaser.Scene{
         this.load.spritesheet('dog2', './assets/dog2.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('fox', './assets/fox.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('blankBody', './assets/blankBody.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
+
 
         //loading all the audio
         this.load.audio('whoosh', './assets/whoosh.wav');

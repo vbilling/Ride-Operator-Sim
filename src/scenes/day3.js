@@ -463,12 +463,12 @@ class day3 extends Phaser.Scene{
                         this.bulbs.setDepth(2);
                         this.particles.setDepth(1.9);
                         this.emitter0 = this.particles.createEmitter({
-                            speed: { min: -200, max: 50 },
+                            speed: { min: -200, max: 20 },
                             angle: { min: 0, max: 360 },
                             scale: { start: 0.2, end: 0 },
                             //blendMode: 'SCREEN',
                             //active: false,
-                            lifespan: 800,
+                            lifespan: 1000,
                             gravityY: 900 //800
                         });
                         this.particleTimer();

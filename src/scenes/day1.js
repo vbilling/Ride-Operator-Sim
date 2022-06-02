@@ -250,7 +250,7 @@ class day1 extends Phaser.Scene{
         this.wrist_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
-        if(this.wrist_chance >= 1){
+        if(this.wrist_chance >= 1){ //1
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -262,7 +262,7 @@ class day1 extends Phaser.Scene{
             this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(this.scale);
         }else{
-            riderAccessories_array.push("no wristband");
+            riderAccessories_array.push("noWristband");
         }
         //face accessories
         this.face_chance = random(0, 100);
