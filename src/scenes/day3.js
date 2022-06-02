@@ -346,6 +346,16 @@ class day3 extends Phaser.Scene{
             loop: false
         }) 
     }
+    particleTimer(){
+        this.time.addEvent({
+            delay: 400,
+            callback: ()=>{
+                this.particles.destroy();
+            },
+            loop: false
+        }) 
+        
+    }
 
 
     update(){
