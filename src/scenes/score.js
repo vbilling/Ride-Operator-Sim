@@ -347,7 +347,6 @@ class score extends Phaser.Scene{
                 this.accessory.setScale(this.customerNewHeight);
                 console.log('size', this.size);
                 if(this.size == 'small'){
-                    console.log('did it');
                     this.accessory.setAlpha(0);
                 }
                 
@@ -362,6 +361,9 @@ class score extends Phaser.Scene{
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
+                    if(this.size == 'extra large'){
+                        this.accessory.setAlpha(0);
+                    }
                 };
                 if(allRiders_array[i][a] == 'cowhat2'){
                     //name of accessory
@@ -371,6 +373,9 @@ class score extends Phaser.Scene{
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
+                    if(this.size == 'extra large'){
+                        this.accessory.setAlpha(0);
+                    }
                 };
                 if(allRiders_array[i][a] == 'cowhat3'){
                     //name of accessory
@@ -380,6 +385,9 @@ class score extends Phaser.Scene{
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
+                    if(this.size == 'extra large'){
+                        this.accessory.setAlpha(0);
+                    }
                 };
                 if(allRiders_array[i][a] == 'partyhat'){
                     //name of accessory
@@ -389,6 +397,9 @@ class score extends Phaser.Scene{
                     master_array.push(first_array);
                     first_array = [];
                     this.hatCount += 1;
+                    if(this.size == 'extra large'){
+                        this.accessory.setAlpha(0);
+                    }
                 };
                 if(allRiders_array[i][a] == 'tiara'){
                     //name of accessory
@@ -399,6 +410,9 @@ class score extends Phaser.Scene{
                     first_array = [];
                     this.hatCount += 1;
                     //delete the hat if they are too tall
+                    if(this.size == 'extra large'){
+                        this.accessory.setAlpha(0);
+                    }
 
                 };
                 if(allRiders_array[i][a] == 'soda1'){
@@ -450,19 +464,21 @@ class score extends Phaser.Scene{
                     this.weaponCount += 1;
                 };
                 if(allRiders_array[i][a] == 'scissors' ||allRiders_array[i][a] == 'spatula'||allRiders_array[i][a] == 'knife'){
-                    this.bleed = this.add.particles('blood');
-                    this.bleeding = this.bleed.createEmitter({ 
-                        x: 30,
-                        y: 50,
-                        lifespan: { min: 20, max: 1500},
-                        speed: { min: 5, max: 10},
-                        gravityY: 100,
-                        frequency: 0.001,
-                        quantity: 0.001,
-                        scale: { start: 0.02, end: 0.004},
-                        follow: this.accessory,
-                    });
-                    //this.bleed.setDepth(2);
+                    if(this.size != 'small'){
+                        this.bleed = this.add.particles('blood');
+                        this.bleeding = this.bleed.createEmitter({ 
+                            x: 30,
+                            y: 50,
+                            lifespan: { min: 20, max: 1500},
+                            speed: { min: 5, max: 10},
+                            gravityY: 100,
+                            frequency: 0.001,
+                            quantity: 0.001,
+                            scale: { start: 0.02, end: 0.004},
+                            follow: this.accessory,
+                        });
+                        //this.bleed.setDepth(2);
+                    }
 
                 }
                 if(allRiders_array[i][a] == 'wristband1'){ //is the day 1 wristband
@@ -511,8 +527,7 @@ class score extends Phaser.Scene{
                         this.noWristband += 1;
                     };
                 };
-                if(allRiders_array[i][a] == 'watch'){ //is the day 1 wristband
-                    if(day3Done == false){
+                if(allRiders_array[i][a] == 'watch'){ 
                         //name of accessory
                         first_array.push('no wristband');
                         //point value
@@ -520,10 +535,8 @@ class score extends Phaser.Scene{
                         master_array.push(first_array);
                         first_array = [];
                         this.noWristband += 1;
-                    };
                 };
-                if(allRiders_array[i][a] == 'ankleMoniter'){ //is the day 1 wristband
-                    if(day3Done == false){
+                if(allRiders_array[i][a] == 'ankleMoniter'){
                         //name of accessory
                         first_array.push('criminal');
                         //point value
@@ -531,10 +544,8 @@ class score extends Phaser.Scene{
                         master_array.push(first_array);
                         first_array = [];
                         this.criminalCount += 1;
-                    };
                 };
-                if(allRiders_array[i][a] == 'handcuffs'){ //is the day 1 wristband
-                    if(day3Done == false){
+                if(allRiders_array[i][a] == 'handcuffs'){ 
                         //name of accessory
                         first_array.push('criminal');
                         //point value
@@ -542,10 +553,9 @@ class score extends Phaser.Scene{
                         master_array.push(first_array);
                         first_array = [];
                         this.criminalCount += 1;
-                    };
+
                 };
-                if(allRiders_array[i][a] == 'corndog'){ //is the day 1 wristband
-                    if(day3Done == false){
+                if(allRiders_array[i][a] == 'corndog'){ 
                         //name of accessory
                         first_array.push('food');
                         //point value
@@ -553,10 +563,9 @@ class score extends Phaser.Scene{
                         master_array.push(first_array);
                         first_array = [];
                         this.foodCount += 1;
-                    };
+ 
                 };
-                if(allRiders_array[i][a] == 'donut'){ //is the day 1 wristband
-                    if(day3Done == false){
+                if(allRiders_array[i][a] == 'donut'){ 
                         //name of accessory
                         first_array.push('food');
                         //point value
@@ -564,9 +573,14 @@ class score extends Phaser.Scene{
                         master_array.push(first_array);
                         first_array = [];
                         this.foodCount += 1;
-                    };
                 };
 
+                //accessories that don't lose points but should be invisible if rider loses head
+                if(allRiders_array[i][a] == 'moustache' || allRiders_array[i][a] == 'bandaid' || allRiders_array[i][a] == 'clownNose' || allRiders_array[i][a] == 'mask' || allRiders_array[i][a] == 'glasses1'|| allRiders_array[i][a] == 'glasses2'|| allRiders_array[i][a] == 'pacifier1'|| allRiders_array[i][a] == 'pacifier2'){ 
+                    if(this.size == 'extra large'){
+                        this.accessory.setAlpha(0);
+                    }
+                };
             };
             //scoring for height with this.customerHeight
             //console.log('this.customerHeight', this.customerHeight);
@@ -603,6 +617,9 @@ class score extends Phaser.Scene{
             //     master_array.push(first_array);
             //     first_array = [];
             // };
+
+            
+
       
         };
 

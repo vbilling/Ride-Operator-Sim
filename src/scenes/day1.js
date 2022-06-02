@@ -263,7 +263,7 @@ class day1 extends Phaser.Scene{
         this.face_chance = random(0, 100);
         //console.log('this.face_chance', this.face_chance);
         this.face = false;
-        if(this.face_chance >= 70){ //60
+        if(this.face_chance >= 60){ //60
             this.face = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else) (need to fix scar)
@@ -301,7 +301,7 @@ class day1 extends Phaser.Scene{
             this.hold = true;
         }
         //then put all accessories in the aproporate arrays
-        hold_array = ['soda1', 'soda2', 'knife', 'spatula'];   
+        hold_array = [ 'soda1', 'soda2', 'knife', 'spatula'];   
 
         if(this.hold == true){
             this.pick_hold = random(0,hold_array.length - 1);

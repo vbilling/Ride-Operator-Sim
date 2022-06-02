@@ -982,7 +982,6 @@ class coaster extends Phaser.Scene{
         this.time.addEvent({
             delay: 2350,
             callback: ()=>{
-                console.log('hope u happen once');
                 this.loopOverlap.setAlpha(1);
                 this.loopOverlap.setDepth(2);
             },
@@ -1001,30 +1000,9 @@ class coaster extends Phaser.Scene{
                 loop: false
             });
     }
-    // deleteCart1(){
-    //     this.time.addEvent({
-    //         delay: 2000,
-    //         callback:() =>{
-    //             console.log('called');
-    //             this.cart1.destroy();
-    //             this.cart2.destroy();
-    //             this.cart3.destroy();
-    //             this.cart4.destroy();
-    //             for(let b = 0; b < (riderSprite_array.length); b++){
-    //                 riderSprite_array[b].destroy();
-    //             };
-    //             for(let w = 0; w < (accessorySprite_array.length); w++){
-    //                 accessorySprite_array[w].destroy();
-    //             };
-    //         },
-    //         loop: false
-    //     });
 
-    // }
 
     update(){
-        console.log('update');
-        
         //press red button to make coasters start
         if(this.redButtonHover == true){
             this.input.on('pointerdown', function (pointer) {
