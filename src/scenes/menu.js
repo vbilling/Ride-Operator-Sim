@@ -63,6 +63,7 @@ class menu extends Phaser.Scene{
         this.startButtonHover = false;
         this.chaosButtonHover = false;
         this.endlessButtonHover = false;
+        this.creditButtonHover = false;
         //initilizing mouse
         this.pointer = this.input.activePointer;
 
@@ -89,6 +90,24 @@ class menu extends Phaser.Scene{
         this.startButton.on("pointerout", () => {
             this.startButton.setFrame(0);
             this.startButtonHover = false;
+        });
+
+        this.creditsText = this.add.sprite(515, 477, 'creditsText');
+        this.creditsText.setScale(0.4);
+
+        this.creditButton = this.physics.add.sprite(510,510, 'creditButton').setInteractive();
+        //this.creditButton.setScale(1.17);
+        this.creditButton.body.allowGravity = false;
+        this.creditButton.body.setSize(20, 30, 2, -200);
+        this.creditButton.on("pointerover", () => {
+            this.creditButton.setFrame(1);
+            //will tell code in update to go to next scene
+            this.creditButtonHover = true;
+
+        });
+        this.creditButton.on("pointerout", () => {
+            this.creditButton.setFrame(0);
+            this.creditButtonHover = false;
         });
 
 
@@ -214,6 +233,10 @@ class menu extends Phaser.Scene{
             this.buttonPress.volume = 0.5;
             this.scene.start('endlessScene');
         }; 
-
+        if(this.pointer.isDown && this.creditButtonHover == true){
+            this.buttonPress.play();
+            this.buttonPress.volume = 0.5;
+            this.scene.start('creditsScene');
+        }; 
     }
 }

@@ -14,6 +14,8 @@ class load extends Phaser.Scene{
         this.load.image('day2Header', './assets/day2Header.png');
         this.load.image('day3Header', './assets/day3Header.png');
         this.load.spritesheet('menuButton', './assets/menuButton.png', {frameWidth: 960, frameHeight: 720, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('creditButton', './assets/creditButton.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
+        this.load.image('creditsText', './assets/creditsText.png');
 
         this.load.image('glow2', './assets/glow2.png');
 

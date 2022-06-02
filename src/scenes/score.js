@@ -341,9 +341,15 @@ class score extends Phaser.Scene{
             for(let a = 2; a < (allRiders_array[i].length); a++){
                 this.accessory = this.physics.add.sprite(this.customer.x, this.customer.y, allRiders_array[i][a]);
                 this.accessory.body.allowGravity = false;
+
                 //add accessories to an array
                 accessorySprite_array2.push(this.accessory);
                 this.accessory.setScale(this.customerNewHeight);
+                console.log('size', this.size);
+                if(this.size == 'small'){
+                    console.log('did it');
+                    this.accessory.setAlpha(0);
+                }
                 
                 //checking if there are any hats
                 if(allRiders_array[i][a] == 'cowhat1'){
@@ -560,19 +566,17 @@ class score extends Phaser.Scene{
                         this.foodCount += 1;
                     };
                 };
-                if(this.size == 'small'){
-                    this.accessory.setAlpha(0);
-                }
+
             };
             //scoring for height with this.customerHeight
             //console.log('this.customerHeight', this.customerHeight);
-            // if(this.customerHeight < 0.25){ 
-            //     first_array.push('too short');
-            //     first_array.push(-15);
-            //     // first_array.push('A rider was too short and fell out of the ride.');
-            //     master_array.push(first_array);
-            //     first_array = [];
-            // };
+            //if(this.customerHeight < 0.25){ 
+                //first_array.push('too short');
+                //first_array.push(-15);
+                // first_array.push('A rider was too short and fell out of the ride.');
+                //master_array.push(first_array);
+                //first_array = [];
+            //};
             //too tall
             if(this.customerHeight > 0.43){
                 this.tooTall += 1;   
