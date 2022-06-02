@@ -83,6 +83,8 @@ class day2 extends Phaser.Scene{
         //this.oceanWaves.play();
         //this.oceanWaves.loop = true;
         //this.oceanWaves.volume = 0.3;
+        this.oceanWaves = this.sound.add('oceanWaves');
+        this.oceanWaves.play();
         this.tick1 = this.sound.add('tick1');
         this.tick2 = this.sound.add('tick2');
         this.lightbulb = this.sound.add('lightbulb');

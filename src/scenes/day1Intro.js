@@ -16,6 +16,10 @@ class day1Intro extends Phaser.Scene{
 
     }
     create(){
+        game.sound.stopAll();
+
+        this.day1Jingle = this.sound.add('day1Jingle');
+        this.day1Jingle.play();
         //this.cameras.main.setBackgroundColor('#bb60f7')
         this.add.sprite(0, 0, 'abstract_1').setOrigin(0,0)
         this.add.tileSprite(0, 0, 960, 720, 'day1IntroText').setOrigin(0, 0);

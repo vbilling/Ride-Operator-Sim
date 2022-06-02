@@ -493,6 +493,9 @@ class trainingday extends Phaser.Scene{
         }
 
         if(this.directionsTimer >= 200){
+            if(this.directionsTimer == 200){
+                this.directions.setFrame(12);
+            }
             this.directions.setAlpha(1);
         }else{
             if(currentText.text != bossText[0]){

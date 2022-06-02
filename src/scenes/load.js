@@ -81,6 +81,10 @@ class load extends Phaser.Scene{
         this.load.audio('happyBirthday', './assets/happyBirthday.wav');
         this.load.audio('gasp', './assets/gasp.wav');
         this.load.audio('glitter', './assets/glitter.wav');
+        this.load.audio('orientationJingle', './assets/orientationJingle.wav');
+        this.load.audio('day1Jingle', './assets/day1Jingle.wav');
+        this.load.audio('day2Jingle', './assets/day2Jingle.wav');
+        this.load.audio('day3Jingle', './assets/day3Jingle.wav');
 
         //Accessories (organized so that certain accessories don't overlap)
         //head accessories
@@ -261,7 +265,7 @@ class load extends Phaser.Scene{
     
     }
     create(){
-        this.scene.start("creditsScene");
+        this.scene.start("menuScene");
     }
 
 

@@ -77,6 +77,8 @@ class day3 extends Phaser.Scene{
         this.buttonPress = this.sound.add('buttonPress');
         this.oceanWaves = this.sound.add('oceanWaves');
         this.correct = this.sound.add('correct');
+        this.oceanWaves = this.sound.add('oceanWaves');
+        this.oceanWaves.play();
         //this.oceanWaves.play();
         //this.oceanWaves.loop = true;
         //this.oceanWaves.volume = 0.3;

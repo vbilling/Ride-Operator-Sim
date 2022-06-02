@@ -8,6 +8,9 @@ class trainingIntro extends Phaser.Scene{
   
     }
     create(){
+        this.orientationJingle = this.sound.add('orientationJingle');
+        this.orientationJingle.play();
+        
         //this.cameras.main.setBackgroundColor('#bb60f7')
         this.add.sprite(0, 0, 'background1').setOrigin(0,0);
         this.add.tileSprite(0, 0, 960, 720, 'trainingIntroText').setOrigin(0, 0);
