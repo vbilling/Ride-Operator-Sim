@@ -11,7 +11,8 @@ class lose extends Phaser.Scene{
     }
     create(){
         loseDone = true;
-        master_array = []
+        master_array = [];
+        fired = 0;
         this.pointer = this.input.activePointer;
         game.sound.stopAll();
         this.deathmetal = this.sound.add('deathmetal');

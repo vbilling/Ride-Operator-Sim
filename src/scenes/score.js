@@ -7,6 +7,7 @@ class score extends Phaser.Scene{
     };
     create(){
         riderSize_array = [];
+        console.log('rider size arrray', riderSize_array);
 
         this.cartRun = false;
 
@@ -486,7 +487,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wrong wristband');
                         //point value
-                        first_array.push(-3);
+                        first_array.push(-5);
                         master_array.push(first_array);
                         first_array = [];
                         this.wrongWristband += 1;
@@ -497,7 +498,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wrong wristband');
                         //point value
-                        first_array.push(-3);
+                        first_array.push(-5);
                         master_array.push(first_array);
                         first_array = [];
                         this.wrongWristband += 1;
@@ -508,7 +509,7 @@ class score extends Phaser.Scene{
                         //name of accessory
                         first_array.push('wrong wristband');
                         //point value
-                        first_array.push(-3);
+                        first_array.push(-5);
                         //phrase to say
                         // first_array.push('wrong wristband');
                         master_array.push(first_array);

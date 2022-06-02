@@ -19,6 +19,7 @@ class win extends Phaser.Scene{
     create(){
         winDone = true;
         master_array = []
+        fired = 0;
         this.happyBirthdaySong = this.sound.add('happyBirthday');
         this.gasp = this.sound.add('gasp');
         this.glitter = this.sound.add('glitter');

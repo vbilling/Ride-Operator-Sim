@@ -217,7 +217,7 @@ class day3 extends Phaser.Scene{
             this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(this.scale);
         }else{
-            riderAccessories_array.push("no wristband");
+            riderAccessories_array.push("noWristband");
         }
         
         //wrist 2 accessories (wrist accessories that can spawn at the same time as the other wrist accessories)
