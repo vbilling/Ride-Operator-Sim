@@ -250,11 +250,16 @@ class load extends Phaser.Scene{
         //endless mode
         this.load.image('comingSoon2', './assets/comingSoon2.png');
 
+        //credits
+        this.load.image('credits', './assets/creditsTitle.png');
+        this.load.image('creditVictoria', './assets/creditVictoria.png');
+        this.load.image('creditKaroline', './assets/creditKaroline.png');
+        this.load.image('creditWilliam', './assets/creditWilliam.png');
 
     
     }
     create(){
-        this.scene.start("menuScene");
+        this.scene.start("creditsScene");
     }
 
 
