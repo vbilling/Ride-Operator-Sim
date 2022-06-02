@@ -69,7 +69,7 @@ class credits extends Phaser.Scene{
         '\n16. Trumpet - https://freesound.org/people/LittleRobotSoundFactory/sounds/270528/'+
         '\n17. Coaster wheels - https://freesound.org/people/arnaud%20coutancier/sounds/560610/' +
         '\n18. Scream - https://freesound.org/people/sed4906/sounds/548217/' +
-        '\n19. Lightbulb - https://freesound.org/people/MATRIXXX_/sounds/459694/' +
+        '\n19. Lightbulb - https://freesound.org/people/jameswrowles/sounds/253322/' +
         '\n20. Scribble - https://freesound.org/people/InspectorJ/sounds/398271/' +
         '\n21. Bounce - https://freesound.org/people/Jofae/sounds/383240/' +
         '\n22. Happy birthday - https://freesound.org/people/SergeQuadrado/sounds/541176/' +

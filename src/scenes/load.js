@@ -18,6 +18,8 @@ class load extends Phaser.Scene{
         this.load.image('creditsText', './assets/creditsText.png');
 
         this.load.image('glow2', './assets/glow2.png');
+        this.load.image('spark', './assets/spark.png');
+        this.load.image('bulbs', './assets/bulbs.png');
 
         this.load.spritesheet('timerClock', './assets/timerClock.png', {frameWidth: 404, frameHeight: 304, startFrame: 0, endFrame: 8});
 
@@ -75,7 +77,7 @@ class load extends Phaser.Scene{
         this.load.audio('trumpet', './assets/trumpet.wav');
         this.load.audio('rollerCoasterAudio', './assets/rollerCoaster.wav');
         this.load.audio('scream', './assets/scream.wav');
-        this.load.audio('lightbulb', './assets/lightbulb.mp3');
+        this.load.audio('lightbulb', './assets/lightbulb.wav');
         this.load.audio('scribble', './assets/scribble.wav');
         this.load.audio('bounce', './assets/bounce.wav');
         this.load.audio('happyBirthday', './assets/happyBirthday.wav');
