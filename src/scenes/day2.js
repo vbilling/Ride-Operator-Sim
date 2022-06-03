@@ -16,11 +16,7 @@ class day2 extends Phaser.Scene{
         this.dayheader = this.add.sprite(0, 0, 'day2Header').setOrigin(0,0);
         this.day2Title = this.add.sprite(335, 67, 'day2Title').setOrigin(0,0);
         this.day2Title.setScale(0.3);
-        //temporary instructions text
-        // this.add.text(130, 100, "Use the mouse to fling guests RIGHT to allow them to ride and LEFT to reject them.");
-        // this.add.text(130, 120, "Let no more and no less than 8 guests ride");
-        // this.add.text(130, 140, "Not Allowed: hats, food/drinks, weapons, criminals");
-        // this.add.text(130, 160, "Today's wristband color: yellow");
+
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
@@ -42,9 +38,6 @@ class day2 extends Phaser.Scene{
         //will delay the next character spawn in
         this.delay = 0;
 
-        //this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
-        //this.capacityMeter.setScale(0.9);
-
         this.timerClock = this.add.sprite(754, 93, 'timerClock');
         this.timerClock.setScale(0.65);
 
@@ -62,14 +55,12 @@ class day2 extends Phaser.Scene{
                 top: 5,
                 bottom: 4
             },
-            //fixedWidth: 100
         };
         //displaying the timer
         console.log("game timer", this.gametimer);
         this.timertext = this.add.text(830, 40, this.gametimer, gametimerConfig).setOrigin(0);
         this.timertext.setAlpha(0);
         this.wristbandCheck = this.add.image(420, 15, 'wristband2');
-        //this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
         //the riders are reset 
@@ -79,10 +70,6 @@ class day2 extends Phaser.Scene{
         this.whoosh = this.sound.add('whoosh');
         this.buttonPress = this.sound.add('buttonPress');
         this.correct = this.sound.add('correct');
-        //this.oceanWaves = this.sound.add('oceanWaves');
-        //this.oceanWaves.play();
-        //this.oceanWaves.loop = true;
-        //this.oceanWaves.volume = 0.3;
         this.oceanWaves = this.sound.add('oceanWaves');
         this.oceanWaves.play();
         this.tick1 = this.sound.add('tick1');
@@ -104,26 +91,21 @@ class day2 extends Phaser.Scene{
             this.p1.body.allowGravity = false;
         });
         this.input.on('dragend', (pointer, _gameObject)=>{
-            //this.p1.setVelocityX(dragX);
-            //this.p1.velocityFromAngle(50, 200, this.p1.body.velocity);
             this.p1.setFrame(0);
             this.p1.body.allowGravity = true;
             //flying across the screen
             if(this.p1.x < 320){
                 this.whoosh.play();
-                //this.p1.setRotation(20);
                 this.p1.setVelocityX(-800);
                 this.p1.setVelocityY(-300);
             }
             if(this.p1.x > 650){
                 this.whoosh.play();
-                //this.p1.setRotation(-20);
                 this.p1.setVelocityX(800);
                 this.p1.setVelocityY(-300);
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        //this.correct.play();
                     },
                     loop: false
                 })
@@ -166,10 +148,9 @@ class day2 extends Phaser.Scene{
         this.height = randomDecimil(0.2, 0.5);
         this.scale = this.height;
 
-        //console.log('height:', this.scale);
         //add height to info array (will be first element)
         riderAccessories_array.push(this.scale);
-                //randomly generate which character body
+        //randomly generate which character body
         //add all character bodies to an array
         this.body_array = ['cat1', 'cat2', 'cat3', 'duck1', 'duck2', 'duck3', 'bear1', 'bear2', 'fox'];
         //pick a random body
@@ -183,11 +164,10 @@ class day2 extends Phaser.Scene{
         // object has to be dragged by 16 pixels to be draggable 
         this.input.dragDistanceThreshold = 16;
         this.physics.add.collider(this.p1, platforms);
-//Accessory Generation!
+        //Accessory Generation!
         //first generate if there even will be an accessory for each category (can change likelyhood percentages)
         //will there be a hat
         this.hat_chance = random(0, 100);
-        //console.log('this.hat_chance', this.hat_chance);
         this.hat = false;
         if(this.hat_chance >= 80){ 
             this.hat = true;
@@ -205,7 +185,6 @@ class day2 extends Phaser.Scene{
 
         //wrist accessories
         this.wrist_chance = random(0, 100);
-        //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
         if(this.wrist_chance >= 5){
             this.wrist = true;
@@ -224,7 +203,6 @@ class day2 extends Phaser.Scene{
         
         //wrist 2 accessories (wrist accessories that can spawn at the same time as the other wrist accessories)
         this.wrist2_chance = random(0, 100);
-        //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist2 = false;
         if(this.wrist2_chance >= 97){
             this.wrist2 = true;
@@ -241,7 +219,6 @@ class day2 extends Phaser.Scene{
 
         //face accessories
         this.face_chance = random(0, 100);
-        //console.log('this.face_chance', this.face_chance);
         this.face = false;
         if(this.face_chance >= 75){
             this.face = true;
@@ -258,7 +235,6 @@ class day2 extends Phaser.Scene{
 
         //waist accessories
         this.waist_chance = random(0, 100);
-        //console.log('this.waist_chance', this.waist_chance);
         this.waist = false;
         if(this.waist_chance >= 30){
             this.waist = true;
@@ -293,7 +269,6 @@ class day2 extends Phaser.Scene{
 
         //left leg accessory
         this.leg_chance = random(0, 100);
-        //console.log('this.leg_chance', this.leg_chance);
         this.leg = false;
         if(this.leg_chance >= 95){
             this.leg = true;
@@ -310,7 +285,6 @@ class day2 extends Phaser.Scene{
 
         //neck accessory
         this.neck_chance = random(0, 100);
-        //console.log('this.leg_chance', this.leg_chance);
         this.neck = false;
         if(this.neck_chance >= 85){
             this.neck = true;
@@ -334,7 +308,6 @@ class day2 extends Phaser.Scene{
         this.time.addEvent({
             delay: 700,
             callback: ()=>{
-                //this.buttonPress.play();
                 this.scene.start("coasterScene");
             },
             loop: false
@@ -346,7 +319,6 @@ class day2 extends Phaser.Scene{
         //for game timer
         this.gametimer -= 1;
         this.timertext.text = Math.round(this.gametimer/60);
-        //this.riderCount.text = 'Riders: ' + ridingCustomers;
         //if the timer runs out, go to next scene
         if(Math.round(this.gametimer/60) < 0){
             this.scene.start("coasterScene");
@@ -399,7 +371,6 @@ class day2 extends Phaser.Scene{
                 this.needCharacter = true;
             }else{
                 this.advanceScene();
-                //this.readyButton.setAlpha(1);
             }
 
 
@@ -518,7 +489,6 @@ class day2 extends Phaser.Scene{
         }
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){
-            //this.buttonPress.play();
             this.scene.start("coasterScene");
         }; 
     };

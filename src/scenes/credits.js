@@ -4,9 +4,7 @@ class credits extends Phaser.Scene{
     }
     create(){
         this.add.tileSprite(0, 0, 960, 720, 'day1Background', ).setOrigin(0,0);
-        //this.header = this.add.sprite(0, 0, 'header').setOrigin(0,0);
-        //this.header.setFrame(8);
-
+        
         this.william = this.add.sprite(145, 340, 'fox', 0).setScale(.25);
         
         this.victoria = this.add.sprite(460, 340, 'cat3', 0).setScale(.25);

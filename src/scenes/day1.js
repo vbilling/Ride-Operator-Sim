@@ -35,10 +35,6 @@ class day1 extends Phaser.Scene{
 
         //will delay the next character spawn in
         this.delay = 0;
-
-        //this.capacityMeter = this.add.sprite(225, 170, 'capacityMeter');
-        //this.capacityMeter.setScale(0.9);
-
         this.timerClock = this.add.sprite(754, 93, 'timerClock');
         this.timerClock.setScale(0.65);
         this.timerClock.setFrame(0);
@@ -83,7 +79,6 @@ class day1 extends Phaser.Scene{
                 top: 5,
                 bottom: 4
             },
-            //fixedWidth: 100
         };
         //displaying the timer
         console.log("game timer", this.gametimer);
@@ -91,7 +86,6 @@ class day1 extends Phaser.Scene{
         this.timertext.setAlpha(0);
         this.wristbandCheck = this.add.image(420, 15, 'wristband1');
         //counting the riders
-        //this.riderCount = this.add.text(45, 10, 'Riders: '+ ridingCustomers, gametimerConfig).setOrigin(0);
 
         //if the mouse is hovering over the down button
         this.readyButtonHover = false;
@@ -114,27 +108,22 @@ class day1 extends Phaser.Scene{
         });
 
         this.input.on('dragend', (pointer, _gameObject)=>{
-            //this.p1.setVelocityX(dragX);
-            //this.p1.velocityFromAngle(50, 200, this.p1.body.velocity);
             this.p1.setFrame(0);
             this.p1.body.allowGravity = true;
 
             //flying across the screen
             if(this.p1.x < 320){ //thrown to the left
                 this.whoosh.play();
-                //this.p1.setRotation(20);
                 this.p1.setVelocityX(-800);
                 this.p1.setVelocityY(-100);
             }
             if(this.p1.x > 650){ //thrown to the right
                 this.whoosh.play();
-                //this.p1.setRotation(-20);
                 this.p1.setVelocityX(800);
                 this.p1.setVelocityY(-100);
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        //this.correct.play();
                     },
                     loop: false
                 })
@@ -158,24 +147,6 @@ class day1 extends Phaser.Scene{
             this.readyButton.setFrame(0);
             this.readyButtonHover = false;
         });
-        // this.time.addEvent({
-        //     delay: 100,
-        //     callback: ()=>{
-        //         this.readyButton.setFrame(1);
-        //         this.time.addEvent({
-        //             delay: 100,
-        //             callback: ()=>{
-        //                 this.readyButton.setFrame(0);
-        
-        //             },
-        //             loop: true,
-        //         });
-        //     },
-        //     loop: true,
-        // })
-
-
-
     };
     newCharacter(){
         function random(mn, mx) {
@@ -349,7 +320,6 @@ class day1 extends Phaser.Scene{
         this.time.addEvent({
             delay: 700,
             callback: ()=>{
-                //this.buttonPress.play();
                 this.scene.start("coasterScene");
             },
             loop: false
@@ -360,7 +330,6 @@ class day1 extends Phaser.Scene{
         //for game timer
         this.gametimer -= 1;
         this.timertext.text = Math.round(this.gametimer/60);
-        //this.riderCount.text = 'Riders: ' + ridingCustomers;
         this.clock += 1;
         //if the timer runs out, go to next scene
         if(Math.round(this.gametimer/60) < 0){ // 60
@@ -459,14 +428,6 @@ class day1 extends Phaser.Scene{
                     }
                 }
                 this.needCharacter = false;
-                // if(ridingCustomers > 8){
-                //     nonridingCustomers += 1;
-                //     console.log('Non Riding customers ', nonridingCustomers);
-                //     console.log("These are extra riders");
-                //     nonRiders_array.push(riderAccessories_array);
-                //     console.log('non riders array', nonRiders_array);
-            
-                // }
   
             };
         }

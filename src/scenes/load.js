@@ -159,7 +159,6 @@ class load extends Phaser.Scene{
 
         //score scene
         //progress bar, temp stand in 
-        this.load.image('progressBar', './assets/platform.png');
         this.load.image('firedMeter', './assets/firedMeter.png');
 
         this.load.spritesheet('coasterCart', './assets/coaster.png', {frameWidth: 2048, frameHeight: 1536, startFrame: 0, endFrame: 1});
@@ -194,15 +193,10 @@ class load extends Phaser.Scene{
         //lose scene 
         this.load.image('redBackground3', './assets/redBackground2.png');
         this.load.image('firedText', './assets/firedText.png');
-        //this.load.spritesheet('startoverButton', './assets/startoverButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.image('firedBoss', './assets/firedBoss.png');
 
         //training day
         this.load.image('day1Background', './assets/background_day1.png');
-        //this.load.image('ground', './assets/ground.png');
-        //this.load.image('heightPole', './assets/height_pole.png');
-        //this.load.image('exitSign', './assets/exit_sign.png');
-        //this.load.image('enterSign', './assets/enter_sign.png');
         this.load.spritesheet('duckyellow', './assets/duckyellow.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duckpink', './assets/duckpink.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
         this.load.spritesheet('duckblue', './assets/duckblue.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 1});
@@ -225,7 +219,6 @@ class load extends Phaser.Scene{
         this.load.spritesheet('directions', './assets/directions2.png', {frameWidth: 920, frameHeight: 760, startFrame: 0, endFrame: 12});
         this.load.image('textBubble', './assets/textBubble.png');
         this.load.image('boardwalkLogo', './assets/boardwalkLogo.png');
-        //this.load.spritesheet('readyButton', './assets/readyButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
         this.load.spritesheet('bouncingArrow', './assets/bouncingArrow.png', {frameWidth: 612, frameHeight: 612, startFrame: 0, endFrame: 7});
         this.load.image('rulesSign2', './assets/rulesSign.png');
         this.load.spritesheet('allowArrow', './assets/allowArrow.png', {frameWidth: 712, frameHeight: 712, startFrame: 0, endFrame: 6});

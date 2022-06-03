@@ -3,17 +3,6 @@ class win extends Phaser.Scene{
         super("winScene");
     }
     preload(){
-        // this.load.spritesheet('koala', './assets/koala.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2})
-        // this.load.image('present1', './assets/present1.png');
-        // this.load.image('present2', './assets/present2.png');
-
-        // this.load.image('body', './assets/speck.png');
-        // this.load.image('glowing', './assets/glowing.png');
-        // this.load.image('birthdayText', './assets/birthdayText.png');
-        // this.load.image('broText', './assets/broText.png');
-        // this.load.image('bdayBackground', './assets/bdayBackground.png');
-        // this.load.image('downArrow', './assets/downArrow.png');
-        
 
     }
     create(){
@@ -27,7 +16,6 @@ class win extends Phaser.Scene{
         this.add.image(0,0, 'bdayBackground').setOrigin(0,0);
         this.pointer2 = this.input.activePointer;
 
-        //this.pointerOver = false;
         this.menuPointer = false;
 
         this.presentOpen = false;
@@ -35,11 +23,6 @@ class win extends Phaser.Scene{
         this.bounce = this.sound.add('bounce');
 
         this.present1 = this.add.sprite(20, 50, 'present1').setOrigin(0,0);
-        //this.presentBody = this.physics.add.sprite(270, 450, 'present2');
-        //this.presentBody.setAlpha(1);
-        //this.presentBody.body.allowGravity = false;
-        //this.presentBody.body.setSize(350, 100); //0.1, 1500
-        //this.presentBody.setInteractive();
         this.falsePresent = this.add.sprite(20, 50, 'present2').setOrigin(0,0);
 
         this.birthdayText = this.add.sprite(0, 0, 'birthdayText').setOrigin(0,0);
@@ -111,17 +94,6 @@ class win extends Phaser.Scene{
         this.line3 = new Phaser.Curves.Line([ 230, 500, 230, 350 ]);
         path3 = this.add.path();
         path3.add(this.line3);
-        //this.present2 = this.add.follower(line3, -10, 50, 'present2').setOrigin(0,0);
-
-        // this.presentBody.on("pointerover", () => {
-        //     //will tell code in update to go to next scene
-        //     this.pointerOver = true;
-        //     console.log('pointerover')
-        // });
-        // this.presentBody.on("pointerout", () => {
-        //     this.pointerOver = false;
-        //     console.log('pointerout')
-        // });
         this.menuButton.on("pointerover", () => {
             this.menuPointer = true;
             this.menuButton.setFrame(1);
@@ -142,25 +114,6 @@ class win extends Phaser.Scene{
                 repeat: -1,
                 yoyo: false
         });
-
-        // this.presentBody.on('pointerdown', function (pointer) {
-        //     this.falsePresent.setAlpha(0);
-        //     this.present2 = this.add.follower(this.line3, 20, 50, 'present2').setOrigin(0,0);
-        //     this.present2.startFollow({
-        //         duration: 700,
-        //         yoyo: false,
-        //         ease: 'Linear', //'Sine.easeInOut'
-        //     });
-        //     this.koala2.setAlpha(0);
-        //     this.koala3.setAlpha(1);
-        //     this.koala3.play('eyes');
-        //     this.glowing.setAlpha(1);
-        //     this.menuButton.setAlpha(1);
-        //     this.broText.setAlpha(1);
-        //     this.text1.setAlpha(0);
-        //     this.downArrow.setAlpha(0)
-
-        // });
         this.koalaBouncey();
 
 
@@ -245,25 +198,6 @@ class win extends Phaser.Scene{
         if(this.pointer2.isDown && this.menuPointer == true){
             this.advanceScene();
         }; 
-        // graphics2.clear();
-        // graphics2.lineStyle(2, 0xffffff, 1);
     
-        // path2.draw(graphics2);
-    
-        // path2.getPoint(follower2.t, follower2.vec);
-    
-        // graphics2.fillStyle(0xff0000, 1);
-        // graphics2.fillRect(follower2.vec.x - 8, follower2.vec.y - 8, 16, 16);
-
-
-        // graphics3.clear();
-        // graphics3.lineStyle(2, 0xffffff, 1);
-    
-        // path3.draw(graphics3);
-    
-        // path3.getPoint(follower3.t, follower3.vec);
-    
-        // graphics3.fillStyle(0xff0000, 1);
-        // graphics3.fillRect(follower3.vec.x - 8, follower3.vec.y - 8, 16, 16);
     }
 }

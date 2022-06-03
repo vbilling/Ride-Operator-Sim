@@ -33,14 +33,12 @@ class endless extends Phaser.Scene{
         this.time.addEvent({
             delay: 1,
             callback: ()=>{
-                //this.buttonPress.play();
             },
             loop: false
         }) 
         this.time.addEvent({
             delay: 500,
             callback: ()=>{
-                //this.buttonPress.play();
                 this.scene.start("menuScene");
             },
             loop: false

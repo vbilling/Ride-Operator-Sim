@@ -3,11 +3,6 @@ class lose extends Phaser.Scene{
         super("loseScene");
     }
     preload(){
-        // this.load.image('redBackground3', './assets/redBackground2.png');
-        // this.load.image('firedText', './assets/firedText.png');
-        // //this.load.spritesheet('startoverButton', './assets/startoverButton.png', {frameWidth: 500, frameHeight: 375, startFrame: 0, endFrame: 1});
-        // this.load.image('firedBoss', './assets/firedBoss.png');
-        //this.load.audio('deathmetal', './assets/deathmetal.wav');
     }
     create(){
         loseDone = true;
@@ -45,12 +40,10 @@ class lose extends Phaser.Scene{
         this.firedboss.x = this.firedboss.x + randomDecimil(-1, 1);
 
         this.menuButton.on("pointerover", () => {
-            //this.menuButton.setFrame(1);
             this.menuButtonHover = true;
             this.menuButton.setFrame(1);
         });
         this.menuButton.on("pointerout", () => {
-            //this.menuButton.setFrame(2);
             this.menuButtonHover = false;
             this.menuButton.setFrame(0);
         });

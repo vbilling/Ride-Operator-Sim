@@ -749,7 +749,7 @@ class score extends Phaser.Scene{
                         if(this.tooTall > 0){
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo1Config);
-                            this.progressBar.width = tooTall * 2.85 + this.progressBar.width;
+                            this.progressBar.width =  this.progressBar.width + tooTall * 2.85;
                         }else{
                             this.thud.play();
                             this.add.text(310, 207, 'x' + this.tooTall, combo2Config); 
@@ -1026,6 +1026,7 @@ class score extends Phaser.Scene{
 
     };
 
+
     coasterTimer(){
         //timer for ending the scene
         this.nextSceneTimer = this.time.addEvent({
@@ -1062,13 +1063,10 @@ class score extends Phaser.Scene{
 
     update(){
         //make boss shake if youre fired
-
-
         if(fired >= 90 && this.shake == true){
             this.boss.x = this.boss.x + this.randomDecimil(-0.5, 0.5);
         }
 
-        //this.delay += 1;
         if(this.cartRun == false){
             console.log("Should just run once");
             this.cart1.body.setVelocityX(490);
@@ -1079,7 +1077,6 @@ class score extends Phaser.Scene{
             //set velocity of bodies
             for(let b = 0; b < (riderSprite_array2.length); b++){
                 riderSprite_array2[b].body.setVelocityX(490);
-                //riderSprite_array2[b].setDepth(1.9);
                 //and make them change to surprised face unless headless
                 if(riderSize_array[b] == "extra large"){
                     riderSprite_array2[b].setFrame(2);
@@ -1091,9 +1088,12 @@ class score extends Phaser.Scene{
             //set velocity of the accessories
             for(let w = 0; w < (accessorySprite_array2.length); w++){
                 accessorySprite_array2[w].body.setVelocityX(490);
-                //accessorySprite_array2[w].setDepth(1.9);
             };
             this.cartRun = true;
+        }
+        //Keeps the progressBar within bounds 
+        if(this.progressBar.width > 285){
+            this.progressBar.width = 285;
         }
         
         //next button pressed 

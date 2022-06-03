@@ -24,7 +24,6 @@ class coaster extends Phaser.Scene{
         this.screams = 0;
 
         //sounds
-        //this.game.sound.stopAll();
         this.redButton1 = this.sound.add('redButton1');
         this.redButton2 = this.sound.add('redButton2');
         this.rollerCoasterAudio = this.sound.add('rollerCoasterAudio');
@@ -60,12 +59,6 @@ class coaster extends Phaser.Scene{
         this.buttonpressed = false;
 
         //coaster wheel animation
-        // this.anims.create({
-        //     key: 'wheels',
-        //     frames: this.anims.generateFrameNumbers('coasterCart', {start: 0, end: 1, first: 0}),
-        //     frameRate: 10,
-        //     repeat: -1,
-        // }); 
 
         //making a path for the loopty loop
         graphics = this.add.graphics();
@@ -100,11 +93,6 @@ class coaster extends Phaser.Scene{
         ]);
         points2 = curve2.getDistancePoints(size);
         curve2 = new Phaser.Curves.Spline(points2);
-
-        // graphics = this.add.graphics();
-        // graphics.lineStyle(1, 0xffffff, 1);
-        // curve2.draw(graphics, 64);
-        // graphics.fillStyle(0x00ff00, 1);
 
         //will help me round to one or two digits
         function roundTo(n, digits) {
@@ -299,19 +287,14 @@ class coaster extends Phaser.Scene{
             };
 
             //now add the accessories (start a at 2 because first two values are height and body)
-            //console.log('accessory ARRAY', allRiders_array[i]);
-            //console.log("allRiders_array[i].length", allRiders_array[i].length);
             for(let a = 2; a < (allRiders_array[i].length); a++){
-                //console.log('allRiders_array[i][a]', allRiders_array[i][a]);
                 this.accessory = this.physics.add.sprite(this.customer.x, this.customer.y, allRiders_array[i][a]);
                 this.accessory.body.allowGravity = false;
-                //console.log('this accessory', this.accessory);
                 //add accessories to an array
                 accessorySprite_array.push(this.accessory);
                 this.accessory.setScale(this.customerNewHeight);
             }
         };
-        //console.log('howdy:', accessorySprite_array);
         this.bottomTrack = this.add.sprite(0,110,'bottomTrack');
         //add coaster carts again so they are on top
         this.cart1 = this.physics.add.sprite(820, 520, 'coasterCart', 0)
@@ -361,7 +344,6 @@ class coaster extends Phaser.Scene{
 
         if(this.short8 == true){
             //replace with something blank instead of just deleting so the spot is held
-            //allRiders_array.splice(7, 1);
             allRiders_array[7][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
@@ -372,73 +354,59 @@ class coaster extends Phaser.Scene{
 
         };
         if(this.short7 == true){
-            //allRiders_array.splice(6, 1);
             allRiders_array[6][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
 
         };
         if(this.short6 == true){
-            //allRiders_array.splice(5, 1);
             allRiders_array[5][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
         };
         if(this.short5 == true){
-            //allRiders_array.splice(4, 1);
             allRiders_array[4][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
         };
         if(this.short4 == true){
-            //allRiders_array.splice(3, 1);
             allRiders_array[3][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
         };
         if(this.short3 == true){
-            //allRiders_array.splice(2, 1);
             allRiders_array[2][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
         };
         if(this.short2 == true){
-            //allRiders_array.splice(1, 1);
             allRiders_array[1][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
         };
         if(this.short1 == true){
-            //allRiders_array.splice(0, 1);
             allRiders_array[0][1] = 'blankBody';
             tooShort += 1;
             first_array.push('too short');
             first_array.push(-8);
-            // first_array.push('A rider was too short and fell out of the ride.');
             master_array.push(first_array);
             first_array = [];
 
@@ -532,7 +500,6 @@ class coaster extends Phaser.Scene{
         //play sound
         this.rollerCoasterAudio.play();
         //separate out carts
-        //console.log("allRiders_array", allRiders_array);
         //check if there is one rider
         if(riderSprite_array.length > 0){
             if(riderSize_array[0] == "small"){
@@ -1055,7 +1022,6 @@ class coaster extends Phaser.Scene{
                     console.log('w', w);
                     accessorySprite_array[w].body.setVelocityX(RC_Velocity);
                 };
-                //this.deleteCart1();
                 
             };
         };

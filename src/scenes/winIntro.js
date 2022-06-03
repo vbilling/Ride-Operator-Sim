@@ -3,8 +3,6 @@ class winIntro extends Phaser.Scene{
         super("winIntroScene");
     }
     preload(){
-        // this.load.image('winText', './assets/winText.png');
-        // this.load.image('greenBackground', './assets/greenBackground.png');
 
     }
     create(){

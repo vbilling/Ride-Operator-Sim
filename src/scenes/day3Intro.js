@@ -3,22 +3,11 @@ class day3Intro extends Phaser.Scene{
         super("day3IntroScene");
     }
     preload(){
-
-        // if(day1Done == false){
-        //     this.load.image('wristband3', './assets/wristband3.png');
-        //     //particle
-        //     this.load.image('glow', './assets/glow.png');
-        //     this.load.image('day3IntroText', './assets/day3IntroText.png');
-        //     this.load.image('abstract_3', './assets/abstract_3.png');
-        // }
-
-
     }
     create(){
         game.sound.stopAll();
         this.day3Jingle = this.sound.add('day3Jingle');
         this.day3Jingle.play();
-        //this.cameras.main.setBackgroundColor('#bb60f7')
         this.add.sprite(0, 0, 'abstract_3').setOrigin(0,0);
         this.add.tileSprite(0, 0, 960, 720, 'day3IntroText').setOrigin(0, 0);
         this.wristband3 = this.add.image(880, 350, 'wristband3');
@@ -40,9 +29,6 @@ class day3Intro extends Phaser.Scene{
             blendMode: 'ADD'
         });
         
-        //this.emitter.setPosition(450, 450);
-        //this.emitter.setSpeed(200);
-        //this.emitter.setBlendMode(Phaser.BlendModes.ADD);
 
         //text fades in and out
         this.clock = 0;

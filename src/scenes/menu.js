@@ -69,8 +69,6 @@ class menu extends Phaser.Scene{
 
         //sounds
         this.buttonPress = this.sound.add('buttonPress');
-        //this.redButton3 = this.sound.add('redButton1');
-        //this.redButton4 = this.sound.add('redButton2');
         this.game.sound.stopAll();
 
         
@@ -96,7 +94,6 @@ class menu extends Phaser.Scene{
         this.creditsText.setScale(0.4);
 
         this.creditButton = this.physics.add.sprite(510,510, 'creditButton').setInteractive();
-        //this.creditButton.setScale(1.17);
         this.creditButton.body.allowGravity = false;
         this.creditButton.body.setSize(20, 30, 2, -200);
         this.creditButton.on("pointerover", () => {
@@ -131,7 +128,6 @@ class menu extends Phaser.Scene{
  
         this.endlessButton = this.physics.add.sprite(300, 650, 'greenButton').setInteractive();
         this.endlessButton.body.allowGravity = false;
-        //this.endlessButton.setBlendMode(Phaser.BlendModes.DARKEN);
         this.endlessButton.setScale(0.17);
         if(winDone == true){
             this.endlessButton.on("pointerover", () => {
@@ -197,12 +193,10 @@ class menu extends Phaser.Scene{
             this.endlessButton.setFrame(3);
         }else{
             this.chaosText.setFrame(0);
-            //this.endlessText.setFrame(0);
             this.chaosButton.setFrame(0);
             if(chaosDone == false){
                 this.chaosButton.play('blinking2');
             }
-            //this.endlessButton.setFrame(0);
         }
 
         menuDone = true;

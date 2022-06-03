@@ -57,7 +57,6 @@ class trainingday extends Phaser.Scene{
 
 
         this.ground = this.add.sprite(480, 390, 'ground');
-        //this.ground.body.allowGravity = false;
         //number to keep track of which test rider we are on
         this.riderNum = 0;
         this.delay = 0;
@@ -79,9 +78,6 @@ class trainingday extends Phaser.Scene{
         this.soundplayed = true;
 
         this.pointer = this.input.activePointer;
-        // this.readyButton = this.add.sprite(860, 70, 'readyButton').setInteractive();
-        // this.readyButton.setAlpha(0);
-        // this.readyButton.setScale(0.4);
         this.contract.on("pointerover", () => {
             this.contract.setFrame(1);
             this.contract.stop();
@@ -124,7 +120,6 @@ class trainingday extends Phaser.Scene{
                 this.time.addEvent({
                     delay: 100,
                     callback: ()=>{
-                        //this.correct.play();
                         this.soundplayed = false;
                     },
                     loop: false
@@ -204,7 +199,7 @@ class trainingday extends Phaser.Scene{
                 top: 5,
                 bottom: 4
             },
-            //fixedWidth: 100
+  
         };
         let normalConfig = {
             fontFamily: 'Courier',
@@ -215,7 +210,7 @@ class trainingday extends Phaser.Scene{
                 top: 5,
                 bottom: 4
             },
-            //fixedWidth: 100
+            
         };
         let arrowConfig = {
             fontFamily: 'Marker Felt',
@@ -228,7 +223,7 @@ class trainingday extends Phaser.Scene{
                 top: 5,
                 bottom: 4
             },
-            //fixedWidth: 100
+          
         };
         let arrow2Config = {
             fontFamily: 'Marker Felt',
@@ -241,7 +236,7 @@ class trainingday extends Phaser.Scene{
                 top: 5,
                 bottom: 4
             },
-            //fixedWidth: 100
+            
         };
         //create an array to hold all the dialogue
         bossText = [
@@ -257,7 +252,6 @@ class trainingday extends Phaser.Scene{
             "Lets practice checking height. Fling these \n guests accordingly.",
             "Make sure guests have the correct wristband! \nNO FREE RIDES!!! Today's color is",
             "Oh and VERY important: no HATS, FOOD, \nDRINKS, WEAPONS, or CRIMINALS allowed!!!",
-            //"Practice as much as you need, then click \nready. The ready button will appear \n when you've let 8 riders on.",
             "Alright you should be ready now just \nsign this contract!",
             "See you tomorrow at your first shift!"
         ];
@@ -267,8 +261,6 @@ class trainingday extends Phaser.Scene{
         this.allowtext = this.add.text(0, 0, 'Allow', arrowConfig).setAlpha(0);
         this.denytext = this.add.text(0, 0, 'Deny', arrow2Config).setAlpha(0);
         this.logo = this.add.sprite(580, 135, 'boardwalkLogo').setAlpha(0);
-        //this.threeDays = this.add.sprite(-30, 0, 'threeDays').setOrigin(0,0);
-        //this.threeDays.setAlpha(0);
         this.typewriteTextWrapped(bossText[0]);
 
         this.ugh1.play();
@@ -557,17 +549,14 @@ class trainingday extends Phaser.Scene{
                 this.startdelay2 = true;
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[3]);
-                //this.sigh1.play();
                 this.boss.setFrame(1);
             }
         }else if(currentText.text == bossText[3]){
             this.startdirectionsTimer = true;
             if(this.delay2/60 > 0){
-                //this.threeDays.setAlpha(1);
                 this.startdelay2 = false;
             };
             if(Phaser.Input.Keyboard.JustDown(keySpace)){
-                //this.threeDays.setAlpha(0);
                 this.startdirectionsTimer = false;
                 currentText.text = this.typewriteTextWrapped(bossText[4]);
                 this.boss.setFrame(0);
@@ -628,7 +617,6 @@ class trainingday extends Phaser.Scene{
                 currentText.text = this.typewriteTextWrapped(bossText[8]);
                 //play hmm audio
                 this.huh.play();
-                //this.question.play();
                 this.boss.setFrame(1);
                 this.arrow1.destroy();
                 this.arrow2.destroy();
@@ -705,7 +693,6 @@ class trainingday extends Phaser.Scene{
                 
             }
         }else if(currentText.text == bossText[12]){
-            //this.startdirectionsTimer = true;
             //if the contract is clicked
             if(this.pointer.isDown && this.contractHover == true){
                 this.scribble.play();
@@ -716,18 +703,6 @@ class trainingday extends Phaser.Scene{
         }else if(currentText.text == bossText[13]){
             //set a timer then next scene
             this.advanceScene();
-            // if(this.pointer.isDown && this.contractHover == true){
-            //     this.scene.start("day1IntroScene");
-            //     //this.buttonPress.play();
-            // }; 
-            // if(this.nextrider == true){
-            //     this.delay += 1;
-            //     if(Math.round(this.delay/60) > 0.2){
-            //         this.newCharacters();
-            //         this.nextrider = false;
-            //     };
-
-            // }
         }
 
     

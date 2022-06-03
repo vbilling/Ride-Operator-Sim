@@ -3,8 +3,6 @@ class trainingIntro extends Phaser.Scene{
         super("trainingIntroScene");
     }
     preload(){
-        // this.load.image('trainingIntroText', './assets/trainingIntroText.png');
-        // this.load.image('background1', './assets/abstract_4.png');
   
     }
     create(){
