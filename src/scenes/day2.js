@@ -16,6 +16,8 @@ class day2 extends Phaser.Scene{
         this.dayheader = this.add.sprite(0, 0, 'day2Header').setOrigin(0,0);
         this.day2Title = this.add.sprite(335, 67, 'day2Title').setOrigin(0,0);
         this.day2Title.setScale(0.3);
+        this.bulbs = this.add.sprite(0,0, 'bulbs').setOrigin(0,0);
+        this.bulbs.setDepth(2);
         //will help pick random bodies and accessories
         function random(mn, mx) {
             return Math.round(Math.random() * (mx - mn) + mn);
