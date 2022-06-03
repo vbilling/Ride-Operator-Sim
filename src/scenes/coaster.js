@@ -6,6 +6,8 @@ class coaster extends Phaser.Scene{
 
     };
     create(){
+        riderSize_array = [];
+
         //background
         if(day2Done == false){
             this.background = this.add.tileSprite(0, 0, 960, 720, 'coasterBackgroundDay1').setOrigin(0, 0);

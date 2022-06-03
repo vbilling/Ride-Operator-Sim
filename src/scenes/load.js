@@ -18,6 +18,9 @@ class load extends Phaser.Scene{
         this.load.image('creditsText', './assets/creditsText.png');
 
         this.load.image('glow2', './assets/glow2.png');
+        this.load.image('spark', './assets/spark.png');
+        this.load.image('bulbs', './assets/bulbs.png');
+        this.load.image('noWristband', './assets/noWristband.png');
 
         this.load.spritesheet('timerClock', './assets/timerClock.png', {frameWidth: 404, frameHeight: 304, startFrame: 0, endFrame: 8});
 
@@ -59,6 +62,7 @@ class load extends Phaser.Scene{
         this.load.spritesheet('fox', './assets/fox.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
         this.load.spritesheet('blankBody', './assets/blankBody.png', {frameWidth: 1536, frameHeight: 2048, startFrame: 0, endFrame: 2});
 
+
         //loading all the audio
         this.load.audio('whoosh', './assets/whoosh.wav');
         this.load.audio('thud', './assets/thud.wav');
@@ -75,7 +79,7 @@ class load extends Phaser.Scene{
         this.load.audio('trumpet', './assets/trumpet.wav');
         this.load.audio('rollerCoasterAudio', './assets/rollerCoaster.wav');
         this.load.audio('scream', './assets/scream.wav');
-        this.load.audio('lightbulb', './assets/lightbulb.mp3');
+        this.load.audio('lightbulb', './assets/lightbulb.wav');
         this.load.audio('scribble', './assets/scribble.wav');
         this.load.audio('bounce', './assets/bounce.wav');
         this.load.audio('happyBirthday', './assets/happyBirthday.wav');
@@ -258,7 +262,7 @@ class load extends Phaser.Scene{
     
     }
     create(){
-        this.scene.start("day1Scene");
+        this.scene.start("menuScene");
     }
 
 

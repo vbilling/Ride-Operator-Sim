@@ -14,6 +14,8 @@ class day1 extends Phaser.Scene{
         this.dayheader = this.add.sprite(0, 0, 'day1Header').setOrigin(0,0);
         this.day1Title = this.add.sprite(340, 67, 'day1Title').setOrigin(0,0);
         this.day1Title.setScale(0.3);
+        this.bulbs = this.add.sprite(0,0, 'bulbs').setOrigin(0,0);
+        this.bulbs.setDepth(2);
         //you have done day one and will help track which wristbands are correct
         day1Done = true;
         day2Done = false;
@@ -216,7 +218,7 @@ class day1 extends Phaser.Scene{
         this.wrist_chance = random(0, 100);
         //console.log('this.wrist_chance', this.wrist_chance);
         this.wrist = false;
-        if(this.wrist_chance >= 1){
+        if(this.wrist_chance >= 1){ //1
             this.wrist = true;
         }
         //then put all accessories in the aproporate arrays (wristbands more common than anything else)
@@ -228,7 +230,7 @@ class day1 extends Phaser.Scene{
             this.wrist_accessory = this.add.sprite(this.p1.x, this.p1.y, wrist_array[this.pick_wrist], 0);
             this.wrist_accessory.setScale(this.scale);
         }else{
-            riderAccessories_array.push("no wristband");
+            riderAccessories_array.push("noWristband");
         }
         //face accessories
         this.face_chance = random(0, 100);
@@ -317,6 +319,17 @@ class day1 extends Phaser.Scene{
         console.log('riderAccessories_array:', riderAccessories_array);
     };
     advanceScene(){
+        this.particles = this.add.particles('spark');
+        this.emitter0 = this.particles.createEmitter({
+            speed: { min: -200, max: 50 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.2, end: 0 },
+            //blendMode: 'ADD',
+            //active: false,
+            lifespan: 1000,
+            //gravityY: 200 //800
+        });
+        this.particleTimer();
         this.time.addEvent({
             delay: 700,
             callback: ()=>{
@@ -324,6 +337,16 @@ class day1 extends Phaser.Scene{
             },
             loop: false
         }) 
+    }
+    particleTimer(){
+        this.time.addEvent({
+            delay: 400,
+            callback: ()=>{
+                this.particles.destroy();
+            },
+            loop: false
+        }) 
+        
     }
 
     update(){
@@ -419,6 +442,20 @@ class day1 extends Phaser.Scene{
                         this.lightbulb.play();
                         console.log('all riders array', allRiders_array);
                         this.newCharacter();
+                        this.particles = this.add.particles('spark');
+                        this.bulbs.setDepth(2);
+                        this.particles.setDepth(1.9);
+                        this.emitter0 = this.particles.createEmitter({
+                            speed: { min: -200, max: 20 },
+                            angle: { min: 0, max: 360 },
+                            scale: { start: 0.2, end: 0 },
+                            //blendMode: 'SCREEN',
+                            //active: false,
+                            lifespan: 1000,
+                            gravityY: 900 //800
+                        });
+                        this.particleTimer();
+
                     }else{
                         this.buttonPress.play();
                     }
@@ -437,27 +474,35 @@ class day1 extends Phaser.Scene{
         }
         if (ridingCustomers == 1){
             this.header.setFrame(1);
+            this.emitter0.setPosition(27,18);
         }
         if (ridingCustomers == 2){
             this.header.setFrame(2);
+            this.emitter0.setPosition(165,20);
         }
         if (ridingCustomers == 3){
             this.header.setFrame(3);
+            this.emitter0.setPosition(295,20);
         }
         if (ridingCustomers == 4){
             this.header.setFrame(4);
+            this.emitter0.setPosition(415,15);
         }
         if (ridingCustomers == 5){
             this.header.setFrame(5);
+            this.emitter0.setPosition(555,20);
         }
         if (ridingCustomers == 6){
             this.header.setFrame(6);
+            this.emitter0.setPosition(690,20);
         }
         if (ridingCustomers == 7){
             this.header.setFrame(7);
+            this.emitter0.setPosition(810,20);
         }
         if (ridingCustomers == 8){
             this.header.setFrame(8);
+            this.emitter0.setPosition(930,20);
         }
 
         //the timer clock ticking up
@@ -497,15 +542,11 @@ class day1 extends Phaser.Scene{
             this.tick2.volume = 1.3;
         }
 
-        
         //will go to score scene if the done button is clicked
         if(this.pointer.isDown && this.readyButtonHover == true){
             this.scene.start("coasterScene");
         }; 
     
-
-
-
     };
 
 }
